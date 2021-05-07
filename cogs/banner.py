@@ -19,7 +19,7 @@ def get_prefix(client, message):
   return server["prefix"]
 
 client = commands.Bot(command_prefix=get_prefix, case_insensitive=True)
-botcolour = discord.Color.red()
+botcolour = 0x0fa4aab
 
 async def open_account(ctx):
   user = mainbank.find_one( {'_id':ctx.id} )
@@ -33,7 +33,7 @@ async def open_account(ctx):
       "stonk": {
         "trash": 0
       },
-      "weapon":{}
+      "weapon":{"dagger":0,"shield":0}
       })
     return True
   else:
@@ -246,6 +246,7 @@ class SDSGCBanner(commands.Cog):
     file = discord.File(f'.//RSPVP//pull//{ctx.author.id}.jpg')
     embed = discord.Embed(title = quote,colour = ctx.author.color)
     embed.set_image(url = f"attachment://{ctx.author.id}.jpg")
+    embed.set_thumbnail(url=ctx.author.avatar_url)
     await ctx.send(embed = embed, file = file)
 
 def direct(directory,rank):

@@ -20,7 +20,7 @@ def get_prefix(client, message):
   return server["prefix"]
 
 client = commands.Bot(command_prefix=get_prefix, case_insensitive=True)
-botcolour = discord.Color.red()
+botcolour = 0x0fa4aab
 gsmsg_id = 829765626838646814
 gschannel_id = 803097378726215723
 
@@ -28,6 +28,34 @@ class BasicFunctions(commands.Cog):
   """ Basic bot commands """
   def __init__(self,client):
     self.client = client
+
+  @commands.Cog.listener()
+  async def on_message(self,msg):
+    if msg.author.id == self.client.user.id:
+      return
+
+    if "escanor animation" in msg.content.lower() or "esca animation" in msg.content.lower():
+      await msg.add_reaction("<:laserescanor:747149915385233468>")
+
+    if "noice" in msg.content.lower():
+      await msg.add_reaction("<:noice:831113245082779699>")
+
+    if len(msg.content) == 0:
+      return
+    elif ":" == msg.content[0] and ":" == msg.content[-1]:
+      emoji_name = msg.content[1:-1]
+      for emoji in msg.guild.emojis:
+        if emoji_name == emoji.name:
+          await msg.channel.send(str(emoji))
+          await msg.delete()
+          break
+    # await self.client.process_commands(msg)
+
+  @commands.command()
+  async def invite(self,ctx):
+    """ Invite link to the dev server """
+    em = discord.Embed(title="<:questionmark:833703303476150302> Dev Server", url='https://discord.gg/bX5bD9dNvT', description="Click to join dev server", color = botcolour)
+    await ctx.send(embed = em)
 
   @commands.command()
   async def ping(self,ctx):

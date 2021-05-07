@@ -20,7 +20,7 @@ def get_prefix(client, message):
   return server["prefix"]
 
 client = commands.Bot(command_prefix=get_prefix, case_insensitive=True)
-botcolour = discord.Color.red()
+botcolour = 0x0fa4aab
 vendorcolour = discord.Color.gold()
 
 async def open_account(ctx):
@@ -62,7 +62,7 @@ async def update_bank(user):
 async def currencygiveaway(reaction_list, amount):
     for id in reaction_list:
       await open_account(id)
-      mainbank.update_one({"_id":id}, {"$inc":{"wallet":amount}})
+      mainbank.update_one({"_id":id.id}, {"$inc":{"wallet":amount}})
 
 class Currency(commands.Cog):
   """ Currency related commands """
@@ -104,12 +104,15 @@ class Currency(commands.Cog):
     currency = guilds["emoji"]
 
     users = mainbank.find_one( {'_id':user.id} )
-    wallet_bal = str(users["wallet"]) + " " + currency
-    bank_bal = str(users["bank"]) + " " + currency
+    wall = users["wallet"]
+    bank = users["bank"]
+    wallet_bal = f"{wall:,d}" + " " + currency
+    bank_bal = f"{bank:,d}" + " " + currency
 
     em = discord.Embed(title=f"{names}'s balance", color=ctx.author.color)
     em.add_field(name = "Wallet Balance", value= wallet_bal)
     em.add_field(name = "Bank Balance", value= bank_bal)
+    em.set_thumbnail(url=ctx.author.avatar_url)
     await ctx.send(embed=em)
 
   @commands.command(aliases=['time','t'])
@@ -171,7 +174,7 @@ class Currency(commands.Cog):
         await ctx.send(embed = em)
         return
     mainbank.update_many({"_id":user.id}, {"$inc":{"wallet":amount, "bank":-1*amount}})
-    em = discord.Embed(description = f"You withdraw {amount}{currency}", colour = ctx.author.color)
+    em = discord.Embed(description = f"You withdraw {amount:,d}{currency}", colour = ctx.author.color)
     return await ctx.send(embed=em)
 
   @commands.command(aliases =['save','bank'])
@@ -205,7 +208,7 @@ class Currency(commands.Cog):
         await ctx.send(embed = em)
         return
     mainbank.update_many({"_id":user.id}, {"$inc":{"wallet":-1*amount, "bank":amount}})
-    em = discord.Embed(description = f"You deposit {amount}{currency}", colour = ctx.author.color)
+    em = discord.Embed(description = f"You deposit {amount:,d}{currency}", colour = ctx.author.color)
     return await ctx.send(embed=em)
 
   @commands.command(aliases=['ctransfer', 'give'])
@@ -241,7 +244,7 @@ class Currency(commands.Cog):
     mainbank.update_one({"_id":user.id}, {"$inc":{"wallet":-1*amount}})
     mainbank.update_one({"_id":target.id}, {"$inc":{"wallet":amount}})
 
-    em = discord.Embed(description = f"You donate {amount}{currency} to {tnames}", colour = ctx.author.color)
+    em = discord.Embed(description = f"You donate {amount:,d}{currency} to {tnames}", colour = ctx.author.color)
     await ctx.send(embed=em)
 
   @commands.command()
@@ -265,10 +268,10 @@ class Currency(commands.Cog):
     targets = mainbank.find_one( {'_id':target.id} )
     names = user.display_name
     tnames = target.display_name
-    if users['wallet'] < 500:
+    if users["wallet"] < 500:
       em = discord.Embed(description = f"You need over 500{currency} to rob somebody.", colour = discord.Color.red())
       return await ctx.send(embed = em)
-    elif users['wallet'] < 500:
+    elif targets["wallet"] < 500:
       em = discord.Embed(description = f"They have less than 500{currency}. Pity that poor soul.", colour = botcolour)
       return await ctx.send(embed = em)
     userwpn = int(users["weapon"]["dagger"])
@@ -296,10 +299,10 @@ class Currency(commands.Cog):
       em.add_field(name="Resources used", value= f"{names} has used {userused} 🗡 and {tnames} has used {targetused} 🛡")
       return await ctx.send(embed = em)
 
-    grab = int(targets['wallet']/random.randrange(101))
+    grab = int(targets["wallet"]/random.randrange(101))
     mainbank.update_one({"_id":user.id}, {"$inc":{"wallet":grab}})
     mainbank.update_one({"_id":target.id}, {"$inc":{"wallet":-1*grab}})
-    em = discord.Embed(title = "Rob Success",description = f'With a success rate of {40+star}%. {names} competed the operation.\n**You robbed {grab}{currency} from {tnames}**', colour = discord.Color.green())
+    em = discord.Embed(title = "Rob Success",description = f'With a success rate of {40+star}%. {names} competed the operation.\n**You robbed {grab:,d}{currency} from {tnames}**', colour = discord.Color.green())
     em.add_field(name="Resources used", value= f"{names} has used {userused} 🗡 and {tnames} has used {targetused} 🛡")
     return await ctx.send(embed = em)
 
@@ -364,7 +367,7 @@ class Currency(commands.Cog):
         return
     mainbank.update_one({"_id":user.id}, {"$inc":{"wallet":-1*amount}})
     settings.update_one({"gid":user.guild.id}, {"$inc":{"droppile":amount}})
-    em = discord.Embed(description = f"{names} You dropped {amount} {currency} into the drop pile", colour = ctx.author.color)
+    em = discord.Embed(description = f"{names} You dropped {amount:,d} {currency} into the drop pile", colour = ctx.author.color)
     return await ctx.send(embed=em)
 
   @commands.command()
@@ -375,7 +378,7 @@ class Currency(commands.Cog):
     guilds = settings.find_one( {'gid':user.guild.id} )
     currency = guilds["emoji"]
     droppile = guilds["droppile"]
-    em = discord.Embed(description = f"There are {droppile} {currency} in the drop pile", colour = ctx.author.color)
+    em = discord.Embed(description = f"There are {droppile:,d} {currency} in the drop pile", colour = ctx.author.color)
     return await ctx.send(embed=em)
 
   @commands.command(aliases=['clb'])
@@ -395,15 +398,17 @@ class Currency(commands.Cog):
     total = sorted(total,reverse=True)
     em = discord.Embed(title = f"{currency} Top {x} Richest Peeps {currency}", description = f"This is the total amount of {currency} in bank and wallet", color = botcolour)
     index = 1
+    topmember = await self.client.fetch_user(lb[total[0]])
     for amt in total:
       id_ = lb[amt]
       member = await self.client.fetch_user(int(id_))
       name = member.display_name
-      em.add_field(name = f"{index}. {name}", value = f"{amt} {currency}", inline = False)
+      em.add_field(name = f"{index}. {name}", value = f"{amt:,d} {currency}", inline = False)
       if index == x:
         break
       else:
         index += 1
+    em.set_thumbnail(url=topmember.avatar_url)
     await ctx.send(embed = em)
 
   @commands.command(aliases=['betroll', 'br'])
@@ -441,22 +446,22 @@ class Currency(commands.Cog):
     if roll < 67:
       earning = 0
       mainbank.update_one({"_id":user.id}, {"$inc":{"wallet":-1*amount}})
-      em = discord.Embed(description = f"{names} has rolled {roll}. Too bad you lost {amount}{currency}", colour = ctx.author.color)
+      em = discord.Embed(description = f"{names} has rolled {roll}. Too bad you lost {amount:,d}{currency}", colour = ctx.author.color)
       return await ctx.send(embed = em)
     elif roll < 91:
       earning*=2
       mainbank.update_one({"_id":user.id}, {"$inc":{"wallet":amount}})
-      em = discord.Embed(description = f"{names} has rolled {roll}. You have won {earning}{currency} for rolling above 66!", colour = ctx.author.color)
+      em = discord.Embed(description = f"{names} has rolled {roll}. You have won {earning:,d}{currency} for rolling above 66!", colour = ctx.author.color)
       await ctx.send(embed = em)
     elif roll < 100:
       earning*=4
       mainbank.update_one({"_id":user.id}, {"$inc":{"wallet":3*amount}})
-      em = discord.Embed(description = f"{names} has rolled {roll}. You have won {earning}{currency} for rolling above 90!", colour = ctx.author.color)
+      em = discord.Embed(description = f"{names} has rolled {roll}. You have won {earning:,d}{currency} for rolling above 90!", colour = ctx.author.color)
       await ctx.send(embed = em)
     else:
       earning*=10
       mainbank.update_one({"_id":user.id}, {"$inc":{"wallet":9*amount}})
-      em = discord.Embed(description = f"{names} has rolled {roll}. You have won {earning}{currency} for rolling 100!", colour = ctx.author.color)
+      em = discord.Embed(description = f"{names} has rolled {roll}. You have won {earning:,d}{currency} for rolling 100!", colour = ctx.author.color)
       await ctx.send(embed = em)
 
   @commands.command(aliases=['w'])
@@ -499,7 +504,7 @@ class Currency(commands.Cog):
     earning = int(earning*wheel[roll])
     arr = arrow[roll]
 
-    em = discord.Embed(title=f"{names} used {amount}{currency} to win {earning}{currency}",
+    em = discord.Embed(title=f"{names} used {amount:,d} {currency} to win {earning:,d} {currency}",
     description = f"| `1.5` | `1.7` | `2.4` |\n| `0.2` | {arr} | `1.2` |\n| `0.1` | `0.3` | `0.5` |", 
     colour = ctx.author.color)
     mainbank.update_one({"_id":user.id}, {"$inc":{"wallet":earning-amount}})
@@ -513,7 +518,7 @@ class Currency(commands.Cog):
     await open_server(ctx.author)
     guilds = settings.find_one( {'gid':ctx.author.guild.id} )
     currency = guilds["emoji"]
-    embed = discord.Embed(title = "Currency Giveaway!", description = f"{prize}{currency}", color = ctx.author.color)
+    embed = discord.Embed(title = "Currency Giveaway!", description = f"{prize:,d}{currency}", color = ctx.author.color)
 
     end = datetime.datetime.utcnow() + datetime.timedelta(seconds = mins*60) 
 
@@ -531,7 +536,7 @@ class Currency(commands.Cog):
 
     await currencygiveaway(users, prize)
 
-    em = discord.Embed(title = "Currency Giveaway Ended!", description = f"{prize} {currency} given to those reacted", color = ctx.author.color)
+    em = discord.Embed(title = "Currency Giveaway Ended!", description = f"{prize:,d} {currency} given to those reacted", color = ctx.author.color)
     await ctx.send(embed = em)
 
   @commands.command()
@@ -569,7 +574,7 @@ class Currency(commands.Cog):
       em.add_field(name = name, value = f"{desc}| {pricing}{currency}")
     await ctx.send(embed = em)
 
-  @commands.command(aliases=['weaponbag', 'eqbag'])
+  @commands.command(aliases=['weaponbag', 'eqbag', 'wpnbag'])
   async def equipmentbag(self,ctx):
     """ Open your equipment bag """
     user = ctx.author
@@ -585,7 +590,7 @@ class Currency(commands.Cog):
       name = item
       emoji = weaponry[name.capitalize()]["description"]
       amount = bag[item]
-      em.add_field(name = f"{name} | {emoji}", value = f"Qty: {amount}") 
+      em.add_field(name = f"{name} | {emoji}", value = f"Qty: {amount:,d}") 
     return await ctx.send(embed = em)
 
   @commands.command(aliases=['buywpn'])
@@ -608,10 +613,10 @@ class Currency(commands.Cog):
         return await ctx.send(embed = em)
       if res[1]==2:
         emoji = weaponry[item.capitalize()]["description"]
-        em = discord.Embed(description = f"You don't have {cost} {currency} in your wallet to buy {amount} {emoji}", color=vendorcolour)
+        em = discord.Embed(description = f"You don't have {cost:,d} {currency} in your wallet to buy {amount:,} {emoji}", color=vendorcolour)
         return await ctx.send(embed = em)
     emoji = weaponry[item.capitalize()]["description"]
-    em = discord.Embed(description = f"You just bought {amount} {emoji} for {cost}{currency}", color=user.color)
+    em = discord.Embed(description = f"You just bought {amount:,} {emoji} for {cost:,d}{currency}", color=user.color)
     return await ctx.send(embed = em)
 
 
@@ -645,12 +650,12 @@ class Currency(commands.Cog):
         em = discord.Embed(description = f"We don't accept {item.capitalize()} here!", color=vendorcolour)
         return await ctx.send(embed = em)
       if res[1]==2:
-        em = discord.Embed(description = f"You don't have {amount} {emoji} in your bag.", color=vendorcolour)
+        em = discord.Embed(description = f"You don't have {amount:,} {emoji} in your bag.", color=vendorcolour)
         return await ctx.send(embed = em)
       if res[1]==3:
         em = discord.Embed(description = f"You don't have {emoji} in your bag.", color=vendorcolour)
         return await ctx.send(embed = em)
-    em = discord.Embed(description = f"You just sold {amount} {emoji} for {cost}{currency}", color=user.color)
+    em = discord.Embed(description = f"You just sold {amount:,} {emoji} for {cost:,d}{currency}", color=user.color)
     return await ctx.send(embed = em)
 
 

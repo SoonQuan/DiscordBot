@@ -17,7 +17,6 @@ mainbank = db["mainbank"]
 settings = db["settings"]
 stonk = db["stonk"]
 
-
 def get_prefix(client, message):
   server = settings.find_one({"gid":message.guild.id})
   return server["prefix"]
@@ -37,7 +36,7 @@ async def open_account(ctx):
       "stonk": {
         "trash": 0
       },
-      "weapon":{}
+      "weapon":{"dagger":0,"shield":0}
       })
     return True
   else:
@@ -62,7 +61,7 @@ class StonkMarket(commands.Cog):
     self.client = client
     self.updatesshop.start()
 
-  @tasks.loop(seconds=5)
+  @tasks.loop(minutes=10)
   async def updatesshop(self):
     await transferstonk()
     await weeklystonk()
@@ -71,33 +70,40 @@ class StonkMarket(commands.Cog):
     sessionstart = timing["sessionstart"]
     timedif = time.time()-sessionstart
     cool = 25200 # change to cooldown duration 7hr
+    channel = self.client.get_channel(703054964200833125)
+    role = channel.guild.get_role(832076962713305098)
+    prefix = get_prefix(client,channel)
     if timedif >= cool:
       stonk.update_one({"id":"timing"}, {"$inc":{"sessionstart":timedif}})
       await stonkprice() #see where to put this
-      channel = self.client.get_channel(825583328111230981)
-      role = channel.guild.get_role(839439064137596938)
-      await channel.send(f"{role.mention} shop updated")
-
-      # buytime = timing["buytime"]
-      # if buytime == 1:
-      #   reactemoji = "<:sqbaby:834387387320762388>"
-      #   channel = client.get_channel(703054964200833125)
-      #   role = channel.guild.get_role(832076962713305098)
-      #   rolechnl = '<#697647239123959857>'
-      #   quote = f"{role.mention} Items are now on sale~ Pick them up before the are gone\nReact to {reactemoji} in {rolechnl} to get notified about refreshes"
-      #   await channel.send(quote)
-      # elif buytime == 0:
-      #   reactemoji = "<:sqbaby:834387387320762388>"
-      #   channel = self.client.get_channel(703054964200833125)
-      #   role = channel.guild.get_role(832076962713305098)
-      #   rolechnl = '<#697647239123959857>'
-      #   quote = f"{role.mention} Buying all items for said price in shop\nReact to {reactemoji} in {rolechnl} to get notified about refreshes"
-      #   await channel.send(quote)
+      buytime = timing["buytime"]
+      if buytime == 1:
+        quote = f"{role.mention} Items are now on sale~ Pick them up before the are gone\nUse the command {prefix}addsrr to get notified about refreshes"
+        await channel.send(quote)
+      elif buytime == 0:
+        quote = f"{role.mention} Buying all items for said price in shop\nUse the command {prefix}addsrr to get notified about refreshes"
+        await channel.send(quote)
 
   @updatesshop.before_loop
   async def before_updatesshop(self):
       print('updatesshop waiting...')
       await self.client.wait_until_ready()
+
+  @commands.command(aliases=['add_shop_refresh_role'])
+  async def addsrr(self,ctx):
+    """ Assign Shop Refresh Role to self """
+    user = ctx.author
+    var = user.guild.get_role(832076962713305098)
+    await user.add_roles(var)
+    await ctx.send("Role updated")
+
+  @commands.command(aliases=['remove_shop_refresh_role'])
+  async def removesrr(self,ctx):
+    """ Remove Shop Refresh Role to self """
+    user = ctx.author
+    var = user.guild.get_role(832076962713305098)
+    await user.remove_roles(var)
+    await ctx.send("Role updated")
 
   @commands.command(aliases=['shop', 'price'])
   async def stonkshop(self,ctx):
@@ -183,10 +189,10 @@ class StonkMarket(commands.Cog):
           return await ctx.send(embed = em)
         if res[1]==2:
           emoji = market[item.capitalize()]["description"]
-          em = discord.Embed(description = f"You don't have {cost} {currency} in your wallet to buy {amount} {emoji}", color=shopcolour)
+          em = discord.Embed(description = f"You don't have {cost:,d} {currency} in your wallet to buy {amount:,d} {emoji}", color=shopcolour)
           return await ctx.send(embed = em)
       emoji = market[item.capitalize()]["description"]
-      em = discord.Embed(description = f"You just bought {amount} {emoji} for {cost}{currency}", color=user.color)
+      em = discord.Embed(description = f"You just bought {amount:,d} {emoji} for {cost:,d}{currency}", color=user.color)
       return await ctx.send(embed = em)
     elif timing["buytime"] == 2:
       em = discord.Embed(description = "Let's take a break\nNot buying or selling", color=shopcolour)
@@ -227,7 +233,7 @@ class StonkMarket(commands.Cog):
         em = discord.Embed(description = f"You don't have {emoji} in your bag.", color=shopcolour)
         return await ctx.send(embed = em)
     if timing["buytime"] == 0:
-      res = await stonk_sell(user,item,amount)
+      res = await stonk_sell(user,item,int(amount))
       cost = int(res[2])
       if item == "None":
         em = discord.Embed(description = "What would you like to sell?", color=shopcolour)
@@ -238,14 +244,14 @@ class StonkMarket(commands.Cog):
           return await ctx.send(embed = em)
         if res[1]==2:
           # emoji = market[item.capitalize()]["description"]
-          em = discord.Embed(description = f"You don't have {amount} {emoji} in your bag.", color=shopcolour)
+          em = discord.Embed(description = f"You don't have {amount:,d} {emoji} in your bag.", color=shopcolour)
           return await ctx.send(embed = em)
         if res[1]==3:
           # emoji = market[item.capitalize()]["description"]
           em = discord.Embed(description = f"You don't have {emoji} in your bag.", color=shopcolour)
           return await ctx.send(embed = em)
       # emoji = market[item.capitalize()]["description"]
-      em = discord.Embed(description = f"You just sold {amount} {emoji} for {cost}{currency}", color=user.color)
+      em = discord.Embed(description = f"You just sold {amount:,d} {emoji} for {cost:,d}{currency}", color=user.color)
       return await ctx.send(embed = em)
     elif timing["buytime"] == 2:
       em = discord.Embed(description = "Let's take a break\nNot buying or selling", color=shopcolour)

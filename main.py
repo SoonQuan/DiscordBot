@@ -7,6 +7,7 @@ from itertools import cycle
 import logging
 from keep_alive import keep_alive
 from pretty_help import DefaultMenu, PrettyHelp
+import datetime
 
 
 
@@ -25,7 +26,7 @@ def get_prefix(client, message):
   return server["prefix"]
 
 client = commands.Bot(command_prefix=get_prefix, description="Bot is here for your entertainment",case_insensitive=True)
-botcolour = discord.Color.red()
+botcolour = 0x0fa4aab
 status = cycle(["with your luck", "with you | try !help"])
 
 menu = DefaultMenu('◀️', '▶️', '❌')
@@ -66,11 +67,13 @@ async def on_guild_remove(guild):
 @commands.is_owner()
 async def load(ctx, extension):
   client.load_extension(f'cogs.{extension}')
+  await ctx.send(f"{extension} module has been loaded")
 
 @client.command()
 @commands.is_owner()
 async def unload(ctx, extension):
   client.unload_extension(f'cogs.{extension}')
+  await ctx.send(f"{extension} module has been unloaded")
 
 @client.command()
 @commands.is_owner()
@@ -83,18 +86,31 @@ for filename in os.listdir('./cogs'):
   if filename.endswith('.py'):
     client.load_extension(f'cogs.{filename[:-3]}')
 
-# @client.command()
-# async def pong(ctx):
-#   user = mainbank.find_one( {'_id':ctx.author.id} )
-#   for item in user:
-#     print(item)
-#     if item == "stonk":
-#       for thing in user[item]:
-#         print(thing)
-#         if thing == "session1":
-#           print("stonk here")
-#           mainbank.update_one({"_id":ctx.author.id}, {"$unset":{f"{item}.{thing}":""}})
-#           print("stonk out")
+# ###### Error handling #######
+
+@client.event
+async def on_command_error(ctx,error):
+  if isinstance(error, commands.CommandOnCooldown):
+    remaining_time = str(datetime.timedelta(seconds=int(error.retry_after)))
+    em = discord.Embed(title="Still on cooldown", description = "Please try again in {}".format(remaining_time), colour = ctx.author.color)
+    return await ctx.send(embed = em)
+
+  elif isinstance(error,commands.CommandNotFound):
+    em = discord.Embed(title="Don't have this function", description = "Please try something else", colour = discord.Color.red())
+    return await ctx.send(embed = em)
+
+  elif isinstance(error,commands.MissingPermissions):
+    em = discord.Embed(title="Missing Permission", colour = discord.Color.red())
+    em.add_field(name = "You don't have the role to do it", value="||You weak||")
+    return await ctx.send(embed = em)
+
+  elif isinstance(error,commands.NotOwner):
+    em = discord.Embed(title="Missing Permission", colour = discord.Color.red())
+    em.add_field(name = "Only bot owner can do this", value="||You weak||")
+    return await ctx.send(embed = em)
+
+  else:
+    return print(error)
 
 
 
