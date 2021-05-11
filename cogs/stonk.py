@@ -6,6 +6,7 @@ from pymongo import MongoClient
 import time
 import random
 import logging
+import asyncio
 
 logging.basicConfig(filename="log.dat", filemode="a+",format='%(asctime)s: %(message)s', level=logging.CRITICAL)
 logging.critical('~~~~~~ Admin logged in ~~~~~~')
@@ -63,9 +64,6 @@ class StonkMarket(commands.Cog):
 
   @tasks.loop(minutes=10)
   async def updatesshop(self):
-    await transferstonk()
-    await weeklystonk()
-    await stonklog()
     timing = stonk.find_one( {'id':"timing"} )
     sessionstart = timing["sessionstart"]
     timedif = time.time()-sessionstart
@@ -75,7 +73,8 @@ class StonkMarket(commands.Cog):
     prefix = get_prefix(client,channel)
     if timedif >= cool:
       stonk.update_one({"id":"timing"}, {"$inc":{"sessionstart":timedif}})
-      await stonkprice() #see where to put this
+      await stonkprice() # updates buytime and session
+      timing = stonk.find_one( {'id':"timing"} )
       buytime = timing["buytime"]
       if buytime == 1:
         quote = f"{role.mention} Items are now on sale~ Pick them up before the are gone\nUse the command {prefix}addsrr to get notified about refreshes"
@@ -83,11 +82,15 @@ class StonkMarket(commands.Cog):
       elif buytime == 0:
         quote = f"{role.mention} Buying all items for said price in shop\nUse the command {prefix}addsrr to get notified about refreshes"
         await channel.send(quote)
+    await weeklystonk()
+    await transferstonk()
+    await stonklog()
 
   @updatesshop.before_loop
   async def before_updatesshop(self):
       print('updatesshop waiting...')
       await self.client.wait_until_ready()
+
 
   @commands.command(aliases=['add_shop_refresh_role'])
   async def addsrr(self,ctx):
@@ -121,6 +124,8 @@ class StonkMarket(commands.Cog):
     market = stonk.find_one( {'id':"market"} )
     pricings = market["Onigiri"]["prices"]
     day = 14-len(pricings)
+    if len(pricings) == 14:
+      day = 14
     footerquote = "There is a total of 14 sessions\nYou can only buy items on the first session where the shop will sell you\nOn second session, it is a break where shop wont buy or sell\nFrom third session onwards, you can sell when you want to\nIf you do not sell the items by the end of the 14th session, they will turn to trash"
     if timing["buytime"] == 1:
       em = discord.Embed(title = "Stonk Shop - items in stock", description = f"Let me sell you something\nSession {day}: Ending in {remaining_time}" , color=shopcolour)
@@ -162,8 +167,8 @@ class StonkMarket(commands.Cog):
     for item in bag:
       name = item
       emoji = market[name.capitalize()]["description"]
-      amount = bag[item]
-      em.add_field(name = f"{name} | {emoji}", value = f"Qty: {amount}") 
+      amount = int(bag[item])
+      em.add_field(name = f"{name} | {emoji}", value = f"Qty: {amount:,d}") 
     await ctx.send(embed = em)
 
 
@@ -232,8 +237,9 @@ class StonkMarket(commands.Cog):
       except:
         em = discord.Embed(description = f"You don't have {emoji} in your bag.", color=shopcolour)
         return await ctx.send(embed = em)
+    amount = int(amount)
     if timing["buytime"] == 0:
-      res = await stonk_sell(user,item,int(amount))
+      res = await stonk_sell(user,item,amount)
       cost = int(res[2])
       if item == "None":
         em = discord.Embed(description = "What would you like to sell?", color=shopcolour)

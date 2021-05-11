@@ -81,14 +81,14 @@ class Currency(commands.Cog):
 
     em = discord.Embed(title=f"Currency emoji has been changed from {current} to {newemoji}", color=botcolour)
     await ctx.send(embed=em)
-
+    
   @commands.command()
-  @commands.is_owner()
-  async def setcurrency(self,ctx,member:discord.Member=None,mode="wallet",amount=0):
-    """ Set the amount of currency to the target's wallet """
-    mainbank.update_one({"_id":member.id}, {"$inc":{f"{mode}":amount}})
-    em = discord.Embed(description = f"Currency set for {member.display_name}", color=botcolour)
-    await ctx.send(embed = em)
+  @commands.has_any_role('Bot Dev')
+  async def setcurrency(self,ctx,member:discord.Member=None,mode="wallet",amount=500):
+      """ Set the amount of currency to the target's wallet """
+      mainbank.update_one({"_id":member.id}, {"$inc":{f"{mode}":amount}})
+      em = discord.Embed(description = f"Currency set for {member.display_name}", color=botcolour)
+      await ctx.send(embed = em)
 
   @commands.command(aliases=['bal', '$'])
   async def balance(self,ctx,member:discord.Member=None):
@@ -109,10 +109,10 @@ class Currency(commands.Cog):
     wallet_bal = f"{wall:,d}" + " " + currency
     bank_bal = f"{bank:,d}" + " " + currency
 
-    em = discord.Embed(title=f"{names}'s balance", color=ctx.author.color)
+    em = discord.Embed(title=f"{names}'s balance", color=user.color)
     em.add_field(name = "Wallet Balance", value= wallet_bal)
     em.add_field(name = "Bank Balance", value= bank_bal)
-    em.set_thumbnail(url=ctx.author.avatar_url)
+    em.set_thumbnail(url=user.avatar_url)
     await ctx.send(embed=em)
 
   @commands.command(aliases=['time','t'])
@@ -254,7 +254,7 @@ class Currency(commands.Cog):
       em = discord.Embed(description = "Who are you robbing?", colour = discord.Color.red())
       return await ctx.send(embed = em)
     elif member == ctx.author:
-      em = discord.Embed(description = "You serious? <:kektf:791245709487505408>", colour = discord.Color.red())
+      em = discord.Embed(description = "You deadass? <:kektf:791245709487505408>", colour = discord.Color.red())
       return await ctx.send(embed = em)    
 
     user = ctx.author
@@ -412,6 +412,7 @@ class Currency(commands.Cog):
     await ctx.send(embed = em)
 
   @commands.command(aliases=['betroll', 'br'])
+  @commands.cooldown(10,300,commands.BucketType.user)
   async def bet(self,ctx, amount = None):
     """ Bet the amount and get 2x,4x or even 10x back """
     user = ctx.author
@@ -465,6 +466,7 @@ class Currency(commands.Cog):
       await ctx.send(embed = em)
 
   @commands.command(aliases=['w'])
+  @commands.cooldown(10,300,commands.BucketType.user)
   async def wheel(self,ctx, amount = None):
     """ Spin the wheel to get the multiple of it back """
     user = ctx.author
@@ -564,7 +566,8 @@ class Currency(commands.Cog):
     guilds = settings.find_one( {'gid':user.guild.id} )
     currency = guilds["emoji"]
     weaponry  = rpg.find_one( {'id':"weaponry"} )
-    em = discord.Embed(title = "Weapon Vendor")
+    display = "Dagger|🗡️: Increase rob success by 1%\nShield|🛡️: Decrease rob success by 1%"
+    em = discord.Embed(title = "Weapon Vendor", description = display, color=vendorcolour)
     for item in weaponry:
       if item == "_id" or item == "id":
         continue
@@ -657,6 +660,56 @@ class Currency(commands.Cog):
         return await ctx.send(embed = em)
     em = discord.Embed(description = f"You just sold {amount:,} {emoji} for {cost:,d}{currency}", color=user.color)
     return await ctx.send(embed = em)
+
+  @commands.command(aliases=['hl'])
+  @commands.cooldown(5,900,commands.BucketType.user)
+  async def highlow(self,ctx):
+    """ Guess if the hidden number is higher/lower/equal """
+    user = ctx.author
+    def check(m):
+        return m.author == ctx.author and m.channel == ctx.message.channel
+    user = ctx.author
+    await open_server(user)
+    guilds = settings.find_one( {'gid':user.guild.id} )
+    currency = guilds["emoji"]
+    await open_account(user)
+    names = user.display_name
+    bal = await update_bank(user)
+    if bal[0] < 100:
+      em = discord.Embed(description = f"{names} You need 100 {currency} to play highlow", colour = discord.Color.red())
+      em.set_footer(text= f"try {ctx.prefix}timely")
+      return await ctx.send(embed = em)
+
+    number1 = 0
+    number2 = 0
+    while number1 == number2:
+      number1 = random.randint(1, 100)
+      number2 = random.randint(1, 100)
+    outcome = "equal"
+    if number2 > number1:
+      outcome = "higher"
+    elif number2 < number1:
+      outcome = "lower"
+    em = discord.Embed(description = f'{names} I have a number between `1 and 100`\nYou have 10 second to guess if it is **higher** or **lower** or **equal** to `{number1}`.',
+    colour = ctx.author.color)
+    await ctx.send(embed = em)
+    try:
+      guess = await self.client.wait_for("message",timeout= 10, check=check)
+      if guess.content.lower() == "equal" and guess.author==user:
+        mainbank.update_one({"_id":user.id}, {"$inc":{"wallet":9900}})
+        em = discord.Embed(description = f'You got it! The number is `{number2}`.\nYou win 10,000 {currency}', colour = ctx.author.color)
+        return await ctx.send(embed = em)
+      elif guess.content.lower() == outcome and guess.author==user:
+        mainbank.update_one({"_id":user.id}, {"$inc":{"wallet":100}})
+        em = discord.Embed(description = f'You got it! The number is `{number2}`.\nYou win 100 {currency}', colour = ctx.author.color)
+        return await ctx.send(embed = em)
+      elif guess.content.lower() != outcome and guess.author==user:
+        mainbank.update_one({"_id":user.id}, {"$inc":{"wallet":-100}})
+        em = discord.Embed(description = f"You lost. The number is `{number2}`.\nYou lose 100 {currency}", colour = ctx.author.color)
+        return await ctx.send(embed = em)
+    except asyncio.TimeoutError:
+      em = discord.Embed(description = f"You took too long. The number is `{number2}`.\n You wasted your chance", colour = discord.Color.red())
+      return await ctx.send(embed = em)
 
 
 async def wpn_buy(user,item_name,amount):

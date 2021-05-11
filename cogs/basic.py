@@ -70,7 +70,47 @@ class BasicFunctions(commands.Cog):
     settings.update_one({"gid":ctx.guild.id}, {"$set":{"prefix":prefix}})
     em = discord.Embed(description=f"Server prefix has been changed to {prefix}", color=botcolour)
     return await ctx.send(embed=em)
-  
+    
+  @commands.command(aliases = ['+','an'])
+  async def add_note(self,ctx,title,*,msg=None):
+    """ Check the colour of the bot """
+    user = ctx.author
+    with open("notes.json", "r") as f:
+      notes = json.load(f)
+    if msg == None:
+      em = discord.Embed(description=f"What is the message", colour = discord.Colour.red())
+      return await ctx.send(embed = em)
+    if str(user.guild.id) not in notes:
+      notes[str(user.guild.id)] = {}
+    note = str(msg)
+    notes[str(user.guild.id)][str(title)] = note
+    with open("notes.json","w") as f:
+        json.dump(notes,f,indent=4)
+    em = discord.Embed(description=f"Note on {str(title)} saved", colour = botcolour)
+    return await ctx.send(embed = em)
+
+  @commands.command(aliases = ['?','rn'])
+  async def read_note(self,ctx,title="listing"):
+    """ Check the colour of the bot """
+    user = ctx.author
+    with open("notes.json", "r") as f:
+      notes = json.load(f)
+    if title == "listing":
+      notelist = "List contain:"
+      for item in notes[str(user.guild.id)]:
+        notelist+="\n➣"
+        notelist+=str(item)
+      return await ctx.send(notelist)
+    try:
+      msg = notes[str(user.guild.id)][str(title)]
+      em = discord.Embed(description=msg, colour = botcolour)
+      return await ctx.send(embed = em)
+    except:
+      msg = f'{str(title)} not found'
+      em = discord.Embed(description=msg, colour = botcolour)
+      return await ctx.send(embed = em)
+
+
   @commands.command()
   async def repeat(self,ctx, args):
     """ Bot repeats what you said """
@@ -79,13 +119,36 @@ class BasicFunctions(commands.Cog):
     await ctx.message.delete()
 
   @commands.command(aliases = ['purge'])
-  @commands.has_any_role('ADMIN','N⍧ Sovereign', 'G⍧ Archangels', 'K⍧ Kage', 'D⍧ Dragon', 'W⍧ Grace', 'R⍧ Leviathan', 'Overseer')
+  @commands.has_any_role('ADMIN','N⍧ Sovereign', 'G⍧ Archangels', 'K⍧ Kage', 'le vendel' , 'D⍧ Dragon', 'W⍧ Grace', 'R⍧ Leviathan', 'Overseer')
   async def clear(self,ctx, amount=1):
     """ Delete the most recent <amount> of messages """
-    await ctx.channel.purge(limit=amount+1)
+    def check(m):
+        return m.author == ctx.author and m.channel == ctx.message.channel
+    await ctx.channel.purge(limit=1)
+    await asyncio.sleep(2)
+    if amount > 5:
+      await ctx.send("Are you sure? yes/y/no/n")
+      try:
+        msg = await self.client.wait_for("message",timeout= 10, check=check)
+        if msg.content.lower() == "yes" or msg.content.lower() == "y":
+          await ctx.channel.purge(limit=2)
+          await asyncio.sleep(5)
+          quotient = amount//5
+          remainder = amount%5
+          for i in range(quotient):
+            await ctx.channel.purge(limit=5)
+            await asyncio.sleep(5)
+          await ctx.channel.purge(limit=remainder)
+        else:
+          return
+      except asyncio.TimeoutError:
+        return await ctx.send("Command Time Out")
+    else:
+      await ctx.channel.purge(limit=amount+1)
+    
 
   @commands.command(aliases = ['purgemsg', 'clearmsg'])
-  @commands.has_any_role('ADMIN','N⍧ Sovereign', 'G⍧ Archangels', 'K⍧ Kage', 'D⍧ Dragon', 'W⍧ Grace', 'R⍧ Leviathan', 'Overseer')
+  @commands.has_any_role('ADMIN','N⍧ Sovereign', 'le vendel' , 'G⍧ Archangels', 'K⍧ Kage', 'D⍧ Dragon', 'W⍧ Grace', 'R⍧ Leviathan', 'Overseer')
   async def deletemsg(self,ctx, msg_id):
     """ Delete the particular message """
     channel = ctx.channel
@@ -125,7 +188,7 @@ class BasicFunctions(commands.Cog):
     await ctx.message.delete()
 
   @commands.command(aliases= ['up'])
-  @commands.has_any_role('N⍧ Sovereign', 'G⍧ Archangels', 'K⍧ Kage', 'D⍧ Dragon', 'W⍧ Grace', 'R⍧ Leviathan')
+  @commands.has_any_role('N⍧ Sovereign', 'le vendel' , 'G⍧ Archangels', 'K⍧ Kage', 'D⍧ Dragon', 'W⍧ Grace', 'R⍧ Leviathan')
   async def updatemsg(self,ctx,new_msg):
     """ Update our notice """
     names = ctx.author.nick
