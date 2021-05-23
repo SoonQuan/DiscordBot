@@ -72,6 +72,7 @@ class StonkMarket(commands.Cog):
     role = channel.guild.get_role(832076962713305098)
     prefix = get_prefix(client,channel)
     if timedif >= cool:
+      await weeklystonk() # check if price len = 0, then add new rotation
       stonk.update_one({"id":"timing"}, {"$inc":{"sessionstart":timedif}})
       await stonkprice() # updates buytime and session
       timing = stonk.find_one( {'id':"timing"} )
@@ -82,9 +83,8 @@ class StonkMarket(commands.Cog):
       elif buytime == 0:
         quote = f"{role.mention} Buying all items for said price in shop\nUse the command {prefix}addsrr to get notified about refreshes"
         await channel.send(quote)
-    await weeklystonk()
-    await transferstonk()
-    await stonklog()
+      await transferstonk()
+      await stonklog()
 
   @updatesshop.before_loop
   async def before_updatesshop(self):

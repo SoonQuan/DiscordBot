@@ -102,7 +102,7 @@ class CentralBank(commands.Cog):
     await ctx.send(embed=em)
 
 async def fundstonk():
-  data = yf.download(tickers='GOLD', period='10m', interval='5m')
+  data = yf.download(tickers='GOLD', period='5d', interval='1d')
   rate = (data['Adj Close'][1]-data['Adj Close'][0])/data['Adj Close'][0]
   centralbank.update_one({'id':"central"}, {"$set":{"rate":rate}})
   cb = centralbank.find_one( {'id':"central"} )
@@ -149,7 +149,7 @@ async def centraltax(self):
       {"bank": remain }})
       centralbank.update_one({'id':"central"}, {"$inc":{"funds":taxamount}})
     centralbank.update_one({'id':"central"}, {"$inc":{"taxtime":timedif}})
-    channel = self.client.get_channel(sqdev_gen)
+    channel = self.client.get_channel(null_botspam)
     em = discord.Embed(title = "Central Bank", description = quote, color=cbcolour)
     em.set_footer(text = footer)
     em.set_thumbnail(url=self.client.user.avatar_url)

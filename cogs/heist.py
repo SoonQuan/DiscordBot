@@ -57,9 +57,68 @@ async def update_bank(user):
   return [users["wallet"],users["bank"]]
 
 class Heist(commands.Cog):
-  """ Basic bot commands """
+  """ Heist related commands """
   def __init__(self,client):
     self.client = client
+
+  @commands.command()
+  async def rob(self,ctx, member:discord.Member=None):
+    """ Rob currency from your target's wallet """
+    if member == None:
+      em = discord.Embed(description = "Who are you robbing?", colour = discord.Color.red())
+      return await ctx.send(embed = em)
+    elif member == ctx.author:
+      em = discord.Embed(description = "You deadass? <:kektf:791245709487505408>", colour = discord.Color.red())
+      return await ctx.send(embed = em)    
+
+    user = ctx.author
+    target = member
+    await open_server(user)
+    guilds = settings.find_one( {'gid':user.guild.id} )
+    currency = guilds["emoji"]
+    await open_account(user)
+    await open_account(target)
+    users = mainbank.find_one( {'_id':user.id} )
+    targets = mainbank.find_one( {'_id':target.id} )
+    names = user.display_name
+    tnames = target.display_name
+    if users["wallet"] < 500:
+      em = discord.Embed(description = f"You need over 500{currency} to rob somebody.", colour = discord.Color.red())
+      return await ctx.send(embed = em)
+    elif targets["wallet"] < 500:
+      em = discord.Embed(description = f"They have less than 500{currency}. Pity that poor soul.", colour = botcolour)
+      return await ctx.send(embed = em)
+    userwpn = int(users["weapon"]["dagger"])
+    targetwpn = int(targets["weapon"]["shield"])
+    star = userwpn-targetwpn # star is the additional bonus
+    if star >= 0:
+      star = min(star,50) # <= 50
+      userused = targetwpn+star
+      targetused = targetwpn
+      mainbank.update_one({"_id":user.id}, {"$inc":{"weapon.dagger":-userused}})
+      mainbank.update_one({"_id":target.id}, {"$inc":{"weapon.shield":-targetused}})
+    elif star < 0:
+      star = max(star,-30) # >= -30
+      userused = userwpn
+      targetused = userwpn+abs(star)
+      mainbank.update_one({"_id":user.id}, {"$inc":{"weapon.dagger":-userused}})
+      mainbank.update_one({"_id":target.id}, {"$inc":{"weapon.shield":-targetused}})
+    
+    win_lose = random.randrange(101)
+    if win_lose <= 60 - star: # chance to fail robbing
+      drop = random.randrange(501)
+      mainbank.update_one({"_id":user.id}, {"$inc":{"wallet":-1*drop}})
+      settings.update_one({"gid":user.guild.id}, {"$inc":{"droppile":drop}})
+      em = discord.Embed(title = "Rob failed", description = f"With a success rate of {40+star}%. {names} failed the operation.\n**You dropped {drop} {currency}**", colour = discord.Color.red())
+      em.add_field(name="Resources used", value= f"{names} has used {userused} 🗡 and {tnames} has used {targetused} 🛡")
+      return await ctx.send(embed = em)
+
+    grab = int(targets["wallet"]/random.randrange(101))
+    mainbank.update_one({"_id":user.id}, {"$inc":{"wallet":grab}})
+    mainbank.update_one({"_id":target.id}, {"$inc":{"wallet":-1*grab}})
+    em = discord.Embed(title = "Rob Success",description = f'With a success rate of {40+star}%. {names} competed the operation.\n**You robbed {grab:,d}{currency} from {tnames}**', colour = discord.Color.green())
+    em.add_field(name="Resources used", value= f"{names} has used {userused} 🗡 and {tnames} has used {targetused} 🛡")
+    return await ctx.send(embed = em)
 
   @commands.command()
   @commands.cooldown(1,900,commands.BucketType.guild) # 1 every 15mins/900secs
@@ -88,7 +147,7 @@ class Heist(commands.Cog):
     await ctx.send(embed = em1)
     crewlist = []
     crewlist.append(user.id)
-    maxcrew = 10
+    maxcrew = 5
     while len(crewlist) < maxcrew:
       try:
           JOIN = await self.client.wait_for("message",timeout= 10, check=check)
@@ -165,7 +224,7 @@ async def heist_outcome(earning = 1000, number=10):
   return outcome
 
 async def heist_process(target, crewlist):
-  roll = random.randint(1,111)
+  roll = random.randint(1,30)
   death = []
   survivor = crewlist
   crew_number = len(crewlist)

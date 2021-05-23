@@ -247,65 +247,6 @@ class Currency(commands.Cog):
     em = discord.Embed(description = f"You donate {amount:,d}{currency} to {tnames}", colour = ctx.author.color)
     await ctx.send(embed=em)
 
-  @commands.command()
-  async def rob(self,ctx, member:discord.Member=None):
-    """ Rob currency from your target """
-    if member == None:
-      em = discord.Embed(description = "Who are you robbing?", colour = discord.Color.red())
-      return await ctx.send(embed = em)
-    elif member == ctx.author:
-      em = discord.Embed(description = "You deadass? <:kektf:791245709487505408>", colour = discord.Color.red())
-      return await ctx.send(embed = em)    
-
-    user = ctx.author
-    target = member
-    await open_server(user)
-    guilds = settings.find_one( {'gid':user.guild.id} )
-    currency = guilds["emoji"]
-    await open_account(user)
-    await open_account(target)
-    users = mainbank.find_one( {'_id':user.id} )
-    targets = mainbank.find_one( {'_id':target.id} )
-    names = user.display_name
-    tnames = target.display_name
-    if users["wallet"] < 500:
-      em = discord.Embed(description = f"You need over 500{currency} to rob somebody.", colour = discord.Color.red())
-      return await ctx.send(embed = em)
-    elif targets["wallet"] < 500:
-      em = discord.Embed(description = f"They have less than 500{currency}. Pity that poor soul.", colour = botcolour)
-      return await ctx.send(embed = em)
-    userwpn = int(users["weapon"]["dagger"])
-    targetwpn = int(targets["weapon"]["shield"])
-    star = userwpn-targetwpn # star is the additional bonus
-    if star >= 0:
-      star = min(star,50) # <= 50
-      userused = targetwpn+star
-      targetused = targetwpn
-      mainbank.update_one({"_id":user.id}, {"$inc":{"weapon.dagger":-userused}})
-      mainbank.update_one({"_id":target.id}, {"$inc":{"weapon.shield":-targetused}})
-    elif star < 0:
-      star = max(star,-30) # >= -30
-      userused = userwpn
-      targetused = userwpn+abs(star)
-      mainbank.update_one({"_id":user.id}, {"$inc":{"weapon.dagger":-userused}})
-      mainbank.update_one({"_id":target.id}, {"$inc":{"weapon.shield":-targetused}})
-    
-    win_lose = random.randrange(101)
-    if win_lose <= 60 - star: # chance to fail robbing
-      drop = random.randrange(501)
-      mainbank.update_one({"_id":user.id}, {"$inc":{"wallet":-1*drop}})
-      settings.update_one({"gid":user.guild.id}, {"$inc":{"droppile":drop}})
-      em = discord.Embed(title = "Rob failed", description = f"With a success rate of {40+star}%. {names} failed the operation.\n**You dropped {drop} {currency}**", colour = discord.Color.red())
-      em.add_field(name="Resources used", value= f"{names} has used {userused} 🗡 and {tnames} has used {targetused} 🛡")
-      return await ctx.send(embed = em)
-
-    grab = int(targets["wallet"]/random.randrange(101))
-    mainbank.update_one({"_id":user.id}, {"$inc":{"wallet":grab}})
-    mainbank.update_one({"_id":target.id}, {"$inc":{"wallet":-1*grab}})
-    em = discord.Embed(title = "Rob Success",description = f'With a success rate of {40+star}%. {names} competed the operation.\n**You robbed {grab:,d}{currency} from {tnames}**', colour = discord.Color.green())
-    em.add_field(name="Resources used", value= f"{names} has used {userused} 🗡 and {tnames} has used {targetused} 🛡")
-    return await ctx.send(embed = em)
-
   @commands.command(aliases=['beg','pickup'])
   async def pickdrops(self,ctx):
     """ Pick up currency from drop pile """
@@ -646,6 +587,7 @@ class Currency(commands.Cog):
     if item == "None":
       em = discord.Embed(description = "What would you like to sell?", color=vendorcolour)
       return await ctx.send(embed = em)
+    amount = int(amount)
     res = await wpn_sell(user,item,amount)
     cost = int(res[2])
     if not res[0]:
@@ -748,7 +690,7 @@ async def wpn_sell(user,item_name,amount,pricing = None):
     item_name = item_name.lower()
     weaponry = rpg.find_one( {'id':"weaponry"} )
     name_ = None
-    rate = 0.1 #change for future
+    rate = 1/10 #change for future
     for item in weaponry:
         name = item.lower()
         if name == item_name:
@@ -758,24 +700,21 @@ async def wpn_sell(user,item_name,amount,pricing = None):
             break
     if name_ == None:
         return [False,1,0]
-    cost = int(pricing*amount)
+    cost = int(pricing)*amount
     users = mainbank.find_one( {'_id':user.id} )
-    try:
-        t = None
-        for thing in users["weapon"]:
-            n = thing
-            if n == item_name:
-                old_amt = users["weapon"][thing]
-                new_amt = old_amt - amount
-                if new_amt < 0:
-                    return [False,2,cost]
-                mainbank.update_one( {"_id":user.id}, {"$inc":{f"weapon.{thing}":-1*amount}} )
-                t = 1
-                break
-        if t == None:
-            return [False,3,cost]
-    except:
-        return [False,3,cost] 
+    t = None
+    for thing in users["weapon"]:
+        n = thing
+        if n == item_name:
+            old_amt = users["weapon"][thing]
+            new_amt = int(old_amt) - int(amount)
+            if new_amt < 0:
+                return [False,2,cost]
+            mainbank.update_one( {"_id":user.id}, {"$inc":{f"weapon.{thing}":-1*amount}} )
+            t = 1
+            break
+    if t == None:
+        return [False,3,cost]
     mainbank.update_one({"_id":user.id}, {"$inc":{"wallet":cost}})
     return [True,"Worked",cost]
 

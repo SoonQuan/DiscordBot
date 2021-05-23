@@ -6,7 +6,7 @@ from pymongo import MongoClient
 import random
 import asyncio
 import json
-from google_trans_new import google_translator  
+from google_trans_new import google_translator, LANGUAGES 
 
 cluster = MongoClient(os.getenv('MONGODB'))
 
@@ -19,10 +19,12 @@ def get_prefix(client, message):
   server = settings.find_one({"gid":message.guild.id})
   return server["prefix"]
 
+
 client = commands.Bot(command_prefix=get_prefix, case_insensitive=True)
 botcolour = 0x0fa4aab
 gsmsg_id = 829765626838646814
 gschannel_id = 803097378726215723
+
 
 class BasicFunctions(commands.Cog):
   """ Basic bot commands """
@@ -50,6 +52,8 @@ class BasicFunctions(commands.Cog):
           await msg.delete()
           break
     # await self.client.process_commands(msg)
+
+
 
   @commands.command()
   async def invite(self,ctx):
@@ -112,7 +116,7 @@ class BasicFunctions(commands.Cog):
 
 
   @commands.command()
-  async def repeat(self,ctx, args):
+  async def repeat(self,ctx, *,args):
     """ Bot repeats what you said """
     em = discord.Embed(description = args, color = ctx.author.color)
     await ctx.send(embed = em)
@@ -221,17 +225,17 @@ class BasicFunctions(commands.Cog):
   @commands.command(aliases = ['trans'])
   async def translate(self,ctx, lang="en", *,args="translate <code> <words to translate>"):
     """ Translate your message into the language you want """
-    try: 
-      t = google_translator()
-      a = t.translate(args, lang_tgt=lang)                 
-      em = discord.Embed(description = a, color=ctx.author.color)
-      await ctx.send(embed = em)
-    except:
+    if lang.lower() not in LANGUAGES:
       em = discord.Embed(title='Look for langauge code here',
                         url='https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes',
                         description= f"For example: !translate <code> <words to translate>",
                         color=discord.Color.red())
-      await ctx.send(embed = em)    
+      await ctx.send(embed = em)        
+    else: 
+      t = google_translator()
+      a = t.translate(args, lang_tgt=lang)                 
+      em = discord.Embed(description = a, color=ctx.author.color)
+      await ctx.send(embed = em)
 
 def setup(client):
   client.add_cog(BasicFunctions(client))

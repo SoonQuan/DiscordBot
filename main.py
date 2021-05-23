@@ -28,10 +28,9 @@ def get_prefix(client, message):
 	server = settings.find_one({"gid": message.guild.id})
 	return server["prefix"]
 
-
-client = commands.Bot(command_prefix=get_prefix,
-                      description="Bot is here for your entertainment",
-                      case_insensitive=True)
+intents = discord.Intents.default()
+intents.members = True
+client = commands.Bot(command_prefix=get_prefix, description="Bot is here for your entertainment",case_insensitive=True, intents=intents)
 botcolour = 0x0fa4aab
 status = cycle(["with your luck", "with you | try !help"])
 
@@ -47,7 +46,6 @@ client.help_command = PrettyHelp(navigation=menu,
 async def on_ready():
 	change_status.start()
 	print('We have logged in as {0.user}'.format(client))
-
 
 @tasks.loop(minutes=11)
 async def change_status():
@@ -75,7 +73,6 @@ async def on_guild_remove(guild):
 	settings.remove({"gid": guild.id})
 	return
 
-
 @client.command()
 @commands.is_owner()
 async def load(ctx, extension):
@@ -101,48 +98,6 @@ async def reload(ctx, extension):
 for filename in os.listdir('./cogs'):
 	if filename.endswith('.py'):
 		client.load_extension(f'cogs.{filename[:-3]}')
-
-# ###### Error handling #######
-
-
-@client.event
-async def on_command_error(ctx, error):
-	if isinstance(error, commands.CommandOnCooldown):
-		remaining_time = time.strftime("%HH %MM %SS" ,time.gmtime(int(error.retry_after)))
-		em = discord.Embed(
-		    title="Still on cooldown",
-		    description="Please try again in {}".format(remaining_time),
-		    colour=ctx.author.color)
-		return await ctx.send(embed=em)
-
-	elif isinstance(error, commands.CommandNotFound):
-		em = discord.Embed(title="Don't have this function",
-		                   description="Please try something else",
-		                   colour=discord.Color.red())
-		return await ctx.send(embed=em)
-
-	elif isinstance(error, commands.MissingPermissions):
-		em = discord.Embed(title="Missing Permission",
-		                   colour=discord.Color.red())
-		em.add_field(name="You don't have the role to do it",
-		             value="||You weak||")
-		return await ctx.send(embed=em)
-    
-	elif isinstance(error, commands.MissingAnyRole):
-		em = discord.Embed(title="Missing Permission",
-		                   colour=discord.Color.red())
-		em.add_field(name="You don't have the role to do it",
-		             value="||You weak||")
-		return await ctx.send(embed=em)
-
-	elif isinstance(error, commands.NotOwner):
-		em = discord.Embed(title="Missing Permission",
-		                   colour=discord.Color.red())
-		em.add_field(name="Only bot owner can do this", value="||You weak||")
-		return await ctx.send(embed=em)
-
-	else:
-		return print(error)
 
 
 keep_alive()

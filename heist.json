@@ -1,0 +1,74 @@
+{
+  "Good": [
+    ["{0} had the car gassed up and ready to go. +25 credits.", 25],
+    ["{0} cut the power to the bank. +50 credits.", 50],
+    ["{0} erased the video footage. +50 credits.", 50],
+    ["{0} hacked the security system and put it on a loop feed. +75 credits.", 75],
+    ["{0} stopped the teller from triggering the silent alarm. +50 credits.", 50],
+    ["{0} knocked out the local security. +50 credits.", 50],
+    ["{0} stopped a local from being a hero +50 credits.", 50],
+    ["{0} got the police negotiator to deliver everyone pizza. +25 credits.", 25],
+    ["{0} brought masks of former presidents to hide our identity. +25 credits.", 25],
+    ["{0} found an escape route. +25 credits.", 25],
+    ["{0} brought extra ammunition for the crew. +25 credits.", 25],
+    ["{0} cut through that safe like butter. +25 credits.", 25],
+    ["{0} kept the hostages under control. +25 credits.", 25],
+    ["{0} created a distraction to get the crew out. +50 credits.", 50],
+    ["{0} improvised under pressure and got the crew out. +50 credits.", 50],
+    ["{0} counter sniped a sniper. +100 credits.", 100],
+    ["{0} distracted the guard. +25 credits.", 25],
+    ["{0} brought a Go-Bag for the team. +25 credits.", 25],
+    ["{0} found a secret stash in the deposit box room. +50 credits.", 50],
+    ["{0} found a box of jewelry on a civilian. +25 credits.", 25],
+    ["{0} stayed focused and vigilant. +25 credits.", 25],
+    ["{0} spray painted the video cameras. +25 credits.", 25],
+    ["{0} located the vault manager. +25 credits.", 25],
+    ["{0} set a clever trap for the swat team. +50 credits.", 50],
+    ["{0} Planned the getaway route. +25 credits.", 25],
+    ["{0} Changed vehicles by stealing an old lady's car. +50 credits.", 50]
+  ],
+  "Jailed": [
+    ["A shoot out with local authorities began and {0} was hit...but survived!", "Jailed"],
+    ["The cops dusted for finger prints and later arrested {0}.", "Jailed"],
+    ["{0} blew a tire in the getaway car.", "Jailed"],
+    ["{0}'s gun jammed while fighting local security, and was knocked out.", "Jailed"],
+    ["{0} held off the police while the crew was making their getaway.", "Jailed"],
+    ["A hostage situation went south, and {0} was captured.", "Jailed"],
+    ["{0} showed up to the heist high as kite, and was subsequently caught.", "Jailed"],
+    ["{0}'s bag of money contained exploding blue ink and was later caught.", "Jailed"],
+    ["Evidence was later found at {0}'s place' linking them to the heist.", "Jailed"],
+    ["The crew missed a CCTV camera that identified {0} and they were caught.", "Jailed"],
+    ["{0} forgot the escape plan, and took the route leading to the police.", "Jailed"],
+    ["Security system's redundancies caused {0} to be identified.", "Jailed"],
+    ["{0} accidentally revealed their identity to the teller.", "Jailed"],
+    ["The swat team released sleeping gas, {0} is sleeping like a baby.", "Jailed"],
+    ["'FLASH BANG OUT!', was the last thing {0} heard.", "Jailed"],
+    ["{0} tripped a laser wire and was caught.", "Jailed"],
+    ["One of the hostages later identified {0} from the heist.", "Jailed"],
+    ["During the power outage, police caught {0} in the confusion.", "Jailed"],
+    ["{0} was left behind for slowing down the crew, due to a leg wound.", "Jailed"],
+    ["Someone snitched and {0} was arrested.", "Jailed"],
+    ["Before the crew could intervene a guard tazed {0} and is now out cold.", "Jailed"],
+    ["Swat came through the vents, and neutralized {0}.", "Jailed"],
+    ["A fire was started in the bank, and {0} passed out from inhalation.", "Jailed"],
+    ["{0} cut the wrong wire to the bank's systems and was electrocuted, but lived.", "Jailed"],
+    ["During the escape, the crew left {0} behind.", "Jailed"],
+    ["The crew knocked out {0} because they shot a hostage without cause.", "Jailed"]
+  ],
+  "Dead": [
+    ["{0} was gutted in a knife fight.", "Dead"],
+    ["{0} was sniped by a swat sniper.", "Dead"],
+    ["The crew decided to shaft {0}.", "Dead"],
+    ["{0} was hit and killed by friendly fire.", "Dead"],
+    ["'GRENADE OUT!', {0} is now sleeping with the fishes.", "Dead"],
+    ["During a high-speed chase, {0} was shot by the cops.", "Dead"]
+  ]
+}
+
+
+
+
+
+
+
+

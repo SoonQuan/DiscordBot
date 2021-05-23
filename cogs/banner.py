@@ -131,14 +131,14 @@ class SDSGCBanner(commands.Cog):
       return await ctx.send(embed = em)
       
     if arg1 == None:
-      arg = random.choice(["T1","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST"])
+      arg = random.choice(["T1","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH"])
     else:
       arg = arg1.upper()
     banner = str(arg.upper()) + "Banner"
     dirs = []
     ban6p = ["DZ"]
     ban4p = ["T1","AM","MERLIN","FZEL"]
-    ban3p = ["VAL","REZERO","ST"]
+    ban3p = ["VAL","REZERO","ST","EXARTH"]
     if arg in ban3p:
       for i in range(11):
         p = random.randrange(1001)
@@ -201,6 +201,9 @@ class SDSGCBanner(commands.Cog):
     # embed.set_author(name = names, icon_url = ctx.author.avatar_url)
     em.set_image(url = "attachment://{}c.jpg".format(ID))
     await ctx.send(embed = em, file = file)
+    os.remove('.//Banner//pull//{}a.jpg'.format(ID))
+    os.remove('.//Banner//pull//{}b.jpg'.format(ID))
+    return os.remove('.//Banner//pull//{}c.jpg'.format(ID))
 
 
   @commands.command(aliases=['rspvp', 'rs'])
@@ -248,6 +251,7 @@ class SDSGCBanner(commands.Cog):
     embed.set_image(url = f"attachment://{ctx.author.id}.jpg")
     embed.set_thumbnail(url=ctx.author.avatar_url)
     await ctx.send(embed = embed, file = file)
+    return os.remove(f'.//RSPVP//pull//{ctx.author.id}.jpg')
 
 def direct(directory,rank):
   path = f".//Banner//{rank}"
