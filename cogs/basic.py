@@ -191,6 +191,20 @@ class BasicFunctions(commands.Cog):
     await message.edit(embed = em)
     await ctx.message.delete()
 
+  @commands.command()
+  @commands.has_permissions(manage_roles=True)
+  async def add_role(self,ctx,member:discord.Member,*,rolename):
+    """ Add role to member """
+    await member.add_roles(discord.utils.get(ctx.author.guild.roles, name=rolename))
+    await ctx.send(f"{member.mention} is given the `{rolename.capitalize()}` role")
+
+  @commands.command()
+  @commands.has_permissions(manage_roles=True)
+  async def remove_role(self,ctx,member:discord.Member,*,rolename):
+    """ Remove role from member """
+    await member.remove_roles(discord.utils.get(ctx.author.guild.roles, name=rolename))
+    await ctx.send(f"`{rolename.capitalize()}` role has been removed from {member.mention}")
+
   @commands.command(aliases= ['up'])
   @commands.has_any_role('N⍧ Sovereign', 'le vendel' , 'G⍧ Archangels', 'K⍧ Kage', 'D⍧ Dragon', 'W⍧ Grace', 'R⍧ Leviathan')
   async def updatemsg(self,ctx,new_msg):
