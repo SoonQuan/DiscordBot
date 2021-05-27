@@ -172,7 +172,7 @@ class BasicFunctions(commands.Cog):
         aelist+=str(item)
       return await ctx.send(aelist)
     if msg not in aemojis:
-      return
+      return True
     await asyncio.sleep(1)
     await ctx.send(aemojis[str(msg)])
     return await ctx.message.delete()

@@ -269,46 +269,14 @@ async def grand_heist(self,ctx):
 
   em1 = discord.Embed(description = f"{names} is starting a grand heist on the central bank!\nGather up within the next 10 minutes! Join by typing {ctx.prefix}joingrandheist", colour = user.color)
   await ctx.send(embed = em1)
+  await asyncio.sleep(600) #10 minutes
 
-  target = centralbank.find_one( {'id':"central"} )
-  crewlist = []
-  crewlist.append(user.id)
-  maxcrew = 15
-  while len(crewlist) < maxcrew:
-    try:
-        JOIN = await self.client.wait_for("message",timeout= 10, check=check)
-        if JOIN.content.upper() == "JOIN HEIST":
-          crew = mainbank.find_one( {'_id':JOIN.author.id} ) 
-          if JOIN.author.id == target.id:
-            em = discord.Embed(description = f"Dude? Heist yourself?", colour = discord.Color.red())
-            await ctx.send(embed = em)
-          elif crew["wallet"] < 2000:
-            em = discord.Embed(description = f"You need at least 2000 {currency} in your wallet to join the heist.", colour = discord.Color.red())
-            await ctx.send(embed = em)
-          else:
-            if JOIN.author.id not in crewlist:
-              crewlist.append(JOIN.author.id)
-              mainbank.update_one({"_id":JOIN.author.id}, {"$inc":{"wallet":-2000}})
-              em1 = discord.Embed(description = f"{JOIN.author.display_name} has joined the heist started by {names}!", colour = JOIN.author.color)
-              await ctx.send(embed = em1)
-            else:
-              em1 = discord.Embed(description = f"{JOIN.author.display_name} has already joined the heist", colour = JOIN.author.color)
-              await ctx.send(embed = em1)
-    except asyncio.TimeoutError:
-      if len(crewlist) == 1:
-        em1 = discord.Embed(description = f"{names} Nobody joined you for the heist. Heist is cancelled.", colour = discord.Color.red())
-        return await ctx.send(embed = em1)
-      else:
-        em1 = discord.Embed(description = "Time is up. Heist start now", colour = user.color)
-        await ctx.send(embed = em1)
-        await asyncio.sleep(3) # wait 3 seconds
-        break
-  if len(crewlist) == maxcrew:
-    em1 = discord.Embed(description = "Crew is full. Heist start now", colour = user.color)
-    await ctx.send(embed = em1)
-    await asyncio.sleep(3) # wait 3 seconds
+  em1 = discord.Embed(description = f"Grand Heist started by {names} is starting now!\n", colour = user.color)
+  await ctx.send(embed = em1)
 
-  process = await heist_process(target,crewlist) # [rob_amount, survivor, death]
+  cb = centralbank.find_one( {'id':"central"} )
+  crewlist = cb["heist_crew"]
+  process = await heist_process(cb,crewlist) # [rob_amount, survivor, death]
   survivor_num = len(process[1])
   outquote = "Heist outcome:"
   if survivor_num == 0:
@@ -358,7 +326,6 @@ async def joingrandheist(self,ctx):
     em = discord.Embed(description = f"You need at least 2000 {currency} in your wallet to join the heist.", colour = discord.Color.red())
     return await ctx.send(embed = em)
 
-  cb = centralbank.find_one( {'id':"central"} )
   if user.id not in cb["heist_crew"]:
     if cb["heist_start"] == True:
       centralbank.update_one({"id":"central"}, {"$push":{"heist_crew": user.id}})
@@ -369,7 +336,7 @@ async def joingrandheist(self,ctx):
       em = discord.Embed(description=f':octagonal_sign: Grand Heist is not active yet :octagonal_sign:', color = user.color)
       return await ctx.send(embed = em)
   else:
-    em = discord.Embed(description=f':octagonal_sign: Grand Heist is not active yet :octagonal_sign:', color = user.color)
+    em = discord.Embed(description=f':bank::gun: {user.mention} you have already joined the heist :bank::gun:', color = user.color)
     return await ctx.send(embed = em)    
 
 

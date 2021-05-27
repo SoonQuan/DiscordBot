@@ -139,6 +139,7 @@ class SDSGCBanner(commands.Cog):
     ban6p = ["DZ"]
     ban4p = ["T1","AM","MERLIN","FZEL"]
     ban3p = ["VAL","REZERO","ST","EXARTH"]
+
     if arg in ban3p:
       for i in range(11):
         p = random.randrange(1001)
@@ -204,7 +205,6 @@ class SDSGCBanner(commands.Cog):
     os.remove('.//Banner//pull//{}a.jpg'.format(ID))
     os.remove('.//Banner//pull//{}b.jpg'.format(ID))
     return os.remove('.//Banner//pull//{}c.jpg'.format(ID))
-
 
   @commands.command(aliases=['rspvp', 'rs'])
   @commands.cooldown(1,1,commands.BucketType.user)
