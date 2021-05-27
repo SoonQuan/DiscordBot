@@ -131,13 +131,13 @@ class SDSGCBanner(commands.Cog):
       return await ctx.send(embed = em)
       
     if arg1 == None:
-      arg = random.choice(["T1","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH"])
+      arg = random.choice(["T1","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH","FBAN"])
     else:
       arg = arg1.upper()
     banner = str(arg.upper()) + "Banner"
     dirs = []
     ban6p = ["DZ"]
-    ban4p = ["T1","AM","MERLIN","FZEL"]
+    ban4p = ["T1","AM","MERLIN","FZEL","FBAN"]
     ban3p = ["VAL","REZERO","ST","EXARTH"]
 
     if arg in ban3p:
