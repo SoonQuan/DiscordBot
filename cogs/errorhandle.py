@@ -5,6 +5,14 @@ import pymongo
 from pymongo import MongoClient
 import asyncio
 import time
+import logging
+
+logging.basicConfig(format="%(asctime)s [%(levelname)s] %(message)s",
+                    level=logging.WARNING,
+                    handlers=[logging.FileHandler("log.dat"),
+                    logging.StreamHandler()
+    ])
+logging.warning('~~~~~~ Admin logged in ~~~~~~')
 
 cluster = MongoClient(os.getenv('MONGODB'))
 
@@ -35,12 +43,14 @@ class Error(commands.Cog):
           title="Still on cooldown",
           description="Please try again in {}".format(remaining_time),
           colour=ctx.author.color)
+      logging.error(str(error))
       return await ctx.send(embed=em)
 
     elif isinstance(error, commands.CommandNotFound):
       em = discord.Embed(title="Don't have this function",
-                        description="Please try something else",
+                        description=f"Please try something else or use {ctx.prefix}help",
                         colour=discord.Color.red())
+      logging.error(str(error))
       return await ctx.send(embed=em)
 
     elif isinstance(error, commands.MissingPermissions):
@@ -48,6 +58,7 @@ class Error(commands.Cog):
                         colour=discord.Color.red())
       em.add_field(name="You don't have the role to do it",
                   value="||You weak||")
+      logging.error(str(error))
       return await ctx.send(embed=em)
       
     elif isinstance(error, commands.MissingAnyRole):
@@ -55,15 +66,18 @@ class Error(commands.Cog):
                         colour=discord.Color.red())
       em.add_field(name="You don't have the role to do it",
                   value="||You weak||")
+      logging.error(str(error))
       return await ctx.send(embed=em)
 
     elif isinstance(error, commands.NotOwner):
       em = discord.Embed(title="Missing Permission",
                         colour=discord.Color.red())
       em.add_field(name="Only bot owner can do this", value="||You weak||")
+      logging.error(str(error))
       return await ctx.send(embed=em)
 
     else:
+      logging.error(str(error))
       return print(error)
 
 

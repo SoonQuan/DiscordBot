@@ -29,12 +29,12 @@ class Greetings(commands.Cog):
         channel = member.guild.system_channel
         if channel is not None:
           msg = f"Welcome to {member.guild} {member.mention}\nYou are going to be a lab rat :rat:"
-          await channel.send(msg)
+          return await channel.send(msg)
       elif member.guild.id == 692808940190433360:
         channel = member.guild.system_channel
         if channel is not None:
           msg = f"Welcome to Null Community {member.mention}\nYou can post your application here <#694708991321833492>\nRequest for role here <#697647239123959857>\nCombat class role here <#806087564867928094>"
-          await channel.send(msg)
+          return await channel.send(msg)
 
 def setup(client):
   client.add_cog(Greetings(client))

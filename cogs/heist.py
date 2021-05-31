@@ -109,14 +109,14 @@ class Heist(commands.Cog):
       drop = random.randrange(501)
       mainbank.update_one({"_id":user.id}, {"$inc":{"wallet":-1*drop}})
       settings.update_one({"gid":user.guild.id}, {"$inc":{"droppile":drop}})
-      em = discord.Embed(title = "Rob failed", description = f"With a success rate of {40+star}%. {names} failed the operation.\n**You dropped {drop} {currency}**", colour = discord.Color.red())
+      em = discord.Embed(title = "Rob failed", description = f"With a success rate of {40+star}%. **{names}** failed the operation.\n**You dropped {drop} {currency}**", colour = discord.Color.red())
       em.add_field(name="Resources used", value= f"{names} has used {userused} 🗡 and {tnames} has used {targetused} 🛡")
       return await ctx.send(embed = em)
 
     grab = int(targets["wallet"]/random.randrange(101))
     mainbank.update_one({"_id":user.id}, {"$inc":{"wallet":grab}})
     mainbank.update_one({"_id":target.id}, {"$inc":{"wallet":-1*grab}})
-    em = discord.Embed(title = "Rob Success",description = f'With a success rate of {40+star}%. {names} competed the operation.\n**You robbed {grab:,d}{currency} from {tnames}**', colour = discord.Color.green())
+    em = discord.Embed(title = "Rob Success",description = f'With a success rate of {40+star}%. **{names}** competed the operation.\n**You robbed {grab:,d}{currency} from {tnames}**', colour = discord.Color.green())
     em.add_field(name="Resources used", value= f"{names} has used {userused} 🗡 and {tnames} has used {targetused} 🛡")
     return await ctx.send(embed = em)
 
@@ -163,7 +163,7 @@ class Heist(commands.Cog):
               if JOIN.author.id not in crewlist:
                 crewlist.append(JOIN.author.id)
                 mainbank.update_one({"_id":JOIN.author.id}, {"$inc":{"wallet":-2000}})
-                em1 = discord.Embed(description = f"{JOIN.author.display_name} has joined the heist started by {names}!", colour = JOIN.author.color)
+                em1 = discord.Embed(description = f"{JOIN.author.display_name} has joined the heist started by {names}!\n**2000 {currency} is used**", colour = JOIN.author.color)
                 await ctx.send(embed = em1)
               else:
                 em1 = discord.Embed(description = f"{JOIN.author.display_name} has already joined the heist", colour = JOIN.author.color)
@@ -173,18 +173,18 @@ class Heist(commands.Cog):
           em1 = discord.Embed(description = f"{names} Nobody joined you for the heist. Heist is cancelled.", colour = discord.Color.red())
           return await ctx.send(embed = em1)
         else:
-          em1 = discord.Embed(description = "Time is up. Heist start now", colour = user.color)
+          em1 = discord.Embed(description = "**Time is up. Heist start now**", colour = user.color)
           await ctx.send(embed = em1)
           await asyncio.sleep(3) # wait 3 seconds
           break
     if len(crewlist) == maxcrew:
-      em1 = discord.Embed(description = "Crew is full. Heist start now", colour = user.color)
+      em1 = discord.Embed(description = "**Crew is full. Heist start now**", colour = user.color)
       await ctx.send(embed = em1)
       await asyncio.sleep(3) # wait 3 seconds
 
     process = await heist_process(target,crewlist) # [rob_amount, survivor, death]
     survivor_num = len(process[1])
-    outquote = "Heist outcome:"
+    outquote = "**Heist outcome:**"
     if survivor_num == 0:
       outquote += "\n💀 No one made it out safe."
       em1 = discord.Embed(description = outquote, colour = discord.Color.greyple())

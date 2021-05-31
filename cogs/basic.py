@@ -37,10 +37,10 @@ class BasicFunctions(commands.Cog):
       return
 
     if "escanor animation" in msg.content.lower() or "esca animation" in msg.content.lower():
-      await msg.add_reaction("<:laserescanor:747149915385233468>")
+      return await msg.add_reaction("<:laserescanor:747149915385233468>")
 
     if "noice" in msg.content.lower():
-      await msg.add_reaction("<:noice:831113245082779699>")
+      return await msg.add_reaction("<:noice:831113245082779699>")
 
     if len(msg.content) == 0:
       return
@@ -77,7 +77,7 @@ class BasicFunctions(commands.Cog):
     
   @commands.command(aliases = ['+','an'])
   async def add_note(self,ctx,title,*,msg=None):
-    """ Check the colour of the bot """
+    """ Add a note for reference """
     user = ctx.author
     with open("notes.json", "r") as f:
       notes = json.load(f)
@@ -93,9 +93,9 @@ class BasicFunctions(commands.Cog):
     em = discord.Embed(description=f"Note on {str(title)} saved", colour = botcolour)
     return await ctx.send(embed = em)
 
-  @commands.command(aliases = ['?','rn'])
+  @commands.command(aliases = ['?','read'])
   async def read_note(self,ctx,title="listing"):
-    """ Check the colour of the bot """
+    """ Refer to the reference """
     user = ctx.author
     with open("notes.json", "r") as f:
       notes = json.load(f)
@@ -110,10 +110,34 @@ class BasicFunctions(commands.Cog):
       em = discord.Embed(description=msg, colour = botcolour)
       return await ctx.send(embed = em)
     except:
-      msg = f'{str(title)} not found'
-      em = discord.Embed(description=msg, colour = botcolour)
+      msg = f'There is no note on `{str(title)}`'
+      em = discord.Embed(description=msg, colour = discord.Color.red())
       return await ctx.send(embed = em)
 
+  @commands.command(aliases = ['-','removenote'])
+  async def remove_note(self,ctx,title="listing"):
+    """ Remove the reference """
+    user = ctx.author
+    with open("notes.json", "r") as f:
+      notes = json.load(f)
+    if title == "listing":
+      notelist = "Remove which one?"
+      for item in notes[str(user.guild.id)]:
+        notelist+="\n➣"
+        notelist+=str(item)
+      notelist+="\nSend the command again with the title of the note"
+      return await ctx.send(notelist)
+    if str(user.guild.id) not in notes:
+      notes[str(user.guild.id)] = {}
+    try:
+      del notes[str(user.guild.id)][str(title)]
+      with open("notes.json","w") as f:
+          json.dump(notes,f,indent=4)
+      em = discord.Embed(description=f"Note on {str(title)} is removed", colour = botcolour)
+      return await ctx.send(embed = em)
+    except:
+      em = discord.Embed(description=f"There is no note on `{str(title)}`", color = discord.Color.red())
+      return await ctx.send(embed = em)
 
   @commands.command()
   async def repeat(self,ctx, *,args):
@@ -192,14 +216,14 @@ class BasicFunctions(commands.Cog):
     await ctx.message.delete()
 
   @commands.command()
-  @commands.has_permissions(manage_roles=True)
+  @commands.has_any_role('ADMIN','N⍧ Sovereign', 'G⍧ Archangels', 'K⍧ Kage', 'D⍧ Dragon', 'W⍧ Grace', 'R⍧ Leviathan')
   async def add_role(self,ctx,member:discord.Member,*,rolename):
     """ Add role to member """
     await member.add_roles(discord.utils.get(ctx.author.guild.roles, name=rolename))
     await ctx.send(f"{member.mention} is given the `{rolename.capitalize()}` role")
 
   @commands.command()
-  @commands.has_permissions(manage_roles=True)
+  @commands.has_any_role('ADMIN','N⍧ Sovereign', 'G⍧ Archangels', 'K⍧ Kage', 'D⍧ Dragon', 'W⍧ Grace', 'R⍧ Leviathan')
   async def remove_role(self,ctx,member:discord.Member,*,rolename):
     """ Remove role from member """
     await member.remove_roles(discord.utils.get(ctx.author.guild.roles, name=rolename))
