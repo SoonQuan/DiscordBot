@@ -100,7 +100,7 @@ class BasicFunctions(commands.Cog):
     user = ctx.author
     with open("notes.json", "r") as f:
       notes = json.load(f)
-    nlist = list(notes[str(user.guild.id)])
+    nlist = sorted(list(notes[str(user.guild.id)]))
     d = {}
     out = []
     if title == "listing":
@@ -109,7 +109,10 @@ class BasicFunctions(commands.Cog):
       for i in range(len(final)):
         d["Page{0}".format(i+1)] = "\n".join(final[i])
       for page in list(d.keys()):
-        out.append(discord.Embed(title="List contain:",description=d[page], color=ctx.author.color))
+        out.append(discord.Embed(title="Note list:",description=d[page], color=ctx.author.color))
+      if len(final) == 1:
+        em = discord.Embed(title="Note list:",description=d['Page1'], color=ctx.author.color)
+        return await ctx.send(embed=em)
       paginator = DiscordUtils.Pagination.CustomEmbedPaginator(ctx, remove_reactions=True)
       paginator.add_reaction('⏮️', "first")
       paginator.add_reaction('⏪', "back")
@@ -202,7 +205,7 @@ class BasicFunctions(commands.Cog):
     """ Send animated emoji """
     with open("aemojis.json", "r") as f:
       aemojis = json.load(f)
-    nlist = list(aemojis)
+    nlist = sorted(list(aemojis))
     d = {}
     out = []
     if msg == "listing":
@@ -211,7 +214,10 @@ class BasicFunctions(commands.Cog):
       for i in range(len(final)):
         d["Page{0}".format(i+1)] = "\n".join(final[i])
       for page in list(d.keys()):
-        out.append(discord.Embed(title="List contain:",description=d[page], color=ctx.author.color))
+        out.append(discord.Embed(title="Animated Emoji list:",description=d[page], color=ctx.author.color))
+      if len(final) == 1:
+        em = discord.Embed(title="Animated Emoji list:",description=d['Page1'], color=ctx.author.color)
+        return await ctx.send(embed=em)
       paginator = DiscordUtils.Pagination.CustomEmbedPaginator(ctx, remove_reactions=True)
       paginator.add_reaction('⏮️', "first")
       paginator.add_reaction('⏪', "back")
@@ -293,12 +299,28 @@ class BasicFunctions(commands.Cog):
                         url='https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes',
                         description= f"For example: !translate <code> <words to translate>",
                         color=discord.Color.red())
-      await ctx.send(embed = em)        
-    else: 
+      return await ctx.send(embed = em)        
+    else:
       t = google_translator()
-      a = t.translate(args, lang_tgt=lang)                 
+      a = t.translate(args, lang_tgt=lang)
       em = discord.Embed(description = a, color=ctx.author.color)
-      await ctx.send(embed = em)
+      return await ctx.send(embed = em)
+
+  @commands.command(aliases = ['ptrans'])
+  async def ptranslate(self,ctx, lang="en", *,args="translate <code> <words to translate and pronounce>"):
+    """ Translate your message into the language you want """
+    if lang.lower() not in LANGUAGES:
+      em = discord.Embed(title='Look for langauge code here',
+                        url='https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes',
+                        description= f"For example: !translate <code> <words to translate>",
+                        color=discord.Color.red())
+      return await ctx.send(embed = em)        
+    else:
+      t = google_translator()
+      a = t.translate(args, lang_tgt=lang,pronounce=True)
+      em = discord.Embed(description = f'Translated: {a[0]}\nPronouce: {a[2]}', color=ctx.author.color)
+      return await ctx.send(embed = em)
+    
 
 def setup(client):
   client.add_cog(BasicFunctions(client))

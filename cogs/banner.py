@@ -5,7 +5,7 @@ import pymongo
 from pymongo import MongoClient
 import random
 from PIL import Image
-
+import DiscordUtils
 
 cluster = MongoClient(os.getenv('MONGODB'))
 
@@ -129,11 +129,35 @@ class SDSGCBanner(commands.Cog):
       em = discord.Embed(description = f"You need 30 {currency} to pull", colour = discord.Color.red())
       em.set_footer(text= "try !timely")
       return await ctx.send(embed = em)
-      
+    banner_list = sorted(["T1","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH","FBAN"])
+    d={}
+    out = []
+    if arg1 == "list":
+      n = 10
+      final = [banner_list[i * n:(i + 1) * n] for i in range((len(banner_list) + n - 1) // n )]
+      for i in range(len(final)):
+        d["Page{0}".format(i+1)] = "\n".join(final[i])
+      for page in list(d.keys()):
+        out.append(discord.Embed(title="Banner list:",description=d[page], color=ctx.author.color))
+      if len(final) == 1:
+        em = discord.Embed(title="Banner list:",description=d['Page1'], color=ctx.author.color)
+        return await ctx.send(embed=em)
+      paginator = DiscordUtils.Pagination.CustomEmbedPaginator(ctx, remove_reactions=True)
+      paginator.add_reaction('⏮️', "first")
+      paginator.add_reaction('⏪', "back")
+      paginator.add_reaction('🔐', "lock")
+      paginator.add_reaction('⏩', "next")
+      paginator.add_reaction('⏭️', "last")
+      embeds = out
+      return await paginator.run(embeds)
     if arg1 == None:
-      arg = random.choice(["T1","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH","FBAN"])
+      arg = random.choice(banner_list)
+    elif arg1.upper() not in banner_list:
+      em = discord.Embed(description = 'There is no such banner', color = discord.Color.red())
+      return await ctx.send(embed = em)
     else:
       arg = arg1.upper()
+
     banner = str(arg.upper()) + "Banner"
     dirs = []
     ban6p = ["DZ"]
