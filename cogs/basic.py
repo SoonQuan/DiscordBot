@@ -6,7 +6,8 @@ from pymongo import MongoClient
 import random
 import asyncio
 import json
-from google_trans_new import google_translator, LANGUAGES 
+from google_trans_new import google_translator, LANGUAGES
+import DiscordUtils
 
 cluster = MongoClient(os.getenv('MONGODB'))
 
@@ -99,12 +100,24 @@ class BasicFunctions(commands.Cog):
     user = ctx.author
     with open("notes.json", "r") as f:
       notes = json.load(f)
+    nlist = list(notes[str(user.guild.id)])
+    d = {}
+    out = []
     if title == "listing":
-      notelist = "List contain:"
-      for item in notes[str(user.guild.id)]:
-        notelist+="\n➣"
-        notelist+=str(item)
-      return await ctx.send(notelist)
+      n = 10
+      final = [nlist[i * n:(i + 1) * n] for i in range((len(nlist) + n - 1) // n )]
+      for i in range(len(final)):
+        d["Page{0}".format(i+1)] = "\n".join(final[i])
+      for page in list(d.keys()):
+        out.append(discord.Embed(title="List contain:",description=d[page], color=ctx.author.color))
+      paginator = DiscordUtils.Pagination.CustomEmbedPaginator(ctx, remove_reactions=True)
+      paginator.add_reaction('⏮️', "first")
+      paginator.add_reaction('⏪', "back")
+      paginator.add_reaction('🔐', "lock")
+      paginator.add_reaction('⏩', "next")
+      paginator.add_reaction('⏭️', "last")
+      embeds = out
+      return await paginator.run(embeds)
     try:
       msg = notes[str(user.guild.id)][str(title)]
       em = discord.Embed(description=msg, colour = botcolour)
@@ -189,12 +202,24 @@ class BasicFunctions(commands.Cog):
     """ Send animated emoji """
     with open("aemojis.json", "r") as f:
       aemojis = json.load(f)
-    aelist = "List contain:\n"
+    nlist = list(aemojis)
+    d = {}
+    out = []
     if msg == "listing":
-      for item in aemojis:
-        aelist+="➣"
-        aelist+=str(item)
-      return await ctx.send(aelist)
+      n = 10
+      final = [nlist[i * n:(i + 1) * n] for i in range((len(nlist) + n - 1) // n )]
+      for i in range(len(final)):
+        d["Page{0}".format(i+1)] = "\n".join(final[i])
+      for page in list(d.keys()):
+        out.append(discord.Embed(title="List contain:",description=d[page], color=ctx.author.color))
+      paginator = DiscordUtils.Pagination.CustomEmbedPaginator(ctx, remove_reactions=True)
+      paginator.add_reaction('⏮️', "first")
+      paginator.add_reaction('⏪', "back")
+      paginator.add_reaction('🔐', "lock")
+      paginator.add_reaction('⏩', "next")
+      paginator.add_reaction('⏭️', "last")
+      embeds = out
+      return await paginator.run(embeds)
     if msg not in aemojis:
       return True
     await asyncio.sleep(1)

@@ -4,6 +4,7 @@ import os
 import pymongo
 from pymongo import MongoClient
 import asyncio
+import DiscordUtils
 
 cluster = MongoClient(os.getenv('MONGODB'))
 
@@ -57,10 +58,7 @@ Bank Heist
     with open("notes.json","w") as f:
         json.dump(notes,f,indent=4)
 """
-
-
 import random
-import yfinance as yf
 
 class Test(commands.Cog):
   """ Basic bot commands """
@@ -77,7 +75,41 @@ class Test(commands.Cog):
     quote = choice[0]
     await ctx.send(f"Events: {quote.format(ctx.author.name)}\nOutcome: {choice[1]}")
 
-    
+  @commands.command(aliases = ['t?','tread'])
+  async def test_read_note(self,ctx,title="listing"):
+    """ Refer to the reference """
+    user = ctx.author
+    with open("notes.json", "r") as f:
+      notes = json.load(f)
+    nlist = list(notes[str(user.guild.id)])
+    d = {}
+    out = []
+    if title == "listing":
+      n = 3
+      final = [nlist[i * n:(i + 1) * n] for i in range((len(nlist) + n - 1) // n )]
+      for i in range(len(final)):
+        d["Page{0}".format(i+1)] = "\n".join(final[i])
+      for page in list(d.keys()):
+        out.append(discord.Embed(title="List Contain:",description=d[page], color=ctx.author.color))
+      print(out)
+      paginator = DiscordUtils.Pagination.CustomEmbedPaginator(ctx, remove_reactions=True)
+      paginator.add_reaction('⏮️', "first")
+      paginator.add_reaction('⏪', "back")
+      paginator.add_reaction('🔐', "lock")
+      paginator.add_reaction('⏩', "next")
+      paginator.add_reaction('⏭️', "last")
+      embeds = out
+      return await paginator.run(embeds)
+    try:
+      msg = notes[str(user.guild.id)][str(title)]
+      em = discord.Embed(description=msg, colour = botcolour)
+      return await ctx.send(embed = em)
+    except:
+      msg = f'There is no note on `{str(title)}`'
+      em = discord.Embed(description=msg, colour = discord.Color.red())
+      return await ctx.send(embed = em)
+
+
 
 def setup(client):
   client.add_cog(Test(client))

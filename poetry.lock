@@ -110,6 +110,20 @@ voice = ["PyNaCl (>=1.3.0,<1.5)"]
 
 [[package]]
 category = "main"
+description = "DiscordUtils is a very useful library made to be used with discord.py"
+name = "discordutils"
+optional = false
+python-versions = ">= 3.6"
+version = "1.3.2"
+
+[package.dependencies]
+"discord.py" = "*"
+
+[package.extras]
+voice = ["discord.py", "youtube-dl"]
+
+[[package]]
+category = "main"
 description = "DNS toolkit"
 name = "dnspython"
 optional = false
@@ -390,7 +404,7 @@ pandas = ">=0.24"
 requests = ">=2.20"
 
 [metadata]
-content-hash = "9f49fb07035cadee149623a9b8e7a505e317a78b87d41329f3d6dd5557c42a5a"
+content-hash = "ec8f2fde49329ac50dc7daac2a7c13e218365c201a72559ecf3f38d96fec2081"
 python-versions = "^3.8"
 
 [metadata.files]
@@ -515,6 +529,10 @@ discord-pretty-help = [
 "discord.py" = [
     {file = "discord.py-1.7.2-py3-none-any.whl", hash = "sha256:f179db299c949a8cf0a12c1b1b94d0da9a18e088857154d93ae5ab1d807ec61d"},
     {file = "discord.py-1.7.2.tar.gz", hash = "sha256:114e76cd27362fb919abf7f001a2dbdc77c9a67cff74ed6a89aecd6582ee298e"},
+]
+discordutils = [
+    {file = "DiscordUtils-1.3.2-py3-none-any.whl", hash = "sha256:2b7e6aeadd298aa408334c28294894b80b5f754fca95586f34675274a68d233b"},
+    {file = "DiscordUtils-1.3.2.tar.gz", hash = "sha256:e58b58caa3fe711b31360a7c36ec7ca4ab51dd5e8d16215bd548c9c63755d52e"},
 ]
 dnspython = [
     {file = "dnspython-2.1.0-py3-none-any.whl", hash = "sha256:95d12f6ef0317118d2a1a6fc49aac65ffec7eb8087474158f42f26a639135216"},

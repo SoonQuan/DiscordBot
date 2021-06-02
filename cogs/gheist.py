@@ -179,7 +179,7 @@ class GrandHeist(commands.Cog):
     self.client = client
 
   @commands.command()
-  async def grob(self,ctx, member:discord.Member=None):
+  async def rob(self,ctx, member:discord.Member=None):
     """ Rob currency from your target's wallet """
     if member == None:
       em = discord.Embed(description = "Who are you robbing?", colour = discord.Color.red())
@@ -242,7 +242,7 @@ class GrandHeist(commands.Cog):
 
 
   @commands.command(aliases=['gheist'])
-  @commands.cooldown(1,900,commands.BucketType.guild) # 1 every 15mins/900secs
+  @commands.cooldown(1,1,commands.BucketType.guild) # 1 every 15mins/900secs
   async def grandheist(self,ctx):
     """ Group up and heist the target's bank """
     def check(m):
@@ -255,25 +255,30 @@ class GrandHeist(commands.Cog):
     await open_account(user)
     await open_heist_account(user)
     users = mainbank.find_one( {'_id':user.id} )
+    cb = centralbank.find_one( {'id':"central"} )
+    if cb["heist_start"] == True:
+      em1 = discord.Embed(description = 'A Grand Heist is currently ongoing. Please join that instead', colour = discord.Color.red())
+      return await ctx.send(embed = em1)
+
     if users["wallet"] < 5000:
       em = discord.Embed(description = f"You need at least 5000 {currency} in your wallet to initiate a heist.", colour = discord.Color.red())
       return await ctx.send(embed = em)
 
-    em1 = discord.Embed(description = f"{names} is starting a grand heist on the central bank! 5000 {currency} is used.\n Grand Heist will begin in 30 minutes! Join by typing {ctx.prefix}joingrandheist", colour = user.color)
+    em1 = discord.Embed(description = f"{names} is starting a grand heist on the central bank! 5000 {currency} is used.\n Grand Heist will begin in 30 minutes! Join by typing {ctx.prefix}joingrandheist/{ctx.prefix}jgh", colour = user.color)
     # mainbank.update_one({"_id":user.id}, {"$inc":{"wallet":-5000}})
     await gain_xp(ctx, user, 100)
     centralbank.update_many({"id":"central"}, {"$set": {"heist_start": True}, "$push": {"heist_crew": user.id}})
     await ctx.send(embed = em1)
-    await asyncio.sleep(10) #20 minutes
+    await asyncio.sleep(1200) #20 minutes
 
     em1 = discord.Embed(description = f"{names} is starting a grand heist on the central bank!\nGather up within the next 10 minutes! Join by typing `{ctx.prefix}joingrandheist`", colour = user.color)
     await ctx.send(embed = em1)
-    await asyncio.sleep(5) #10 minutes
+    await asyncio.sleep(600) #10 minutes
 
     em1 = discord.Embed(description = f"Grand Heist started by {names} is starting now!\n", colour = user.color)
     await ctx.send(embed = em1)
 
-    cb = centralbank.find_one( {'id':"central"} )
+
     crewlist = cb["heist_crew"]
     process = await gheist_process(crewlist) # [rob_amount, survivor, jailed, death]
     survivor_num = len(process[1])
@@ -306,7 +311,7 @@ class GrandHeist(commands.Cog):
       events = await event("Jailed")
       inner = f'\n:chains: {events[0].format(namei)} `{namei}` is busted :chains:'
       outquote += inner
-      centralbank.update_one({"_id":useri.id}, {"$set": {"status": "Jailed"}})
+      centralbank.update_many({"_id":useri.id}, {"$set": {"status": "Jailed", "timer": time.time()}})
 
     for i in range(len(process[3])): # dead
       useri = await self.client.fetch_user(process[3][i])
@@ -315,7 +320,7 @@ class GrandHeist(commands.Cog):
       events = await event("Dead")
       inner = f'\n:skull: {events[0].format(namei)} `{namei}` is wasted :skull:'
       outquote += inner
-      centralbank.update_one({"_id":useri.id}, {"$set": {"status": "Dead"}})
+      centralbank.update_many({"_id":useri.id}, {"$set": {"status": "Dead", "timer": time.time()}})
     
     rob_amount = int(process[0])
     outquote += f'\n Central Bank has lost a total of {rob_amount:,d} {currency}'
@@ -387,7 +392,32 @@ class GrandHeist(commands.Cog):
         remaining_time = time.strftime("%HH %MM %SS",time.gmtime(cd))
         em = discord.Embed(description=f'{user.mention} You are currently `{state}`. Check again in {remaining_time} to revive', color = user.color)
         return await ctx.send(embed = em)
-    
+
+  @commands.command()
+  async def bail(self,ctx, member:discord.Member=None):
+    """ Bail somebody out """
+    if member == None:
+      member = ctx.author
+    user = ctx.author
+    await open_server(user)
+    await open_account(user)
+    await open_heist_account(user)
+    await open_account(member)
+    await open_heist_account(member)
+    guilds = settings.find_one( {'gid':user.guild.id} )
+    currency = guilds["emoji"]
+    users = mainbank.find_one( {'_id':user.id} )
+    status = centralbank.find_one( {'_id':member.id} )
+    if status["status"] == "Alive":
+      em = discord.Embed(description=f'What are you doing? {member.display_name} is not in jail', color=botcolour)
+      return await ctx.send(embed=em)
+    if users["wallet"] < 2000:
+      em = discord.Embed(description = f"You need 2000 {currency} for bailing", colour = discord.Color.red())
+      return await ctx.send(embed = em)
+    mainbank.update_one({"_id":user.id}, {"$inc":{"wallet":-2000}})
+    centralbank.update_one({"_id":member.id}, {"$set":{"status":"Alive"}})
+    em = discord.Embed(description=f'{user.mention} {member.display_name} has been bailed out with 2000 {currency}', color=user.color)
+    return await ctx.send(embed=em)
 
 async def gheist_success_bonus(user):
   stats = centralbank.find_one( {'_id':user} )
