@@ -80,6 +80,18 @@ class Error(commands.Cog):
       logging.error(str(error))
       return print(error)
 
+  @commands.command()
+  async def rank(self,ctx,member:discord.Member=None):
+    return
+  @commands.command()
+  async def play(self,ctx):
+    return
+  @commands.command()
+  async def leave(self,ctx):
+    return
+  @commands.command()
+  async def levels(self,ctx):
+    return
 
 def setup(client):
   client.add_cog(Error(client))

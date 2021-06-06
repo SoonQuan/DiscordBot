@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-import os
+import os, shutil
 import pymongo
 from pymongo import MongoClient
 import random
@@ -230,6 +230,110 @@ class SDSGCBanner(commands.Cog):
     os.remove('.//Banner//pull//{}b.jpg'.format(ID))
     return os.remove('.//Banner//pull//{}c.jpg'.format(ID))
 
+  @commands.command()
+  @commands.cooldown(1,1,commands.BucketType.user)
+  async def banner(self,ctx,arg1="list"):
+    """ Check the banner listed """
+    user = ctx.author
+    await open_account(user)
+    await open_server(user)
+    users = mainbank.find_one( {'_id':user.id} )
+    ID = users["_id"]
+
+    banner_list = sorted(["T1","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH","FBAN"])
+    d={}
+    out = []
+    if arg1 == "list":
+      n = 10
+      final = [banner_list[i * n:(i + 1) * n] for i in range((len(banner_list) + n - 1) // n )]
+      for i in range(len(final)):
+        d["Page{0}".format(i+1)] = "\n".join(final[i])
+      for page in list(d.keys()):
+        out.append(discord.Embed(title="Banner list:",description=d[page], color=ctx.author.color))
+      if len(final) == 1:
+        em = discord.Embed(title="Banner list:",description=d['Page1'], color=ctx.author.color)
+        return await ctx.send(embed=em)
+      paginator = DiscordUtils.Pagination.CustomEmbedPaginator(ctx, remove_reactions=True)
+      paginator.add_reaction('⏮️', "first")
+      paginator.add_reaction('⏪', "back")
+      paginator.add_reaction('🔐', "lock")
+      paginator.add_reaction('⏩', "next")
+      paginator.add_reaction('⏭️', "last")
+      embeds = out
+      return await paginator.run(embeds)
+    if arg1.upper() not in banner_list:
+      em = discord.Embed(description = 'There is no such banner', color = discord.Color.red())
+      return await ctx.send(embed = em)
+    else:
+      arg = arg1.upper()
+
+    banner = str(arg.upper()) + "Banner"
+    all_units = []
+    path = f".//Banner//{banner}"
+    files = os.listdir(path)
+    for unit in files:
+      image = path+"//"+str(unit)
+      all_units.append(image)
+    n = 5
+    split_units = [all_units[i * n:(i + 1) * n] for i in range((len(all_units) + n - 1) // n )]    
+    part = 0
+    for section in split_units:
+      if len(section) == 5:
+        im0 = Image.open(section[0])
+        im1 = Image.open(section[1])
+        im2 = Image.open(section[2])
+        im3 = Image.open(section[3])
+        im4 = Image.open(section[4])
+        get_concat_h_multi_blank([im0,im1,im2,im3,im4]).save(f'.//Banner//pull//{ID}{part}.jpg')
+        part+=1
+      else:
+        try:
+          im0 = Image.open(section[0])
+        except:
+          im0 = Image.new("RGB", (100, 100), (47,49,54))
+        try:
+          im1 = Image.open(section[1])
+        except:
+          im1 = Image.new("RGB", (100, 100), (47,49,54))
+        try:
+          im2 = Image.open(section[2])
+        except:
+          im2 = Image.new("RGB", (100, 100), (47,49,54))
+        try:
+          im3 = Image.open(section[3])
+        except:
+          im3 = Image.new("RGB", (100, 100), (47,49,54))
+        try:
+          im4 = Image.open(section[4])
+        except:
+          im4 = Image.new("RGB", (100, 100), (47,49,54))
+        get_concat_h_multi_blank([im0,im1,im2,im3,im4]).save(f'.//Banner//pull//{ID}{part}.jpg')
+
+    images = list(os.listdir(".//Banner//pull"))
+    Image.open(f".//Banner//pull//{images[0]}").save(f'.//Banner//{ID}.jpg')
+    images.pop(0)
+    for unit in images:
+      img = Image.open(f'.//Banner//{ID}.jpg')
+      addon = Image.open(f".//Banner//pull//{unit}")
+      get_concat_v_blank(img, addon).save(f'.//Banner//{ID}.jpg')
+
+    quote = f"{user.display_name} {arg.upper()} Banner contain"
+    file = discord.File(f'.//Banner//{ID}.jpg')
+    em = discord.Embed(title = quote, colour = ctx.author.color)
+    em.set_footer(text=f"use <{ctx.prefix}banner list> to check available banners")
+    em.set_image(url = f"attachment://{ID}.jpg")
+    await ctx.send(embed = em, file = file)
+
+    os.remove(f'.//Banner//{ID}.jpg')
+    try:
+      shutil.rmtree('.//Banner//pull//')
+    except OSError as e:
+      print("Error: %s : %s" % ('.//Banner//pull//', e.strerror))
+    return os.mkdir('.//Banner//pull//')
+
+
+
+
   @commands.command(aliases=['rspvp', 'rs'])
   @commands.cooldown(1,1,commands.BucketType.user)
   async def rselectpvp(self,ctx):
@@ -335,6 +439,22 @@ def get_concat_v_multi_resize(im_list, resample=Image.BICUBIC):
     for im in im_list_resize:
         dst.paste(im, (0, pos_y))
         pos_y += im.height
+    return dst
+
+def get_concat_v_resize(im1, im2, resample=Image.BICUBIC, resize_big_image=True):
+    if im1.width == im2.width:
+        _im1 = im1
+        _im2 = im2
+    elif (((im1.width > im2.width) and resize_big_image) or
+          ((im1.width < im2.width) and not resize_big_image)):
+        _im1 = im1.resize((im2.width, int(im1.height * im2.width / im1.width)), resample=resample)
+        _im2 = im2
+    else:
+        _im1 = im1
+        _im2 = im2.resize((im1.width, int(im2.height * im1.width / im2.width)), resample=resample)
+    dst = Image.new('RGB', (_im1.width, _im1.height + _im2.height))
+    dst.paste(_im1, (0, 0))
+    dst.paste(_im2, (0, _im1.height))
     return dst
 
 def get_concat_tile_resize(im_list_2d, resample=Image.BICUBIC):
