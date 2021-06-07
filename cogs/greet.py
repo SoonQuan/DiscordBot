@@ -28,13 +28,16 @@ class Greetings(commands.Cog):
       if member.guild.id == 825583328111230977:
         channel = member.guild.system_channel
         if channel is not None:
-          msg = f"Welcome to {member.guild} {member.mention}\nYou are going to be a lab rat :rat:"
+          msg = f"Welcome to {member.guild} {member.mention}"
+          em= discord.Embed(description=f"You are member number **{member.guild.member_count}**\nYou are going to be a lab rat :rat:",colour = botcolour)
+          return await channel.send(content = msg, embed=em)
           return await channel.send(msg)
       elif member.guild.id == 692808940190433360:
         channel = member.guild.system_channel
         if channel is not None:
-          msg = f"Welcome to Null Community {member.mention}\nYou can post your application here <#694708991321833492>\nRequest for role here <#697647239123959857>\nCombat class role here <#806087564867928094>"
-          return await channel.send(msg)
+          msg = f"Welcome to Null Community {member.mention}"
+          em= discord.Embed(description=f"You are member number **{member.guild.member_count}**\nYou can post your application here <#694708991321833492>\nRequest for role here <#697647239123959857>\nCombat class role here <#806087564867928094>",colour = botcolour)
+          return await channel.send(content = msg, embed=em)
 
 def setup(client):
   client.add_cog(Greetings(client))

@@ -211,7 +211,7 @@ class SDSGCBanner(commands.Cog):
     get_concat_h_multi_blank([im5,im6,im7,im8,im9,im10]).save('.//Banner//pull//{}b.jpg'.format(ID))
     out1 = Image.open('.//Banner//pull//{}a.jpg'.format(ID))
     out2 = Image.open('.//Banner//pull//{}b.jpg'.format(ID))
-    get_concat_v_blank(out1,out2).save('.//Banner//pull//{}c.jpg'.format(ID))
+    get_concat_v_blank(out1,out2,(47,49,54)).save('.//Banner//pull//{}c.jpg'.format(ID))
 
     if arg1 == None:
       quote = "{} randomly pulls on {} Banner\n".format(str(names), arg.upper())
@@ -317,7 +317,7 @@ class SDSGCBanner(commands.Cog):
       addon = Image.open(f".//Banner//pull//{unit}")
       get_concat_v_blank(img, addon).save(f'.//Banner//{ID}.jpg')
 
-    quote = f"{user.display_name} {arg.upper()} Banner contain"
+    quote = f"{arg.upper()} Banner contain"
     file = discord.File(f'.//Banner//{ID}.jpg')
     em = discord.Embed(title = quote, colour = ctx.author.color)
     em.set_footer(text=f"use <{ctx.prefix}banner list> to check available banners")
