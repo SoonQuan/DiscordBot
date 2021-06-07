@@ -383,7 +383,7 @@ class SDSGCBanner(commands.Cog):
 
   @commands.command(aliases=['mp'])
   async def multipull(self,ctx,times=1,banner=None):
-    """ Refer to the reference """
+    """ Pull on random banner a number of time"""
     for i in range(int(times)):
       try:
         pending_command = self.client.get_command('pull')
