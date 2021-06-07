@@ -381,6 +381,16 @@ class SDSGCBanner(commands.Cog):
     await ctx.send(embed = embed, file = file)
     return os.remove(f'.//RSPVP//pull//{ctx.author.id}.jpg')
 
+  @commands.command(aliases=['mp'])
+  async def multipull(self,ctx,times=1,banner=None):
+    """ Refer to the reference """
+    for i in range(int(times)):
+      try:
+        pending_command = self.client.get_command('pull')
+        await ctx.invoke(pending_command,banner)
+      except:
+        await ctx.send("Command Failed <@399558274753495040>")
+        
 def direct(directory,rank):
   path = f".//Banner//{rank}"
   files = os.listdir(path)
