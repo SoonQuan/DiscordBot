@@ -382,14 +382,18 @@ class SDSGCBanner(commands.Cog):
     return os.remove(f'.//RSPVP//pull//{ctx.author.id}.jpg')
 
   @commands.command(aliases=['mp'])
+  @commands.cooldown(1,5,commands.BucketType.user)
   async def multipull(self,ctx,times=1,banner=None):
-    """ Pull on random banner a number of time"""
+    """ Pull on random banner a number of time """
+    if int(times) > 10:
+      times = int(10)
+      await ctx.send(f'{ctx.author.mention} maximum of 10 multis at once')
     for i in range(int(times)):
       try:
         pending_command = self.client.get_command('pull')
         await ctx.invoke(pending_command,banner)
       except:
-        await ctx.send("Command Failed <@399558274753495040>")
+        return await ctx.send("Command Failed <@399558274753495040>")
         
 def direct(directory,rank):
   path = f".//Banner//{rank}"

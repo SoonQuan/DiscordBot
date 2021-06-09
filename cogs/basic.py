@@ -121,8 +121,11 @@ class BasicFunctions(commands.Cog):
       paginator.add_reaction('⏭️', "last")
       embeds = out
       return await paginator.run(embeds)
+    tag = title
+    if title.startswith('<@') and title[2]!='!':
+      tag = title[:2] + '!' + title[2:]
     try:
-      msg = notes[str(user.guild.id)][str(title)]
+      msg = notes[str(user.guild.id)][str(tag)]
       em = discord.Embed(description=msg, colour = botcolour)
       return await ctx.send(embed = em)
     except:
@@ -188,7 +191,7 @@ class BasicFunctions(commands.Cog):
       except asyncio.TimeoutError:
         return await ctx.send("Command Time Out")
     else:
-      await ctx.channel.purge(limit=amount+1)
+      await ctx.channel.purge(limit=amount)
     
 
   @commands.command(aliases = ['purgemsg', 'clearmsg'])
@@ -234,7 +237,7 @@ class BasicFunctions(commands.Cog):
 
   @commands.command()
   @commands.has_permissions(manage_roles=True)
-  async def embedit(self,ctx,channel_id,msg_id,new_msg):
+  async def embedit(self,ctx,channel_id,msg_id,*,new_msg):
     """ Edit a particular embed message """
     names = ctx.author.nick
     if names == None:
@@ -262,7 +265,7 @@ class BasicFunctions(commands.Cog):
 
   @commands.command(aliases= ['up'])
   @commands.has_any_role('N⍧ Sovereign', 'le vendel' , 'G⍧ Archangels', 'K⍧ Kage', 'D⍧ Dragon', 'W⍧ Grace', 'R⍧ Leviathan')
-  async def updatemsg(self,ctx,new_msg):
+  async def updatemsg(self,ctx,*,new_msg):
     """ Update our notice """
     names = ctx.author.nick
     if names == None:

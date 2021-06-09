@@ -17,7 +17,10 @@ def get_prefix(client, message):
   server = settings.find_one({"gid":message.guild.id})
   return server["prefix"]
 
-client = commands.Bot(command_prefix=get_prefix, case_insensitive=True)
+intents = discord.Intents.default()
+intents.members = True
+
+client = commands.Bot(command_prefix=get_prefix, case_insensitive=True, intents=intents)
 botcolour = 0x0fa4aab
 
 import json
@@ -60,10 +63,22 @@ Bank Heist
 """
 import random
 
+mc_channels = [851665369726320641]
+
 class Test(commands.Cog):
   """ Basic bot commands """
   def __init__(self,client):
     self.client = client
+    self.update_member_count.start()
+
+  @tasks.loop(minutes=10)
+  async def update_member_count(self,ctx):
+    for channel_id in mc_channels:
+      channel = self.client.get_channel(channel_id)
+      member_count = channel.guild.member_count
+      await channel.edit(name=f'Members: {member_count}')
+
+
 
   @commands.command()
   async def event(self,ctx, event):
@@ -75,15 +90,7 @@ class Test(commands.Cog):
     quote = choice[0]
     await ctx.send(f"Events: {quote.format(ctx.author.name)}\nOutcome: {choice[1]}")
 
-  @commands.command(aliases=['mp'])
-  async def multipull(self,ctx,times=1,banner=None):
-    """ Refer to the reference """
-    for i in range(int(times)):
-      try:
-        pending_command = self.client.get_command('pull')
-        await ctx.invoke(pending_command,banner)
-      except:
-        await ctx.send("Command Failed <@399558274753495040>")
+
 
 
 

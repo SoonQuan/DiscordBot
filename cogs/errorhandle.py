@@ -53,6 +53,13 @@ class Error(commands.Cog):
       logging.error(str(error))
       return await ctx.send(embed=em)
 
+    elif isinstance(error, commands.BadArgument):
+      em = discord.Embed(title="Wrong Argument",
+                        description=f"Please try again with the correct arguments\n{ctx.prefix}help [command]",
+                        colour=discord.Color.red())
+      logging.error(str(error))
+      return await ctx.send(embed=em)
+
     elif isinstance(error, commands.MissingPermissions):
       em = discord.Embed(title="Missing Permission",
                         colour=discord.Color.red())
