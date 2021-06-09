@@ -87,11 +87,14 @@ class BasicFunctions(commands.Cog):
       return await ctx.send(embed = em)
     if str(user.guild.id) not in notes:
       notes[str(user.guild.id)] = {}
+    tag = title
+    if title.startswith('<@') and title[2]!='!':
+      tag = title[:2] + '!' + title[2:]
     note = str(msg)
-    notes[str(user.guild.id)][str(title)] = note
+    notes[str(user.guild.id)][str(tag)] = note
     with open("notes.json","w") as f:
         json.dump(notes,f,indent=4)
-    em = discord.Embed(description=f"Note on {str(title)} saved", colour = botcolour)
+    em = discord.Embed(description=f"Note on {str(tag)} saved", colour = botcolour)
     return await ctx.send(embed = em)
 
   @commands.command(aliases = ['?','read'])
@@ -148,8 +151,11 @@ class BasicFunctions(commands.Cog):
       return await ctx.send(notelist)
     if str(user.guild.id) not in notes:
       notes[str(user.guild.id)] = {}
+    tag = title
+    if title.startswith('<@') and title[2]!='!':
+      tag = title[:2] + '!' + title[2:]
     try:
-      del notes[str(user.guild.id)][str(title)]
+      del notes[str(user.guild.id)][str(tag)]
       with open("notes.json","w") as f:
           json.dump(notes,f,indent=4)
       em = discord.Embed(description=f"Note on {str(title)} is removed", colour = botcolour)
