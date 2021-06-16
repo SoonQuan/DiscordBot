@@ -36,7 +36,7 @@ class Greetings(commands.Cog):
           member_count = channel.guild.member_count
           await channel.edit(name=f'Members: {member_count}')
         except:
-          pass
+          print('smth wrong')
 
     @updateMC.before_loop
     async def before_updateMC(self):
@@ -53,20 +53,25 @@ class Greetings(commands.Cog):
         except:
           pass
 
+    @commands.command()
+    async def hello(self,ctx):
+      """ Add a GC note for reference """
+      await ctx.send('<a:welcome:853659229607690270>')
+
     @commands.Cog.listener()
     async def on_member_join(self, member):
       if member.guild.id == 825583328111230977:
         channel = member.guild.system_channel
         if channel is not None:
-          msg = f"Welcome to {member.guild} {member.mention}"
-          em= discord.Embed(description=f"You are lab rat code **00{member.guild.member_count}**:rat:",colour = botcolour)
+          msg = f"<a:welcome:853659229607690270> Welcome to {member.guild} {member.mention} <a:welcome:853659229607690270>"
+          em= discord.Embed(description=f"You are lab rat code **00{member.guild.member_count}**:rat:\n<a:blobchain:853660327316029441><a:blobchain:853660327316029441><a:blobchain:853660327316029441><a:blobchain:853660327316029441><a:blobchain:853660327316029441><a:blobchain:853660327316029441><a:blobchain:853660327316029441><a:blobchain:853660327316029441><a:blobchain:853660327316029441><a:blobchain:853660327316029441>",colour = botcolour)
           return await channel.send(content = msg, embed=em)
 
       elif member.guild.id == 692808940190433360:
         channel = member.guild.system_channel
         if channel is not None:
-          msg = f"Welcome to Null Community {member.mention}"
-          em= discord.Embed(description=f"You can post your application here <#694708991321833492>\nRequest for role here <#697647239123959857>\nCombat class role here <#806087564867928094>",colour = botcolour)
+          msg = f"<a:welcome:853659229607690270> Welcome to Null Community {member.mention} <a:welcome:853659229607690270>"
+          em= discord.Embed(description=f"You can post your application here <#694708991321833492>\nRequest for role here <#697647239123959857>\nCombat class role here <#806087564867928094>\n<a:blobchain:853660327316029441><a:blobchain:853660327316029441><a:blobchain:853660327316029441><a:blobchain:853660327316029441><a:blobchain:853660327316029441><a:blobchain:853660327316029441><a:blobchain:853660327316029441><a:blobchain:853660327316029441><a:blobchain:853660327316029441><a:blobchain:853660327316029441><a:blobchain:853660327316029441><a:blobchain:853660327316029441>",colour = botcolour)
           return await channel.send(content = msg, embed=em)
 
 

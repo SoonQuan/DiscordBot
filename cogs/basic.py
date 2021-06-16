@@ -23,11 +23,11 @@ def get_prefix(client, message):
 
 client = commands.Bot(command_prefix=get_prefix, case_insensitive=True)
 botcolour = 0x0fa4aab
-gsmsg_id = 829765626838646814
+gsmsg_id = 852522144121356328
 gschannel_id = 803097378726215723
 
 
-class BasicFunctions(commands.Cog):
+class Basic(commands.Cog):
   """ Basic bot commands """
   def __init__(self,client):
     self.client = client
@@ -332,4 +332,4 @@ class BasicFunctions(commands.Cog):
     
 
 def setup(client):
-  client.add_cog(BasicFunctions(client))
+  client.add_cog(Basic(client))

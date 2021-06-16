@@ -6,6 +6,8 @@ from pymongo import MongoClient
 import random
 from PIL import Image
 import DiscordUtils
+import json
+import asyncio
 
 cluster = MongoClient(os.getenv('MONGODB'))
 
@@ -129,7 +131,7 @@ class SDSGCBanner(commands.Cog):
       em = discord.Embed(description = f"You need 30 {currency} to pull", colour = discord.Color.red())
       em.set_footer(text= "try !timely")
       return await ctx.send(embed = em)
-    banner_list = sorted(["T1","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH","FBAN"])
+    banner_list = sorted(["T1","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH", "FBAN","HAWK"])
     d={}
     out = []
     if arg1 == "list":
@@ -162,7 +164,7 @@ class SDSGCBanner(commands.Cog):
     dirs = []
     ban6p = ["DZ"]
     ban4p = ["T1","AM","MERLIN","FZEL","FBAN"]
-    ban3p = ["VAL","REZERO","ST","EXARTH"]
+    ban3p = ["VAL","REZERO","ST","EXARTH","HAWK"]
 
     if arg in ban3p:
       for i in range(11):
@@ -240,7 +242,7 @@ class SDSGCBanner(commands.Cog):
     users = mainbank.find_one( {'_id':user.id} )
     ID = users["_id"]
 
-    banner_list = sorted(["T1","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH","FBAN"])
+    banner_list = sorted(["T1","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH","FBAN","HAWK"])
     d={}
     out = []
     if arg1 == "list":
@@ -332,6 +334,111 @@ class SDSGCBanner(commands.Cog):
     return os.mkdir('.//Banner//pull//')
 
 
+  @commands.command(aliases = ['+gc','++'])
+  @commands.has_any_role('ADMIN','N⍧ Sovereign', 'G⍧ Archangels', 'K⍧ Kage', 'le vendel' , 'D⍧ Dragon', 'W⍧ Grace', 'R⍧ Leviathan', 'Overseer')
+  async def add_gc(self,ctx,unit):
+    """ Add a GC note for reference """
+    def check(m):
+      return m.author == ctx.author and m.channel == ctx.message.channel
+    with open("sdsgc.json", "r") as f:
+      notes = json.load(f)
+    tag = unit
+    if str(tag) not in notes:
+      notes[str(tag)] = {}
+    em = discord.Embed(description = f'What is the full name of the unit of this tag?', colour = ctx.author.color)
+    await ctx.send(embed = em)
+    try:
+      msg1 = await self.client.wait_for("message",timeout= 60, check=check)
+      unit_name = msg1.content
+      em = discord.Embed(description = f'What is the reference for {unit_name}', colour = ctx.author.color)
+      await ctx.send(embed = em)
+      try:
+        msg2 = await self.client.wait_for("message",timeout= 60, check=check)
+        unit_ref = msg2.content
+        notes[str(tag)][str(unit_name)] = unit_ref
+        with open("sdsgc.json","w") as f:
+            json.dump(notes,f,indent=4)
+        em = discord.Embed(description=f"Note on {str(tag)} saved", colour = botcolour)
+        return await ctx.send(embed = em)        
+      except asyncio.TimeoutError:
+        em = discord.Embed(description = f"You took too long... try again later when you are ready", colour = discord.Color.red())
+        return await ctx.send(embed = em)
+    except asyncio.TimeoutError:
+      em = discord.Embed(description = f"You took too long... try again later when you are ready", colour = discord.Color.red())
+      return await ctx.send(embed = em)
+
+
+  @commands.command(aliases = ['?gc','??'])
+  async def read_gc(self,ctx,unit="listing"):
+    """ Refer to the unit's reference """
+    with open("sdsgc.json", "r") as f:
+      notes = json.load(f)
+    nlist = sorted(list(notes))
+    d = {}
+    out = []
+    if unit == "listing":
+      n = 10
+      final = [nlist[i * n:(i + 1) * n] for i in range((len(nlist) + n - 1) // n )]
+      for i in range(len(final)):
+        d["Page{0}".format(i+1)] = "\n".join(final[i])
+      for page in list(d.keys()):
+        out.append(discord.Embed(title="Unit list:",description=d[page], color=ctx.author.color))
+      if len(final) == 1:
+        em = discord.Embed(title="Unit list:",description=d['Page1'], color=ctx.author.color)
+        return await ctx.send(embed=em)
+      paginator = DiscordUtils.Pagination.CustomEmbedPaginator(ctx, remove_reactions=True)
+      paginator.add_reaction('⏮️', "first")
+      paginator.add_reaction('⏪', "back")
+      paginator.add_reaction('🔐', "lock")
+      paginator.add_reaction('⏩', "next")
+      paginator.add_reaction('⏭️', "last")
+      embeds = out
+      return await paginator.run(embeds)
+    tag = unit
+    try:
+      units = notes[str(tag)]
+      for i in units:
+        unit_name = i
+        unit_ref = notes[str(tag)][unit_name]
+        break
+      em = discord.Embed(title=unit_name , description=unit_ref, colour = botcolour)
+      return await ctx.send(embed = em)
+    except:
+      msg = f'There is no note on `{str(unit)}\n`'
+      suggest = []
+      for i in nlist:
+        if tag.capitalize() in list(notes[i].keys())[0]:
+          suggest.append([list(notes[i].keys())[0],i])
+      if len(suggest) > 0:
+        msg += '\n__Suggested:__'
+        for item in suggest:
+          msg += f'\n➣**{item[0]}**\n{ctx.prefix}?gc {item[1]}\n'
+      em = discord.Embed(description=msg, colour = discord.Color.red())
+      return await ctx.send(embed = em)
+
+  @commands.command(aliases = ['-gc','--'])
+  @commands.has_any_role('ADMIN','N⍧ Sovereign', 'G⍧ Archangels', 'K⍧ Kage', 'le vendel' , 'D⍧ Dragon', 'W⍧ Grace', 'R⍧ Leviathan', 'Overseer')
+  async def remove_gc(self,ctx,unit="listing"):
+    """ Remove the unit's reference """
+    with open("sdsgc.json", "r") as f:
+      notes = json.load(f)
+    if unit == "listing":
+      notelist = "Remove which one?"
+      for item in notes:
+        notelist+="\n➣"
+        notelist+=str(item)
+      notelist+=f"\nSend the command again with the unit ie. {ctx.prefix}{notes[0]}"
+      return await ctx.send(notelist)
+    tag = unit
+    try:
+      del notes[str(tag)]
+      with open("sdsgc.json","w") as f:
+          json.dump(notes,f,indent=4)
+      em = discord.Embed(description=f"Note on {str(tag)} is removed", colour = botcolour)
+      return await ctx.send(embed = em)
+    except:
+      em = discord.Embed(description=f"There is no note on `{str(tag)}`", color = discord.Color.red())
+      return await ctx.send(embed = em)
 
 
   @commands.command(aliases=['rspvp', 'rs'])

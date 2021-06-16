@@ -1,0 +1,59 @@
+{
+    "rexcarthur": {
+        "Red Excalibur Arthur": "**PvE:**\n-4x HP/2x DEF\n**PvP:**\n-4x HP/2x DEF\n**Red Demon:**\n-Not Recommended\n**Grey Demon:**\n-Not Recommended\n**Crimson Demon:**\n-Not Recommended\n**Recommended Substats:**\n-Attack, Defense, HP"
+    },
+    "bsrarthur": {
+        "Blue Arthur": "**PvE:**\n-4x ATK/2x DEF\n**PvP:**\n-4x ATK/2x DEF\n**Red Demon:**\n-4x ATK/2x DEF\n**Grey Demon:**\n-Not Recommended\n**Crimson Demon:**\n-Not Recommended\n**Recommended Substats:**\n-Attack, Defense, HP"
+    },
+    "barthur": {
+        "Blue Crit Arthur": "**PvE:**\n-4x ATK/2x Crit dmg\n**PvP:**\n-4x ATK/2x Crit dmg\n**Red Demon:**\n-4x ATK/2x Crit dmg\n**Grey Demon:**\n-Not Recommended\n**Crimson Demon:**\n-Not Recommended\n**Recommended Substats:**\n-Attack/Crit dmg, Defense, HP"
+    },
+    "rarthur": {
+        "Red Buff Arthur": "**PvE:**\n-4x HP/2x DEF\n**PvP:**\n-4x HP/2x DEF\n**Red Demon:**\n-4x HP/2x DEF\n**Grey Demon:**\n-4x HP/2x DEF (Not Optional btw)\n**Crimson Demon:**\n-4x HP/2x DEF\n**Recommended Substats:**\n-Attack, Defense, HP"
+    },
+    "garthur": {
+        "Green PVE Arthur": "**PvE:**\n-4x ATK/2x DEF or 4x HP/2x DEF\n**PvP:**\n-Not Recommended\n**Red Demon:**\n-Not Recommended\n**Grey Demon:**\n-Not Recommended\n**Crimson Demon:**\n-Not Recommended\n**Recommended Substats:**\n-Attack, Defense, HP"
+    },
+    "gsrgowther": {
+        "Green SR Gowther": "**PvE:**\n-4x ATK/2x DEF\n**PvP:**\n-4x ATK/2x DEF\n**Red Demon:**\n-Not Recommended\n**Grey Demon:**\n-Not Recommended\n**Crimson Demon:**\n-Not Recommended\n**Recommended Substats:**\n-Attack, Defense, HP"
+    },
+    "bgowther": {
+        "Blue Debuff Gowther": "**PvE:**\n-4x ATK/2x DEF\n**PvP:**\n-4x ATK/2x DEF\n**Red Demon:**\n-4x ATK/2x DEF\n**Grey Demon:**\n-Not Recommended\n**Crimson Demon:**\n-Not Recommended\n**Recommended Substats:**\n-Attack, Defense, HP"
+    },
+    "rgowther": {
+        "Red Gowther": "**PvE:**\n-4x HP/2x DEF\n**PvP:**\n-4x HP/2x DEF\n**Red Demon:**\n-4x HP/2x DEF\n**Grey Demon:**\n-4x HP/2x DEF\n**Crimson Demon:**\n-4x HP/2x DEF\n**Recommended Substats:**\n-Attack, Defense, HP."
+    },
+    "hgowther": {
+        "Green Halloween Gowther": "**PvE:**\n-4x HP/2x DEF (Can also run ATT but HP recommended)\n**PvP:**\n-4x HP/2x DEF (Can also run ATT but HP recommended)\n**Red Demon:**\n-Not Recommended\n**Grey Demon:**\n-4x HP/2x DEF (Can also run ATT but HP recommended)\n**Crimson Demon:**\n-Not Recommended\n**Recommended Substats:**\n-Attack, Defense, HP"
+    },
+    "gescanor": {
+        "Green Escanor": "**PvE:**\n-4x ATK/2x DEF\n**PvP:**\n-4x ATK/2x DEF\n**Red Demon:**\n-Not Recommended\n**Grey Demon:**\n-4x ATK/2x DEF\n**Crimson Demon:**\n-4x ATK/2x DEF\n**Recommended Substats:**\n-Attack, Defense, HP"
+    },
+    "rescanor": {
+        "Red Escanor": "**PvE:**\n-4x ATK/2x DEF\n**PvP:**\n-4x ATK/2x DEF\n**Red Demon:**\n-4x ATK/2x DEF\n**Grey Demon:**\n-Not Recommended\n**Crimson Demon:**\n-4x ATK/2x DEF\n**Recommended Substats:**\n-Attack, Defense, HP"
+    },
+    "bescanor": {
+        "The One Escanor": "**PvE:**\n-4x ATK/2x Crit dmg or 4x HP/2x Crit dmg\n**PvP:**\n-4x ATK/2x Crit dmg or 4x HP/2x Crit dmg\n**Red Demon:**\n-4x ATK/2x Crit dmg or 4x HP/2x Crit dmg\n**Grey Demon:**\n-Not Recommended\n**Crimson Demon:**\n-Not Recommended\n**Recommended Substats:**\n-Attack, Defense, HP"
+    },
+    "rpban": {
+        "Red Purgatory Ban": "**PvE:**\n-4x HP/2x DEF or 4x HP/2x Crit dmg\n**PvP:**\n-4x HP/2x DEF or 4x HP/2x Crit dmg\n**Red Demon:**\n-Not Recommended\n**Grey Demon:**\n-Not Recommended\n**Crimson Demon:**\n-Not Recommended\n**Recommended Substats:**\n-Crit Chance, Crit Damage, Defense, HP"
+    },
+    "rnban": {
+        "Red Nunchaku Ban": "**PvE:**\n-4x ATK/2x DEF\n**PvP:**\n-4x ATK/2x DEF\n**Red Demon:**\n-4x ATK/2x DEF\n**Grey Demon:**\n-Not Recommended\n**Crimson Demon:**\n-4x ATK/2x DEF\n**Recommended Substats:**\n-Attack, Defense, HP"
+    },
+    "rsrban": {
+        "Red SR Ban": "**PvE:**\n-4x ATK/2x DEF\n**PvP:**\n-4x ATK/2x DEF\n**Red Demon:**\n-4x ATK/2x DEF\n**Grey Demon:**\n-Not Recommended\n**Crimson Demon:**\n-Not Recommended\n**Recommended Substats:**\n-Attack, Defense, HP"
+    },
+    "bnban": {
+        "Blue Nunchaku Ban": "**PvE:**\n-4x ATK/2x DEF\n**PvP:**\n-Not Recommended\n**Red Demon:**\n-4x ATK/2x DEF\n**Grey Demon:**\n-Not Recommended\n**Crimson Demon:**\n-Not Recommended\n**Recommended Substats:**\nAttack, Defense, HP"
+    },
+    "bban": {
+        "Blue Ban": "**PvE:**\n-4x ATK/2x DEF\n**PvP:**\n-4x ATK/2x DEF\n**Red Demon:**\n-4x ATK/2x DEF\n**Grey Demon:**\n-Not Recommended\n**Crimson Demon:**\n-Not Recommended\n**Recommended Substats:**\nAttack, Defense, HP"
+    },
+    "gnban": {
+        "Green Nunchaku Ban (Coin Shop)": "**PvE:**\n-4x ATK/2x DEF\n**PvP:**\n-4x ATK/2x DEF\n**Red Demon:**\n-Not Recommended\n**Grey Demon:**\n-Not Recommended\n**Crimson Demon:**\n-Not Recommended\n**Recommended Substats:**\nAttack, Defense, HP"
+    },
+    "gban": {
+        "Green Ban": "**PvE:**\n-4x ATK/2x DEF\n**PvP:**\n-4x ATK/2x DEF\n**Red Demon:**\n-Not Recommended\n**Grey Demon:**\n-Not Recommended\n**Crimson Demon:**\n-Not Recommended\n**Recommended Substats:**\nAttack, Defense, HP"
+    }
+}
