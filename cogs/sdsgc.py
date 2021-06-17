@@ -37,6 +37,8 @@ class SDSGC(commands.Cog):
       return m.author == ctx.author and m.channel == ctx.message.channel
     with open("event.json", "r") as f:
       notes = json.load(f)
+    if '`' in event:
+      return await ctx.send("No. Just no.")
     event_name = str(event)
     if str(event_name) not in notes:
       notes[str(event_name)] = {}
@@ -65,7 +67,9 @@ class SDSGC(commands.Cog):
 
   @commands.command()
   async def timenow(self,ctx):
-    await ctx.send(datetime.now(tz=tz.gettz("US/Pacific")))
+    now = datetime.now(tz=tz.gettz("US/Pacific"))
+    em = discord.Embed(description = now.strftime("%A, %B %d, %Y at %-I:%M %p %Z"), colour = discord.Color.greyple())
+    await ctx.send(embed=em)
 
   @commands.command(aliases = ['events'])
   async def event(self,ctx):
@@ -104,7 +108,7 @@ class SDSGC(commands.Cog):
       ongoing = "```No ongoing event```"
     if upcoming == "```diff\n```":
       upcoming = "```No upcoming event```"
-    embed=discord.Embed(color=0xf5dbff)
+    embed=discord.Embed(color=discord.Color.purple())
     embed.add_field(name="Ongoing Events", value=ongoing, inline=False)
     embed.add_field(name="Upcoming Events", value=upcoming, inline=False)
     with open("event.json","w") as f:

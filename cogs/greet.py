@@ -26,21 +26,21 @@ mc_channels = [851668288391872572,851665369726320641]
 class Greetings(commands.Cog):
     def __init__(self, client):
         self.client = client
-        self.updateMC.start()
+    #     self.updateMC.start()
 
-    @tasks.loop(minutes=15)
-    async def updateMC(self):
-      for channel_id in mc_channels:
-        try:
-          channel = await self.client.fetch_channel(channel_id)
-          member_count = channel.guild.member_count
-          await channel.edit(name=f'Members: {member_count}')
-        except:
-          print('smth wrong')
+    # @tasks.loop(minutes=15)
+    # async def updateMC(self):
+    #   for channel_id in mc_channels:
+    #     try:
+    #       channel = await self.client.fetch_channel(channel_id)
+    #       member_count = channel.guild.member_count
+    #       await channel.edit(name=f'Members: {member_count}')
+    #     except:
+    #       print('smth wrong')
 
-    @updateMC.before_loop
-    async def before_updateMC(self):
-        await self.bot.wait_until_ready()
+    # @updateMC.before_loop
+    # async def before_updateMC(self):
+    #     await self.bot.wait_until_ready()
 
     @commands.command()
     async def umc(self,ctx):

@@ -6,8 +6,6 @@ from pymongo import MongoClient
 from itertools import cycle
 from keep_alive import keep_alive
 from pretty_help import DefaultMenu, PrettyHelp
-import time
-
 
 cluster = MongoClient(os.getenv('MONGODB'))
 
@@ -39,10 +37,10 @@ client.help_command = PrettyHelp(navigation=menu,
 @client.event
 async def on_ready():
 	await client.change_presence(activity=discord.Game("with you | try !help"))
-	# change_status.start()
+	#await change_status.start()
 	print('We have logged in as {0.user}'.format(client))
 
-# @tasks.loop(minutes=11)
+# @tasks.loop(minutes=15)
 # async def change_status():
 # 	await client.change_presence(activity=discord.Game(next(status)))
 
