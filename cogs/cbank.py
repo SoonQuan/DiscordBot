@@ -4,8 +4,7 @@ import os
 import pymongo
 from pymongo import MongoClient
 import time
-import yfinance as yf
-import random
+import numpy
 
 cluster = MongoClient(os.getenv('MONGODB'))
 
@@ -71,7 +70,7 @@ class CentralBank(commands.Cog):
     self.client = client
     self.taxing.start()
 
-  @tasks.loop(minutes=10)
+  @tasks.loop(minutes=30)
   async def taxing(self):
     await centraltax(self)
 
@@ -102,14 +101,10 @@ class CentralBank(commands.Cog):
     await ctx.send(embed=em)
 
 async def fundstonk():
-  data = yf.download(tickers='GOLD', period='5d', interval='1d')
-  rate = (data['Adj Close'][1]-data['Adj Close'][0])/data['Adj Close'][0]
-  centralbank.update_one({'id':"central"}, {"$set":{"rate":rate}})
+  rate = numpy.random.normal(1.015,0.03)-1
   cb = centralbank.find_one( {'id':"central"} )
   change = cb["funds"]*(rate)
-  centralbank.update_one({'id':"central"}, {"$set":{"change":change}})
-  centralbank.update_one({'id':"central"}, {"$inc":{"funds":change}})
-  print(change)
+  centralbank.update_many({'id':"central"}, {"$set":{"change":change, "rate":rate}, "$inc":{"funds":change}})
   return
 
 def taxrate(credit):
@@ -154,22 +149,8 @@ async def centraltax(self):
     em.set_footer(text = footer)
     em.set_thumbnail(url=self.client.user.avatar_url)
     await channel.send(embed=em)
-    await fundstonk()  
+    await fundstonk()
   return
-
-
-async def heist_outcome(ctx, earning = 1000, number=10):
-  earning = int(earning)
-  number = int(number)
-  prelist = []
-  outcome = []
-  for num in range(number-1):
-    prelist.append(random.randrange(1,101))
-  totalweight = sum(prelist)
-  for num in range(number-1):
-    outcome.append(int((earning*(number-1)/number)*prelist[num]/totalweight))
-  outcome.append(earning-sum(outcome))
-  return outcome # a list
 
 
 def setup(client):

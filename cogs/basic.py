@@ -3,7 +3,6 @@ from discord.ext import commands
 import os
 import pymongo
 from pymongo import MongoClient
-import random
 import asyncio
 import json
 from google_trans_new import google_translator, LANGUAGES
