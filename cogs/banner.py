@@ -312,21 +312,20 @@ class SDSGCBanner(commands.Cog):
         get_concat_h_multi_blank([im0,im1,im2,im3,im4]).save(f'.//Banner//pull//{ID}{part}.jpg')
 
     images = list(os.listdir(".//Banner//pull"))
-    Image.open(f".//Banner//pull//{images[0]}").save(f'.//Banner//{ID}.jpg')
+    Image.open(f".//Banner//pull//{images[0]}").save(f'.//Banner//pull//{ID}.jpg')
     images.pop(0)
     for unit in images:
-      img = Image.open(f'.//Banner//{ID}.jpg')
+      img = Image.open(f'.//Banner//pull//{ID}.jpg')
       addon = Image.open(f".//Banner//pull//{unit}")
-      get_concat_v_blank(img, addon).save(f'.//Banner//{ID}.jpg')
+      get_concat_v_blank(img, addon).save(f'.//Banner//pull//{ID}.jpg')
 
     quote = f"{arg.upper()} Banner contain"
-    file = discord.File(f'.//Banner//{ID}.jpg')
+    file = discord.File(f'.//Banner//pull//{ID}.jpg')
     em = discord.Embed(title = quote, colour = ctx.author.color)
     em.set_footer(text=f"use <{ctx.prefix}banner list> to check available banners")
     em.set_image(url = f"attachment://{ID}.jpg")
     await ctx.send(embed = em, file = file)
 
-    os.remove(f'.//Banner//{ID}.jpg')
     try:
       shutil.rmtree('.//Banner//pull//')
     except OSError as e:

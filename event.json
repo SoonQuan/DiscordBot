@@ -1,30 +1,34 @@
 {
-    "- Half Stam Free Stage": {
-        "START": "6/17",
-        "END": "6/19"
+    "2nd Anni Fes Events Part 1: Special Missions": {
+        "START": "6/21",
+        "END": "7/6"
     },
-    "Village Donation": {
-        "START": "6/15 12 AM",
-        "END": "6/21 11:59 PM"
+    "2nd Anni Fes Events Part 1: Fort Solgres Dungeon Part 1": {
+        "START": "6/21",
+        "END": "7/6"
     },
-    "A Short Britannia Travel Log (Fort Solgres Event)": {
-        "START": "6/15 12am",
-        "END": "6/21 11:59pm"
+    "2nd Anni Fes Events Part 1: Crockshell Event Boss Battle": {
+        "START": "6/21",
+        "END": "7/6"
     },
-    "- Half Stam Fort Solgres": {
-        "START": "6/19",
-        "END": "6/21"
+    "2nd Anni Fes Events Part 1: Special Bingo Event": {
+        "START": "6/21",
+        "END": "7/6"
     },
-    "Oslo & Hawk\u2019s Huge Picnic Feast": {
-        "START": "6/15",
-        "END": "6/22"
+    "2nd Anni Fes Events Part 1: Hawk\u2019s Awesome Treasure Chest": {
+        "START": "6/21",
+        "END": "7/6"
     },
-    "The Tower of Disaster Returns!": {
-        "START": "6/15",
-        "END": "6/22"
+    "Special Boss Battle Returns (Kimara, Malek)": {
+        "START": "6/29",
+        "END": "7/13"
     },
-    "Grand Cross Music Festival!": {
-        "START": "6/15",
-        "END": "6/29 12:00 AM"
+    "- Final Boss Battle Derieri & Monspeet": {
+        "START": "6/29",
+        "END": "7/12"
+    },
+    "- Build Your Deck with Purgatory Ban": {
+        "START": "6/29",
+        "END": "7/6 23:59"
     }
 }
