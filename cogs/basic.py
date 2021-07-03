@@ -302,7 +302,7 @@ class Basic(commands.Cog):
   @commands.command(aliases = ['trans'])
   async def translate(self,ctx, lang="en", *,args="translate <code> <words to translate>"):
     """ Translate your message into the language you want """
-    if lang.lower() not in LANGUAGES:
+    if lang.lower() != "en":
       em = discord.Embed(title='Look for langauge code here',
                         url='https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes',
                         description= f"For example: !translate <code> <words to translate>",
