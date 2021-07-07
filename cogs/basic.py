@@ -5,8 +5,10 @@ import pymongo
 from pymongo import MongoClient
 import asyncio
 import json
-from google_trans_new import google_translator, LANGUAGES
+# from google_trans_new import google_translator, LANGUAGES
 import DiscordUtils
+from google_translate_py import AsyncTranslator
+import googletrans
 
 cluster = MongoClient(os.getenv('MONGODB'))
 
@@ -300,34 +302,32 @@ class Basic(commands.Cog):
     await ctx.message.delete()
 
   @commands.command(aliases = ['trans'])
-  async def translate(self,ctx, lang="en", *,args="translate <code> <words to translate>"):
+  async def translate(self,ctx, lang="en", *, args="translate <lang> <words to translate>"):
     """ Translate your message into the language you want """
-    if lang.lower() != "en":
+    if lang not in googletrans.LANGUAGES and lang not in googletrans.LANGCODES:
       em = discord.Embed(title='Look for langauge code here',
                         url='https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes',
                         description= f"For example: !translate <code> <words to translate>",
                         color=discord.Color.red())
       return await ctx.send(embed = em)        
-    else:
-      t = google_translator()
-      a = t.translate(args, lang_tgt=lang)
-      em = discord.Embed(description = a, color=ctx.author.color)
-      return await ctx.send(embed = em)
+    translate_text = await AsyncTranslator().translate(args, "", lang)
+    em = discord.Embed(description = translate_text, color=ctx.author.color)
+    return await ctx.send(embed = em)
 
-  @commands.command(aliases = ['ptrans'])
-  async def ptranslate(self,ctx, lang="en", *,args="translate <code> <words to translate and pronounce>"):
-    """ Translate your message into the language you want """
-    if lang.lower() not in LANGUAGES:
-      em = discord.Embed(title='Look for langauge code here',
-                        url='https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes',
-                        description= f"For example: !translate <code> <words to translate>",
-                        color=discord.Color.red())
-      return await ctx.send(embed = em)        
-    else:
-      t = google_translator()
-      a = t.translate(args, lang_tgt=lang,pronounce=True)
-      em = discord.Embed(description = f'Translated: {a[0]}\nPronouce: {a[2]}', color=ctx.author.color)
-      return await ctx.send(embed = em)
+  # @commands.command(aliases = ['ptrans'])
+  # async def ptranslate(self,ctx, lang="en", *,args="translate <code> <words to translate and pronounce>"):
+  #   """ Translate your message into the language you want """
+  #   if lang.lower() not in LANGUAGES:
+  #     em = discord.Embed(title='Look for langauge code here',
+  #                       url='https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes',
+  #                       description= f"For example: !translate <code> <words to translate>",
+  #                       color=discord.Color.red())
+  #     return await ctx.send(embed = em)        
+  #   else:
+  #     t = google_translator()
+  #     a = t.translate(args, lang_tgt=lang,pronounce=True)
+  #     em = discord.Embed(description = f'Translated: {a[0]}\nPronouce: {a[2]}', color=ctx.author.color)
+  #     return await ctx.send(embed = em)
     
 
 def setup(client):

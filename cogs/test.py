@@ -46,9 +46,8 @@ Damage from Freeze cards get applied after this initial calculation, so take the
 """
 import random
 import datetime
-from google_trans_new import google_translator  
+from google_translate_py import AsyncTranslator
 import googletrans
-
 
 class Test(commands.Cog):
   """ Basic bot commands """
@@ -56,14 +55,12 @@ class Test(commands.Cog):
     self.client = client
 
   @commands.command()
-  async def test(self,ctx, lang_to, *args):
+  async def test(self,ctx, lang_to, *,args):
     """ Translate your message into the language you want """
     lang_to = lang_to.lower()
     if lang_to not in googletrans.LANGUAGES and lang_to not in googletrans.LANGCODES:
       raise commands.BadArgument("invalid language to translate text to")
-    text = ' '.join(args)
-    translator = googletrans.Translator()
-    translate_text = translator.translate(text, dest=lang_to).text
+    translate_text = await AsyncTranslator().translate(args, "", lang_to)
     await ctx.send(translate_text)
     # if lang.lower() not in LANGUAGES:
     #   em = discord.Embed(title='Look for langauge code here',

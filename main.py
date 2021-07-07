@@ -27,11 +27,11 @@ botcolour = 0x0fa4aab
 status = cycle(["with your luck", "with you | try !help"])
 
 menu = DefaultMenu('◀️', '▶️', '❌')
-client.help_command = PrettyHelp(navigation=menu,
-                                 index_title="Help",
-                                 sort_commands=True,
-                                 no_category="Owner",
-                                 color=discord.Colour.blurple())
+# client.help_command = PrettyHelp(navigation=menu,
+#                                  index_title="Help",
+#                                  sort_commands=True,
+#                                  no_category="Owner",
+#                                  color=discord.Colour.blurple())
 
 
 @client.event
@@ -66,21 +66,21 @@ async def on_guild_remove(guild):
 	settings.remove({"gid": guild.id})
 	return
 
-@client.command()
+@client.command(hidden=True)
 @commands.is_owner()
 async def load(ctx, extension):
 	client.load_extension(f'cogs.{extension}')
 	await ctx.send(f"{extension} module has been loaded")
 
 
-@client.command()
+@client.command(hidden=True)
 @commands.is_owner()
 async def unload(ctx, extension):
 	client.unload_extension(f'cogs.{extension}')
 	await ctx.send(f"{extension} module has been unloaded")
 
 
-@client.command()
+@client.command(hidden=True)
 @commands.is_owner()
 async def reload(ctx, extension):
 	client.unload_extension(f'cogs.{extension}')

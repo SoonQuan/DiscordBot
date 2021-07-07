@@ -87,16 +87,16 @@ class Error(commands.Cog):
       logging.error(str(error))
       return print(error)
 
-  @commands.command()
+  @commands.command(hidden=True)
   async def rank(self,ctx,member:discord.Member=None):
     return
-  @commands.command()
+  @commands.command(hidden=True)
   async def play(self,ctx):
     return
-  @commands.command()
+  @commands.command(hidden=True)
   async def leave(self,ctx):
     return
-  @commands.command()
+  @commands.command(hidden=True)
   async def levels(self,ctx):
     return
 
