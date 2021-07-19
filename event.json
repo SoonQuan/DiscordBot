@@ -1,40 +1,4 @@
 {
-    "2nd Anni Fes Events Part 1: Special Missions": {
-        "START": "6/21",
-        "END": "7/6"
-    },
-    "2nd Anni Fes Events Part 1: Fort Solgres Dungeon Part 1": {
-        "START": "6/21",
-        "END": "7/6"
-    },
-    "2nd Anni Fes Events Part 1: Crockshell Event Boss Battle": {
-        "START": "6/21",
-        "END": "7/6"
-    },
-    "2nd Anni Fes Events Part 1: Special Bingo Event": {
-        "START": "6/21",
-        "END": "7/6"
-    },
-    "2nd Anni Fes Events Part 1: Hawk\u2019s Awesome Treasure Chest": {
-        "START": "6/21",
-        "END": "7/6"
-    },
-    "Special Boss Battle Returns (Kimara, Malek)": {
-        "START": "6/29",
-        "END": "7/13"
-    },
-    "- Final Boss Battle Derieri & Monspeet": {
-        "START": "6/29",
-        "END": "7/12"
-    },
-    "- Build Your Deck with Purgatory Ban": {
-        "START": "6/29",
-        "END": "7/6 23:59"
-    },
-    "- 7/6 Update & Maintenance": {
-        "START": "7/5 23:00",
-        "END": "7/6 12:30 am"
-    },
     "2nd Anni Fes Events Part 2: Special Missions Part 2": {
         "START": "7/6",
         "END": "7/20"
@@ -54,5 +18,9 @@
     "- 2nd Anni Fes Events Part 2: Boosting Events\n  1. Brawl Rewards Upgraded\n  2. 100% Death Match Rate\n  3. Death Match Host and Clear Reward x2\n  4. Equipment Salvage Super/Ultra Success Rate Increase\n  5. SSR Equipment Draw Rate Up Event": {
         "START": "7/6",
         "END": "7/20"
+    },
+    "- Maintenance": {
+        "START": "7/19 6 pm",
+        "END": "7/19 9 pm"
     }
 }
