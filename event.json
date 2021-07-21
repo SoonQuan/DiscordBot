@@ -1,26 +1,22 @@
 {
-    "2nd Anni Fes Events Part 2: Special Missions Part 2": {
-        "START": "7/6",
-        "END": "7/20"
+    "Ragnarok: Special Missions": {
+        "START": "7/19",
+        "END": "8/3"
     },
-    "2nd Anni Fes Events Part 2: [The Seven Catastrophes] Gift Party": {
-        "START": "7/6",
-        "END": "7/20"
+    "Ragnarok: Spin Event": {
+        "START": "7/19",
+        "END": "8/3"
     },
-    "2nd Anni Fes Events Part 2: Hawk\u2019s Dreamland Adventure": {
-        "START": "7/6",
-        "END": "7/20"
+    "Event Boss Demonic Beast Graeon": {
+        "START": "7/19",
+        "END": "8/3"
     },
-    "2nd Anni Fes Events Part 2: Fort Solgres Dungeon Part 2": {
-        "START": "7/6",
-        "END": "7/20"
+    "Boosting Events\n\u261e Hero Enhance Super and Ultra Success Rate Increase\n\u261e 2x Player Rank EXP": {
+        "START": "7/19",
+        "END": "8/3"
     },
-    "- 2nd Anni Fes Events Part 2: Boosting Events\n  1. Brawl Rewards Upgraded\n  2. 100% Death Match Rate\n  3. Death Match Host and Clear Reward x2\n  4. Equipment Salvage Super/Ultra Success Rate Increase\n  5. SSR Equipment Draw Rate Up Event": {
-        "START": "7/6",
-        "END": "7/20"
-    },
-    "- Maintenance": {
-        "START": "7/19 6 pm",
-        "END": "7/19 9 pm"
+    "- Village Donation Event": {
+        "START": "7/19",
+        "END": "7/22"
     }
 }
