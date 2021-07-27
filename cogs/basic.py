@@ -55,7 +55,14 @@ class Basic(commands.Cog):
           break
     # await self.client.process_commands(msg)
 
-
+  @commands.command()
+  async def avatar(self, ctx, member:discord.Member=None):
+    """ Get the avatar of the member """
+    if member == None:
+      member = ctx.author
+    em = discord.Embed()
+    em.set_image(url = member.avatar_url)
+    await ctx.send(embed=em)
 
   @commands.command()
   async def invite(self,ctx):
