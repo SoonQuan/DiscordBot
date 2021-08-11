@@ -3,21 +3,9 @@
         "START": "7/27",
         "END": "8/24"
     },
-    "- Maintenance": {
-        "START": "8/9 10PM",
-        "END": "8/10 12:30AM"
-    },
     "- Final Boss Battle <Season 10> Drole & Gloxinia": {
         "START": "8/3 12:00 AM",
         "END": "8/17"
-    },
-    "Summer Vacation: Special Missions Part 1": {
-        "START": "8/3",
-        "END": "8/10"
-    },
-    "Summer Vacation: World Quest <Save the Vacation!>": {
-        "START": "8/3",
-        "END": "8/10"
     },
     "Summer Vacation: Demonic Beast Gloom": {
         "START": "8/3",
@@ -29,14 +17,22 @@
     },
     "Summer Vacation: Special Missions Part 2": {
         "START": "8/10",
-        "END": "8/17"
+        "END": "8/24"
     },
     "Summer Vacation: World Quest <We Need a Hideout!>": {
         "START": "8/10",
-        "END": "8/17"
+        "END": "8/24"
     },
     "Summer Vacation: Hawk's Treasure Hunt": {
         "START": "8/10",
-        "END": "8/17"
+        "END": "8/24"
+    },
+    "Summer Vacation: Heart-pounding Daily Tasks": {
+        "START": "8/10",
+        "END": "8/24"
+    },
+    "Summer Vacation: Training Grotto Spontaneous Missions": {
+        "START": "8/10",
+        "END": "8/24"
     }
 }
