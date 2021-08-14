@@ -1,6 +1,6 @@
+import os
 import discord
 from discord.ext import commands
-import os
 import pymongo
 from pymongo import MongoClient
 
@@ -10,7 +10,9 @@ db = cluster["luckbot"]
 mainbank = db["mainbank"]
 settings = db["settings"]
 
+my_secret = str(os.getenv('UBKEY'))
 
+print(my_secret)
 def get_prefix(client, message):
   server = settings.find_one({"gid":message.guild.id})
   return server["prefix"]
