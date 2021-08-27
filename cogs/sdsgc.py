@@ -134,7 +134,7 @@ class SDSGC(commands.Cog):
       em = discord.Embed(description = f"You need 30 {currency} to pull", colour = discord.Color.red())
       em.set_footer(text= "try !timely")
       return await ctx.send(embed = em)
-    banner_list = sorted(["T1","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH", "FBAN","HAWK","SEASON", "RAG1", "SROXY","SMLH", "LUDO", "CUSACK"])
+    banner_list = sorted(["T1","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH", "FBAN","HAWK","SEASON", "RAG1", "RAG2", "SROXY","SMLH", "LUDO", "CUSACK"])
     d={}
     out = []
     if arg1 == "list":
@@ -167,7 +167,7 @@ class SDSGC(commands.Cog):
     dirs = []
     ban6p = ["DZ"]
     ban4p = ["T1","AM","MERLIN","FZEL","FBAN","LUDO", "CUSACK"]
-    ban3p = ["VAL","REZERO","ST","EXARTH","HAWK","SEASON", "RAG1", "SROXY", "SMLH"]
+    ban3p = ["VAL","REZERO","ST","EXARTH","HAWK","SEASON", "RAG1", "RAG2", "SROXY", "SMLH"]
 
     if arg in ban3p:
       for i in range(11):
@@ -245,7 +245,7 @@ class SDSGC(commands.Cog):
     users = mainbank.find_one( {'_id':user.id} )
     ID = users["_id"]
 
-    banner_list = sorted(["T1","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH","FBAN","HAWK","SEASON", "RAG1", "SROXY", "SMLH","LUDO", "CUSACK"])
+    banner_list = sorted(["T1","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH","FBAN","HAWK","SEASON", "RAG1", "RAG2", "SROXY", "SMLH","LUDO", "CUSACK"])
     d={}
     out = []
     if arg1 == "list":

@@ -181,7 +181,7 @@ class Basic(commands.Cog):
 
   @commands.command(aliases = ['purge'])
   @commands.has_any_role('ADMIN','N⍧ Sovereign', 'G⍧ Archangels', 'K⍧ Kage', 'le vendel' , 'D⍧ Dragon', 'W⍧ Grace', 'R⍧ Leviathan', 'Overseer')
-  async def clear(self,ctx, amount=1):
+  async def cls(self,ctx, amount=1):
     """ Delete the most recent <amount> of messages """
     def check(m):
         return m.author == ctx.author and m.channel == ctx.message.channel

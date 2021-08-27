@@ -46,12 +46,12 @@ class Error(commands.Cog):
       logging.error(str(error))
       return await ctx.send(embed=em)
 
-    elif isinstance(error, commands.CommandNotFound):
-      em = discord.Embed(title="Don't have this function",
-                        description=f"Please try something else or use {ctx.prefix}help",
-                        colour=discord.Color.red())
-      logging.error(str(error))
-      return await ctx.send(embed=em)
+    # elif isinstance(error, commands.CommandNotFound):
+    #   em = discord.Embed(title="Don't have this function",
+    #                     description=f"Please try something else or use {ctx.prefix}help",
+    #                     colour=discord.Color.red())
+    #   logging.error(str(error))
+    #   return await ctx.send(embed=em)
 
     elif isinstance(error, commands.BadArgument):
       em = discord.Embed(title="Wrong Argument",
