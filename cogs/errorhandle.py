@@ -46,12 +46,12 @@ class Error(commands.Cog):
       logging.error(str(error))
       return await ctx.send(embed=em)
 
-    elif isinstance(error, commands.CommandNotFound):
-      em = discord.Embed(title="Don't have this function",
-                        description=f"Please try something else or use {ctx.prefix}help",
-                        colour=discord.Color.red())
-      logging.error(str(error))
-      return await ctx.send(embed=em)
+    # elif isinstance(error, commands.CommandNotFound):
+    #   em = discord.Embed(title="Don't have this function",
+    #                     description=f"Please try something else or use {ctx.prefix}help",
+    #                     colour=discord.Color.red())
+    #   logging.error(str(error))
+    #   return await ctx.send(embed=em)
 
     elif isinstance(error, commands.BadArgument):
       em = discord.Embed(title="Wrong Argument",
@@ -87,16 +87,16 @@ class Error(commands.Cog):
       logging.error(str(error))
       return print(error)
 
-  @commands.command()
+  @commands.command(hidden=True)
   async def rank(self,ctx,member:discord.Member=None):
     return
-  @commands.command()
+  @commands.command(hidden=True)
   async def play(self,ctx):
     return
-  @commands.command()
+  @commands.command(hidden=True)
   async def leave(self,ctx):
     return
-  @commands.command()
+  @commands.command(hidden=True)
   async def levels(self,ctx):
     return
 

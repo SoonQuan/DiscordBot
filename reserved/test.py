@@ -23,11 +23,6 @@ intents.members = True
 client = commands.Bot(command_prefix=get_prefix, case_insensitive=True, intents=intents)
 botcolour = 0x0fa4aab
 
-import json
-from datetime import datetime,timezone
-from dateutil import parser, tz
-import pytz
-
 
 """
     print('datetime.now(pytz.timezone("US/Pacific")): ', datetime.now(pytz.timezone("US/Pacific")))
@@ -50,7 +45,10 @@ Damage from Freeze cards get applied after this initial calculation, so take the
         
 """
 import random
-
+import datetime
+from google_translate_py import AsyncTranslator
+import googletrans
+import requests
 
 class Test(commands.Cog):
   """ Basic bot commands """
@@ -58,35 +56,52 @@ class Test(commands.Cog):
     self.client = client
 
   @commands.command()
-  async def test(self,ctx):
-    """ Calculate damage """
-    def check(m):
-      return m.author == ctx.author and m.channel == ctx.message.channel
-    
-    em = discord.Embed(description = f'When is your `Attack`?', colour = ctx.author.color)
-    await ctx.send(embed = em)
-    try:
-      msg1 = await self.client.wait_for("message",timeout= 60, check=check)
-      attack = msg1.content
-      em = discord.Embed(description = f'When is your `Attack`?', colour = ctx.author.color)
-      await ctx.send(embed = em)
-      try:
-        msg2 = await self.client.wait_for("message",timeout= 60, check=check)
-        event_end = msg2.content
-        notes[str(event_name)]['END'] = event_end
-        with open("event.json","w") as f:
-            json.dump(notes,f,indent=4)
-        em = discord.Embed(description=f"Event on {str(event_name)} recorded", colour = botcolour)
-        return await ctx.send(embed = em)        
-      except asyncio.TimeoutError:
-        em = discord.Embed(description = f"You took too long... try again later when you are ready", colour = discord.Color.red())
-        return await ctx.send(embed = em)
-    except asyncio.TimeoutError:
-      em = discord.Embed(description = f"You took too long... try again later when you are ready", colour = discord.Color.red())
-      return await ctx.send(embed = em)
+  async def test(self,ctx, lang_to, *,args):
+    """ Translate your message into the language you want """
+    lang_to = lang_to.lower()
+    if lang_to not in googletrans.LANGUAGES and lang_to not in googletrans.LANGCODES:
+      raise commands.BadArgument("invalid language to translate text to")
+    translate_text = await AsyncTranslator().translate(args, "", lang_to)
+    await ctx.send(translate_text)
+    # if lang.lower() not in LANGUAGES:
+    #   em = discord.Embed(title='Look for langauge code here',
+    #                     url='https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes',
+    #                     description= f"For example: !translate <code> <words to translate>",
+    #                     color=discord.Color.red())
+    #   return await ctx.send(embed = em)        
+    # else:
+    #   t = google_translator()
+    #   a = t.translate(args, lang_tgt=lang)
+    #   em = discord.Embed(description = a, color=ctx.author.color)
+    #   return await ctx.send(embed = em)
 
+  @commands.command(aliases=["urban", "ud"])
+  async def urbandictionary(self, ctx, term):
+    """ Search Urban Dictionary """
+    url = "https://mashape-community-urban-dictionary.p.rapidapi.com/define"
 
+    querystring = {"term":term}
 
+    headers = {
+        'x-rapidapi-key': "a5280e4443msh0945d0f966eba91p15efdfjsnf7aae3d323ef",
+        'x-rapidapi-host': "mashape-community-urban-dictionary.p.rapidapi.com"
+        }
+
+    response = requests.request("GET", url, headers=headers, params=querystring).json()
+    text = response["list"][0]["definition"]
+    info = (text[:1250] + '..') if len(text) > 75 else text
+    info = '. '.join(i.capitalize() for i in info.split('. '))
+    url = response["list"][0]['permalink']
+    # try:
+    #   vid = response["list"][0]["sound_urls"][0]
+    #   em = discord.Embed(title=term.capitalize(), description=info, color=discord.Color.orange(), url=url, timestamp=datetime.datetime.utcnow())
+    #   em.add_field(name="Read aloud", value=vid, inline=False)
+    #   em.set_author(name=ctx.author.display_name,icon_url=ctx.author.avatar_url)
+    #   await ctx.send(embed=em)
+    # except:
+    em = discord.Embed(title=term.capitalize(), description=info, color=discord.Color.orange(), url=url, timestamp=datetime.datetime.utcnow())
+    em.set_footer(text="Credits to Urban Dictionary", icon_url=ctx.author.avatar_url)
+    await ctx.send(embed=em)
 
 def setup(client):
   client.add_cog(Test(client))

@@ -45,20 +45,17 @@ class Greetings(commands.Cog):
     #     await self.bot.wait_until_ready()
 
     @commands.command()
+    @commands.has_any_role('ADMIN','N⍧ Sovereign', 'le vendel' , 'G⍧ Archangels', 'K⍧ Kage', 'D⍧ Dragon', 'W⍧ Grace', 'R⍧ Leviathan')
     async def umc(self,ctx):
+      """ Update member count """
       for channel_id in mc_channels:
         try:
           channel = await self.client.fetch_channel(channel_id)
           member_count = channel.guild.member_count
           await channel.edit(name=f'Members: {member_count}')
-          await ctx.send("Member count updated")
         except:
           pass
-
-    @commands.command()
-    async def hello(self,ctx):
-      """ Add a GC note for reference """
-      await ctx.send('<a:welcome:853659229607690270>')
+      return await ctx.send("Member count updated")
 
     @commands.command()
     @commands.has_any_role('ADMIN','N⍧ Sovereign', 'le vendel' , 'G⍧ Archangels', 'K⍧ Kage', 'D⍧ Dragon', 'W⍧ Grace', 'R⍧ Leviathan')
