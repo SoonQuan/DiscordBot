@@ -38,6 +38,12 @@ class Basic(commands.Cog):
     if msg.author.id == self.client.user.id:
       return
 
+    if msg.channel.id == 694708991321833492 and "application" in msg.content.lower() :
+      channel = self.client.get_channel(879537741241647165)
+      role = channel.guild.get_role(889145588732538920)
+
+      return await channel.send(f"{role.mention} someone has applied in {msg.channel.mention}")
+      
     if "escanor animation" in msg.content.lower() or "esca animation" in msg.content.lower():
       return await msg.add_reaction("<:laserescanor:747149915385233468>")
 
