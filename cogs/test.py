@@ -56,7 +56,7 @@ class Test(commands.Cog):
     self.client = client
 
   @commands.command()
-  async def test(self,ctx, lang_to, *,args):
+  async def est(self,ctx, lang_to, *,args):
     """ Translate your message into the language you want """
     lang_to = lang_to.lower()
     if lang_to not in googletrans.LANGUAGES and lang_to not in googletrans.LANGCODES:
@@ -75,33 +75,13 @@ class Test(commands.Cog):
     #   em = discord.Embed(description = a, color=ctx.author.color)
     #   return await ctx.send(embed = em)
 
-  @commands.command(aliases=["urban", "ud"])
-  async def urbandictionary(self, ctx, term):
-    """ Search Urban Dictionary """
-    url = "https://mashape-community-urban-dictionary.p.rapidapi.com/define"
+  @commands.command(aliases=["tes", "te"])
+  async def test(self, ctx, nick="hello"):
 
-    querystring = {"term":term}
-
-    headers = {
-        'x-rapidapi-key': "a5280e4443msh0945d0f966eba91p15efdfjsnf7aae3d323ef",
-        'x-rapidapi-host': "mashape-community-urban-dictionary.p.rapidapi.com"
-        }
-
-    response = requests.request("GET", url, headers=headers, params=querystring).json()
-    text = response["list"][0]["definition"]
-    info = (text[:1250] + '..') if len(text) > 75 else text
-    info = '. '.join(i.capitalize() for i in info.split('. '))
-    url = response["list"][0]['permalink']
-    # try:
-    #   vid = response["list"][0]["sound_urls"][0]
-    #   em = discord.Embed(title=term.capitalize(), description=info, color=discord.Color.orange(), url=url, timestamp=datetime.datetime.utcnow())
-    #   em.add_field(name="Read aloud", value=vid, inline=False)
-    #   em.set_author(name=ctx.author.display_name,icon_url=ctx.author.avatar_url)
-    #   await ctx.send(embed=em)
-    # except:
-    em = discord.Embed(title=term.capitalize(), description=info, color=discord.Color.orange(), url=url, timestamp=datetime.datetime.utcnow())
-    em.set_footer(text="Credits to Urban Dictionary", icon_url=ctx.author.avatar_url)
-    await ctx.send(embed=em)
+    await self.client.user.edit(username="Sq Luckbot")
+    # await ctx.author.edit(nick="testing")
+    print(self.client.user)
+    await ctx.send("hello")
 
 def setup(client):
   client.add_cog(Test(client))

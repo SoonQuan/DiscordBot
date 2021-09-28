@@ -42,7 +42,7 @@ class Basic(commands.Cog):
       channel = self.client.get_channel(879537741241647165)
       role = channel.guild.get_role(889145588732538920)
 
-      return await channel.send(f"{role.mention} someone has applied in {msg.channel.mention}")
+      return await channel.send(f"{role.mention} {msg.user.mention} has applied in {msg.channel.mention}")
       
     if "escanor animation" in msg.content.lower() or "esca animation" in msg.content.lower():
       return await msg.add_reaction("<:laserescanor:747149915385233468>")
@@ -50,15 +50,15 @@ class Basic(commands.Cog):
     if "noice" in msg.content.lower():
       return await msg.add_reaction("<:noice:831113245082779699>")
 
-    if len(msg.content) == 0:
-      return
-    elif ":" == msg.content[0] and ":" == msg.content[-1]:
-      emoji_name = msg.content[1:-1]
-      for emoji in msg.guild.emojis:
-        if emoji_name == emoji.name:
-          await msg.channel.send(str(emoji))
-          await msg.delete()
-          break
+    # if len(msg.content) == 0:
+    #   return
+    # elif ":" == msg.content[0] and ":" == msg.content[-1]:
+    #   emoji_name = msg.content[1:-1]
+    #   for emoji in msg.guild.emojis:
+    #     if emoji_name == emoji.name:
+    #       await msg.channel.send(str(emoji))
+    #       await msg.delete()
+    #       break
     # await self.client.process_commands(msg)
 
   @commands.command()
