@@ -298,17 +298,17 @@ class Basic(commands.Cog):
     await ctx.message.delete()
 
   @commands.command(aliases = ['pl'])
-  async def poll(self,ctx,*,msg):
+  async def poll(self,ctx,title,*,msg):
     """ Poll command """
     channel = ctx.channel
     try:
-      op1, op2 = msg.split("or")
+      op1, op2 = msg.split("OR")
       txt = f"React with ✅ for {op1} or ❎ for {op2}"
     except:
-      await channel.send("Correct Syntax: [Choice 1] or [Choice 2]")
+      await channel.send("Correct Syntax: [Choice 1] OR [Choice 2]")
       return
     
-    em = discord.Embed(title="Poll", description = txt, color=botcolour)
+    em = discord.Embed(title=title, description = txt, color=botcolour)
     message_ = await channel.send(embed=em)
     await message_.add_reaction("✅")
     await message_.add_reaction("❎")

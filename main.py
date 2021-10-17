@@ -27,11 +27,11 @@ botcolour = 0x0fa4aab
 status = cycle(["with your luck", "with you | try !help"])
 
 menu = DefaultMenu('◀️', '▶️', '❌')
-# client.help_command = PrettyHelp(navigation=menu,
-#                                  index_title="Help",
-#                                  sort_commands=True,
-#                                  no_category="Owner",
-#                                  color=discord.Colour.blurple())
+client.help_command = PrettyHelp(navigation=menu,
+                                 index_title="Help",
+                                 sort_commands=True,
+                                 no_category="Owner",
+                                 color=discord.Colour.blurple())
 
 
 @client.event
