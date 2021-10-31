@@ -33,13 +33,14 @@
         "<@!736996880575234139>": "700534438",
         "<@!876535001976569877>": "853590663",
         "<@!516621268234010634>": "273766407",
-        "<@!606001370851704842>": "349229572",
         "<@!547419955600293888>": "617044871",
         "<@!231607773320839171>": "622997677",
         "<@!189532021222014976>": "802670375",
         "howto": "```\nAdd notes: \n!+ <tags> [content]\ntags: how you want to call the note\ncontent: what is the note you want to save\n\nRead notes:\n!? <tags>\ntags: the tag of the note you want to refer to\n\nRemove notes:\n!- <tags>\ntags: the tag of the note you want to remove\n```",
         "rules": "Auto-moderation + moderator input [within 2 weeks]:\n1x Warning => plain old warning\n2x Warnings => temp mute for 1 day \n3x Warnings => kick from server\n4x Warnings => temp ban for 1 day\n5x Warnings => perm ban",
         "<@!131232317518774272>": "476904118",
-        "<@!394998993483989002>": "675850715"
+        "<@!394998993483989002>": "675850715",
+        "<@!363237735957266432>": "195955021",
+        "<@!606001370851704842>": "Alt acc: 681365656\nMain acc: 433036898"
     }
 }
