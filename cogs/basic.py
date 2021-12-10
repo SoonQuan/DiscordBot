@@ -37,8 +37,8 @@ class Basic(commands.Cog):
   async def on_message(self,msg):
     if msg.author.id == self.client.user.id:
       return
-
-    if msg.channel.id == 694708991321833492 and "application" in msg.content.lower() :
+    test = "application" in msg.content.lower() or "looking" in msg.content.lower() or "lf" in msg.content.lower() or "knighthood" in msg.content.lower()
+    if msg.channel.id == 694708991321833492 and test:
       channel = self.client.get_channel(879537741241647165)
       role = channel.guild.get_role(889145588732538920)
 
