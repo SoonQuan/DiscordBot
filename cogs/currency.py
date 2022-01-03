@@ -482,6 +482,77 @@ class Currency(commands.Cog):
     em = discord.Embed(title = "Currency Giveaway Ended!", description = f"{prize:,d} {currency} given to those reacted", color = ctx.author.color)
     await ctx.send(embed = em)
 
+  @commands.command(aliases=['ld'])
+  @commands.is_owner()
+  async def luckydraw(self,ctx,length:int = 10):
+    """ Start a luckdraw giveaway """
+    def check(m):
+      return m.channel == ctx.message.channel and m.author == ctx.author
+    embed = discord.Embed(title = "Luckdraw Giveaway!", description = f"Please enter the list of names", color = ctx.author.color)
+    MAINMSG = await ctx.send(embed = embed)
+    namelist = []
+    participant = "Participants:\n"
+    while len(namelist) < length:
+      try:
+          NAMES = await self.client.wait_for("message",timeout= 15, check=check)
+          if ", " in NAMES.content:
+            for NAME in NAMES.content.split(", "):
+              namelist.append(NAME)
+              participant += f"\n{NAME}"
+            embed2 = discord.Embed(title = "Luckdraw Giveaway!", description = participant, color = ctx.author.color)
+            await MAINMSG.edit(embed = embed2)
+          elif "," in NAMES.content:
+            for NAME in NAMES.content.split(","):
+              namelist.append(NAME)
+              participant += f"\n{NAME}"
+            embed2 = discord.Embed(title = "Luckdraw Giveaway!", description = participant, color = ctx.author.color)
+            await MAINMSG.edit(embed = embed2)
+          elif len(NAMES.content) <= 30:
+            namelist.append(NAMES.content)
+            participant += f"\n{NAMES.content}"
+            embed2 = discord.Embed(title = "Luckdraw Giveaway!", description = participant, color = ctx.author.color)
+            await MAINMSG.edit(embed = embed2)
+          else:
+              em = discord.Embed(title="Input Error", description = f"Please input name in the following orders\n[person1], [person2], [person3]...\n\n**OR**\n\n[person1]\n[person2]\n...", colour = discord.Color.red())
+              await ctx.send(embed = em)
+      except asyncio.TimeoutError:
+        if len(namelist) == 0:
+          em = discord.Embed(title="Empty List", description = f"Please input name in the following orders\n[person1], [person2], [person3]...\n\n**OR**\n\n[person1]\n[person2]\n...", colour = discord.Color.red())
+          await ctx.send(embed = em)
+        else:
+          winner = random.choice(namelist)
+          em1 = discord.Embed(description = "**Time is up. Luckydraw starts now**", colour = ctx.author.color)
+          em2 = discord.Embed(description = "The luckydraw goes to..", colour = ctx.author.color)
+          em3 = discord.Embed(description = "The luckydraw goes to....", colour = ctx.author.color)
+          em4 = discord.Embed(title="Congratulations", description = f"The luckydraw goes to **{winner}**", colour = ctx.author.color)
+          RESULT = await ctx.send(embed = em1)
+          await asyncio.sleep(1)
+          await RESULT.edit(embed = em2)
+          await asyncio.sleep(1)
+          await RESULT.edit(embed = em3)
+          await asyncio.sleep(1)
+          await RESULT.edit(embed = em4)
+    if len(namelist) > length:
+      namelist = namelist[0:length]
+      participant = "Participants:\n"
+      for NAME in namelist:
+        participant += f"\n{NAME}"
+      embed2 = discord.Embed(title = "Luckdraw Giveaway!", description = participant, color = ctx.author.color)
+      await MAINMSG.edit(embed = embed2)
+    if len(namelist) == length:
+      winner = random.choice(namelist)
+      em1 = discord.Embed(description = "**List is full. Luckydraw starts now**", colour = ctx.author.color)
+      em2 = discord.Embed(description = "The luckydraw goes to..", colour = ctx.author.color)
+      em3 = discord.Embed(description = "The luckydraw goes to....", colour = ctx.author.color)
+      em4 = discord.Embed(title="Congratulations", description = f"The luckydraw goes to **{winner}**", colour = ctx.author.color)
+      RESULT = await ctx.send(embed = em1)
+      await asyncio.sleep(1)
+      await RESULT.edit(embed = em2)
+      await asyncio.sleep(1)
+      await RESULT.edit(embed = em3)
+      await asyncio.sleep(1)
+      await RESULT.edit(embed = em4)      
+
   @commands.command()
   @commands.is_owner()
   async def resettimely(self,ctx, member:discord.Member=None):
