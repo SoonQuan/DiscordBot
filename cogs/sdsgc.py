@@ -452,6 +452,7 @@ class SDSGC(commands.Cog):
       names = ctx.author.name
     dirs = []
     weight = []
+    hawk = 0
     for base, dirs, files in os.walk(".//RSPVP//rspvp"):
         for directories in dirs:
             path = ".//RSPVP//rspvp//" + str(directories)
@@ -470,11 +471,13 @@ class SDSGC(commands.Cog):
           if str(cpath) in str(item):
             copy+=1
             break
+          elif 'Hawk' in image and 'Hawk' in str(item):
+            copy+=1
+            break
         if copy>0:
           continue
         else:
           dirs.append(image)
-
     im0 = Image.open(dirs[0])
     im1 = Image.open(dirs[1])
     im2 = Image.open(dirs[2])

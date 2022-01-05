@@ -537,7 +537,7 @@ class Currency(commands.Cog):
       participant = "Participants:\n"
       for NAME in namelist:
         participant += f"\n{NAME}"
-      embed2 = discord.Embed(title = "Luckdraw Giveaway!", description = participant, color = ctx.author.color)
+      embed2 = discord.Embed(title = "Luckydraw Giveaway!", description = participant, color = ctx.author.color)
       await MAINMSG.edit(embed = embed2)
     if len(namelist) == length:
       winner = random.choice(namelist)
