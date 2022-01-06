@@ -280,7 +280,7 @@ class SDSGC(commands.Cog):
       image = path+"//"+str(unit)
       all_units.append(image)
     n = 5
-    split_units = [all_units[i * n:(i + 1) * n] for i in range((len(all_units) + n - 1) // n )]    
+    split_units = [all_units[i * n:(i + 1) * n] for i in range((len(all_units) + n - 1) // n )]
     part = 0
     for section in split_units:
       if len(section) == 5:
@@ -496,16 +496,14 @@ class SDSGC(commands.Cog):
   @commands.command(aliases=['rspvp', 'rs'])
   @commands.cooldown(1,1,commands.BucketType.user)
   async def randomselect(self,ctx,*,exclude:str=""):
-    """ Limit Randomly select 4 units for you """
+    """ Randomly select 4 units for you with exclude list"""
     if exclude == "":
       pending_command = self.client.get_command('rselectpvp')
       await ctx.invoke(pending_command)
     else:
       excludelist = exclude.lower().split(' ')
       print(excludelist)
-      names = ctx.author.nick
-      if names == None:
-        names = ctx.author.name
+      names = ctx.author.display_name
       dirs = []
       weight = []
       for base, dirs, files in os.walk(".//RSPVP//rspvp"):
@@ -520,9 +518,7 @@ class SDSGC(commands.Cog):
         cpath = path+"//"+random.choices(files, weights=weight,k=1)[0]
         unit = random.choice(os.listdir(cpath))
         image = cpath+"//"+unit
-        print(cpath)
         print(unit)
-        print(image)
         for ex in excludelist:
           if ex in unit.lower():
             print('BAN UNIT')
@@ -558,6 +554,82 @@ class SDSGC(commands.Cog):
       embed.set_thumbnail(url=ctx.author.avatar_url)
       await ctx.send(embed = embed, file = file)
       return os.remove(f'.//RSPVP//pull//{ctx.author.id}.jpg')
+
+  @commands.command(aliases=['a'])
+  @commands.cooldown(1,1,commands.BucketType.user)
+  async def art(self,ctx,*,include:str=""):
+    """Show the image of the character """
+    if include == "":
+      em = discord.Embed(description = f'Please provide a character', colour = ctx.author.color)
+      await ctx.send(embed=em)
+    else:
+      includelist = include.lower().split(' ')
+      print(includelist)
+      names = ctx.author.display_name
+      allunits = []
+      for base, dirs, files in os.walk(".//RSPVP//rspvp"):
+          for file in files:
+            allunits.append(str(os.path.join(base,file)))
+      for i in includelist:
+        allunits = list(filter(lambda k: i in k.lower(), allunits))
+
+      n = 5
+      split_units = [allunits[i * n:(i + 1) * n] for i in range((len(allunits) + n - 1) // n )]
+      part = 0
+      for section in split_units:
+        if len(section) == 5:
+          im0 = Image.open(section[0])
+          im1 = Image.open(section[1])
+          im2 = Image.open(section[2])
+          im3 = Image.open(section[3])
+          im4 = Image.open(section[4])
+          get_concat_h_multi_blank([im0,im1,im2,im3,im4]).save(f'.//Banner//pull//{names}{part}.jpg')
+          part+=1
+        else:
+          try:
+            im0 = Image.open(section[0])
+          except:
+            im0 = Image.new("RGB", (100, 100), (47,49,54))
+          try:
+            im1 = Image.open(section[1])
+          except:
+            im1 = Image.new("RGB", (100, 100), (47,49,54))
+          try:
+            im2 = Image.open(section[2])
+          except:
+            im2 = Image.new("RGB", (100, 100), (47,49,54))
+          try:
+            im3 = Image.open(section[3])
+          except:
+            im3 = Image.new("RGB", (100, 100), (47,49,54))
+          try:
+            im4 = Image.open(section[4])
+          except:
+            im4 = Image.new("RGB", (100, 100), (47,49,54))
+          get_concat_h_multi_blank([im0,im1,im2,im3,im4]).save(f'.//Banner//pull//{names}{part}.jpg')
+
+      images = list(os.listdir(".//Banner//pull"))
+      Image.open(f".//Banner//pull//{images[0]}").save(f'.//Banner//pull//{names}.jpg')
+      images.pop(0)
+      for unit in images:
+        img = Image.open(f'.//Banner//pull//{names}.jpg')
+        addon = Image.open(f".//Banner//pull//{unit}")
+        get_concat_v_blank(img, addon).save(f'.//Banner//pull//{names}.jpg')
+
+      quote = include.upper()
+      file = discord.File(f'.//Banner//pull//{names}.jpg')
+      em = discord.Embed(title = quote, colour = ctx.author.color)
+      em.set_footer(text=f"use <{ctx.prefix}banner list> to check available banners")
+      em.set_image(url = f"attachment://{names}.jpg")
+      await ctx.send(embed = em, file = file)
+
+      try:
+        shutil.rmtree('.//Banner//pull//')
+      except OSError as e:
+        print("Error: %s : %s" % ('.//Banner//pull//', e.strerror))
+      return os.mkdir('.//Banner//pull//')
+
+
 
   @commands.command(aliases=['mp'])
   @commands.cooldown(1,5,commands.BucketType.user)
