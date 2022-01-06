@@ -443,7 +443,7 @@ class SDSGC(commands.Cog):
       return await ctx.send(embed = em)
 
 
-  @commands.command(aliases=['rspvp', 'rs'])
+  @commands.command()
   @commands.cooldown(1,1,commands.BucketType.user)
   async def rselectpvp(self,ctx):
     """ Randomly select 4 units for you """
@@ -452,7 +452,6 @@ class SDSGC(commands.Cog):
       names = ctx.author.name
     dirs = []
     weight = []
-    hawk = 0
     for base, dirs, files in os.walk(".//RSPVP//rspvp"):
         for directories in dirs:
             path = ".//RSPVP//rspvp//" + str(directories)
@@ -494,14 +493,71 @@ class SDSGC(commands.Cog):
     return os.remove(f'.//RSPVP//pull//{ctx.author.id}.jpg')
 
 
-  @commands.command()
+  @commands.command(aliases=['rspvp', 'rs'])
   @commands.cooldown(1,1,commands.BucketType.user)
-  async def limitrs(self,ctx,*,exclude:str=""):
+  async def randomselect(self,ctx,*,exclude:str=""):
+    """ Limit Randomly select 4 units for you """
     if exclude == "":
-      print("not exclude list")
+      pending_command = self.client.get_command('rselectpvp')
+      await ctx.invoke(pending_command)
     else:
-      print(exclude)
+      excludelist = exclude.lower().split(' ')
+      print(excludelist)
+      names = ctx.author.nick
+      if names == None:
+        names = ctx.author.name
+      dirs = []
+      weight = []
+      for base, dirs, files in os.walk(".//RSPVP//rspvp"):
+          for directories in dirs:
+              path = ".//RSPVP//rspvp//" + str(directories)
+              f  = os.listdir(path)
+              weight.append(len(f))
+      while len(dirs)<4:
+        ban = False
+        path = ".//RSPVP//rspvp"
+        files = os.listdir(path)
+        cpath = path+"//"+random.choices(files, weights=weight,k=1)[0]
+        unit = random.choice(os.listdir(cpath))
+        image = cpath+"//"+unit
+        print(cpath)
+        print(unit)
+        print(image)
+        for ex in excludelist:
+          if ex in unit.lower():
+            print('BAN UNIT')
+            ban = True
+        if ban == False:
+          if len(dirs) == 0:
+            dirs.append(image)
+          else:
+            copy = 0
+            for item in dirs:
+              if str(cpath) in str(item):
+                copy+=1
+                break
+              elif 'Hawk' in image and 'Hawk' in str(item):
+                copy+=1
+                break
+            if copy>0:
+              continue
+            else:
+              dirs.append(image)
+      im0 = Image.open(dirs[0])
+      im1 = Image.open(dirs[1])
+      im2 = Image.open(dirs[2])
+      im3 = Image.open(dirs[3])
 
+      get_concat_h_multi_blank([im0,im1,im2,im3]).save(f'.//RSPVP//pull//{ctx.author.id}.jpg')
+      quote = f"{names} randomly selected units\nExcluding:\n"
+      for x in exclude.split(' '):
+        quote += f"➣{str(x)} "
+      file = discord.File(f'.//RSPVP//pull//{ctx.author.id}.jpg')
+      embed = discord.Embed(title = quote,colour = ctx.author.color)
+      embed.set_image(url = f"attachment://{ctx.author.id}.jpg")
+      embed.set_thumbnail(url=ctx.author.avatar_url)
+      await ctx.send(embed = embed, file = file)
+      return os.remove(f'.//RSPVP//pull//{ctx.author.id}.jpg')
 
   @commands.command(aliases=['mp'])
   @commands.cooldown(1,5,commands.BucketType.user)
