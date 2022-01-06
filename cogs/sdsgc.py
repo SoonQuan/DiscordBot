@@ -493,6 +493,16 @@ class SDSGC(commands.Cog):
     await ctx.send(embed = embed, file = file)
     return os.remove(f'.//RSPVP//pull//{ctx.author.id}.jpg')
 
+
+  @commands.command()
+  @commands.cooldown(1,1,commands.BucketType.user)
+  async def limitrs(self,ctx,*,exclude:str=""):
+    if exclude == "":
+      print("not exclude list")
+    else:
+      print(exclude)
+
+
   @commands.command(aliases=['mp'])
   @commands.cooldown(1,5,commands.BucketType.user)
   async def multipull(self,ctx,times=1,banner=None):
