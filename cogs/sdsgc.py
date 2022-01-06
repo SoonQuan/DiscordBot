@@ -555,9 +555,9 @@ class SDSGC(commands.Cog):
       await ctx.send(embed = embed, file = file)
       return os.remove(f'.//RSPVP//pull//{ctx.author.id}.jpg')
 
-  @commands.command(aliases=['a'])
+  @commands.command(aliases=['c'])
   @commands.cooldown(1,1,commands.BucketType.user)
-  async def art(self,ctx,*,include:str=""):
+  async def character(self,ctx,*,include:str=""):
     """Show the image of the character """
     if include == "":
       em = discord.Embed(description = f'Please provide a character', colour = ctx.author.color)
@@ -617,11 +617,10 @@ class SDSGC(commands.Cog):
         get_concat_v_blank(img, addon).save(f'.//Banner//pull//{names}.jpg')
 
       quote = include.upper()
-      file = discord.File(f'.//Banner//pull//{names}.jpg')
+      file = discord.File(f'.//Banner//pull//{names}.jpg', filename="image.jpg")
       em = discord.Embed(title = quote, colour = ctx.author.color)
-      em.set_footer(text=f"use <{ctx.prefix}banner list> to check available banners")
-      em.set_image(url = f"attachment://{names}.jpg")
-      await ctx.send(embed = em, file = file)
+      em.set_image(url = f"attachment://image.jpg")
+      await ctx.send(embed = em,file=file)
 
       try:
         shutil.rmtree('.//Banner//pull//')
