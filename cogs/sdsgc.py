@@ -500,6 +500,61 @@ class SDSGC(commands.Cog):
     if exclude == "":
       pending_command = self.client.get_command('rselectpvp')
       await ctx.invoke(pending_command)
+    elif exclude.endswith(' only'):
+      excludelist = exclude.lower().split(' ')
+      print(excludelist)
+      includelist = excludelist[0:-1]
+      names = ctx.author.display_name
+      dirs = []
+      weight = []
+      for base, dirs, files in os.walk(".//RSPVP//rspvp"):
+          for directories in dirs:
+              path = ".//RSPVP//rspvp//" + str(directories)
+              f  = os.listdir(path)
+              weight.append(len(f))
+      while len(dirs)<4:
+        ban = True
+        path = ".//RSPVP//rspvp"
+        files = os.listdir(path)
+        cpath = path+"//"+random.choices(files, weights=weight,k=1)[0]
+        unit = random.choice(os.listdir(cpath))
+        image = cpath+"//"+unit
+        print(image)
+        for include in includelist:
+          if include in image.lower():
+            print('ONLY UNIT')
+            ban = False
+        if ban == False:
+          if len(dirs) == 0:
+            dirs.append(image)
+          else:
+            copy = 0
+            for item in dirs:
+              if str(cpath) in str(item):
+                copy+=1
+                break
+              elif 'Hawk' in image and 'Hawk' in str(item):
+                copy+=1
+                break
+            if copy>0:
+              continue
+            else:
+              dirs.append(image)
+      im0 = Image.open(dirs[0])
+      im1 = Image.open(dirs[1])
+      im2 = Image.open(dirs[2])
+      im3 = Image.open(dirs[3])
+
+      get_concat_h_multi_blank([im0,im1,im2,im3]).save(f'.//RSPVP//pull//{ctx.author.id}.jpg')
+      quote = f"{names} randomly selected units\nFrom:\n"
+      for x in exclude.split(' '):
+        quote += f"➣{str(x)} "
+      file = discord.File(f'.//RSPVP//pull//{ctx.author.id}.jpg')
+      embed = discord.Embed(title = quote,colour = ctx.author.color)
+      embed.set_image(url = f"attachment://{ctx.author.id}.jpg")
+      embed.set_thumbnail(url=ctx.author.avatar_url)
+      await ctx.send(embed = embed, file = file)
+      return os.remove(f'.//RSPVP//pull//{ctx.author.id}.jpg')
     else:
       excludelist = exclude.lower().split(' ')
       print(excludelist)
@@ -518,9 +573,9 @@ class SDSGC(commands.Cog):
         cpath = path+"//"+random.choices(files, weights=weight,k=1)[0]
         unit = random.choice(os.listdir(cpath))
         image = cpath+"//"+unit
-        print(unit)
+        print(image)
         for ex in excludelist:
-          if ex in unit.lower():
+          if ex in image.lower():
             print('BAN UNIT')
             ban = True
         if ban == False:
