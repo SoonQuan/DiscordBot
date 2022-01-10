@@ -497,6 +497,7 @@ class SDSGC(commands.Cog):
   @commands.cooldown(1,1,commands.BucketType.user)
   async def randomselect(self,ctx,*,exclude:str=""):
     """ Randomly select 4 units for you with exclude list"""
+    tries = 0
     if exclude == "":
       pending_command = self.client.get_command('rselectpvp')
       await ctx.invoke(pending_command)
@@ -512,7 +513,8 @@ class SDSGC(commands.Cog):
               path = ".//RSPVP//rspvp//" + str(directories)
               f  = os.listdir(path)
               weight.append(len(f))
-      while len(dirs)<4:
+      while len(dirs)<4 and tries < 1000:
+        tries += 1
         ban = True
         path = ".//RSPVP//rspvp"
         files = os.listdir(path)
@@ -566,7 +568,8 @@ class SDSGC(commands.Cog):
               path = ".//RSPVP//rspvp//" + str(directories)
               f  = os.listdir(path)
               weight.append(len(f))
-      while len(dirs)<4:
+      while len(dirs)<4 and tries < 1000:
+        tries += 1
         ban = False
         path = ".//RSPVP//rspvp"
         files = os.listdir(path)
