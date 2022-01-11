@@ -7,6 +7,9 @@ from itertools import cycle
 from keep_alive import keep_alive
 from pretty_help import DefaultMenu, PrettyHelp
 
+from dotenv import load_dotenv
+load_dotenv()
+
 cluster = MongoClient(os.getenv('MONGODB'))
 
 db = cluster["luckbot"]
@@ -93,5 +96,6 @@ for filename in os.listdir('./cogs'):
 		client.load_extension(f'cogs.{filename[:-3]}')
 
 
-keep_alive()
+# keep_alive()
+
 client.run(os.getenv('TOKEN'))

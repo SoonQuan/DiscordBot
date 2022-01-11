@@ -1177,3 +1177,450 @@
 2022-01-11 06:50:01,877:  * Running on http://0.0.0.0:8080/ (Press CTRL+C to quit)
 2022-01-11 06:50:02,380: 172.18.0.1 - - [11/Jan/2022 06:50:02] "[37mGET / HTTP/1.1[0m" 200 -
 2022-01-11 06:50:19,186: 172.18.0.1 - - [11/Jan/2022 06:50:19] "[37mHEAD / HTTP/1.1[0m" 200 -
+2022-01-11 15:17:25,805 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-01-11 15:18:53,449 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-01-11 15:18:53,649 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-01-11 15:18:53,688 [WARNING]  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2022-01-11 15:18:53,688 [INFO]  * Running on http://192.168.1.64:8080/ (Press CTRL+C to quit)
+2022-01-11 15:19:28,460 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-01-11 15:19:28,604 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-01-11 15:19:28,645 [WARNING]  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2022-01-11 15:19:28,646 [INFO]  * Running on http://192.168.1.64:8080/ (Press CTRL+C to quit)
+2022-01-11 15:24:28,040 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-01-11 15:24:28,163 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-01-11 15:24:28,204 [WARNING]  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2022-01-11 15:24:28,205 [INFO]  * Running on http://192.168.1.64:8080/ (Press CTRL+C to quit)
+2022-01-11 15:25:45,334 [INFO] 192.168.1.64 - - [11/Jan/2022 15:25:45] "GET / HTTP/1.1" 200 -
+2022-01-11 15:25:45,621 [INFO] 192.168.1.64 - - [11/Jan/2022 15:25:45] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2022-01-11 15:26:22,242 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-01-11 15:26:22,369 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-01-11 15:29:49,886 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-01-11 15:29:50,026 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-01-11 15:30:34,206 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-01-11 15:30:34,340 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-01-11 15:31:26,527 [WARNING] Shard ID None heartbeat blocked for more than 10 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\soon_\Documents\Github\DiscordBot\main.py", line 99, in <module>
+    client.run(os.getenv('TOKEN'))
+  File "C:\Python39\lib\site-packages\discord\client.py", line 713, in run
+    loop.run_forever()
+  File "C:\Python39\lib\asyncio\windows_events.py", line 316, in run_forever
+    super().run_forever()
+  File "C:\Python39\lib\asyncio\base_events.py", line 596, in run_forever
+    self._run_once()
+  File "C:\Python39\lib\asyncio\base_events.py", line 1890, in _run_once
+    handle._run()
+  File "C:\Python39\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Python39\lib\site-packages\discord\ext\tasks\__init__.py", line 101, in _loop
+    await self.coro(*args, **kwargs)
+  File "c:\Users\soon_\Documents\Github\DiscordBot\cogs\stonk.py", line 67, in updatesshop
+    timing = stonk.find_one( {'id':"timing"} )
+  File "C:\Python39\lib\site-packages\pymongo\collection.py", line 1114, in find_one
+    for result in cursor.limit(-1):
+  File "C:\Python39\lib\site-packages\pymongo\cursor.py", line 1159, in next
+    if len(self.__data) or self._refresh():
+  File "C:\Python39\lib\site-packages\pymongo\cursor.py", line 1057, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1603, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1553, in __start_session
+    server_session = self._get_server_session()
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1589, in _get_server_session
+    return self._topology.get_server_session()
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 530, in get_server_session
+    session_timeout = self._check_session_support()
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 514, in _check_session_support
+    self._select_servers_loop(
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 227, in _select_servers_loop
+    self._condition.wait(common.MIN_HEARTBEAT_INTERVAL)
+  File "C:\Python39\lib\threading.py", line 316, in wait
+    gotit = waiter.acquire(True, timeout)
+
+2022-01-11 15:31:36,545 [WARNING] Shard ID None heartbeat blocked for more than 20 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\soon_\Documents\Github\DiscordBot\main.py", line 99, in <module>
+    client.run(os.getenv('TOKEN'))
+  File "C:\Python39\lib\site-packages\discord\client.py", line 713, in run
+    loop.run_forever()
+  File "C:\Python39\lib\asyncio\windows_events.py", line 316, in run_forever
+    super().run_forever()
+  File "C:\Python39\lib\asyncio\base_events.py", line 596, in run_forever
+    self._run_once()
+  File "C:\Python39\lib\asyncio\base_events.py", line 1890, in _run_once
+    handle._run()
+  File "C:\Python39\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Python39\lib\site-packages\discord\ext\tasks\__init__.py", line 101, in _loop
+    await self.coro(*args, **kwargs)
+  File "c:\Users\soon_\Documents\Github\DiscordBot\cogs\stonk.py", line 67, in updatesshop
+    timing = stonk.find_one( {'id':"timing"} )
+  File "C:\Python39\lib\site-packages\pymongo\collection.py", line 1114, in find_one
+    for result in cursor.limit(-1):
+  File "C:\Python39\lib\site-packages\pymongo\cursor.py", line 1159, in next
+    if len(self.__data) or self._refresh():
+  File "C:\Python39\lib\site-packages\pymongo\cursor.py", line 1057, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1603, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1553, in __start_session
+    server_session = self._get_server_session()
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1589, in _get_server_session
+    return self._topology.get_server_session()
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 530, in get_server_session
+    session_timeout = self._check_session_support()
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 514, in _check_session_support
+    self._select_servers_loop(
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 227, in _select_servers_loop
+    self._condition.wait(common.MIN_HEARTBEAT_INTERVAL)
+  File "C:\Python39\lib\threading.py", line 316, in wait
+    gotit = waiter.acquire(True, timeout)
+
+2022-01-11 15:32:18,920 [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-1' coro=<Loop._loop() done, defined at C:\Python39\lib\site-packages\discord\ext\tasks\__init__.py:88> exception=ServerSelectionTimeoutError("localhost:27017: [WinError 10061] No connection could be made because the target machine actively refused it, Timeout: 30s, Topology Description: <TopologyDescription id: 61dd321a54a99d8dba612d11, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27017: [WinError 10061] No connection could be made because the target machine actively refused it')>]>")>
+Traceback (most recent call last):
+  File "C:\Python39\lib\site-packages\discord\ext\tasks\__init__.py", line 125, in _loop
+    raise exc
+  File "C:\Python39\lib\site-packages\discord\ext\tasks\__init__.py", line 101, in _loop
+    await self.coro(*args, **kwargs)
+  File "c:\Users\soon_\Documents\Github\DiscordBot\cogs\cbank.py", line 75, in taxing
+  File "c:\Users\soon_\Documents\Github\DiscordBot\cogs\cbank.py", line 130, in centraltax
+  File "C:\Python39\lib\site-packages\pymongo\collection.py", line 1114, in find_one
+    for result in cursor.limit(-1):
+  File "C:\Python39\lib\site-packages\pymongo\cursor.py", line 1159, in next
+    if len(self.__data) or self._refresh():
+  File "C:\Python39\lib\site-packages\pymongo\cursor.py", line 1057, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1603, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1553, in __start_session
+    server_session = self._get_server_session()
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1589, in _get_server_session
+    return self._topology.get_server_session()
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 530, in get_server_session
+    session_timeout = self._check_session_support()
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 514, in _check_session_support
+    self._select_servers_loop(
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 216, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: localhost:27017: [WinError 10061] No connection could be made because the target machine actively refused it, Timeout: 30s, Topology Description: <TopologyDescription id: 61dd321a54a99d8dba612d11, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27017: [WinError 10061] No connection could be made because the target machine actively refused it')>]>
+2022-01-11 15:32:18,926 [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-2' coro=<Loop._loop() done, defined at C:\Python39\lib\site-packages\discord\ext\tasks\__init__.py:88> exception=ServerSelectionTimeoutError("localhost:27017: [WinError 10061] No connection could be made because the target machine actively refused it, Timeout: 30s, Topology Description: <TopologyDescription id: 61dd321a54a99d8dba612d18, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27017: [WinError 10061] No connection could be made because the target machine actively refused it')>]>")>
+Traceback (most recent call last):
+  File "C:\Python39\lib\site-packages\discord\ext\tasks\__init__.py", line 125, in _loop
+    raise exc
+  File "C:\Python39\lib\site-packages\discord\ext\tasks\__init__.py", line 101, in _loop
+    await self.coro(*args, **kwargs)
+  File "c:\Users\soon_\Documents\Github\DiscordBot\cogs\stonk.py", line 67, in updatesshop
+    timing = stonk.find_one( {'id':"timing"} )
+  File "C:\Python39\lib\site-packages\pymongo\collection.py", line 1114, in find_one
+    for result in cursor.limit(-1):
+  File "C:\Python39\lib\site-packages\pymongo\cursor.py", line 1159, in next
+    if len(self.__data) or self._refresh():
+  File "C:\Python39\lib\site-packages\pymongo\cursor.py", line 1057, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1603, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1553, in __start_session
+    server_session = self._get_server_session()
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1589, in _get_server_session
+    return self._topology.get_server_session()
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 530, in get_server_session
+    session_timeout = self._check_session_support()
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 514, in _check_session_support
+    self._select_servers_loop(
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 216, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: localhost:27017: [WinError 10061] No connection could be made because the target machine actively refused it, Timeout: 30s, Topology Description: <TopologyDescription id: 61dd321a54a99d8dba612d18, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27017: [WinError 10061] No connection could be made because the target machine actively refused it')>]>
+2022-01-11 15:32:18,930 [ERROR] _ClientEventTask exception was never retrieved
+future: <ClientEventTask state=finished event=on_message coro=<bound method BotBase.on_message of <discord.ext.commands.bot.Bot object at 0x00000274011F0B80>> exception=KeyboardInterrupt()>
+Traceback (most recent call last):
+  File "C:\Python39\lib\site-packages\discord\client.py", line 713, in run
+    loop.run_forever()
+  File "C:\Python39\lib\asyncio\windows_events.py", line 316, in run_forever
+    super().run_forever()
+  File "C:\Python39\lib\asyncio\base_events.py", line 596, in run_forever
+    self._run_once()
+  File "C:\Python39\lib\asyncio\base_events.py", line 1890, in _run_once
+    handle._run()
+  File "C:\Python39\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Python39\lib\site-packages\discord\client.py", line 343, in _run_event
+    await coro(*args, **kwargs)
+  File "C:\Python39\lib\site-packages\discord\ext\commands\bot.py", line 979, in on_message
+    await self.process_commands(message)
+  File "C:\Python39\lib\site-packages\discord\ext\commands\bot.py", line 975, in process_commands
+    ctx = await self.get_context(message)
+  File "C:\Python39\lib\site-packages\discord\ext\commands\bot.py", line 886, in get_context
+    prefix = await self.get_prefix(message)
+  File "C:\Python39\lib\site-packages\discord\ext\commands\bot.py", line 831, in get_prefix
+    ret = await discord.utils.maybe_coroutine(prefix, self, message)
+  File "C:\Python39\lib\site-packages\discord\utils.py", line 341, in maybe_coroutine
+    value = f(*args, **kwargs)
+  File "c:\Users\soon_\Documents\Github\DiscordBot\main.py", line 20, in get_prefix
+    server = settings.find_one({"gid": message.guild.id})
+  File "C:\Python39\lib\site-packages\pymongo\collection.py", line 1114, in find_one
+    for result in cursor.limit(-1):
+  File "C:\Python39\lib\site-packages\pymongo\cursor.py", line 1159, in next
+    if len(self.__data) or self._refresh():
+  File "C:\Python39\lib\site-packages\pymongo\cursor.py", line 1057, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1603, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1553, in __start_session
+    server_session = self._get_server_session()
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1589, in _get_server_session
+    return self._topology.get_server_session()
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 530, in get_server_session
+    session_timeout = self._check_session_support()
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 514, in _check_session_support
+    self._select_servers_loop(
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 227, in _select_servers_loop
+    self._condition.wait(common.MIN_HEARTBEAT_INTERVAL)
+  File "C:\Python39\lib\threading.py", line 316, in wait
+    gotit = waiter.acquire(True, timeout)
+KeyboardInterrupt
+2022-01-11 15:32:31,290 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-01-11 15:32:31,408 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-01-11 15:33:23,544 [WARNING] Shard ID None heartbeat blocked for more than 10 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\soon_\Documents\Github\DiscordBot\main.py", line 99, in <module>
+    client.run(os.getenv('TOKEN'))
+  File "C:\Python39\lib\site-packages\discord\client.py", line 713, in run
+    loop.run_forever()
+  File "C:\Python39\lib\asyncio\windows_events.py", line 316, in run_forever
+    super().run_forever()
+  File "C:\Python39\lib\asyncio\base_events.py", line 596, in run_forever
+    self._run_once()
+  File "C:\Python39\lib\asyncio\base_events.py", line 1890, in _run_once
+    handle._run()
+  File "C:\Python39\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Python39\lib\site-packages\discord\client.py", line 343, in _run_event
+    await coro(*args, **kwargs)
+  File "C:\Python39\lib\site-packages\discord\ext\commands\bot.py", line 979, in on_message
+    await self.process_commands(message)
+  File "C:\Python39\lib\site-packages\discord\ext\commands\bot.py", line 975, in process_commands
+    ctx = await self.get_context(message)
+  File "C:\Python39\lib\site-packages\discord\ext\commands\bot.py", line 886, in get_context
+    prefix = await self.get_prefix(message)
+  File "C:\Python39\lib\site-packages\discord\ext\commands\bot.py", line 831, in get_prefix
+    ret = await discord.utils.maybe_coroutine(prefix, self, message)
+  File "C:\Python39\lib\site-packages\discord\utils.py", line 341, in maybe_coroutine
+    value = f(*args, **kwargs)
+  File "c:\Users\soon_\Documents\Github\DiscordBot\main.py", line 20, in get_prefix
+    server = settings.find_one({"gid": message.guild.id})
+  File "C:\Python39\lib\site-packages\pymongo\collection.py", line 1114, in find_one
+    for result in cursor.limit(-1):
+  File "C:\Python39\lib\site-packages\pymongo\cursor.py", line 1159, in next
+    if len(self.__data) or self._refresh():
+  File "C:\Python39\lib\site-packages\pymongo\cursor.py", line 1057, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1603, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1553, in __start_session
+    server_session = self._get_server_session()
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1589, in _get_server_session
+    return self._topology.get_server_session()
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 530, in get_server_session
+    session_timeout = self._check_session_support()
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 514, in _check_session_support
+    self._select_servers_loop(
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 227, in _select_servers_loop
+    self._condition.wait(common.MIN_HEARTBEAT_INTERVAL)
+  File "C:\Python39\lib\threading.py", line 316, in wait
+    gotit = waiter.acquire(True, timeout)
+
+2022-01-11 15:33:33,563 [WARNING] Shard ID None heartbeat blocked for more than 20 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\soon_\Documents\Github\DiscordBot\main.py", line 99, in <module>
+    client.run(os.getenv('TOKEN'))
+  File "C:\Python39\lib\site-packages\discord\client.py", line 713, in run
+    loop.run_forever()
+  File "C:\Python39\lib\asyncio\windows_events.py", line 316, in run_forever
+    super().run_forever()
+  File "C:\Python39\lib\asyncio\base_events.py", line 596, in run_forever
+    self._run_once()
+  File "C:\Python39\lib\asyncio\base_events.py", line 1890, in _run_once
+    handle._run()
+  File "C:\Python39\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Python39\lib\site-packages\discord\client.py", line 343, in _run_event
+    await coro(*args, **kwargs)
+  File "C:\Python39\lib\site-packages\discord\ext\commands\bot.py", line 979, in on_message
+    await self.process_commands(message)
+  File "C:\Python39\lib\site-packages\discord\ext\commands\bot.py", line 975, in process_commands
+    ctx = await self.get_context(message)
+  File "C:\Python39\lib\site-packages\discord\ext\commands\bot.py", line 886, in get_context
+    prefix = await self.get_prefix(message)
+  File "C:\Python39\lib\site-packages\discord\ext\commands\bot.py", line 831, in get_prefix
+    ret = await discord.utils.maybe_coroutine(prefix, self, message)
+  File "C:\Python39\lib\site-packages\discord\utils.py", line 341, in maybe_coroutine
+    value = f(*args, **kwargs)
+  File "c:\Users\soon_\Documents\Github\DiscordBot\main.py", line 20, in get_prefix
+    server = settings.find_one({"gid": message.guild.id})
+  File "C:\Python39\lib\site-packages\pymongo\collection.py", line 1114, in find_one
+    for result in cursor.limit(-1):
+  File "C:\Python39\lib\site-packages\pymongo\cursor.py", line 1159, in next
+    if len(self.__data) or self._refresh():
+  File "C:\Python39\lib\site-packages\pymongo\cursor.py", line 1057, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1603, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1553, in __start_session
+    server_session = self._get_server_session()
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1589, in _get_server_session
+    return self._topology.get_server_session()
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 530, in get_server_session
+    session_timeout = self._check_session_support()
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 514, in _check_session_support
+    self._select_servers_loop(
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 227, in _select_servers_loop
+    self._condition.wait(common.MIN_HEARTBEAT_INTERVAL)
+  File "C:\Python39\lib\threading.py", line 316, in wait
+    gotit = waiter.acquire(True, timeout)
+
+2022-01-11 15:33:35,388 [ERROR] Attempting a reconnect in 1.35s
+Traceback (most recent call last):
+  File "C:\Python39\lib\site-packages\discord\client.py", line 566, in connect
+    await self.ws.poll_event()
+  File "C:\Python39\lib\site-packages\discord\gateway.py", line 582, in poll_event
+    raise ConnectionClosed(self.socket, shard_id=self.shard_id, code=code) from None
+discord.errors.ConnectionClosed: Shard ID None WebSocket closed with 1000
+2022-01-11 15:33:56,826 [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-1' coro=<Loop._loop() done, defined at C:\Python39\lib\site-packages\discord\ext\tasks\__init__.py:88> exception=ServerSelectionTimeoutError("localhost:27017: [WinError 10061] No connection could be made because the target machine actively refused it, Timeout: 30s, Topology Description: <TopologyDescription id: 61dd328fd8a052f182db95dc, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27017: [WinError 10061] No connection could be made because the target machine actively refused it')>]>")>
+Traceback (most recent call last):
+  File "C:\Python39\lib\site-packages\discord\ext\tasks\__init__.py", line 125, in _loop
+    raise exc
+  File "C:\Python39\lib\site-packages\discord\ext\tasks\__init__.py", line 101, in _loop
+    await self.coro(*args, **kwargs)
+  File "c:\Users\soon_\Documents\Github\DiscordBot\cogs\stonk.py", line 67, in updatesshop
+  File "C:\Python39\lib\site-packages\pymongo\collection.py", line 1114, in find_one
+    for result in cursor.limit(-1):
+  File "C:\Python39\lib\site-packages\pymongo\cursor.py", line 1159, in next
+    if len(self.__data) or self._refresh():
+  File "C:\Python39\lib\site-packages\pymongo\cursor.py", line 1057, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1603, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1553, in __start_session
+    server_session = self._get_server_session()
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1589, in _get_server_session
+    return self._topology.get_server_session()
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 530, in get_server_session
+    session_timeout = self._check_session_support()
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 514, in _check_session_support
+    self._select_servers_loop(
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 216, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: localhost:27017: [WinError 10061] No connection could be made because the target machine actively refused it, Timeout: 30s, Topology Description: <TopologyDescription id: 61dd328fd8a052f182db95dc, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27017: [WinError 10061] No connection could be made because the target machine actively refused it')>]>
+2022-01-11 15:34:07,196 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-01-11 15:40:30,520 [WARNING] Shard ID None heartbeat blocked for more than 10 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\soon_\Documents\Github\DiscordBot\main.py", line 99, in <module>
+    client.run(os.getenv('TOKEN'))
+  File "C:\Python39\lib\site-packages\discord\client.py", line 713, in run
+    loop.run_forever()
+  File "C:\Python39\lib\asyncio\windows_events.py", line 316, in run_forever
+    super().run_forever()
+  File "C:\Python39\lib\asyncio\base_events.py", line 596, in run_forever
+    self._run_once()
+  File "C:\Python39\lib\asyncio\base_events.py", line 1890, in _run_once
+    handle._run()
+  File "C:\Python39\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Python39\lib\site-packages\discord\client.py", line 343, in _run_event
+    await coro(*args, **kwargs)
+  File "C:\Python39\lib\site-packages\discord\ext\commands\bot.py", line 979, in on_message
+    await self.process_commands(message)
+  File "C:\Python39\lib\site-packages\discord\ext\commands\bot.py", line 975, in process_commands
+    ctx = await self.get_context(message)
+  File "C:\Python39\lib\site-packages\discord\ext\commands\bot.py", line 886, in get_context
+    prefix = await self.get_prefix(message)
+  File "C:\Python39\lib\site-packages\discord\ext\commands\bot.py", line 831, in get_prefix
+    ret = await discord.utils.maybe_coroutine(prefix, self, message)
+  File "C:\Python39\lib\site-packages\discord\utils.py", line 341, in maybe_coroutine
+    value = f(*args, **kwargs)
+  File "c:\Users\soon_\Documents\Github\DiscordBot\main.py", line 20, in get_prefix
+    server = settings.find_one({"gid": message.guild.id})
+  File "C:\Python39\lib\site-packages\pymongo\collection.py", line 1114, in find_one
+    for result in cursor.limit(-1):
+  File "C:\Python39\lib\site-packages\pymongo\cursor.py", line 1159, in next
+    if len(self.__data) or self._refresh():
+  File "C:\Python39\lib\site-packages\pymongo\cursor.py", line 1057, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1603, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1553, in __start_session
+    server_session = self._get_server_session()
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1589, in _get_server_session
+    return self._topology.get_server_session()
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 530, in get_server_session
+    session_timeout = self._check_session_support()
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 514, in _check_session_support
+    self._select_servers_loop(
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 227, in _select_servers_loop
+    self._condition.wait(common.MIN_HEARTBEAT_INTERVAL)
+  File "C:\Python39\lib\threading.py", line 316, in wait
+    gotit = waiter.acquire(True, timeout)
+
+2022-01-11 15:40:40,541 [WARNING] Shard ID None heartbeat blocked for more than 20 seconds.
+Loop thread traceback (most recent call last):
+  File "c:\Users\soon_\Documents\Github\DiscordBot\main.py", line 99, in <module>
+    client.run(os.getenv('TOKEN'))
+  File "C:\Python39\lib\site-packages\discord\client.py", line 713, in run
+    loop.run_forever()
+  File "C:\Python39\lib\asyncio\windows_events.py", line 316, in run_forever
+    super().run_forever()
+  File "C:\Python39\lib\asyncio\base_events.py", line 596, in run_forever
+    self._run_once()
+  File "C:\Python39\lib\asyncio\base_events.py", line 1890, in _run_once
+    handle._run()
+  File "C:\Python39\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Python39\lib\site-packages\discord\client.py", line 343, in _run_event
+    await coro(*args, **kwargs)
+  File "C:\Python39\lib\site-packages\discord\ext\commands\bot.py", line 979, in on_message
+    await self.process_commands(message)
+  File "C:\Python39\lib\site-packages\discord\ext\commands\bot.py", line 975, in process_commands
+    ctx = await self.get_context(message)
+  File "C:\Python39\lib\site-packages\discord\ext\commands\bot.py", line 886, in get_context
+    prefix = await self.get_prefix(message)
+  File "C:\Python39\lib\site-packages\discord\ext\commands\bot.py", line 831, in get_prefix
+    ret = await discord.utils.maybe_coroutine(prefix, self, message)
+  File "C:\Python39\lib\site-packages\discord\utils.py", line 341, in maybe_coroutine
+    value = f(*args, **kwargs)
+  File "c:\Users\soon_\Documents\Github\DiscordBot\main.py", line 20, in get_prefix
+    server = settings.find_one({"gid": message.guild.id})
+  File "C:\Python39\lib\site-packages\pymongo\collection.py", line 1114, in find_one
+    for result in cursor.limit(-1):
+  File "C:\Python39\lib\site-packages\pymongo\cursor.py", line 1159, in next
+    if len(self.__data) or self._refresh():
+  File "C:\Python39\lib\site-packages\pymongo\cursor.py", line 1057, in _refresh
+    self.__session = self.__collection.database.client._ensure_session()
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1603, in _ensure_session
+    return self.__start_session(True, causal_consistency=False)
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1553, in __start_session
+    server_session = self._get_server_session()
+  File "C:\Python39\lib\site-packages\pymongo\mongo_client.py", line 1589, in _get_server_session
+    return self._topology.get_server_session()
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 530, in get_server_session
+    session_timeout = self._check_session_support()
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 514, in _check_session_support
+    self._select_servers_loop(
+  File "C:\Python39\lib\site-packages\pymongo\topology.py", line 227, in _select_servers_loop
+    self._condition.wait(common.MIN_HEARTBEAT_INTERVAL)
+  File "C:\Python39\lib\threading.py", line 316, in wait
+    gotit = waiter.acquire(True, timeout)
+
+2022-01-11 15:40:46,573 [ERROR] Attempting a reconnect in 1.76s
+Traceback (most recent call last):
+  File "C:\Python39\lib\site-packages\discord\client.py", line 566, in connect
+    await self.ws.poll_event()
+  File "C:\Python39\lib\site-packages\discord\gateway.py", line 582, in poll_event
+    raise ConnectionClosed(self.socket, shard_id=self.shard_id, code=code) from None
+discord.errors.ConnectionClosed: Shard ID None WebSocket closed with 1000
+2022-01-11 15:48:40,819 [WARNING] ~~~~~~ Admin logged in ~~~~~~

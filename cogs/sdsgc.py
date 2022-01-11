@@ -504,7 +504,7 @@ class SDSGC(commands.Cog):
         await ctx.invoke(pending_command)
       elif exclude.endswith(' only'):
         excludelist = exclude.lower().split(' ')
-        print(excludelist)
+        # print(excludelist)
         includelist = excludelist[0:-1]
         names = ctx.author.display_name
         dirs = []
@@ -522,10 +522,10 @@ class SDSGC(commands.Cog):
           cpath = path+"//"+random.choices(files, weights=weight,k=1)[0]
           unit = random.choice(os.listdir(cpath))
           image = cpath+"//"+unit
-          print(image)
+          # print(image)
           for include in includelist:
             if include in image.lower():
-              print('ONLY UNIT')
+              # print('ONLY UNIT')
               ban = False
           if ban == False:
             if len(dirs) == 0:
@@ -560,7 +560,7 @@ class SDSGC(commands.Cog):
         return os.remove(f'.//RSPVP//pull//{ctx.author.id}.jpg')
       else:
         excludelist = exclude.lower().split(' ')
-        print(excludelist)
+        # print(excludelist)
         names = ctx.author.display_name
         dirs = []
         weight = []
@@ -577,10 +577,10 @@ class SDSGC(commands.Cog):
           cpath = path+"//"+random.choices(files, weights=weight,k=1)[0]
           unit = random.choice(os.listdir(cpath))
           image = cpath+"//"+unit
-          print(image)
+          # print(image)
           for ex in excludelist:
             if ex in image.lower():
-              print('BAN UNIT')
+              # print('BAN UNIT')
               ban = True
           if ban == False:
             if len(dirs) == 0:
@@ -627,7 +627,7 @@ class SDSGC(commands.Cog):
       await ctx.send(embed=em)
     else:
       includelist = include.lower().split(' ')
-      print(includelist)
+      # print(includelist)
       names = ctx.author.display_name
       allunits = []
       for base, dirs, files in os.walk(".//RSPVP//rspvp"):
