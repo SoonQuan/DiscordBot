@@ -134,7 +134,7 @@ class SDSGC(commands.Cog):
       em = discord.Embed(description = f"You need 30 {currency} to pull", colour = discord.Color.red())
       em.set_footer(text= "try !timely")
       return await ctx.send(embed = em)
-    banner_list = sorted(["T1","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH", "FBAN", "FGOW", "FKING", "DMELI","HAWK","SEASON", "RAG1", "RAG2", "RAG3", "SROXY","SMLH", "LUDO", "CUSACK", "EMO", "HMATRONA", "HDIANE", "XLILLIA", "XLIZ", "KOF"])
+    banner_list = sorted(["T1","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH", "FBAN", "FGOW", "FKING", "DMELI", "SARIEL", "HAWK","SEASON", "RAG1", "RAG2", "RAG3", "SROXY","SMLH", "LUDO", "CUSACK", "EMO", "HMATRONA", "HDIANE", "XLILLIA", "XLIZ", "KOF"])
     d={}
     out = []
     if arg1 == "list":
@@ -167,7 +167,7 @@ class SDSGC(commands.Cog):
     dirs = []
     ban6p = ["DZ"]
     ban4p = ["T1","AM","MERLIN","FZEL","FBAN","LUDO", "CUSACK", "FGOW", "FKING", "DMELI"]
-    ban3p = ["VAL","REZERO","ST","EXARTH","HAWK","SEASON", "RAG1", "RAG2", "RAG3", "SROXY", "SMLH", "EMO", "HMATRONA", "HDIANE", "XLILLIA", "XLIZ", "KOF"]
+    ban3p = ["VAL","REZERO","ST","EXARTH","HAWK", "SARIEL","SEASON", "RAG1", "RAG2", "RAG3", "SROXY", "SMLH", "EMO", "HMATRONA", "HDIANE", "XLILLIA", "XLIZ", "KOF"]
 
     if arg in ban3p:
       for i in range(11):
@@ -245,7 +245,7 @@ class SDSGC(commands.Cog):
     users = mainbank.find_one( {'_id':user.id} )
     ID = users["_id"]
 
-    banner_list = sorted(["T1","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH","FBAN", "FGOW", "FKING", "DMELI","HAWK","SEASON", "RAG1", "RAG2", "RAG3", "SROXY", "SMLH","LUDO", "CUSACK", "EMO", "HMATRONA", "HDIANE", "XLILLIA", "XLIZ", "KOF"])
+    banner_list = sorted(["T1","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH","FBAN", "FGOW", "FKING", "DMELI", "SARIEL","HAWK","SEASON", "RAG1", "RAG2", "RAG3", "SROXY", "SMLH","LUDO", "CUSACK", "EMO", "HMATRONA", "HDIANE", "XLILLIA", "XLIZ", "KOF"])
     d={}
     out = []
     if arg1 == "list":
