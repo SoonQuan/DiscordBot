@@ -134,7 +134,7 @@ class SDSGC(commands.Cog):
       em = discord.Embed(description = f"You need 30 {currency} to pull", colour = discord.Color.red())
       em.set_footer(text= "try !timely")
       return await ctx.send(embed = em)
-    banner_list = sorted(["T1","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH", "FBAN", "FGOW", "FKING", "DMELI","HAWK","SEASON", "RAG1", "RAG2", "RAG3", "SROXY","SMLH", "LUDO", "CUSACK", "EMO", "HMATRONABanner", "HDIANE", "XLILLIA", "XLIZ", "KOF"])
+    banner_list = sorted(["T1","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH", "FBAN", "FGOW", "FKING", "DMELI","HAWK","SEASON", "RAG1", "RAG2", "RAG3", "SROXY","SMLH", "LUDO", "CUSACK", "EMO", "HMATRONA", "HDIANE", "XLILLIA", "XLIZ", "KOF"])
     d={}
     out = []
     if arg1 == "list":
@@ -167,7 +167,7 @@ class SDSGC(commands.Cog):
     dirs = []
     ban6p = ["DZ"]
     ban4p = ["T1","AM","MERLIN","FZEL","FBAN","LUDO", "CUSACK", "FGOW", "FKING", "DMELI"]
-    ban3p = ["VAL","REZERO","ST","EXARTH","HAWK","SEASON", "RAG1", "RAG2", "RAG3", "SROXY", "SMLH", "EMO", "HMATRONABanner", "HDIANE", "XLILLIA", "XLIZ", "KOF"]
+    ban3p = ["VAL","REZERO","ST","EXARTH","HAWK","SEASON", "RAG1", "RAG2", "RAG3", "SROXY", "SMLH", "EMO", "HMATRONA", "HDIANE", "XLILLIA", "XLIZ", "KOF"]
 
     if arg in ban3p:
       for i in range(11):
@@ -245,7 +245,7 @@ class SDSGC(commands.Cog):
     users = mainbank.find_one( {'_id':user.id} )
     ID = users["_id"]
 
-    banner_list = sorted(["T1","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH","FBAN", "FGOW", "FKING", "DMELI","HAWK","SEASON", "RAG1", "RAG2", "RAG3", "SROXY", "SMLH","LUDO", "CUSACK", "EMO", "HMATRONABanner", "HDIANE", "XLILLIA", "XLIZ", "KOF"])
+    banner_list = sorted(["T1","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH","FBAN", "FGOW", "FKING", "DMELI","HAWK","SEASON", "RAG1", "RAG2", "RAG3", "SROXY", "SMLH","LUDO", "CUSACK", "EMO", "HMATRONA", "HDIANE", "XLILLIA", "XLIZ", "KOF"])
     d={}
     out = []
     if arg1 == "list":
@@ -514,7 +514,7 @@ class SDSGC(commands.Cog):
                 path = ".//RSPVP//rspvp//" + str(directories)
                 f  = os.listdir(path)
                 weight.append(len(f))
-        while len(dirs)<4 and tries < 1000:
+        while len(dirs)<4 and tries < 500:
           tries += 1
           ban = True
           path = ".//RSPVP//rspvp"
@@ -569,7 +569,7 @@ class SDSGC(commands.Cog):
                 path = ".//RSPVP//rspvp//" + str(directories)
                 f  = os.listdir(path)
                 weight.append(len(f))
-        while len(dirs)<4 and tries < 1000:
+        while len(dirs)<4 and tries < 500:
           tries += 1
           ban = False
           path = ".//RSPVP//rspvp"
@@ -637,74 +637,78 @@ class SDSGC(commands.Cog):
   @commands.cooldown(1,1,commands.BucketType.user)
   async def character(self,ctx,*,include:str=""):
     """Show the image of the character """
-    if include == "":
-      em = discord.Embed(description = f'Please provide a character', colour = ctx.author.color)
-      await ctx.send(embed=em)
-    else:
-      includelist = include.lower().split(' ')
-      # print(includelist)
-      names = ctx.author.display_name
-      allunits = []
-      for base, dirs, files in os.walk(".//RSPVP//rspvp"):
-          for file in files:
-            allunits.append(str(os.path.join(base,file)))
-      for i in includelist:
-        allunits = list(filter(lambda k: i in k.lower(), allunits))
+    try:
+      if include == "":
+        em = discord.Embed(description = f'Please provide a character', colour = ctx.author.color)
+        await ctx.send(embed=em)
+      else:
+        includelist = include.lower().split(' ')
+        # print(includelist)
+        names = ctx.author.display_name
+        allunits = []
+        for base, dirs, files in os.walk(".//RSPVP//rspvp"):
+            for file in files:
+              allunits.append(str(os.path.join(base,file)))
+        for i in includelist:
+          allunits = list(filter(lambda k: i in k.lower(), allunits))
 
-      n = 5
-      split_units = [allunits[i * n:(i + 1) * n] for i in range((len(allunits) + n - 1) // n )]
-      part = 0
-      for section in split_units:
-        if len(section) == 5:
-          im0 = Image.open(section[0])
-          im1 = Image.open(section[1])
-          im2 = Image.open(section[2])
-          im3 = Image.open(section[3])
-          im4 = Image.open(section[4])
-          get_concat_h_multi_blank([im0,im1,im2,im3,im4]).save(f'.//Banner//pull//{names}{part}.jpg')
-          part+=1
-        else:
-          try:
+        n = 5
+        split_units = [allunits[i * n:(i + 1) * n] for i in range((len(allunits) + n - 1) // n )]
+        part = 0
+        for section in split_units:
+          if len(section) == 5:
             im0 = Image.open(section[0])
-          except:
-            im0 = Image.new("RGB", (100, 100), (47,49,54))
-          try:
             im1 = Image.open(section[1])
-          except:
-            im1 = Image.new("RGB", (100, 100), (47,49,54))
-          try:
             im2 = Image.open(section[2])
-          except:
-            im2 = Image.new("RGB", (100, 100), (47,49,54))
-          try:
             im3 = Image.open(section[3])
-          except:
-            im3 = Image.new("RGB", (100, 100), (47,49,54))
-          try:
             im4 = Image.open(section[4])
-          except:
-            im4 = Image.new("RGB", (100, 100), (47,49,54))
-          get_concat_h_multi_blank([im0,im1,im2,im3,im4]).save(f'.//Banner//pull//{names}{part}.jpg')
+            get_concat_h_multi_blank([im0,im1,im2,im3,im4]).save(f'.//Banner//pull//{names}{part}.jpg')
+            part+=1
+          else:
+            try:
+              im0 = Image.open(section[0])
+            except:
+              im0 = Image.new("RGB", (100, 100), (47,49,54))
+            try:
+              im1 = Image.open(section[1])
+            except:
+              im1 = Image.new("RGB", (100, 100), (47,49,54))
+            try:
+              im2 = Image.open(section[2])
+            except:
+              im2 = Image.new("RGB", (100, 100), (47,49,54))
+            try:
+              im3 = Image.open(section[3])
+            except:
+              im3 = Image.new("RGB", (100, 100), (47,49,54))
+            try:
+              im4 = Image.open(section[4])
+            except:
+              im4 = Image.new("RGB", (100, 100), (47,49,54))
+            get_concat_h_multi_blank([im0,im1,im2,im3,im4]).save(f'.//Banner//pull//{names}{part}.jpg')
 
-      images = list(os.listdir(".//Banner//pull"))
-      Image.open(f".//Banner//pull//{images[0]}").save(f'.//Banner//pull//{names}.jpg')
-      images.pop(0)
-      for unit in images:
-        img = Image.open(f'.//Banner//pull//{names}.jpg')
-        addon = Image.open(f".//Banner//pull//{unit}")
-        get_concat_v_blank(img, addon).save(f'.//Banner//pull//{names}.jpg')
+        images = list(os.listdir(".//Banner//pull"))
+        Image.open(f".//Banner//pull//{images[0]}").save(f'.//Banner//pull//{names}.jpg')
+        images.pop(0)
+        for unit in images:
+          img = Image.open(f'.//Banner//pull//{names}.jpg')
+          addon = Image.open(f".//Banner//pull//{unit}")
+          get_concat_v_blank(img, addon).save(f'.//Banner//pull//{names}.jpg')
 
-      quote = include.upper()
-      file = discord.File(f'.//Banner//pull//{names}.jpg', filename="image.jpg")
-      em = discord.Embed(title = quote, colour = ctx.author.color)
-      em.set_image(url = f"attachment://image.jpg")
-      await ctx.send(embed = em,file=file)
+        quote = include.upper()
+        file = discord.File(f'.//Banner//pull//{names}.jpg', filename="image.jpg")
+        em = discord.Embed(title = quote, colour = ctx.author.color)
+        em.set_image(url = f"attachment://image.jpg")
+        await ctx.send(embed = em,file=file)
 
-      try:
-        shutil.rmtree('.//Banner//pull//')
-      except OSError as e:
-        print("Error: %s : %s" % ('.//Banner//pull//', e.strerror))
-      return os.mkdir('.//Banner//pull//')
+        try:
+          shutil.rmtree('.//Banner//pull//')
+        except OSError as e:
+          print("Error: %s : %s" % ('.//Banner//pull//', e.strerror))
+        return os.mkdir('.//Banner//pull//')
+    except IndexError:
+      embed = discord.Embed(title=f"No {include.upper()} found", colour = discord.Color.red())
+      return await ctx.send(embed = embed)
 
 
 

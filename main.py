@@ -4,8 +4,10 @@ from discord.ext import commands, tasks
 import pymongo
 from pymongo import MongoClient
 from itertools import cycle
-from keep_alive import keep_alive
+# from keep_alive import keep_alive
 from pretty_help import DefaultMenu, PrettyHelp
+import neverSleep
+neverSleep.awake('https://DiscordBot.sqmatt.repl.co', True)
 
 # from dotenv import load_dotenv
 # load_dotenv()a
@@ -96,5 +98,5 @@ for filename in os.listdir('./cogs'):
 		client.load_extension(f'cogs.{filename[:-3]}')
 
 
-keep_alive()
+# keep_alive()
 client.run(os.getenv('TOKEN'))

@@ -43,21 +43,21 @@ class Error(commands.Cog):
           title="Still on cooldown",
           description="Please try again in {}".format(remaining_time),
           colour=ctx.author.color)
-      logging.error(str(error))
+      logging.warn('Error\n'+str(ctx.message.author.display_name)+'\n'+str(error))
       return await ctx.send(embed=em)
 
     # elif isinstance(error, commands.CommandNotFound):
     #   em = discord.Embed(title="Don't have this function",
     #                     description=f"Please try something else or use {ctx.prefix}help",
     #                     colour=discord.Color.red())
-    #   logging.error(str(error))
+    #   logging.warn('Error\n'+str(ctx.message.author.display_name)+'\n'+str(error))
     #   return await ctx.send(embed=em)
 
     elif isinstance(error, commands.BadArgument):
       em = discord.Embed(title="Wrong Argument",
                         description=f"Please try again with the correct arguments\n{ctx.prefix}help [command]",
                         colour=discord.Color.red())
-      logging.error(str(error))
+      logging.warn('Error\n'+str(ctx.message.author.display_name)+'\n'+str(error))
       return await ctx.send(embed=em)
 
     elif isinstance(error, commands.MissingPermissions):
@@ -65,7 +65,7 @@ class Error(commands.Cog):
                         colour=discord.Color.red())
       em.add_field(name="You don't have the role to do it",
                   value="||You weak||")
-      logging.error(str(error))
+      logging.warn('Error\n'+str(ctx.message.author.display_name)+'\n'+str(error))
       return await ctx.send(embed=em)
       
     elif isinstance(error, commands.MissingAnyRole):
@@ -73,18 +73,18 @@ class Error(commands.Cog):
                         colour=discord.Color.red())
       em.add_field(name="You don't have the role to do it",
                   value="||You weak||")
-      logging.error(str(error))
+      logging.warn('Error\n'+str(ctx.message.author.display_name)+'\n'+str(error))
       return await ctx.send(embed=em)
 
     elif isinstance(error, commands.NotOwner):
       em = discord.Embed(title="Missing Permission",
                         colour=discord.Color.red())
       em.add_field(name="Only bot owner can do this", value="||You weak||")
-      logging.error(str(error))
+      logging.warn('Error\n'+str(ctx.message.author.display_name)+'\n'+str(error))
       return await ctx.send(embed=em)
 
     else:
-      logging.error(str(error))
+      logging.warn('Error\n'+str(ctx.message.author.display_name)+'\n'+str(error))
       return print(error)
 
   @commands.command(hidden=True)
