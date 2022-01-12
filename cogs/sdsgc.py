@@ -18,7 +18,6 @@ db = cluster["luckbot"]
 mainbank = db["mainbank"]
 settings = db["settings"]
 
-
 def get_prefix(client, message):
   server = settings.find_one({"gid":message.guild.id})
   return server["prefix"]
@@ -68,6 +67,7 @@ class SDSGC(commands.Cog):
   """ SDSGC and luck related commands """
   def __init__(self,client):
     self.client = client
+  commands.globalcount = 0 
 
   ######## pulling #########
   @commands.command(aliases=['coin'])
@@ -614,9 +614,24 @@ class SDSGC(commands.Cog):
         await ctx.send(embed = embed, file = file)
         return os.remove(f'.//RSPVP//pull//{ctx.author.id}.jpg')
     except IndexError:
-      quote = "Please use a wider range of units <:stares:887196954017296436>"
+      quote = "Please use a wider range of units\nBut sure I got you <:stares:887196954017296436>"
+      standard = "Please use a wider range of units <:stares:887196954017296436>"
+      main = discord.Embed(title = standard,colour = discord.Color.red())
       embed = discord.Embed(title = quote,colour = discord.Color.red())
-      await ctx.send(embed = embed)
+      quote1 = "Here you go"
+      embed2 = discord.Embed(description = quote1,colour = discord.Color.red())
+      num = random.randrange(100)
+      if num < 10 or commands.globalcount >= 3:
+        commands.globalcount = 0
+        MSG = await ctx.send(embed = embed)
+        await asyncio.sleep(3)
+        await MSG.edit(embed=embed2)
+        await asyncio.sleep(3)
+        await MSG.delete()
+        return await ctx.send("https://tenor.com/view/rick-rickroll-jebaited-meme-got-em-gif-17877057")
+      else:
+        commands.globalcount += 1
+        return await ctx.send(embed = main)
 
   @commands.command(aliases=['c'])
   @commands.cooldown(1,1,commands.BucketType.user)
