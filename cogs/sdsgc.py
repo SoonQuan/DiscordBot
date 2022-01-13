@@ -629,6 +629,11 @@ class SDSGC(commands.Cog):
         await asyncio.sleep(3)
         await MSG.delete()
         return await ctx.send("https://tenor.com/view/rick-rickroll-jebaited-meme-got-em-gif-17877057")
+      elif num < 20: 
+        file = discord.File(f'.//RSPVP//unit.png', filename="image.jpg")
+        main = discord.Embed(title = "Please use a wider range of units",colour = discord.Color.red())
+        main.set_image(url = f"attachment://image.jpg")
+        return await ctx.send(embed = main, file=file)
       else:
         commands.globalcount += 1
         return await ctx.send(embed = main)
@@ -707,10 +712,58 @@ class SDSGC(commands.Cog):
           print("Error: %s : %s" % ('.//Banner//pull//', e.strerror))
         return os.mkdir('.//Banner//pull//')
     except IndexError:
+      file = discord.File(f'.//RSPVP//questionmark.png', filename="image.jpg")
+      embed = discord.Embed(title=f"No {include.upper()} found", colour = discord.Color.red())
+      embed.set_image(url = f"attachment://image.jpg")
+      return await ctx.send(embed = embed, file=file)
+
+  @commands.command()
+  @commands.cooldown(1,1,commands.BucketType.user)
+  async def team(self,ctx,*,team:str=""):
+    """Show the image of the character """
+    names = ctx.author.display_name
+    tempunit = ".//RSPVP//unit.png"
+    selectedUnit = [tempunit,tempunit,tempunit,tempunit]
+    quote = f"{names} has mentioned the following team\n"
+    try:
+      if team != "":
+        teamlist = team.lower().split(',')
+        print(teamlist)
+        index=0
+        for include in teamlist:
+          includelist = include.lower().split(' ')
+          filterUnit = []
+          for base, dirs, files in os.walk(".//RSPVP//rspvp"):
+              for file in files:
+                filterUnit.append(str(os.path.join(base,file)))
+          for i in includelist:
+            filterUnit = list(filter(lambda k: i in k.lower(), filterUnit))
+          if len(filterUnit) > 1:
+            embed = discord.Embed(title=f"More than one {include.upper()} found", description="Please be more specific", colour = discord.Color.red())
+            return await ctx.send(embed = embed)
+          else:
+            selectedUnit[index] = filterUnit[0]
+            index+=1
+        im0 = Image.open(selectedUnit[0])
+        im1 = Image.open(selectedUnit[1])
+        im2 = Image.open(selectedUnit[2])
+        im3 = Image.open(selectedUnit[3])
+
+        get_concat_h_multi_blank([im0,im1,im2,im3]).save(f'.//RSPVP//pull//{ctx.author.id}.jpg')
+        
+        file = discord.File(f'.//RSPVP//pull//{ctx.author.id}.jpg')
+        embed = discord.Embed(title = quote,colour = ctx.author.color)
+        embed.set_image(url = f"attachment://{ctx.author.id}.jpg")
+        embed.set_thumbnail(url=ctx.author.avatar_url)
+        await ctx.send(embed = embed, file = file)
+        return os.remove(f'.//RSPVP//pull//{ctx.author.id}.jpg')
+      else:
+        em = discord.Embed(description = f'Please provide a team such as:\n{ctx.prefix}team Traitor Meli, hgowther, G brynhildr, hmatrona', colour = ctx.author.color)
+        await ctx.send(embed=em)
+
+    except IndexError:
       embed = discord.Embed(title=f"No {include.upper()} found", colour = discord.Color.red())
       return await ctx.send(embed = embed)
-
-
 
   @commands.command(aliases=['mp'])
   @commands.cooldown(1,5,commands.BucketType.user)
