@@ -38,6 +38,7 @@ class Basic(commands.Cog):
     if msg.author.id == self.client.user.id:
       return
     test = "application" in msg.content.lower() or "looking" in msg.content.lower() or "lf" in msg.content.lower() or "knighthood" in msg.content.lower()
+    mention = f'<@!{self.client.user.id}>'
     if msg.channel.id == 694708991321833492 and test:
       channel = self.client.get_channel(879537741241647165)
       role = channel.guild.get_role(889145588732538920)
@@ -49,6 +50,10 @@ class Basic(commands.Cog):
 
     if "noice" in msg.content.lower():
       return await msg.add_reaction("<:noice:831113245082779699>")
+    
+    if msg.content == mention:
+      em = discord.Embed(description=f"Server prefix is `{get_prefix(self,msg)}`", color=botcolour)
+      return await msg.channel.send(embed=em)
 
     # if len(msg.content) == 0:
     #   return
@@ -186,7 +191,7 @@ class Basic(commands.Cog):
     await ctx.message.delete()
 
   @commands.command(aliases = ['purge'])
-  @commands.has_any_role('ADMIN','N⍧ Sovereign', 'G⍧ Archangels', 'K⍧ Kage', 'le vendel' , 'D⍧ Dragon', 'W⍧ Grace', 'R⍧ Leviathan', 'Overseer')
+  @commands.has_permissions(manage_messages = True)
   async def cls(self,ctx, amount=1):
     """ Delete the most recent <amount> of messages """
     def check(m):
@@ -215,7 +220,7 @@ class Basic(commands.Cog):
     
 
   @commands.command(aliases = ['purgemsg', 'clearmsg'])
-  @commands.has_any_role('ADMIN','N⍧ Sovereign', 'le vendel' , 'G⍧ Archangels', 'K⍧ Kage', 'D⍧ Dragon', 'W⍧ Grace', 'R⍧ Leviathan', 'Overseer')
+  @commands.has_permissions(manage_messages = True)
   async def deletemsg(self,ctx, msg_id):
     """ Delete the particular message """
     channel = ctx.channel
@@ -270,21 +275,21 @@ class Basic(commands.Cog):
     await ctx.message.delete()
 
   @commands.command()
-  @commands.has_any_role('ADMIN','N⍧ Sovereign', 'G⍧ Archangels', 'K⍧ Kage', 'D⍧ Dragon', 'W⍧ Grace', 'R⍧ Leviathan')
+  @commands.has_permissions(manage_roles = True)
   async def add_role(self,ctx,member:discord.Member,*,rolename):
     """ Add role to member """
     await member.add_roles(discord.utils.get(ctx.author.guild.roles, name=rolename))
     await ctx.send(f"{member.mention} is given the `{rolename.capitalize()}` role")
 
   @commands.command()
-  @commands.has_any_role('ADMIN','N⍧ Sovereign', 'G⍧ Archangels', 'K⍧ Kage', 'D⍧ Dragon', 'W⍧ Grace', 'R⍧ Leviathan')
+  @commands.has_permissions(manage_roles = True)
   async def remove_role(self,ctx,member:discord.Member,*,rolename):
     """ Remove role from member """
     await member.remove_roles(discord.utils.get(ctx.author.guild.roles, name=rolename))
     await ctx.send(f"`{rolename.capitalize()}` role has been removed from {member.mention}")
 
   @commands.command(aliases= ['up'])
-  @commands.has_any_role('N⍧ Sovereign', 'le vendel' , 'G⍧ Archangels', 'K⍧ Kage', 'D⍧ Dragon', 'W⍧ Grace', 'R⍧ Leviathan')
+  @commands.has_permissions(manage_messages = True)
   async def updatemsg(self,ctx,*,new_msg):
     """ Update our notice """
     names = ctx.author.nick

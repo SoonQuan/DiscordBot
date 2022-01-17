@@ -1,7 +1,6 @@
 import discord
 import os
-from discord.ext import commands, tasks
-import pymongo
+from discord.ext import commands
 from pymongo import MongoClient
 from itertools import cycle
 # from keep_alive import keep_alive
@@ -29,7 +28,7 @@ intents = discord.Intents.default()
 intents.members = True
 client = commands.Bot(command_prefix=get_prefix, description="Bot is here for your entertainment",case_insensitive=True, intents=intents)
 botcolour = 0x0fa4aab
-status = cycle(["with your luck", "with you | try !help"])
+status = cycle(["with your luck", f"with you | try {get_prefix}help"])
 
 menu = DefaultMenu('◀️', '▶️', '❌')
 client.help_command = PrettyHelp(navigation=menu,
@@ -41,7 +40,7 @@ client.help_command = PrettyHelp(navigation=menu,
 
 @client.event
 async def on_ready():
-	await client.change_presence(activity=discord.Game("with you | try !help"))
+	await client.change_presence(activity=discord.Game(f"with you | mention me to get prefix"))
 	#await change_status.start()
 	print('We have logged in as {0.user}'.format(client))
 
@@ -54,7 +53,7 @@ async def on_ready():
 async def on_guild_join(guild):
 	settings.insert_one({
 	    "gid": guild.id,
-	    "prefix": ">",
+	    "prefix": ".",
 	    "emoji": "💎",
 	    "droppile": int(500)
 	})

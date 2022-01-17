@@ -26,7 +26,7 @@ botcolour = 0x0fa4aab
 import requests
 import datetime
 
-class dictionary(commands.Cog):
+class Dictionary(commands.Cog):
   """ Dictionary commands """
   def __init__(self,client):
     self.client = client
@@ -54,4 +54,4 @@ class dictionary(commands.Cog):
 
 
 def setup(client):
-  client.add_cog(dictionary(client))
+  client.add_cog(Dictionary(client))
