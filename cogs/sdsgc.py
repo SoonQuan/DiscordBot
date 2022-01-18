@@ -1,16 +1,9 @@
-import discord
+import discord, os, shutil, json, re, asyncio, random, DiscordUtils
 from discord.ext import commands
-import os, shutil
-import pymongo
 from pymongo import MongoClient
-import random
 from PIL import Image
-import DiscordUtils
-import json
-import asyncio
 from datetime import datetime
 from dateutil import parser, tz
-
 
 cluster = MongoClient(os.getenv('MONGODB'))
 
@@ -493,10 +486,18 @@ class SDSGC(commands.Cog):
     return os.remove(f'.//RSPVP//pull//{ctx.author.id}.jpg')
 
 
+
   @commands.command(aliases=['rspvp', 'rs'])
   @commands.cooldown(1,1,commands.BucketType.user)
   async def randomselect(self,ctx,*,exclude:str=""):
     """ Randomly select 4 units for you with exclude list"""
+    # if ctx.author.id == 308042980944642050 or ctx.author.id == 303066334038720516 or ctx.author.id == 131232317518774272:
+    #   quote = "Liz for you"
+    #   file = discord.File(f'.//RSPVP//KAI.jpg',filename="image.jpg")
+    #   embed = discord.Embed(title = quote,colour = ctx.author.color)
+    #   embed.set_image(url = f"attachment://image.jpg")
+    #   embed.set_thumbnail(url=ctx.author.avatar_url)
+    #   return await ctx.send(embed = embed, file = file)
     try:
       tries = 0
       if exclude == "":
@@ -552,6 +553,89 @@ class SDSGC(commands.Cog):
         quote = f"{names} randomly selected units\nFrom:\n"
         for x in exclude.split(' '):
           quote += f"➣{str(x)} "
+        file = discord.File(f'.//RSPVP//pull//{ctx.author.id}.jpg')
+        embed = discord.Embed(title = quote,colour = ctx.author.color)
+        embed.set_image(url = f"attachment://{ctx.author.id}.jpg")
+        embed.set_thumbnail(url=ctx.author.avatar_url)
+        await ctx.send(embed = embed, file = file)
+        return os.remove(f'.//RSPVP//pull//{ctx.author.id}.jpg')
+      elif "(" in exclude:
+        names = ctx.author.display_name
+        dirs = []
+        holding = []
+        weight = []
+        for base, direct, files in os.walk(".//RSPVP//rspvp"):
+          for directories in direct:
+            path = ".//RSPVP//rspvp//" + str(directories)
+            f  = os.listdir(path)
+            weight.append(len(f))
+        unitNum = 4
+        forcedUnits = re.search(r"\(([A-Za-z0-9_ ,-]+)\)", exclude)
+        excludeList = re.sub(r"\(([A-Za-z0-9_ ,-]+)\)", "",exclude).lower().split(' ')
+        forcedList = forcedUnits.group(0)[1:-1].split(',')
+        excludeList = list(map(str.strip, excludeList))
+        forcedList = list(map(str.strip, forcedList))
+        excludeList = [x for x in excludeList if x]
+        forcedList = [x for x in forcedList if x]
+        for include in forcedList:
+          includelist = include.lower().split(' ')
+          filterUnit = []
+          for base, direct, files in os.walk(".//RSPVP//rspvp"):
+              for file in files:
+                filterUnit.append(str(os.path.join(base,file)))
+          for i in includelist:
+            filterUnit = list(filter(lambda k: i in k.lower(), filterUnit))
+          if len(filterUnit) > 1:
+            embed = discord.Embed(title=f"More than one {include.upper()} found", description="Please be more specific", colour = discord.Color.red())
+            embed.set_footer(text= f"try {ctx.prefix}c {include}")
+            return await ctx.send(embed = embed)
+          else:
+            dirs.append(filterUnit[0])
+            unitNum-=1
+        while unitNum > 0:
+          ban = False
+          path = ".//RSPVP//rspvp"
+          files = os.listdir(path)
+          cpath = path+"//"+random.choices(files, weights=weight,k=1)[0]
+          unit = random.choice(os.listdir(cpath))
+          image = cpath+"//"+unit
+          # print(image)
+          for ex in excludeList:
+            if ex in image.lower():
+              # print('BAN UNIT')
+              ban = True
+          if ban == False:
+            if len(dirs) == 0:
+              dirs.append(image)
+              unitNum-=1
+            else:
+              copy = 0
+              for item in dirs:
+                if str(cpath) in str(item):
+                  copy+=1
+                  break
+                elif 'Hawk' in image and 'Hawk' in str(item):
+                  copy+=1
+                  break
+              if copy>0:
+                continue
+              else:
+                dirs.append(image)
+                unitNum-=1
+        im0 = Image.open(dirs[0])
+        im1 = Image.open(dirs[1])
+        im2 = Image.open(dirs[2])
+        im3 = Image.open(dirs[3])
+
+        get_concat_h_multi_blank([im0,im1,im2,im3]).save(f'.//RSPVP//pull//{ctx.author.id}.jpg')
+        quote = f"{names} selected:\n"
+        for x in forcedList:
+          quote += f"➣{str(x)} "
+        quote += "\nAnd randomly selected units"
+        if len(excludeList) != 0:
+          quote += "\nExcluding:\n"
+          for x in excludeList:
+            quote += f"➣{str(x)} "
         file = discord.File(f'.//RSPVP//pull//{ctx.author.id}.jpg')
         embed = discord.Embed(title = quote,colour = ctx.author.color)
         embed.set_image(url = f"attachment://{ctx.author.id}.jpg")
@@ -617,9 +701,12 @@ class SDSGC(commands.Cog):
       quote = "Please use a wider range of units\nBut sure I got you <:stares:887196954017296436>"
       standard = "Please use a wider range of units <:stares:887196954017296436>"
       main = discord.Embed(title = standard,colour = discord.Color.red())
+      main.set_footer(text= f"try {ctx.prefix}c <unit name>")
       embed = discord.Embed(title = quote,colour = discord.Color.red())
+      embed.set_footer(text= f"try {ctx.prefix}c <unit name>")
       quote1 = "Here you go"
       embed2 = discord.Embed(description = quote1,colour = discord.Color.red())
+      embed2.set_footer(text= f"try {ctx.prefix}c <unit name>")
       num = random.randrange(100)
       if num < 10 or commands.globalcount >= 3:
         commands.globalcount = 0
@@ -633,6 +720,7 @@ class SDSGC(commands.Cog):
         file = discord.File(f'.//RSPVP//unit.png', filename="image.jpg")
         main = discord.Embed(title = "Please use a wider range of units",colour = discord.Color.red())
         main.set_image(url = f"attachment://image.jpg")
+        main.set_footer(text= f"try {ctx.prefix}c <unit name>")
         return await ctx.send(embed = main, file=file)
       else:
         commands.globalcount += 1
