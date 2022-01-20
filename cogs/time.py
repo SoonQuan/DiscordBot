@@ -61,8 +61,8 @@ class Time(commands.Cog):
     location = geolocator.geocode(lad)
     obj = TimezoneFinder()
     result = obj.timezone_at(lng=location.longitude, lat=location.latitude)
-    print("Time Zone : ", result)
-
+    embed = discord.Embed(description=f"Time Zone : `{result}`", color=ctx.author.color)
+    await ctx.send(embed=embed)
   @commands.command()
   async def time(self, ctx, member:discord.Member=None):
     """ Check time of user or member """
@@ -136,9 +136,9 @@ class Time(commands.Cog):
     now_utc = datetime.now(timezone('UTC'))
     now_location = now_utc.astimezone(timezone(zone))
     if int(now_location.strftime("%H")) in list(range(7, 20)):
-      fmt = f"It's :sunny: %-I:%M %p on %A, %B %d at `{location}`. (UTC%z)"
+      fmt = f"It's :sunny: %-I:%M %p on %A, %B %d in `{location}`. (UTC%z)"
     else:
-      fmt = f"It's :crescent_moon: %-I:%M %p on %A, %B %d at `{location}`. (UTC%z)"
+      fmt = f"It's :crescent_moon: %-I:%M %p on %A, %B %d in `{location}`. (UTC%z)"
     em = discord.Embed(description = now_location.strftime(fmt), colour = discord.Color.greyple())
     await ctx.send(embed=em)
 

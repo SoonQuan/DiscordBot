@@ -17,14 +17,14 @@ def ping(target, debug):
     while(True):
         r = requests.get(target)
         if(debug == True):
-            print("Status Code: " + str(r.status_code))
-        time.sleep(random.randint(180,300)) #alternate ping time between 3 and 5 minutes
+            b = "time now is: " + str(time.strftime("%d-%b-%Y (%H:%M:%S)",time.gmtime(time.time()+28800)))
+            logging.warn(b)
+            print("I'm alive. Status Code: " + str(r.status_code))
+        time.sleep(random.randint(240,300)) #alternate ping time between 4 and 5 minutes
 def awake(target, debug=False):  
     # log = logging.getLogger('werkzeug')
     # log.disabled = True
     # app.logger.disabled = True  
-    b = "time now is: " + str(time.strftime("%d-%b-%Y (%H:%M:%S)",time.gmtime(time.time()+28800)))
-    logging.warn(b)
     t = Thread(target=run)
     r = Thread(target=ping, args=(target,debug,))
     t.start()

@@ -61,6 +61,7 @@ class StonkMarket(commands.Cog):
   def __init__(self,client):
     self.client = client
     self.updatesshop.start()
+  commands.notification = [[933613200799326218,839439064137596938],[703054964200833125,832076962713305098]]
 
   @tasks.loop(minutes=10)
   async def updatesshop(self):
@@ -68,9 +69,6 @@ class StonkMarket(commands.Cog):
     sessionstart = timing["sessionstart"]
     timedif = time.time()-sessionstart
     cool = 25200 # change to cooldown duration 7hr
-    channel = self.client.get_channel(703054964200833125)
-    role = channel.guild.get_role(832076962713305098)
-    prefix = get_prefix(client,channel)
     if timedif >= cool:
       await weeklystonk() # check if price len = 0, then add new rotation
       stonk.update_one({"id":"timing"}, {"$inc":{"sessionstart":timedif}})
@@ -78,11 +76,19 @@ class StonkMarket(commands.Cog):
       timing = stonk.find_one( {'id':"timing"} )
       buytime = timing["buytime"]
       if buytime == 1:
-        quote = f"{role.mention} Items are now on sale~ Pick them up before the are gone\nUse the command {prefix}addsrr to get notified about refreshes"
-        await channel.send(quote)
+        for noti in commands.notification:
+          channel = self.client.get_channel(noti[0])
+          role = channel.guild.get_role(noti[1])
+          prefix = get_prefix(client,channel)
+          quote = f"{role.mention} Items are now on sale~ Pick them up before the are gone\nUse the command {prefix}addsrr to get notified about refreshes"
+          await channel.send(quote)
       elif buytime == 0:
-        quote = f"{role.mention} Buying all items for said price in shop\nUse the command {prefix}addsrr to get notified about refreshes"
-        await channel.send(quote)
+        for noti in commands.notification:
+          channel = self.client.get_channel(noti[0])
+          role = channel.guild.get_role(noti[1])
+          prefix = get_prefix(client,channel)
+          quote = f"{role.mention} Buying all items for said price in shop\nUse the command {prefix}addsrr to get notified about refreshes"
+          await channel.send(quote)
       await transferstonk()
       await stonklog()
 
@@ -270,13 +276,15 @@ class StonkMarket(commands.Cog):
   @commands.is_owner()
   async def jumpsession(self,ctx):
     """ Jump session """
+    await ctx.send("Session skipped")
     return await stonkprice()
 
   @commands.command()
   @commands.is_owner()
   async def jumptime(self,ctx,timing=0):
     """ Skip time """
-    stonk.update_one({'id':"timing"}, {"$inc":{"sessionstart":timing*60}})
+    stonk.update_one({'id':"timing"}, {"$inc":{"sessionstart":-timing*60}})
+    await ctx.send(f"Time jumped by `{timing} mins`")
 
 
 async def stonklog():
