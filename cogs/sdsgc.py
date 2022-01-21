@@ -10,6 +10,7 @@ cluster = MongoClient(os.getenv('MONGODB'))
 db = cluster["luckbot"]
 mainbank = db["mainbank"]
 settings = db["settings"]
+sdsgc = db["sdsgcProfile"]
 
 def get_prefix(client, message):
   server = settings.find_one({"gid":message.guild.id})
@@ -440,9 +441,18 @@ class SDSGC(commands.Cog):
   @commands.cooldown(1,1,commands.BucketType.user)
   async def rselectpvp(self,ctx):
     """ Randomly select 4 units for you """
-    names = ctx.author.nick
-    if names == None:
-      names = ctx.author.name
+    names = ctx.author.display_name
+    user = sdsgc.find_one( {'_id': ctx.author.id} )
+    if user == None:
+      pending_command = self.client.get_command('createProfile')
+      await ctx.invoke(pending_command)
+      user = sdsgc.find_one( {'_id': ctx.author.id} )
+    allunits = []
+    for key in user:
+      if type(user[key]) == dict:
+        if user[key]['owned'] == True:
+          allunits.append(user[key]["directory"])
+    print(len(allunits))
     dirs = []
     weight = []
     for base, dirs, files in os.walk(".//RSPVP//rspvp"):
@@ -451,16 +461,13 @@ class SDSGC(commands.Cog):
             f  = os.listdir(path)
             weight.append(len(f))
     while len(dirs)<4:
-      path = ".//RSPVP//rspvp"
-      files = os.listdir(path)
-      cpath = path+"//"+random.choices(files, weights=weight,k=1)[0]
-      image = cpath+"//"+random.choice(os.listdir(cpath))
+      image = random.choice(allunits)
       if len(dirs) == 0:
         dirs.append(image)
       else:
         copy = 0
         for item in dirs:
-          if str(cpath) in str(item):
+          if str(image) in str(item):
             copy+=1
             break
           elif 'Hawk' in image and 'Hawk' in str(item):
@@ -498,6 +505,17 @@ class SDSGC(commands.Cog):
     #   embed.set_image(url = f"attachment://image.jpg")
     #   embed.set_thumbnail(url=ctx.author.avatar_url)
     #   return await ctx.send(embed = embed, file = file)
+    names = ctx.author.display_name
+    user = sdsgc.find_one( {'_id': ctx.author.id} )
+    if user == None:
+      pending_command = self.client.get_command('createProfile')
+      await ctx.invoke(pending_command)
+      user = sdsgc.find_one( {'_id': ctx.author.id} )
+    allunits = []
+    for key in user:
+      if type(user[key]) == dict:
+        if user[key]['owned'] == True:
+          allunits.append(user[key]["directory"])
     try:
       tries = 0
       if exclude == "":
@@ -507,22 +525,11 @@ class SDSGC(commands.Cog):
         excludelist = exclude.lower().split(' ')
         # print(excludelist)
         includelist = excludelist[0:-1]
-        names = ctx.author.display_name
         dirs = []
-        weight = []
-        for base, dirs, files in os.walk(".//RSPVP//rspvp"):
-            for directories in dirs:
-                path = ".//RSPVP//rspvp//" + str(directories)
-                f  = os.listdir(path)
-                weight.append(len(f))
         while len(dirs)<4 and tries < 500:
           tries += 1
           ban = True
-          path = ".//RSPVP//rspvp"
-          files = os.listdir(path)
-          cpath = path+"//"+random.choices(files, weights=weight,k=1)[0]
-          unit = random.choice(os.listdir(cpath))
-          image = cpath+"//"+unit
+          image = random.choice(allunits)
           # print(image)
           for include in includelist:
             if include in image.lower():
@@ -534,7 +541,7 @@ class SDSGC(commands.Cog):
             else:
               copy = 0
               for item in dirs:
-                if str(cpath) in str(item):
+                if str(image) in str(item):
                   copy+=1
                   break
                 elif 'Hawk' in image and 'Hawk' in str(item):
@@ -560,15 +567,7 @@ class SDSGC(commands.Cog):
         await ctx.send(embed = embed, file = file)
         return os.remove(f'.//RSPVP//pull//{ctx.author.id}.jpg')
       elif "(" in exclude:
-        names = ctx.author.display_name
         dirs = []
-        holding = []
-        weight = []
-        for base, direct, files in os.walk(".//RSPVP//rspvp"):
-          for directories in direct:
-            path = ".//RSPVP//rspvp//" + str(directories)
-            f  = os.listdir(path)
-            weight.append(len(f))
         unitNum = 4
         forcedUnits = re.search(r"\(([A-Za-z0-9_ ,-]+)\)", exclude)
         excludeList = re.sub(r"\(([A-Za-z0-9_ ,-]+)\)", "",exclude).lower().split(' ')
@@ -594,11 +593,7 @@ class SDSGC(commands.Cog):
             unitNum-=1
         while unitNum > 0:
           ban = False
-          path = ".//RSPVP//rspvp"
-          files = os.listdir(path)
-          cpath = path+"//"+random.choices(files, weights=weight,k=1)[0]
-          unit = random.choice(os.listdir(cpath))
-          image = cpath+"//"+unit
+          image = random.choice(allunits)
           # print(image)
           for ex in excludeList:
             if ex in image.lower():
@@ -611,7 +606,7 @@ class SDSGC(commands.Cog):
             else:
               copy = 0
               for item in dirs:
-                if str(cpath) in str(item):
+                if str(image) in str(item):
                   copy+=1
                   break
                 elif 'Hawk' in image and 'Hawk' in str(item):
@@ -645,22 +640,11 @@ class SDSGC(commands.Cog):
       else:
         excludelist = exclude.lower().split(' ')
         # print(excludelist)
-        names = ctx.author.display_name
         dirs = []
-        weight = []
-        for base, dirs, files in os.walk(".//RSPVP//rspvp"):
-            for directories in dirs:
-                path = ".//RSPVP//rspvp//" + str(directories)
-                f  = os.listdir(path)
-                weight.append(len(f))
         while len(dirs)<4 and tries < 500:
           tries += 1
           ban = False
-          path = ".//RSPVP//rspvp"
-          files = os.listdir(path)
-          cpath = path+"//"+random.choices(files, weights=weight,k=1)[0]
-          unit = random.choice(os.listdir(cpath))
-          image = cpath+"//"+unit
+          image = random.choice(allunits)
           # print(image)
           for ex in excludelist:
             if ex in image.lower():
@@ -672,7 +656,7 @@ class SDSGC(commands.Cog):
             else:
               copy = 0
               for item in dirs:
-                if str(cpath) in str(item):
+                if str(image) in str(item):
                   copy+=1
                   break
                 elif 'Hawk' in image and 'Hawk' in str(item):
@@ -953,7 +937,204 @@ class SDSGC(commands.Cog):
     with open("event.json","w") as f:
       json.dump(main,f,indent=4)
     return await ctx.send(embed=embed)
-        
+
+  # Random select profile 
+  @commands.command()
+  async def profile(self, ctx):
+    """ Display the missing units """
+    names = ctx.author.display_name
+    user = sdsgc.find_one( {'_id': ctx.author.id} )
+    if user == None:
+      pending_command = self.client.get_command('createProfile')
+      await ctx.invoke(pending_command)
+      user = sdsgc.find_one( {'_id': ctx.author.id} )
+    allunits = []
+    for key in user:
+      if type(user[key]) == dict:
+        if user[key]['owned'] == False:
+          allunits.append(user[key]["directory"])
+    n = 5
+    split_units = [allunits[i * n:(i + 1) * n] for i in range((len(allunits) + n - 1) // n )]
+    part = 0
+    for section in split_units:
+      if len(section) == 5:
+        im0 = Image.open(section[0])
+        im1 = Image.open(section[1])
+        im2 = Image.open(section[2])
+        im3 = Image.open(section[3])
+        im4 = Image.open(section[4])
+        get_concat_h_multi_blank([im0,im1,im2,im3,im4]).save(f'.//Banner//pull//{names}{part}.jpg')
+        part+=1
+      else:
+        try:
+          im0 = Image.open(section[0])
+        except:
+          im0 = Image.new("RGB", (100, 100), (47,49,54))
+        try:
+          im1 = Image.open(section[1])
+        except:
+          im1 = Image.new("RGB", (100, 100), (47,49,54))
+        try:
+          im2 = Image.open(section[2])
+        except:
+          im2 = Image.new("RGB", (100, 100), (47,49,54))
+        try:
+          im3 = Image.open(section[3])
+        except:
+          im3 = Image.new("RGB", (100, 100), (47,49,54))
+        try:
+          im4 = Image.open(section[4])
+        except:
+          im4 = Image.new("RGB", (100, 100), (47,49,54))
+        get_concat_h_multi_blank([im0,im1,im2,im3,im4]).save(f'.//Banner//pull//{names}{part}.jpg')
+
+    images = list(os.listdir(".//Banner//pull"))
+    Image.open(f".//Banner//pull//{images[0]}").save(f'.//Banner//pull//{names}.jpg')
+    images.pop(0)
+    for unit in images:
+      img = Image.open(f'.//Banner//pull//{names}.jpg')
+      addon = Image.open(f".//Banner//pull//{unit}")
+      get_concat_v_blank(img, addon).save(f'.//Banner//pull//{names}.jpg')
+
+    quote = f"{names} is missing the following units"
+    file = discord.File(f'.//Banner//pull//{names}.jpg', filename="image.jpg")
+    em = discord.Embed(title = quote, colour = ctx.author.color)
+    em.set_image(url = f"attachment://image.jpg")
+    await ctx.send(embed = em,file=file)
+
+    try:
+      shutil.rmtree('.//Banner//pull//')
+    except OSError as e:
+      print("Error: %s : %s" % ('.//Banner//pull//', e.strerror))
+    return os.mkdir('.//Banner//pull//')
+    
+  @commands.command()
+  @commands.is_owner()
+  async def newUnit(self, ctx, unit, directory):
+    """ Add new unit into the all user pool """
+    sdsgc.update({}, {"$set": {unit: {"directory": directory}, {"owned"}: False }})
+    await ctx.send(f"New unit {unit} added to all")
+
+  @commands.command()
+  @commands.is_owner()
+  async def newBase(self, ctx):
+    """ Create a new base for others to clone """
+    try:
+      sdsgc.remove({"_id":"BASE"})
+      print("deleted")
+    except:
+      print("nothing to deleted")
+      pass
+    sdsgc.insert_one({
+      "_id":"BASE",
+      "rs_setting": ""
+      })
+    allunitsdirs=[]
+    allunits=[]
+    await ctx.send("Initiating new base")
+    for base, dirs, files in os.walk(".//RSPVP//rspvp"):
+      for file in files:
+        allunitsdirs.append(str(os.path.join(base,file)))
+        allunits.append(str(file))
+    for num in range(len(allunits)):
+      unit = {str(allunits[num]).split('.')[0]: {
+        "directory": str(allunitsdirs[num]),
+        "owned": True
+      } }
+      sdsgc.update_one( {"_id": "BASE"}, {"$set": unit })
+    return await ctx.send("New Profile Initiated")
+
+  @commands.command()
+  async def deleteProfile(self, ctx):
+    """ Delete profile """
+    sdsgc.remove({"_id":ctx.author.id})
+    return await ctx.send("Profile deleted")
+
+  @commands.command()
+  async def createProfile(self, ctx):
+    """ Create a profile with all units owned """
+    base = sdsgc.find_one( {'_id': "BASE"} )
+    base["_id"] = ctx.author.id
+    sdsgc.insert(base)
+    return await ctx.send("New Profile Initiated")
+
+  @commands.command()
+  async def rssetting(self, ctx, *, msg):
+    """ Set the random select range """
+    user = sdsgc.find_one( {'_id': ctx.author.id} )
+    if user == None:
+      pending_command = self.client.get_command('createProfile')
+      await ctx.invoke(pending_command)
+      user = sdsgc.find_one( {'_id': ctx.author.id} )    
+    sdsgc.update_one({"_id":ctx.author.id}, {"$set":{"rs_setting":msg}})
+    return await ctx.send(f"Random select setting set to {msg}")
+
+  @commands.command(aliases=["srs"])
+  async def setrs(self, ctx):
+    """ Randomly select units with pre-set range """
+    user = sdsgc.find_one( {'_id': ctx.author.id} )
+    if user == None:
+      pending_command = self.client.get_command('createProfile')
+      await ctx.invoke(pending_command)
+      user = sdsgc.find_one( {'_id': ctx.author.id} )
+    exclude = user["rs_setting"]
+    if exclude == None:
+      exclude = ""
+    pending_command = self.client.get_command('randomselect')
+    await ctx.invoke(pending_command,exclude=exclude)
+
+  @commands.command(aliases=["ru"])
+  async def removeUnit(self, ctx, *, unitlist):
+    """ Remove a unit from user pool """
+    user = sdsgc.find_one( {'_id': ctx.author.id} )
+    if user == None:
+      pending_command = self.client.get_command('createProfile')
+      await ctx.invoke(pending_command)
+      user = sdsgc.find_one( {'_id': ctx.author.id} )
+    unitlist = unitlist.lower().split(',')
+    for include in unitlist:
+      includelist = include.lower().split(' ')
+      filterUnit = []
+      for base, direct, files in os.walk(".//RSPVP//rspvp"):
+          for file in files:
+            filterUnit.append(str(os.path.join(base,file)))
+      for i in includelist:
+        filterUnit = list(filter(lambda k: i in k.lower(), filterUnit))
+      if len(filterUnit) > 1:
+        embed = discord.Embed(title=f"More than one {include.upper()} found", description="Please be more specific", colour = discord.Color.red())
+        embed.set_footer(text= f"try {ctx.prefix}c {include}")
+        return await ctx.send(embed = embed)
+      else:
+        unit = str(filterUnit[0]).split('/')[-1][0:-4]
+        sdsgc.update_one({"_id":ctx.author.id}, {"$set":{f"{unit}.owned":False}})
+        await ctx.send(f"{unit} has been removed from {ctx.author.display_name}'s pool")
+
+  @commands.command(aliases=["au"])
+  async def addUnit(self, ctx, *, unitlist):
+    """ Add a unit to user pool """
+    user = sdsgc.find_one( {'_id': ctx.author.id} )
+    if user == None:
+      pending_command = self.client.get_command('createProfile')
+      await ctx.invoke(pending_command)
+      user = sdsgc.find_one( {'_id': ctx.author.id} )
+    unitlist = unitlist.lower().split(',')
+    for include in unitlist:
+      includelist = include.lower().split(' ')
+      filterUnit = []
+      for base, direct, files in os.walk(".//RSPVP//rspvp"):
+          for file in files:
+            filterUnit.append(str(os.path.join(base,file)))
+      for i in includelist:
+        filterUnit = list(filter(lambda k: i in k.lower(), filterUnit))
+      if len(filterUnit) > 1:
+        embed = discord.Embed(title=f"More than one {include.upper()} found", description="Please be more specific", colour = discord.Color.red())
+        embed.set_footer(text= f"try {ctx.prefix}c {include}")
+        return await ctx.send(embed = embed)
+      else:
+        unit = str(filterUnit[0]).split('/')[-1][0:-4]
+        sdsgc.update_one({"_id":ctx.author.id}, {"$set":{f"{unit}.owned":True}})
+        await ctx.send(f"{unit} has been added to {ctx.author.display_name}'s pool")
+
 def direct(directory,rank):
   path = f".//Banner//{rank}"
   files = os.listdir(path)
