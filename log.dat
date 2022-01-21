@@ -3805,3 +3805,23 @@ Command raised an exception: TypeError: 'Int64' object is not subscriptable
 2022-01-21 11:51:49,202: 172.18.0.1 - - [21/Jan/2022 11:51:49] "[37mHEAD / HTTP/1.1[0m" 200 -
 2022-01-21 11:53:50,953: 172.18.0.1 - - [21/Jan/2022 11:53:50] "[37mGET / HTTP/1.1[0m" 200 -
 2022-01-21 11:53:50,959: time now is: 21-Jan-2022 (19:53:50)
+2022-01-21 20:17:54,637 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-01-21 20:17:54,990 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-01-21 20:35:59,649 [WARNING] Error
+Sq
+Command raised an exception: IndexError: list index out of range
+2022-01-21 20:38:03,902 [WARNING] Error
+Sq
+Command raised an exception: IndexError: list index out of range
+2022-01-21 20:44:39,118 [WARNING] Error
+Sq
+Command "rm" is not found
+2022-01-21 20:51:39,199 [WARNING] Error
+Lux (Megelda is supremacy)
+Command raised an exception: TypeError: 'Collection' object is not callable. If you meant to call the 'insert' method on a 'Collection' object it is failing because no such method exists.
+2022-01-21 20:52:26,700 [WARNING] Error
+Sq
+Command raised an exception: KeyError: 'directory'
+2022-01-21 20:52:52,893 [WARNING] Error
+Sq
+Command raised an exception: KeyError: 'directory'

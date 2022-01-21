@@ -452,14 +452,7 @@ class SDSGC(commands.Cog):
       if type(user[key]) == dict:
         if user[key]['owned'] == True:
           allunits.append(user[key]["directory"])
-    print(len(allunits))
     dirs = []
-    weight = []
-    for base, dirs, files in os.walk(".//RSPVP//rspvp"):
-        for directories in dirs:
-            path = ".//RSPVP//rspvp//" + str(directories)
-            f  = os.listdir(path)
-            weight.append(len(f))
     while len(dirs)<4:
       image = random.choice(allunits)
       if len(dirs) == 0:
@@ -939,7 +932,7 @@ class SDSGC(commands.Cog):
     return await ctx.send(embed=embed)
 
   # Random select profile 
-  @commands.command()
+  @commands.command(aliases=['missing'])
   async def profile(self, ctx):
     """ Display the missing units """
     names = ctx.author.display_name
@@ -953,6 +946,9 @@ class SDSGC(commands.Cog):
       if type(user[key]) == dict:
         if user[key]['owned'] == False:
           allunits.append(user[key]["directory"])
+    if len(allunits) == 0:
+      embed = discord.Embed(description="No missing units")
+      return await ctx.send(embed=embed)
     n = 5
     split_units = [allunits[i * n:(i + 1) * n] for i in range((len(allunits) + n - 1) // n )]
     part = 0
@@ -1055,7 +1051,7 @@ class SDSGC(commands.Cog):
     """ Create a profile with all units owned """
     base = sdsgc.find_one( {'_id': "BASE"} )
     base["_id"] = ctx.author.id
-    sdsgc.insert(base)
+    sdsgc.insert_one(base)
     return await ctx.send("New Profile Initiated")
 
   @commands.command()
@@ -1083,7 +1079,7 @@ class SDSGC(commands.Cog):
     pending_command = self.client.get_command('randomselect')
     await ctx.invoke(pending_command,exclude=exclude)
 
-  @commands.command(aliases=["ru"])
+  @commands.command(aliases=["ru","remove","rm"])
   async def removeUnit(self, ctx, *, unitlist):
     """ Remove a unit from user pool """
     user = sdsgc.find_one( {'_id': ctx.author.id} )
@@ -1093,23 +1089,33 @@ class SDSGC(commands.Cog):
       user = sdsgc.find_one( {'_id': ctx.author.id} )
     unitlist = unitlist.lower().split(',')
     for include in unitlist:
-      includelist = include.lower().split(' ')
-      filterUnit = []
-      for base, direct, files in os.walk(".//RSPVP//rspvp"):
-          for file in files:
-            filterUnit.append(str(os.path.join(base,file)))
-      for i in includelist:
-        filterUnit = list(filter(lambda k: i in k.lower(), filterUnit))
-      if len(filterUnit) > 1:
-        embed = discord.Embed(title=f"More than one {include.upper()} found", description="Please be more specific", colour = discord.Color.red())
-        embed.set_footer(text= f"try {ctx.prefix}c {include}")
-        return await ctx.send(embed = embed)
-      else:
-        unit = str(filterUnit[0]).split('/')[-1][0:-4]
-        sdsgc.update_one({"_id":ctx.author.id}, {"$set":{f"{unit}.owned":False}})
-        await ctx.send(f"{unit} has been removed from {ctx.author.display_name}'s pool")
+      try:
+        includelist = include.lower().split(' ')
+        filterUnit = []
+        for base, direct, files in os.walk(".//RSPVP//rspvp"):
+            for file in files:
+              filterUnit.append(str(os.path.join(base,file)))
+        for i in includelist:
+          filterUnit = list(filter(lambda k: i in k.lower(), filterUnit))
+        if len(filterUnit) > 1:
+          embed = discord.Embed(title=f"More than one {include.upper()} found", description="Please be more specific", colour = discord.Color.red())
+          embed.set_footer(text= f"try {ctx.prefix}c {include}")
+          return await ctx.send(embed = embed)
+        else:
+          if '\\' in str(filterUnit[0]):
+            unit = str(filterUnit[0]).split('\\')[-1][0:-4]
+          else:
+            unit = str(filterUnit[0]).split('/')[-1][0:-4]
+          sdsgc.find_one_and_update({"_id":ctx.author.id}, {"$set":{f"{unit}.owned":False}})
+          await ctx.send(f"`{unit}` has been removed from `{ctx.author.display_name}`'s pool")
+      except IndexError:
+        file = discord.File(f'.//RSPVP//questionmark.png', filename="image.jpg")
+        embed = discord.Embed(title=f"No {include.upper()} found", colour = discord.Color.red())
+        embed.set_image(url = f"attachment://image.jpg")
+        return await ctx.send(embed = embed, file=file)
 
-  @commands.command(aliases=["au"])
+
+  @commands.command(aliases=["au","own"])
   async def addUnit(self, ctx, *, unitlist):
     """ Add a unit to user pool """
     user = sdsgc.find_one( {'_id': ctx.author.id} )
@@ -1119,21 +1125,30 @@ class SDSGC(commands.Cog):
       user = sdsgc.find_one( {'_id': ctx.author.id} )
     unitlist = unitlist.lower().split(',')
     for include in unitlist:
-      includelist = include.lower().split(' ')
-      filterUnit = []
-      for base, direct, files in os.walk(".//RSPVP//rspvp"):
-          for file in files:
-            filterUnit.append(str(os.path.join(base,file)))
-      for i in includelist:
-        filterUnit = list(filter(lambda k: i in k.lower(), filterUnit))
-      if len(filterUnit) > 1:
-        embed = discord.Embed(title=f"More than one {include.upper()} found", description="Please be more specific", colour = discord.Color.red())
-        embed.set_footer(text= f"try {ctx.prefix}c {include}")
-        return await ctx.send(embed = embed)
-      else:
-        unit = str(filterUnit[0]).split('/')[-1][0:-4]
-        sdsgc.update_one({"_id":ctx.author.id}, {"$set":{f"{unit}.owned":True}})
-        await ctx.send(f"{unit} has been added to {ctx.author.display_name}'s pool")
+      try:
+        includelist = include.lower().split(' ')
+        filterUnit = []
+        for base, direct, files in os.walk(".//RSPVP//rspvp"):
+            for file in files:
+              filterUnit.append(str(os.path.join(base,file)))
+        for i in includelist:
+          filterUnit = list(filter(lambda k: i in k.lower(), filterUnit))
+        if len(filterUnit) > 1:
+          embed = discord.Embed(title=f"More than one {include.upper()} found", description="Please be more specific", colour = discord.Color.red())
+          embed.set_footer(text= f"try {ctx.prefix}c {include}")
+          return await ctx.send(embed = embed)
+        else:
+          if '\\' in str(filterUnit[0]):
+            unit = str(filterUnit[0]).split('\\')[-1][0:-4]
+          else:
+            unit = str(filterUnit[0]).split('/')[-1][0:-4]
+          sdsgc.find_one_and_update({"_id":ctx.author.id}, {"$set":{f"{unit}.owned":True}})
+          await ctx.send(f"`{unit}` has been added to `{ctx.author.display_name}`'s pool")
+      except IndexError:
+        file = discord.File(f'.//RSPVP//questionmark.png', filename="image.jpg")
+        embed = discord.Embed(title=f"No {include.upper()} found", colour = discord.Color.red())
+        embed.set_image(url = f"attachment://image.jpg")
+        return await ctx.send(embed = embed, file=file)
 
 def direct(directory,rank):
   path = f".//Banner//{rank}"

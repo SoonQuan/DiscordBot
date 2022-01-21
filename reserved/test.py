@@ -78,7 +78,7 @@ class Test(commands.Cog):
   async def createProfile(self, ctx):
     base = sdsgc.find_one( {'_id': "BASE"} )
     base["_id"] = ctx.author.id
-    sdsgc.insert(base)
+    sdsgc.insert_one(base)
     return await ctx.send("New Profile Initiated")
 
   @commands.command()
