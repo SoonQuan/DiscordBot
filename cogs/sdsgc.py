@@ -329,7 +329,6 @@ class SDSGC(commands.Cog):
       print("Error: %s : %s" % ('.//Banner//pull//', e.strerror))
     return os.mkdir('.//Banner//pull//')
 
-
   @commands.command(aliases = ['+gc','++'])
   @commands.has_any_role('ADMIN','N⍧ Sovereign', 'G⍧ Archangels', 'K⍧ Kage', 'le vendel' , 'D⍧ Dragon', 'W⍧ Grace', 'R⍧ Leviathan', 'Overseer')
   async def add_gc(self,ctx,unit):
@@ -455,12 +454,13 @@ class SDSGC(commands.Cog):
     dirs = []
     while len(dirs)<4:
       image = random.choice(allunits)
+      path = image.split('/')[-2]
       if len(dirs) == 0:
         dirs.append(image)
       else:
         copy = 0
         for item in dirs:
-          if str(image) in str(item):
+          if str(path) in str(item):
             copy+=1
             break
           elif 'Hawk' in image and 'Hawk' in str(item):
@@ -523,6 +523,7 @@ class SDSGC(commands.Cog):
           tries += 1
           ban = True
           image = random.choice(allunits)
+          path = image.split('/')[-2]
           # print(image)
           for include in includelist:
             if include in image.lower():
@@ -534,7 +535,7 @@ class SDSGC(commands.Cog):
             else:
               copy = 0
               for item in dirs:
-                if str(image) in str(item):
+                if str(path) in str(item):
                   copy+=1
                   break
                 elif 'Hawk' in image and 'Hawk' in str(item):
@@ -587,6 +588,7 @@ class SDSGC(commands.Cog):
         while unitNum > 0:
           ban = False
           image = random.choice(allunits)
+          path = image.split('/')[-2]
           # print(image)
           for ex in excludeList:
             if ex in image.lower():
@@ -599,7 +601,7 @@ class SDSGC(commands.Cog):
             else:
               copy = 0
               for item in dirs:
-                if str(image) in str(item):
+                if str(path) in str(item):
                   copy+=1
                   break
                 elif 'Hawk' in image and 'Hawk' in str(item):
@@ -638,6 +640,7 @@ class SDSGC(commands.Cog):
           tries += 1
           ban = False
           image = random.choice(allunits)
+          path = image.split('/')[-2]
           # print(image)
           for ex in excludelist:
             if ex in image.lower():
@@ -649,7 +652,7 @@ class SDSGC(commands.Cog):
             else:
               copy = 0
               for item in dirs:
-                if str(image) in str(item):
+                if str(path) in str(item):
                   copy+=1
                   break
                 elif 'Hawk' in image and 'Hawk' in str(item):
@@ -933,14 +936,18 @@ class SDSGC(commands.Cog):
 
   # Random select profile 
   @commands.command(aliases=['missing'])
-  async def profile(self, ctx):
+  async def profile(self, ctx, member:discord.Member=None):
     """ Display the missing units """
-    names = ctx.author.display_name
-    user = sdsgc.find_one( {'_id': ctx.author.id} )
+    if member == None:
+      target = ctx.author
+    else:
+      target = member
+    names = target.display_name
+    user = sdsgc.find_one( {'_id': target.id} )
     if user == None:
       pending_command = self.client.get_command('createProfile')
       await ctx.invoke(pending_command)
-      user = sdsgc.find_one( {'_id': ctx.author.id} )
+      user = sdsgc.find_one( {'_id': target.id} )
     allunits = []
     for key in user:
       if type(user[key]) == dict:
@@ -994,7 +1001,7 @@ class SDSGC(commands.Cog):
 
     quote = f"{names} is missing the following units"
     file = discord.File(f'.//Banner//pull//{names}.jpg', filename="image.jpg")
-    em = discord.Embed(title = quote, colour = ctx.author.color)
+    em = discord.Embed(title = quote, colour = target.color)
     em.set_image(url = f"attachment://image.jpg")
     await ctx.send(embed = em,file=file)
 
@@ -1149,6 +1156,49 @@ class SDSGC(commands.Cog):
         embed = discord.Embed(title=f"No {include.upper()} found", colour = discord.Color.red())
         embed.set_image(url = f"attachment://image.jpg")
         return await ctx.send(embed = embed, file=file)
+
+  @commands.command()
+  async def unit(self,ctx,unit="listing"):
+    """ Refer to the units on bot """
+    user = sdsgc.find_one( {'_id': "BASE"} )
+    allunits = []
+    for key in user:
+      if type(user[key]) == dict:
+        allunits.append(key)
+
+    nlist = sorted(allunits)
+    d = {}
+    out = []
+    if unit == "listing":
+      n = 10
+      final = [nlist[i * n:(i + 1) * n] for i in range((len(nlist) + n - 1) // n )]
+      for i in range(len(final)):
+        d["Page{0}".format(i+1)] = "\n".join(final[i])
+      for page in list(d.keys()):
+        out.append(discord.Embed(title="Unit list:",description=d[page], color=ctx.author.color))
+      if len(final) == 1:
+        em = discord.Embed(title="Unit list:",description=d['Page1'], color=ctx.author.color)
+        return await ctx.send(embed=em)
+      paginator = DiscordUtils.Pagination.CustomEmbedPaginator(ctx, remove_reactions=True)
+      paginator.add_reaction('⏮️', "first")
+      paginator.add_reaction('⏪', "back")
+      paginator.add_reaction('🔐', "lock")
+      paginator.add_reaction('⏩', "next")
+      paginator.add_reaction('⏭️', "last")
+      embeds = out
+      return await paginator.run(embeds)
+
+    msg = f'You are looking for `{str(unit)}\n`'
+    suggest = []
+    for i in nlist:
+      if unit in i.lower():
+        suggest.append(i)
+    if len(suggest) > 0:
+      msg += '\n__Suggested:__'
+      for item in suggest:
+        msg += f'\n➣{item}'
+    em = discord.Embed(description=msg, colour = discord.Color.red())
+    return await ctx.send(embed = em)
 
 def direct(directory,rank):
   path = f".//Banner//{rank}"
