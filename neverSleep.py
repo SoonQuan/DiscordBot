@@ -20,7 +20,7 @@ def ping(target, debug):
             b = "time now is: " + str(time.strftime("%d-%b-%Y (%H:%M:%S)",time.gmtime(time.time()+28800)))
             logging.warn(b)
             print("I'm alive. Status Code: " + str(r.status_code))
-        time.sleep(random.randint(240,300)) #alternate ping time between 4 and 5 minutes
+        time.sleep(random.randint(260,280)) #alternate ping time between 4 and 5 minutes
 def awake(target, debug=False):  
     # log = logging.getLogger('werkzeug')
     # log.disabled = True

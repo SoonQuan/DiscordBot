@@ -4,7 +4,8 @@ import os
 from pymongo import MongoClient
 
 from datetime import datetime
-from pytz import timezone
+from pytz import timezone, all_timezones
+import difflib
 
 cluster = MongoClient(os.getenv('MONGODB'))
 
@@ -141,6 +142,18 @@ class Time(commands.Cog):
       fmt = f"It's :crescent_moon: %-I:%M %p on %A, %B %d in `{location}`. (UTC%z)"
     em = discord.Embed(description = now_location.strftime(fmt), colour = discord.Color.greyple())
     await ctx.send(embed=em)
+
+  # @commands.command()
+  # async def test(self, ctx, *, location=None):
+  #   if location != None:
+  #     zone = difflib.get_close_matches(location, all_timezones, n=5, cutoff=0.6)
+  #     print(zone)
+  #     for item in zone:
+  #       if location.lower() in item.lower():
+  #         dt_mtn = datetime.now(tz=timezone(item))
+  #         fmt = f"It's %-I:%M %p on %A, %B %d in `{item}`. (UTC%z)"
+  #         print(dt_mtn.strftime(fmt))
+
 
 
 async def find_timezone(location):

@@ -441,11 +441,7 @@ class SDSGC(commands.Cog):
   async def rselectpvp(self,ctx):
     """ Randomly select 4 units for you """
     names = ctx.author.display_name
-    user = sdsgc.find_one( {'_id': ctx.author.id} )
-    if user == None:
-      pending_command = self.client.get_command('createProfile')
-      await ctx.invoke(pending_command)
-      user = sdsgc.find_one( {'_id': ctx.author.id} )
+    user = sdsgc.find_one( {'_id': "BASE"} )
     allunits = []
     for key in user:
       if type(user[key]) == dict:
