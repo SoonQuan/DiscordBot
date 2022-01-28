@@ -1156,22 +1156,22 @@ class SDSGC(commands.Cog):
   @commands.command()
   @commands.is_owner()
   async def addNewUnit(self, ctx, name, direct):
-    sdsgc.update({},
-    {
-        '$set': {
+    sdsgc.update_many(
+      {},
+      {'$set': {
             f'{name}': {
                 'directory': f'{direct}', 
                 'owned': False
             }
         }
-    }, True, True
+    }, upsert=True, array_filters=None
     )
     await ctx.send(f"New unit `{name}` added with `{direct}`")
 
   @commands.command()
   @commands.is_owner()
   async def rmUnit(self, ctx, name):
-    sdsgc.update({}, {'$unset': { name: ""}},True, True)
+    sdsgc.update_many({}, {'$unset': { name: ""}}, upsert=True, array_filters=None)
     await ctx.send(f"Unit `{name}` removed")
     
   @commands.command()
