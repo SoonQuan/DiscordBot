@@ -7,6 +7,9 @@ from datetime import datetime
 from pytz import timezone, all_timezones
 import difflib
 
+from geopy.geocoders import Nominatim
+from timezonefinder import TimezoneFinder
+
 cluster = MongoClient(os.getenv('MONGODB'))
 
 db = cluster["luckbot"]
@@ -26,8 +29,6 @@ client = commands.Bot(command_prefix=get_prefix, case_insensitive=True, intents=
 botcolour = 0x0fa4aab
 
 
-from geopy.geocoders import Nominatim
-from timezonefinder import TimezoneFinder
 
 class Time(commands.Cog):
   """ Time related commands """

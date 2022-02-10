@@ -229,7 +229,7 @@ class SDSGC(commands.Cog):
     os.remove('.//Banner//pull//{}b.jpg'.format(ID))
     return os.remove('.//Banner//pull//{}c.jpg'.format(ID))
 
-  @commands.command()
+  @commands.command(aliases=['banners'])
   @commands.cooldown(1,1,commands.BucketType.user)
   async def banner(self,ctx,arg1="list"):
     """ Check the banner listed """
