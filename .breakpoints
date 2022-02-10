@@ -1,3 +1,12 @@
 {
-  "files": {}
+  "files": {
+    "cogs/sdsgc.py": [
+      {
+        "id": "a58e16b3-76f5-4913-bfd0-61f80938c289",
+        "line": 658,
+        "version": 3720,
+        "index": 25267
+      }
+    ]
+  }
 }

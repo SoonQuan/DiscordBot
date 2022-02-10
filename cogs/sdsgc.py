@@ -505,6 +505,7 @@ class SDSGC(commands.Cog):
       if type(user[key]) == dict:
         if user[key]['owned'] == True:
           allunits.append(user[key]["directory"])
+    allunits.sort()
     try:
       tries = 0
       if exclude == "":
@@ -628,6 +629,107 @@ class SDSGC(commands.Cog):
         embed.set_thumbnail(url=ctx.author.avatar_url)
         await ctx.send(embed = embed, file = file)
         return os.remove(f'.//RSPVP//pull//{ctx.author.id}.jpg')
+      elif "[" in exclude:
+        dirs = []
+        unitNum = 4
+        allrank = ['-ssr', '-sr', '-r']
+        limits = re.search(r"\[([A-Za-z0-9_ ,-]+)\]", exclude)
+        excludeList = re.sub(r"\[([A-Za-z0-9_ ,-]+)\]", "",exclude).lower().split(' ')
+        limitsList = limits.group(0)[1:-1].split(',')
+        excludeList = list(map(str.strip, excludeList))
+        limitsList = list(map(str.strip, limitsList))
+        excludeList = [x for x in excludeList if x]
+        limitsList = [x for x in limitsList if x]
+        filterUnits = allunits
+        for ex in excludeList:
+          filterUnits = list(filter(lambda k: ex not in k.lower(), filterUnits))
+        for limit in limitsList:
+          includelist = limit.lower().split(' ') #['1', 'SSR']
+          numb = int(includelist[0])
+          rank = '-'+ str(includelist[1]).lower() #'-ssr'
+          allrank.remove(rank)
+          while numb > 0 and tries < 500:
+            tries += 1
+            ban = False
+            image = random.choice(filterUnits)
+            path = image.split('/')[-2]
+            # print(image)
+            if rank == '-ssr':
+              for rk in allrank:
+                if rk in image.lower():
+                  # print(f'unit with {rank}')
+                  ban = True
+            else:
+              if rank not in image.lower():
+                # print(f'unit with {rank}')
+                ban = True
+            if ban == False:
+              if len(dirs) == 0:
+                dirs.append(image)
+                numb-=1
+                unitNum-=1
+              else:
+                copy = 0
+                for item in dirs:
+                  if str(path) in str(item):
+                    copy+=1
+                    break
+                  elif 'Hawk' in image and 'Hawk' in str(item):
+                    copy+=1
+                    break
+                if copy>0:
+                  continue
+                else:
+                  dirs.append(image)
+                  numb-=1
+                  unitNum-=1
+        while unitNum > 0:
+          ban = True
+          image = random.choice(filterUnits)
+          path = image.split('/')[-2]
+          # print(image)
+          for ex in allrank:
+            if ex in image.lower():
+              # print('BAN UNIT')
+              ban = False
+          if ban == False:
+            if len(dirs) == 0:
+              dirs.append(image)
+              unitNum-=1
+            else:
+              copy = 0
+              for item in dirs:
+                if str(path) in str(item):
+                  copy+=1
+                  break
+                elif 'Hawk' in image and 'Hawk' in str(item):
+                  copy+=1
+                  break
+              if copy>0:
+                continue
+              else:
+                dirs.append(image)
+                unitNum-=1
+        im0 = Image.open(dirs[0])
+        im1 = Image.open(dirs[1])
+        im2 = Image.open(dirs[2])
+        im3 = Image.open(dirs[3])
+
+        get_concat_h_multi_blank([im0,im1,im2,im3]).save(f'.//RSPVP//pull//{ctx.author.id}.jpg')
+        quote = f"{names} selected:\n"
+        for x in limitsList:
+          quote += f"➣{str(x).upper()} Limit "
+        quote += "\nAnd randomly selected units"
+        if len(excludeList) != 0:
+          quote += "\nExcluding:\n"
+          for x in excludeList:
+            quote += f"➣{str(x)} "
+        file = discord.File(f'.//RSPVP//pull//{ctx.author.id}.jpg')
+        embed = discord.Embed(title = quote,colour = ctx.author.color)
+        embed.set_image(url = f"attachment://{ctx.author.id}.jpg")
+        embed.set_thumbnail(url=ctx.author.avatar_url)
+        await ctx.send(embed = embed, file = file)
+        return os.remove(f'.//RSPVP//pull//{ctx.author.id}.jpg')
       else:
         excludelist = exclude.lower().split(' ')
         # print(excludelist)
@@ -713,7 +815,6 @@ class SDSGC(commands.Cog):
       else:
         includelist = include.lower().split(' ')
         # print(includelist)
-        names = ctx.author.display_name
         allunits = []
         for base, dirs, files in os.walk(".//RSPVP//rspvp"):
             for file in files:
@@ -731,7 +832,7 @@ class SDSGC(commands.Cog):
             im2 = Image.open(section[2])
             im3 = Image.open(section[3])
             im4 = Image.open(section[4])
-            get_concat_h_multi_blank([im0,im1,im2,im3,im4]).save(f'.//Banner//pull//{names}{part}.jpg')
+            get_concat_h_multi_blank([im0,im1,im2,im3,im4]).save(f'.//Banner//pull//{ctx.author.id}{part}.jpg')
             part+=1
           else:
             try:
@@ -754,18 +855,18 @@ class SDSGC(commands.Cog):
               im4 = Image.open(section[4])
             except:
               im4 = Image.new("RGB", (100, 100), (47,49,54))
-            get_concat_h_multi_blank([im0,im1,im2,im3,im4]).save(f'.//Banner//pull//{names}{part}.jpg')
+            get_concat_h_multi_blank([im0,im1,im2,im3,im4]).save(f'.//Banner//pull//{ctx.author.id}{part}.jpg')
 
         images = list(os.listdir(".//Banner//pull"))
-        Image.open(f".//Banner//pull//{images[0]}").save(f'.//Banner//pull//{names}.jpg')
+        Image.open(f".//Banner//pull//{images[0]}").save(f'.//Banner//pull//{ctx.author.id}.jpg')
         images.pop(0)
         for unit in images:
-          img = Image.open(f'.//Banner//pull//{names}.jpg')
+          img = Image.open(f'.//Banner//pull//{ctx.author.id}.jpg')
           addon = Image.open(f".//Banner//pull//{unit}")
-          get_concat_v_blank(img, addon).save(f'.//Banner//pull//{names}.jpg')
+          get_concat_v_blank(img, addon).save(f'.//Banner//pull//{ctx.author.id}.jpg')
 
         quote = include.upper()
-        file = discord.File(f'.//Banner//pull//{names}.jpg', filename="image.jpg")
+        file = discord.File(f'.//Banner//pull//{ctx.author.id}.jpg', filename="image.jpg")
         em = discord.Embed(title = quote, colour = ctx.author.color)
         em.set_image(url = f"attachment://image.jpg")
         await ctx.send(embed = em,file=file)
@@ -962,7 +1063,7 @@ class SDSGC(commands.Cog):
         im2 = Image.open(section[2])
         im3 = Image.open(section[3])
         im4 = Image.open(section[4])
-        get_concat_h_multi_blank([im0,im1,im2,im3,im4]).save(f'.//Banner//pull//{names}{part}.jpg')
+        get_concat_h_multi_blank([im0,im1,im2,im3,im4]).save(f'.//Banner//pull//{ctx.author.id}{part}.jpg')
         part+=1
       else:
         try:
@@ -985,18 +1086,18 @@ class SDSGC(commands.Cog):
           im4 = Image.open(section[4])
         except:
           im4 = Image.new("RGB", (100, 100), (47,49,54))
-        get_concat_h_multi_blank([im0,im1,im2,im3,im4]).save(f'.//Banner//pull//{names}{part}.jpg')
+        get_concat_h_multi_blank([im0,im1,im2,im3,im4]).save(f'.//Banner//pull//{ctx.author.id}{part}.jpg')
 
     images = list(os.listdir(".//Banner//pull"))
-    Image.open(f".//Banner//pull//{images[0]}").save(f'.//Banner//pull//{names}.jpg')
+    Image.open(f".//Banner//pull//{images[0]}").save(f'.//Banner//pull//{ctx.author.id}.jpg')
     images.pop(0)
     for unit in images:
-      img = Image.open(f'.//Banner//pull//{names}.jpg')
+      img = Image.open(f'.//Banner//pull//{ctx.author.id}.jpg')
       addon = Image.open(f".//Banner//pull//{unit}")
-      get_concat_v_blank(img, addon).save(f'.//Banner//pull//{names}.jpg')
+      get_concat_v_blank(img, addon).save(f'.//Banner//pull//{ctx.author.id}.jpg')
 
     quote = f"{names} is missing the following units"
-    file = discord.File(f'.//Banner//pull//{names}.jpg', filename="image.jpg")
+    file = discord.File(f'.//Banner//pull//{ctx.author.id}.jpg', filename="image.jpg")
     em = discord.Embed(title = quote, colour = target.color)
     em.set_image(url = f"attachment://image.jpg")
     await ctx.send(embed = em,file=file)
