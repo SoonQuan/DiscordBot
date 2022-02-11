@@ -10872,3 +10872,19 @@ Command "add" is not found
 2022-02-11 01:27:18,078: 172.18.0.1 - - [11/Feb/2022 01:27:18] "[37mHEAD / HTTP/1.1[0m" 200 -
 2022-02-11 01:41:18,465: 172.18.0.1 - - [11/Feb/2022 01:41:18] "[37mHEAD / HTTP/1.1[0m" 200 -
 2022-02-11 01:48:45,568: 172.18.0.1 - - [11/Feb/2022 01:48:45] "[37mGET / HTTP/1.1[0m" 200 -
+2022-02-11 09:58:42,547: 11-Feb-2022 (09:58:42)
+2022-02-11 09:58:42,574: PyNaCl is not installed, voice will NOT be supported
+2022-02-11 09:58:43,021:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2022-02-11 09:58:43,021:  * Running on http://192.168.1.64:3170/ (Press CTRL+C to quit)
+2022-02-11 09:58:43,361: ~~~~~~ Admin logged in ~~~~~~
+2022-02-11 09:58:43,772: ~~~~~~ Admin logged in ~~~~~~
+2022-02-11 09:58:43,909: time now is: 11-Feb-2022 (09:58:43)
+2022-02-11 09:59:02,423: 11-Feb-2022 (09:59:02)
+2022-02-11 09:59:02,450: PyNaCl is not installed, voice will NOT be supported
+2022-02-11 09:59:02,456:  * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+2022-02-11 09:59:02,456:  * Running on http://192.168.1.64:6598/ (Press CTRL+C to quit)
+2022-02-11 09:59:02,690: ~~~~~~ Admin logged in ~~~~~~
+2022-02-11 09:59:03,039: ~~~~~~ Admin logged in ~~~~~~
+2022-02-11 09:59:03,128: time now is: 11-Feb-2022 (09:59:03)

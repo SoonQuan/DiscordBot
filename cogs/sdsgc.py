@@ -1272,6 +1272,26 @@ class SDSGC(commands.Cog):
 
   @commands.command()
   @commands.is_owner()
+  async def renameUnit(self, ctx, oldname, newname, newdirect):
+    sdsgc.update_many(
+      {},
+      {'$set': {
+            f'{oldname}.directory': f'{newdirect}'
+        }}, upsert=True, array_filters=None
+    )
+    sdsgc.update_many(
+      {},
+      {
+        '$rename': {
+            f'{oldname}': f'{newname}'
+        }
+      }, upsert=True, array_filters=None
+    )
+    await ctx.send(f"Unit `{oldname}` renamed with `{newname}`\nDirectory renamed with `{newdirect}`")
+
+
+  @commands.command()
+  @commands.is_owner()
   async def rmUnit(self, ctx, name):
     sdsgc.update_many({}, {'$unset': { name: ""}}, upsert=True, array_filters=None)
     await ctx.send(f"Unit `{name}` removed")
