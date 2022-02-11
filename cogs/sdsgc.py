@@ -1050,6 +1050,7 @@ class SDSGC(commands.Cog):
       if type(user[key]) == dict:
         if user[key]['owned'] == False:
           allunits.append(user[key]["directory"])
+    allunits.sort()
     if len(allunits) == 0:
       embed = discord.Embed(description="No missing units")
       return await ctx.send(embed=embed)
