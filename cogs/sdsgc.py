@@ -466,6 +466,7 @@ class SDSGC(commands.Cog):
           continue
         else:
           dirs.append(image)
+    random.shuffle(dirs)
     im0 = Image.open(dirs[0])
     im1 = Image.open(dirs[1])
     im2 = Image.open(dirs[2])
@@ -542,6 +543,7 @@ class SDSGC(commands.Cog):
                 continue
               else:
                 dirs.append(image)
+        random.shuffle(dirs)
         im0 = Image.open(dirs[0])
         im1 = Image.open(dirs[1])
         im2 = Image.open(dirs[2])
@@ -609,6 +611,7 @@ class SDSGC(commands.Cog):
               else:
                 dirs.append(image)
                 unitNum-=1
+        random.shuffle(dirs)
         im0 = Image.open(dirs[0])
         im1 = Image.open(dirs[1])
         im2 = Image.open(dirs[2])
@@ -647,7 +650,11 @@ class SDSGC(commands.Cog):
           includelist = limit.lower().split(' ') #['1', 'SSR']
           numb = int(includelist[0])
           rank = '-'+ str(includelist[1]).lower() #'-ssr'
-          allrank.remove(rank)
+          try:
+            allrank.remove(rank)
+          except:
+            embed = discord.Embed(title=f"Input error", description=f"Correct example: `[1 ssr, 1 sr, 2 r]`", colour = discord.Color.red())
+            return await ctx.send(embed = embed)
           while numb > 0 and tries < 500:
             tries += 1
             ban = False
@@ -710,6 +717,7 @@ class SDSGC(commands.Cog):
               else:
                 dirs.append(image)
                 unitNum-=1
+        random.shuffle(dirs)
         im0 = Image.open(dirs[0])
         im1 = Image.open(dirs[1])
         im2 = Image.open(dirs[2])
@@ -760,6 +768,7 @@ class SDSGC(commands.Cog):
                 continue
               else:
                 dirs.append(image)
+        random.shuffle(dirs)
         im0 = Image.open(dirs[0])
         im1 = Image.open(dirs[1])
         im2 = Image.open(dirs[2])
@@ -1220,7 +1229,7 @@ class SDSGC(commands.Cog):
         return await ctx.send(embed = embed, file=file)
 
 
-  @commands.command(aliases=["au","own"])
+  @commands.command(aliases=["add","own"])
   async def addUnit(self, ctx, *, unitlist):
     """ Add a unit to user pool """
     user = sdsgc.find_one( {'_id': ctx.author.id} )
