@@ -1060,6 +1060,7 @@ class SDSGC(commands.Cog):
         if user[key]['owned'] == False:
           allunits.append(user[key]["directory"])
     allunits.sort()
+    number = len(allunits)
     if len(allunits) == 0:
       embed = discord.Embed(description="No missing units")
       return await ctx.send(embed=embed)
@@ -1106,7 +1107,7 @@ class SDSGC(commands.Cog):
       addon = Image.open(f".//Banner//pull//{unit}")
       get_concat_v_blank(img, addon).save(f'.//Banner//pull//{ctx.author.id}.jpg')
 
-    quote = f"{names} is missing the following units"
+    quote = f"{names} is missing {number} units"
     file = discord.File(f'.//Banner//pull//{ctx.author.id}.jpg', filename="image.jpg")
     em = discord.Embed(title = quote, colour = target.color)
     em.set_image(url = f"attachment://image.jpg")
