@@ -91,6 +91,16 @@ async def reload(ctx, extension):
 	await ctx.send(f"{extension} module has been reloaded")
 
 
+@client.command(hidden=True)
+@commands.is_owner()
+async def changepfp(ctx,item):
+  try:
+    with open(f'{item}', 'rb') as image:
+      await client.user.edit(avatar=image.read())
+      return await ctx.send("PFP change")
+  except Exception as e:
+    return await ctx.send(e)
+
 for filename in os.listdir('./cogs'):
 	if filename.endswith('.py'):
 		client.load_extension(f'cogs.{filename[:-3]}')

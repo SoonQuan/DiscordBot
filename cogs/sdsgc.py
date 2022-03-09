@@ -1055,8 +1055,10 @@ class SDSGC(commands.Cog):
       await ctx.invoke(pending_command)
       user = sdsgc.find_one( {'_id': target.id} )
     allunits = []
+    totalunits = 0
     for key in user:
       if type(user[key]) == dict:
+        totalunits += 1
         if user[key]['owned'] == False:
           allunits.append(user[key]["directory"])
     allunits.sort()
@@ -1107,7 +1109,7 @@ class SDSGC(commands.Cog):
       addon = Image.open(f".//Banner//pull//{unit}")
       get_concat_v_blank(img, addon).save(f'.//Banner//pull//{ctx.author.id}.jpg')
 
-    quote = f"{names} is missing {number} units"
+    quote = f"{names} own {totalunits-number}/{totalunits} units\nMissing {number} units"
     file = discord.File(f'.//Banner//pull//{ctx.author.id}.jpg', filename="image.jpg")
     em = discord.Embed(title = quote, colour = target.color)
     em.set_image(url = f"attachment://image.jpg")

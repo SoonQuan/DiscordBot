@@ -13490,3 +13490,399 @@ Command "!alltop" is not found
 2022-02-26 13:34:31,035 [CRITICAL] time to end: 02-1Day 10Hour 16Min 46Sec
 2022-02-26 13:34:31,035 [CRITICAL] Current session: 10.0
 2022-02-26 13:34:31,036 [CRITICAL] ###################
+2022-02-26 20:44:30,297 [CRITICAL] week start in: 24-Feb-2022 (05:51:17)
+2022-02-26 20:44:30,297 [CRITICAL] time now is: 27-Feb-2022 (04:44:30)
+2022-02-26 20:44:30,298 [CRITICAL] week end in: 28-Feb-2022 (07:51:17)
+2022-02-26 20:44:30,299 [CRITICAL] time to end: 02-1Day 03Hour 06Min 46Sec
+2022-02-26 20:44:30,299 [CRITICAL] Current session: 11.0
+2022-02-26 20:44:30,299 [CRITICAL] ###################
+2022-02-26 22:25:14,012 [WARNING] Error
+DieNasty
+Command "!!!!!!!" is not found
+2022-02-26 23:07:00,070 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-02-26 23:07:00,501 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-02-27 01:21:08,863 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-02-27 01:21:09,189 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-02-27 03:42:42,779 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-02-27 03:42:43,070 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-02-27 22:57:14,526 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-02-27 22:57:14,825 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-02-27 23:03:33,276 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-02-27 23:03:33,589 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-02-27 23:35:45,027 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-02-27 23:35:45,280 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-02-27 23:35:55,892 [CRITICAL] week start in: 24-Feb-2022 (05:51:17)
+2022-02-27 23:35:55,892 [CRITICAL] time now is: 28-Feb-2022 (07:35:55)
+2022-02-27 23:35:55,892 [CRITICAL] week end in: 28-Feb-2022 (07:51:17)
+2022-02-27 23:35:55,892 [CRITICAL] time to end: 01-1Day 00Hour 15Min 21Sec
+2022-02-27 23:35:55,892 [CRITICAL] Current session: 14.0
+2022-02-27 23:35:55,893 [CRITICAL] ###################
+2022-02-28 22:58:33,382 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-02-28 22:58:33,671 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-01 00:27:53,508 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-01 00:27:53,859 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-01 01:00:33,730 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-01 01:00:34,079 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-01 23:24:56,027 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-01 23:24:56,384 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-02 01:13:30,100 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-02 01:13:30,380 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-02 11:45:05,295 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-02 11:45:05,575 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-02 18:26:59,433 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-02 18:26:59,881 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-02 19:03:36,196 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-02 19:03:36,474 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-03 17:15:34,656 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-03 17:15:34,933 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-03 17:19:58,586 [WARNING] Error
+Jacobi | Diane 😍 🐠
+Command "mute" is not found
+2022-03-03 17:25:07,234 [WARNING] Error
+Sq ⍧ ಠ_ಠ
+Command "unmute" is not found
+2022-03-04 16:05:39,102 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-04 16:05:39,751 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-04 16:13:52,565 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-04 19:38:34,465 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-04 19:38:34,674 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-04 19:57:09,567 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-04 19:57:09,770 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-04 20:46:42,229 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-04 20:46:42,530 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-05 14:34:49,236 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-05 14:34:49,497 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-06 04:27:40,771 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-06 04:27:41,086 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-06 10:04:14,698 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-06 10:04:15,238 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-06 13:16:56,172 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-06 13:16:56,354 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-06 21:18:42,796 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-06 21:18:43,148 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-07 06:40:24,213 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-07 06:40:24,479 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-07 08:50:33,201 [CRITICAL] week start in: 04-Mar-2022 (18:05:52)
+2022-03-07 08:50:33,201 [CRITICAL] time now is: 07-Mar-2022 (16:50:33)
+2022-03-07 08:50:33,201 [CRITICAL] week end in: 08-Mar-2022 (20:05:52)
+2022-03-07 08:50:33,201 [CRITICAL] time to end: 02-1Day 03Hour 15Min 19Sec
+2022-03-07 08:50:33,201 [CRITICAL] Current session: 11.0
+2022-03-07 08:50:33,201 [CRITICAL] ###################
+2022-03-07 09:26:59,445 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-07 09:26:59,643 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-07 09:27:51,980 [WARNING] Error
+Sq
+Command "pfp" is not found
+2022-03-07 09:29:13,396 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-07 09:29:13,651 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-07 09:29:25,815 [WARNING] Error
+Sq
+Command raised an exception: AttributeError: '_io.BufferedReader' object has no attribute 'startswith'
+2022-03-07 09:31:48,877 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-07 09:31:49,157 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-07 09:32:38,641 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-07 09:32:38,798 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-07 09:39:22,741 [WARNING] Error
+Sq
+Command raised an exception: HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body
+In avatar: You are changing your avatar too fast. Try again later.
+2022-03-07 09:40:29,440 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-07 09:40:29,623 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-07 09:41:04,488 [WARNING] Error
+Sq
+Command raised an exception: HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body
+In avatar: You are changing your avatar too fast. Try again later.
+2022-03-07 09:45:42,578 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-07 09:45:42,841 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-07 12:22:35,056 [WARNING] Error
+Sq
+Command "alias" is not found
+2022-03-07 12:22:46,871 [WARNING] Error
+Sq
+Command "alias" is not found
+2022-03-07 12:23:01,870 [WARNING] Error
+Sq ⍧ ಠ_ಠ
+Command "alias" is not found
+2022-03-07 15:55:51,986 [CRITICAL] week start in: 04-Mar-2022 (18:05:52)
+2022-03-07 15:55:51,986 [CRITICAL] time now is: 07-Mar-2022 (23:55:51)
+2022-03-07 15:55:51,986 [CRITICAL] week end in: 08-Mar-2022 (20:05:52)
+2022-03-07 15:55:51,986 [CRITICAL] time to end: 01-1Day 20Hour 10Min 00Sec
+2022-03-07 15:55:51,986 [CRITICAL] Current session: 12.0
+2022-03-07 15:55:51,986 [CRITICAL] ###################
+2022-03-07 19:24:26,052 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-07 19:24:26,302 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-07 23:47:30,958 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-07 23:47:31,198 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-08 02:40:27,198 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-08 02:40:27,675 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-08 19:35:26,000 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-08 19:35:26,228 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-08 20:45:34,366 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-08 20:45:34,609 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-09 01:05:40,526 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-09 01:05:40,797 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-09 01:54:14,457 [WARNING] Error
+Sq
+Member "central" not found.
+2022-03-09 03:00:50,833 [ERROR] Attempting a reconnect in 1.39s
+Traceback (most recent call last):
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 967, in get_gateway
+    data = await self.request(Route('GET', '/gateway'))
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 216, in request
+    raise HTTPException(r, data)
+discord.errors.HTTPException: 429 Too Many Requests (error code: 0): You are being blocked from accessing our API temporarily due to exceeding our rate limits frequently. Please read our docs at https://discord.com/developers/docs/topics/rate-limits to prevent this moving forward.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/client.py", line 563, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "/usr/lib/python3.8/asyncio/tasks.py", line 494, in wait_for
+    return fut.result()
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/gateway.py", line 305, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 969, in get_gateway
+    raise GatewayNotFound() from exc
+discord.errors.GatewayNotFound: The gateway to connect to discord was not found.
+2022-03-09 03:00:52,272 [ERROR] Attempting a reconnect in 1.78s
+Traceback (most recent call last):
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 967, in get_gateway
+    data = await self.request(Route('GET', '/gateway'))
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 216, in request
+    raise HTTPException(r, data)
+discord.errors.HTTPException: 429 Too Many Requests (error code: 0): You are being blocked from accessing our API temporarily due to exceeding our rate limits frequently. Please read our docs at https://discord.com/developers/docs/topics/rate-limits to prevent this moving forward.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/client.py", line 563, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "/usr/lib/python3.8/asyncio/tasks.py", line 494, in wait_for
+    return fut.result()
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/gateway.py", line 305, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 969, in get_gateway
+    raise GatewayNotFound() from exc
+discord.errors.GatewayNotFound: The gateway to connect to discord was not found.
+2022-03-09 03:00:54,104 [ERROR] Attempting a reconnect in 7.39s
+Traceback (most recent call last):
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 967, in get_gateway
+    data = await self.request(Route('GET', '/gateway'))
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 216, in request
+    raise HTTPException(r, data)
+discord.errors.HTTPException: 429 Too Many Requests (error code: 0): You are being blocked from accessing our API temporarily due to exceeding our rate limits frequently. Please read our docs at https://discord.com/developers/docs/topics/rate-limits to prevent this moving forward.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/client.py", line 563, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "/usr/lib/python3.8/asyncio/tasks.py", line 494, in wait_for
+    return fut.result()
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/gateway.py", line 305, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 969, in get_gateway
+    raise GatewayNotFound() from exc
+discord.errors.GatewayNotFound: The gateway to connect to discord was not found.
+2022-03-09 03:01:01,577 [ERROR] Attempting a reconnect in 0.62s
+Traceback (most recent call last):
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 967, in get_gateway
+    data = await self.request(Route('GET', '/gateway'))
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 216, in request
+    raise HTTPException(r, data)
+discord.errors.HTTPException: 429 Too Many Requests (error code: 0): You are being blocked from accessing our API temporarily due to exceeding our rate limits frequently. Please read our docs at https://discord.com/developers/docs/topics/rate-limits to prevent this moving forward.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/client.py", line 563, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "/usr/lib/python3.8/asyncio/tasks.py", line 494, in wait_for
+    return fut.result()
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/gateway.py", line 305, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 969, in get_gateway
+    raise GatewayNotFound() from exc
+discord.errors.GatewayNotFound: The gateway to connect to discord was not found.
+2022-03-09 03:01:02,250 [ERROR] Attempting a reconnect in 1.91s
+Traceback (most recent call last):
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 967, in get_gateway
+    data = await self.request(Route('GET', '/gateway'))
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 216, in request
+    raise HTTPException(r, data)
+discord.errors.HTTPException: 429 Too Many Requests (error code: 0): You are being blocked from accessing our API temporarily due to exceeding our rate limits frequently. Please read our docs at https://discord.com/developers/docs/topics/rate-limits to prevent this moving forward.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/client.py", line 563, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "/usr/lib/python3.8/asyncio/tasks.py", line 494, in wait_for
+    return fut.result()
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/gateway.py", line 305, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 969, in get_gateway
+    raise GatewayNotFound() from exc
+discord.errors.GatewayNotFound: The gateway to connect to discord was not found.
+2022-03-09 03:01:04,226 [ERROR] Attempting a reconnect in 0.67s
+Traceback (most recent call last):
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 967, in get_gateway
+    data = await self.request(Route('GET', '/gateway'))
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 216, in request
+    raise HTTPException(r, data)
+discord.errors.HTTPException: 429 Too Many Requests (error code: 0): You are being blocked from accessing our API temporarily due to exceeding our rate limits frequently. Please read our docs at https://discord.com/developers/docs/topics/rate-limits to prevent this moving forward.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/client.py", line 563, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "/usr/lib/python3.8/asyncio/tasks.py", line 494, in wait_for
+    return fut.result()
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/gateway.py", line 305, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 969, in get_gateway
+    raise GatewayNotFound() from exc
+discord.errors.GatewayNotFound: The gateway to connect to discord was not found.
+2022-03-09 03:01:04,965 [ERROR] Attempting a reconnect in 29.40s
+Traceback (most recent call last):
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 967, in get_gateway
+    data = await self.request(Route('GET', '/gateway'))
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 216, in request
+    raise HTTPException(r, data)
+discord.errors.HTTPException: 429 Too Many Requests (error code: 0): You are being blocked from accessing our API temporarily due to exceeding our rate limits frequently. Please read our docs at https://discord.com/developers/docs/topics/rate-limits to prevent this moving forward.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/client.py", line 563, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "/usr/lib/python3.8/asyncio/tasks.py", line 494, in wait_for
+    return fut.result()
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/gateway.py", line 305, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 969, in get_gateway
+    raise GatewayNotFound() from exc
+discord.errors.GatewayNotFound: The gateway to connect to discord was not found.
+2022-03-09 03:01:34,457 [ERROR] Attempting a reconnect in 95.49s
+Traceback (most recent call last):
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 967, in get_gateway
+    data = await self.request(Route('GET', '/gateway'))
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 216, in request
+    raise HTTPException(r, data)
+discord.errors.HTTPException: 429 Too Many Requests (error code: 0): You are being blocked from accessing our API temporarily due to exceeding our rate limits frequently. Please read our docs at https://discord.com/developers/docs/topics/rate-limits to prevent this moving forward.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/client.py", line 563, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "/usr/lib/python3.8/asyncio/tasks.py", line 494, in wait_for
+    return fut.result()
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/gateway.py", line 305, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 969, in get_gateway
+    raise GatewayNotFound() from exc
+discord.errors.GatewayNotFound: The gateway to connect to discord was not found.
+2022-03-09 03:03:10,119 [ERROR] Attempting a reconnect in 492.25s
+Traceback (most recent call last):
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 967, in get_gateway
+    data = await self.request(Route('GET', '/gateway'))
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 216, in request
+    raise HTTPException(r, data)
+discord.errors.HTTPException: 429 Too Many Requests (error code: 0): You are being blocked from accessing our API temporarily due to exceeding our rate limits frequently. Please read our docs at https://discord.com/developers/docs/topics/rate-limits to prevent this moving forward.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/client.py", line 563, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "/usr/lib/python3.8/asyncio/tasks.py", line 494, in wait_for
+    return fut.result()
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/gateway.py", line 305, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 969, in get_gateway
+    raise GatewayNotFound() from exc
+discord.errors.GatewayNotFound: The gateway to connect to discord was not found.
+2022-03-09 03:11:22,538 [ERROR] Attempting a reconnect in 539.43s
+Traceback (most recent call last):
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 967, in get_gateway
+    data = await self.request(Route('GET', '/gateway'))
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 216, in request
+    raise HTTPException(r, data)
+discord.errors.HTTPException: 429 Too Many Requests (error code: 0): You are being blocked from accessing our API temporarily due to exceeding our rate limits frequently. Please read our docs at https://discord.com/developers/docs/topics/rate-limits to prevent this moving forward.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/client.py", line 563, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "/usr/lib/python3.8/asyncio/tasks.py", line 494, in wait_for
+    return fut.result()
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/gateway.py", line 305, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 969, in get_gateway
+    raise GatewayNotFound() from exc
+discord.errors.GatewayNotFound: The gateway to connect to discord was not found.
+2022-03-09 03:20:22,135 [ERROR] Attempting a reconnect in 946.61s
+Traceback (most recent call last):
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 967, in get_gateway
+    data = await self.request(Route('GET', '/gateway'))
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 216, in request
+    raise HTTPException(r, data)
+discord.errors.HTTPException: 429 Too Many Requests (error code: 0): You are being blocked from accessing our API temporarily due to exceeding our rate limits frequently. Please read our docs at https://discord.com/developers/docs/topics/rate-limits to prevent this moving forward.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/client.py", line 563, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "/usr/lib/python3.8/asyncio/tasks.py", line 494, in wait_for
+    return fut.result()
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/gateway.py", line 305, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 969, in get_gateway
+    raise GatewayNotFound() from exc
+discord.errors.GatewayNotFound: The gateway to connect to discord was not found.
+2022-03-09 03:36:08,838 [ERROR] Attempting a reconnect in 895.82s
+Traceback (most recent call last):
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 967, in get_gateway
+    data = await self.request(Route('GET', '/gateway'))
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 216, in request
+    raise HTTPException(r, data)
+discord.errors.HTTPException: 429 Too Many Requests (error code: 0): You are being blocked from accessing our API temporarily due to exceeding our rate limits frequently. Please read our docs at https://discord.com/developers/docs/topics/rate-limits to prevent this moving forward.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/client.py", line 563, in connect
+    self.ws = await asyncio.wait_for(coro, timeout=60.0)
+  File "/usr/lib/python3.8/asyncio/tasks.py", line 494, in wait_for
+    return fut.result()
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/gateway.py", line 305, in from_client
+    gateway = gateway or await client.http.get_gateway()
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/http.py", line 969, in get_gateway
+    raise GatewayNotFound() from exc
+discord.errors.GatewayNotFound: The gateway to connect to discord was not found.
+2022-03-09 04:43:02,415 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-09 04:43:02,658 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-09 05:44:38,578 [WARNING] Error
+Sq
+Command raised an exception: ExtensionFailed: Extension 'cogs.dict' raised an error: ModuleNotFoundError: No module named 'google_translate_py'
+2022-03-09 05:46:18,753 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-09 05:46:18,959 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-09 09:23:14,723 [WARNING] Error
+Ehs | aka:L 📌
+Command "tset" is not found
+2022-03-09 09:23:23,578 [WARNING] Error
+Kristianix
+Command "tset" is not found
+2022-03-09 10:36:26,947 [WARNING] Error
+Sq ⍧ ಠ_ಠ
+Command "warn" is not found
+2022-03-09 10:36:28,260 [CRITICAL] week start in: 08-Mar-2022 (21:20:45)
+2022-03-09 10:36:28,260 [CRITICAL] time now is: 09-Mar-2022 (18:36:28)
+2022-03-09 10:36:28,260 [CRITICAL] week end in: 12-Mar-2022 (23:20:45)
+2022-03-09 10:36:28,260 [CRITICAL] time to end: 04-1Day 04Hour 44Min 17Sec
+2022-03-09 10:36:28,261 [CRITICAL] Current session: 4.0
+2022-03-09 10:36:28,261 [CRITICAL] ###################

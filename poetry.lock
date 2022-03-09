@@ -197,6 +197,18 @@ requests = ["urllib3 (>=1.24.2)", "requests (>=2.16.2)"]
 timezone = ["pytz"]
 
 [[package]]
+name = "google-translate.py"
+version = "1.0.0"
+description = "Library for using accurate Google Translate in Python"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+aiohttp = "*"
+requests = "*"
+
+[[package]]
 name = "googletrans"
 version = "3.0.0"
 description = "Free Google Translate API for Python. Translates totally free of charge."
@@ -513,7 +525,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "805048a903aef0bd19841d0af9da762a513c75947c19167804a9aadd46bbc627"
+content-hash = "13e93d1a7682ecd053fe9e821e188b723596d2f58a4175921d9a5c1eb41dfdbe"
 
 [metadata.files]
 aiohttp = [
@@ -662,6 +674,10 @@ geographiclib = [
 geopy = [
     {file = "geopy-2.2.0-py3-none-any.whl", hash = "sha256:8f1f949082b964385de61fcc3a667a6a9a6e242beb1ae8972449f164b2ba0e89"},
     {file = "geopy-2.2.0.tar.gz", hash = "sha256:58b7edf526b8c32e33126570b5f4fcdfaa29d4416506064777ae8d84cd103fdd"},
+]
+"google-translate.py" = [
+    {file = "google-translate.py-1.0.0.tar.gz", hash = "sha256:6567ec1ebdd224d98ff0a20390830c3b8151757ba325048546aea8aea8bdb159"},
+    {file = "google_translate.py-1.0.0-py3-none-any.whl", hash = "sha256:6187f4657af28112eb30af1f8d0354428083bcb48ee087568dcafe51e6070892"},
 ]
 googletrans = [
     {file = "googletrans-3.0.0.tar.gz", hash = "sha256:44caeea42d91ff6ead5c2d49db2b88de66c45c2fe874c8ec03eb9b4ceb3a533d"},
