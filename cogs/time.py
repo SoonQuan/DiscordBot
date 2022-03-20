@@ -65,6 +65,7 @@ class Time(commands.Cog):
     result = obj.timezone_at(lng=location.longitude, lat=location.latitude)
     embed = discord.Embed(description=f"Time Zone : `{result}`", color=ctx.author.color)
     await ctx.send(embed=embed)
+    
   @commands.command()
   async def time(self, ctx, member:discord.Member=None):
     """ Check time of user or member """
@@ -72,7 +73,10 @@ class Time(commands.Cog):
       member = ctx.author
     user = timezones.find_one( {'_id':member.id} )
     if user == None:
-      user = timezones.find_one( {'_id':self.client.user.id} )
+      quote = "Please set your timezone using `!settz <location>`"
+      em = discord.Embed(description = quote, colour = discord.Color.red())
+      return await ctx.send(embed=em)
+      # user = timezones.find_one( {'_id':self.client.user.id} )
     now_utc = datetime.now(timezone('UTC'))
     now_user = now_utc.astimezone(timezone(user["timezone"]))
     if int(now_user.strftime("%H")) in list(range(7, 20)):
@@ -80,7 +84,7 @@ class Time(commands.Cog):
     else:
       fmt = f"It's :crescent_moon: %-I:%M %p on %A, %B %d for {member.display_name}. (UTC%z)"
     em = discord.Embed(description = now_user.strftime(fmt), colour = discord.Color.greyple())
-    await ctx.send(embed=em)
+    return await ctx.send(embed=em)
 
   @commands.command()
   @commands.has_permissions(administrator=True)
@@ -138,9 +142,9 @@ class Time(commands.Cog):
     now_utc = datetime.now(timezone('UTC'))
     now_location = now_utc.astimezone(timezone(zone))
     if int(now_location.strftime("%H")) in list(range(7, 20)):
-      fmt = f"It's :sunny: %-I:%M %p on %A, %B %d in `{location}`. (UTC%z)"
+      fmt = f"It's :sunny: %-I:%M %p on %A, %B %d in `{zone}`. (UTC%z)"
     else:
-      fmt = f"It's :crescent_moon: %-I:%M %p on %A, %B %d in `{location}`. (UTC%z)"
+      fmt = f"It's :crescent_moon: %-I:%M %p on %A, %B %d in `{zone}`. (UTC%z)"
     em = discord.Embed(description = now_location.strftime(fmt), colour = discord.Color.greyple())
     await ctx.send(embed=em)
 

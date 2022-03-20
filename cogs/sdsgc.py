@@ -1,4 +1,4 @@
-import discord, os, shutil, json, re, asyncio, random, DiscordUtils
+import discord, os, shutil, json, re, asyncio, random, DiscordUtils, math
 from discord.ext import commands
 from pymongo import MongoClient
 from PIL import Image
@@ -273,48 +273,32 @@ class SDSGC(commands.Cog):
     for unit in files:
       image = path+"//"+str(unit)
       all_units.append(image)
-    n = 5
-    split_units = [all_units[i * n:(i + 1) * n] for i in range((len(all_units) + n - 1) // n )]
-    part = 0
-    for section in split_units:
-      if len(section) == 5:
-        im0 = Image.open(section[0])
-        im1 = Image.open(section[1])
-        im2 = Image.open(section[2])
-        im3 = Image.open(section[3])
-        im4 = Image.open(section[4])
-        get_concat_h_multi_blank([im0,im1,im2,im3,im4]).save(f'.//Banner//pull//{ID}{part}.jpg')
+    size = math.ceil(math.sqrt(len(all_units)))
+    partsize=0
+    part=0
+    for unit in all_units:
+      if partsize == 0:
+        Image.open(unit).save(f'.//Banner//pull//{ctx.author.id}{part}.jpg')
+        partsize += 1
+      elif partsize < size:
+        mainpart = Image.open(f'.//Banner//pull//{ctx.author.id}{part}.jpg')
+        nextImg = Image.open(unit)
+        get_concat_h_multi_blank([mainpart,nextImg]).save(
+          f'.//Banner//pull//{ctx.author.id}{part}.jpg')
+        partsize+=1
+      elif partsize == size:
+        partsize = 0
         part+=1
-      else:
-        try:
-          im0 = Image.open(section[0])
-        except:
-          im0 = Image.new("RGB", (100, 100), (47,49,54))
-        try:
-          im1 = Image.open(section[1])
-        except:
-          im1 = Image.new("RGB", (100, 100), (47,49,54))
-        try:
-          im2 = Image.open(section[2])
-        except:
-          im2 = Image.new("RGB", (100, 100), (47,49,54))
-        try:
-          im3 = Image.open(section[3])
-        except:
-          im3 = Image.new("RGB", (100, 100), (47,49,54))
-        try:
-          im4 = Image.open(section[4])
-        except:
-          im4 = Image.new("RGB", (100, 100), (47,49,54))
-        get_concat_h_multi_blank([im0,im1,im2,im3,im4]).save(f'.//Banner//pull//{ID}{part}.jpg')
+        Image.open(unit).save(f'.//Banner//pull//{ctx.author.id}{part}.jpg')
+        partsize += 1
 
     images = list(os.listdir(".//Banner//pull"))
-    Image.open(f".//Banner//pull//{images[0]}").save(f'.//Banner//pull//{ID}.jpg')
+    Image.open(f".//Banner//pull//{images[0]}").save(f'.//Banner//pull//{ctx.author.id}.jpg')
     images.pop(0)
     for unit in images:
-      img = Image.open(f'.//Banner//pull//{ID}.jpg')
+      img = Image.open(f'.//Banner//pull//{ctx.author.id}.jpg')
       addon = Image.open(f".//Banner//pull//{unit}")
-      get_concat_v_blank(img, addon).save(f'.//Banner//pull//{ID}.jpg')
+      get_concat_v_blank(img, addon, (47,49,54)).save(f'.//Banner//pull//{ctx.author.id}.jpg')
 
     quote = f"{arg.upper()} Banner contain"
     file = discord.File(f'.//Banner//pull//{ID}.jpg')
@@ -559,6 +543,89 @@ class SDSGC(commands.Cog):
         embed.set_thumbnail(url=ctx.author.avatar_url)
         await ctx.send(embed = embed, file = file)
         return os.remove(f'.//RSPVP//pull//{ctx.author.id}.jpg')
+        
+      elif "[rgb]" in exclude.lower() or "[rbg]" in exclude.lower():
+        dirs = []
+        unitNum = 4
+        typing = ['_r.','_g.','_b.']
+        excludeList = re.sub(r"\[([A-Za-z0-9_ ,-]+)\]", "",exclude).lower().split(' ')
+        excludeList = list(map(str.strip, excludeList))
+        excludeList = [x for x in excludeList if x]
+        filterUnits = allunits
+        for ex in excludeList:
+          filterUnits = list(filter(lambda k: ex not in k.lower(), filterUnits))
+        for attribute in typing:
+          # print("CURRENT ATTRIBUTE IS ", attribute)
+          while tries < 500:
+            tries += 1
+            ban = True
+            image = random.choice(filterUnits)
+            path = image.split('/')[-2]
+            if attribute in image.lower():
+              ban = False
+            if ban == False:
+              # print(image)
+              if len(dirs) == 0:
+                dirs.append(image)
+                unitNum-=1
+                break
+              else:
+                copy = 0
+                for item in dirs:
+                  if str(path) in str(item):
+                    copy+=1
+                    break
+                  elif 'Hawk' in image and 'Hawk' in str(item):
+                    copy+=1
+                    break
+                if copy>0:
+                  continue
+                else:
+                  dirs.append(image)
+                  unitNum-=1
+                  break
+        random.shuffle(dirs)
+        while unitNum > 0:
+          ban = False
+          image = random.choice(filterUnits)
+          path = image.split('/')[-2]
+          # print(image)
+          if ban == False:
+            if len(dirs) == 0:
+              dirs.append(image)
+              unitNum-=1
+            else:
+              copy = 0
+              for item in dirs:
+                if str(path) in str(item):
+                  copy+=1
+                  break
+                elif 'Hawk' in image and 'Hawk' in str(item):
+                  copy+=1
+                  break
+              if copy>0:
+                continue
+              else:
+                dirs.append(image)
+                unitNum-=1
+        im0 = Image.open(dirs[0])
+        im1 = Image.open(dirs[1])
+        im2 = Image.open(dirs[2])
+        im3 = Image.open(dirs[3])
+
+        get_concat_h_multi_blank([im0,im1,im2,im3]).save(f'.//RSPVP//pull//{ctx.author.id}.jpg')
+        quote = f"{names} selected the RGB mode\n"
+        if len(excludeList) != 0:
+          quote += "\nExcluding:\n"
+          for x in excludeList:
+            quote += f"➣{str(x)} "
+        file = discord.File(f'.//RSPVP//pull//{ctx.author.id}.jpg')
+        embed = discord.Embed(title = quote,colour = ctx.author.color)
+        embed.set_image(url = f"attachment://{ctx.author.id}.jpg")
+        embed.set_thumbnail(url=ctx.author.avatar_url)
+        await ctx.send(embed = embed, file = file)
+        return os.remove(f'.//RSPVP//pull//{ctx.author.id}.jpg')
+        
       elif "(" in exclude:
         dirs = []
         unitNum = 4
@@ -830,41 +897,24 @@ class SDSGC(commands.Cog):
               allunits.append(str(os.path.join(base,file)))
         for i in includelist:
           allunits = list(filter(lambda k: i in k.lower(), allunits))
-
-        n = 5
-        split_units = [allunits[i * n:(i + 1) * n] for i in range((len(allunits) + n - 1) // n )]
-        part = 0
-        for section in split_units:
-          if len(section) == 5:
-            im0 = Image.open(section[0])
-            im1 = Image.open(section[1])
-            im2 = Image.open(section[2])
-            im3 = Image.open(section[3])
-            im4 = Image.open(section[4])
-            get_concat_h_multi_blank([im0,im1,im2,im3,im4]).save(f'.//Banner//pull//{ctx.author.id}{part}.jpg')
+        size = math.ceil(math.sqrt(len(allunits)))
+        partsize=0
+        part=0
+        for unit in allunits:
+          if partsize == 0:
+            Image.open(unit).save(f'.//Banner//pull//{ctx.author.id}{part}.jpg')
+            partsize += 1
+          elif partsize < size:
+            mainpart = Image.open(f'.//Banner//pull//{ctx.author.id}{part}.jpg')
+            nextImg = Image.open(unit)
+            get_concat_h_multi_blank([mainpart,nextImg]).save(
+              f'.//Banner//pull//{ctx.author.id}{part}.jpg')
+            partsize+=1
+          elif partsize == size:
+            partsize = 0
             part+=1
-          else:
-            try:
-              im0 = Image.open(section[0])
-            except:
-              im0 = Image.new("RGB", (100, 100), (47,49,54))
-            try:
-              im1 = Image.open(section[1])
-            except:
-              im1 = Image.new("RGB", (100, 100), (47,49,54))
-            try:
-              im2 = Image.open(section[2])
-            except:
-              im2 = Image.new("RGB", (100, 100), (47,49,54))
-            try:
-              im3 = Image.open(section[3])
-            except:
-              im3 = Image.new("RGB", (100, 100), (47,49,54))
-            try:
-              im4 = Image.open(section[4])
-            except:
-              im4 = Image.new("RGB", (100, 100), (47,49,54))
-            get_concat_h_multi_blank([im0,im1,im2,im3,im4]).save(f'.//Banner//pull//{ctx.author.id}{part}.jpg')
+            Image.open(unit).save(f'.//Banner//pull//{ctx.author.id}{part}.jpg')
+            partsize += 1
 
         images = list(os.listdir(".//Banner//pull"))
         Image.open(f".//Banner//pull//{images[0]}").save(f'.//Banner//pull//{ctx.author.id}.jpg')
@@ -872,7 +922,8 @@ class SDSGC(commands.Cog):
         for unit in images:
           img = Image.open(f'.//Banner//pull//{ctx.author.id}.jpg')
           addon = Image.open(f".//Banner//pull//{unit}")
-          get_concat_v_blank(img, addon).save(f'.//Banner//pull//{ctx.author.id}.jpg')
+          get_concat_v_blank(img, addon, (47,49,54)).save(
+            f'.//Banner//pull//{ctx.author.id}.jpg')
 
         quote = include.upper()
         file = discord.File(f'.//Banner//pull//{ctx.author.id}.jpg', filename="image.jpg")
@@ -890,7 +941,7 @@ class SDSGC(commands.Cog):
       embed = discord.Embed(title=f"No {include.upper()} found", colour = discord.Color.red())
       embed.set_image(url = f"attachment://image.jpg")
       return await ctx.send(embed = embed, file=file)
-
+  
   @commands.command()
   @commands.cooldown(1,1,commands.BucketType.user)
   async def team(self,ctx,*,team:str=""):
@@ -1041,8 +1092,8 @@ class SDSGC(commands.Cog):
     return await ctx.send(embed=embed)
 
   # Random select profile 
-  @commands.command(aliases=['missing'])
-  async def profile(self, ctx, member:discord.Member=None):
+  @commands.command()
+  async def missing(self, ctx, member:discord.Member=None):
     """ Display the missing units """
     if member == None:
       target = ctx.author
@@ -1066,40 +1117,24 @@ class SDSGC(commands.Cog):
     if len(allunits) == 0:
       embed = discord.Embed(description="No missing units")
       return await ctx.send(embed=embed)
-    n = 5
-    split_units = [allunits[i * n:(i + 1) * n] for i in range((len(allunits) + n - 1) // n )]
-    part = 0
-    for section in split_units:
-      if len(section) == 5:
-        im0 = Image.open(section[0])
-        im1 = Image.open(section[1])
-        im2 = Image.open(section[2])
-        im3 = Image.open(section[3])
-        im4 = Image.open(section[4])
-        get_concat_h_multi_blank([im0,im1,im2,im3,im4]).save(f'.//Banner//pull//{ctx.author.id}{part}.jpg')
+    size = math.ceil(math.sqrt(len(allunits)))
+    partsize=0
+    part=0
+    for unit in allunits:
+      if partsize == 0:
+        Image.open(unit).save(f'.//Banner//pull//{ctx.author.id}{part}.jpg')
+        partsize += 1
+      elif partsize < size:
+        mainpart = Image.open(f'.//Banner//pull//{ctx.author.id}{part}.jpg')
+        nextImg = Image.open(unit)
+        get_concat_h_multi_blank([mainpart,nextImg]).save(
+          f'.//Banner//pull//{ctx.author.id}{part}.jpg')
+        partsize+=1
+      elif partsize == size:
+        partsize = 0
         part+=1
-      else:
-        try:
-          im0 = Image.open(section[0])
-        except:
-          im0 = Image.new("RGB", (100, 100), (47,49,54))
-        try:
-          im1 = Image.open(section[1])
-        except:
-          im1 = Image.new("RGB", (100, 100), (47,49,54))
-        try:
-          im2 = Image.open(section[2])
-        except:
-          im2 = Image.new("RGB", (100, 100), (47,49,54))
-        try:
-          im3 = Image.open(section[3])
-        except:
-          im3 = Image.new("RGB", (100, 100), (47,49,54))
-        try:
-          im4 = Image.open(section[4])
-        except:
-          im4 = Image.new("RGB", (100, 100), (47,49,54))
-        get_concat_h_multi_blank([im0,im1,im2,im3,im4]).save(f'.//Banner//pull//{ctx.author.id}{part}.jpg')
+        Image.open(unit).save(f'.//Banner//pull//{ctx.author.id}{part}.jpg')
+        partsize += 1
 
     images = list(os.listdir(".//Banner//pull"))
     Image.open(f".//Banner//pull//{images[0]}").save(f'.//Banner//pull//{ctx.author.id}.jpg')
@@ -1107,7 +1142,7 @@ class SDSGC(commands.Cog):
     for unit in images:
       img = Image.open(f'.//Banner//pull//{ctx.author.id}.jpg')
       addon = Image.open(f".//Banner//pull//{unit}")
-      get_concat_v_blank(img, addon).save(f'.//Banner//pull//{ctx.author.id}.jpg')
+      get_concat_v_blank(img, addon, (47,49,54)).save(f'.//Banner//pull//{ctx.author.id}.jpg')
 
     quote = f"{names} own {totalunits-number}/{totalunits} units\nMissing {number} units"
     file = discord.File(f'.//Banner//pull//{ctx.author.id}.jpg', filename="image.jpg")
@@ -1121,6 +1156,71 @@ class SDSGC(commands.Cog):
       print("Error: %s : %s" % ('.//Banner//pull//', e.strerror))
     return os.mkdir('.//Banner//pull//')
     
+  @commands.command()
+  async def profile(self, ctx, member:discord.Member=None):
+    """ Display the owned units """
+    if member == None:
+      target = ctx.author
+    else:
+      target = member
+    names = target.display_name
+    user = sdsgc.find_one( {'_id': target.id} )
+    if user == None:
+      pending_command = self.client.get_command('createProfile')
+      await ctx.invoke(pending_command)
+      user = sdsgc.find_one( {'_id': target.id} )
+    allunits = []
+    totalunits = 0
+    for key in user:
+      if type(user[key]) == dict:
+        totalunits += 1
+        if user[key]['owned'] == True:
+          allunits.append(user[key]["directory"])
+    allunits.sort()
+    number = len(allunits)
+    if len(allunits) == 0:
+      embed = discord.Embed(description="No owned units")
+      return await ctx.send(embed=embed)
+    size = math.ceil(math.sqrt(len(allunits)))
+    partsize=0
+    part=0
+    for unit in allunits:
+      if partsize == 0:
+        Image.open(unit).save(f'.//Banner//pull//{ctx.author.id}{part}.jpg')
+        partsize += 1
+      elif partsize < size:
+        mainpart = Image.open(f'.//Banner//pull//{ctx.author.id}{part}.jpg')
+        nextImg = Image.open(unit)
+        get_concat_h_multi_blank([mainpart,nextImg]).save(
+          f'.//Banner//pull//{ctx.author.id}{part}.jpg')
+        partsize+=1
+      elif partsize == size:
+        partsize = 0
+        part+=1
+        Image.open(unit).save(f'.//Banner//pull//{ctx.author.id}{part}.jpg')
+        partsize += 1
+
+    images = list(os.listdir(".//Banner//pull"))
+    Image.open(f".//Banner//pull//{images[0]}").save(f'.//Banner//pull//{ctx.author.id}.jpg')
+    images.pop(0)
+    for unit in images:
+      img = Image.open(f'.//Banner//pull//{ctx.author.id}.jpg')
+      addon = Image.open(f".//Banner//pull//{unit}")
+      get_concat_v_blank(img, addon, (47,49,54)).save(f'.//Banner//pull//{ctx.author.id}.jpg')
+
+    quote = f"{names} own {number}/{totalunits} units\nMissing {totalunits-number} units"
+    file = discord.File(f'.//Banner//pull//{ctx.author.id}.jpg', filename="image.jpg")
+    em = discord.Embed(title = quote, colour = target.color)
+    em.set_image(url = f"attachment://image.jpg")
+    await ctx.send(embed = em,file=file)
+
+    try:
+      shutil.rmtree('.//Banner//pull//')
+    except OSError as e:
+      print("Error: %s : %s" % ('.//Banner//pull//', e.strerror))
+    return os.mkdir('.//Banner//pull//')
+
+  
   @commands.command()
   @commands.is_owner()
   async def newUnit(self, ctx, unit, directory):

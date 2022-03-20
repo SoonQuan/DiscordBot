@@ -13886,3 +13886,313 @@ Command "warn" is not found
 2022-03-09 10:36:28,260 [CRITICAL] time to end: 04-1Day 04Hour 44Min 17Sec
 2022-03-09 10:36:28,261 [CRITICAL] Current session: 4.0
 2022-03-09 10:36:28,261 [CRITICAL] ###################
+2022-03-09 13:57:20,640 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-09 13:57:20,839 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-09 13:57:34,477 [WARNING] Error
+Sq
+newdirect is a required argument that is missing.
+2022-03-09 16:19:32,592 [WARNING] Error
+Akihiro sensei
+Command raised an exception: FileNotFoundError: [Errno 2] No such file or directory: './/Banner//pull//736996880575234139a.jpg'
+2022-03-09 16:19:40,369 [WARNING] Error
+Akihiro sensei
+Command raised an exception: FileNotFoundError: [Errno 2] No such file or directory: './/Banner//pull//736996880575234139a.jpg'
+2022-03-09 16:19:50,796 [WARNING] Error
+Akihiro sensei
+Command raised an exception: FileNotFoundError: [Errno 2] No such file or directory: './/Banner//pull//736996880575234139a.jpg'
+2022-03-09 16:19:56,399 [WARNING] Error
+Akihiro sensei
+Command raised an exception: FileNotFoundError: [Errno 2] No such file or directory: './/Banner//pull//736996880575234139a.jpg'
+2022-03-09 16:20:24,877 [WARNING] Error
+Akihiro sensei
+Command raised an exception: FileNotFoundError: [Errno 2] No such file or directory: './/Banner//pull//736996880575234139a.jpg'
+2022-03-09 16:20:57,459 [WARNING] Error
+Akihiro sensei
+Command "diane" is not found
+2022-03-09 17:37:30,009 [CRITICAL] week start in: 08-Mar-2022 (21:20:45)
+2022-03-09 17:37:30,010 [CRITICAL] time now is: 10-Mar-2022 (01:37:30)
+2022-03-09 17:37:30,011 [CRITICAL] week end in: 12-Mar-2022 (23:20:45)
+2022-03-09 17:37:30,011 [CRITICAL] time to end: 03-1Day 21Hour 43Min 15Sec
+2022-03-09 17:37:30,011 [CRITICAL] Current session: 5.0
+2022-03-09 17:37:30,011 [CRITICAL] ###################
+2022-03-10 00:37:30,245 [CRITICAL] week start in: 08-Mar-2022 (21:20:45)
+2022-03-10 00:37:30,245 [CRITICAL] time now is: 10-Mar-2022 (08:37:30)
+2022-03-10 00:37:30,246 [CRITICAL] week end in: 12-Mar-2022 (23:20:45)
+2022-03-10 00:37:30,246 [CRITICAL] time to end: 03-1Day 14Hour 43Min 15Sec
+2022-03-10 00:37:30,246 [CRITICAL] Current session: 6.0
+2022-03-10 00:37:30,246 [CRITICAL] ###################
+2022-03-10 03:59:31,483 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-10 03:59:31,622 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-10 06:51:43,870 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-10 06:51:44,083 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-11 01:49:59,456 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-11 01:49:59,603 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-11 04:31:36,827 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-11 04:31:37,048 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-11 06:44:55,735 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-11 06:44:55,946 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-11 17:04:06,648 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-11 17:04:06,999 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-12 04:53:22,431 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-12 04:53:22,639 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-12 05:57:06,861 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-12 05:57:07,101 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-12 06:21:33,133 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-12 06:21:33,363 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-12 10:21:53,764 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-12 10:21:53,900 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-12 17:45:37,082 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-12 17:45:37,249 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-13 10:27:26,147 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-13 10:27:26,342 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-13 14:53:01,205 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-13 14:53:01,375 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-13 16:01:37,941 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-13 16:01:38,217 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-13 20:51:48,764 [CRITICAL] week start in: 13-Mar-2022 (00:32:11)
+2022-03-13 20:51:48,764 [CRITICAL] time now is: 14-Mar-2022 (04:51:48)
+2022-03-13 20:51:48,765 [CRITICAL] week end in: 17-Mar-2022 (02:32:11)
+2022-03-13 20:51:48,765 [CRITICAL] time to end: 03-1Day 21Hour 40Min 22Sec
+2022-03-13 20:51:48,765 [CRITICAL] Current session: 5.0
+2022-03-13 20:51:48,765 [CRITICAL] ###################
+2022-03-13 23:25:40,572 [WARNING] Error
+Ehs | aka:L 📌
+Member "@jay" not found.
+2022-03-13 23:27:08,168 [WARNING] Error
+Ehs | aka:L 📌
+Command "depost" is not found
+2022-03-13 23:29:37,538 [WARNING] Error
+jay | what is shaft?
+Command "pullfdiane" is not found
+2022-03-13 23:52:34,048 [WARNING] Error
+Jacobi 🐠
+Command "mute" is not found
+2022-03-13 23:52:41,950 [WARNING] Error
+Jacobi 🐠
+Command "unmute" is not found
+2022-03-14 00:03:55,242 [WARNING] Error
+Jacobi 🐠
+Command "p" is not found
+2022-03-14 00:05:32,219 [WARNING] Error
+immortal/fuck netmarble🐠
+Command "currency" is not found
+2022-03-14 00:07:14,898 [WARNING] Error
+Jacobi 🐠
+You are on cooldown. Try again in 0.64s
+2022-03-14 00:07:14,898 [WARNING] Error
+Jacobi 🐠
+You are on cooldown. Try again in 0.21s
+2022-03-14 00:07:16,248 [WARNING] Error
+Jacobi 🐠
+You are on cooldown. Try again in 0.53s
+2022-03-14 00:07:16,249 [WARNING] Error
+Jacobi 🐠
+You are on cooldown. Try again in 0.19s
+2022-03-14 00:07:17,230 [WARNING] Error
+Jacobi 🐠
+Command raised an exception: FileNotFoundError: [Errno 2] No such file or directory: './/Banner//pull//345675904707461120a.jpg'
+2022-03-14 00:16:10,157 [WARNING] Error
+immortal/fuck netmarble🐠
+Command "roll" is not found
+2022-03-14 00:17:36,429 [WARNING] Error
+immortal/fuck netmarble🐠
+Command "gift" is not found
+2022-03-14 00:17:49,559 [WARNING] Error
+immortal/fuck netmarble🐠
+Member "26" not found.
+2022-03-14 04:01:48,370 [CRITICAL] week start in: 13-Mar-2022 (00:32:11)
+2022-03-14 04:01:48,370 [CRITICAL] time now is: 14-Mar-2022 (12:01:48)
+2022-03-14 04:01:48,371 [CRITICAL] week end in: 17-Mar-2022 (02:32:11)
+2022-03-14 04:01:48,371 [CRITICAL] time to end: 03-1Day 14Hour 30Min 23Sec
+2022-03-14 04:01:48,372 [CRITICAL] Current session: 6.0
+2022-03-14 04:01:48,372 [CRITICAL] ###################
+2022-03-14 06:14:28,906 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-14 06:14:29,087 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-14 08:34:58,120 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-14 08:34:58,273 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-14 11:05:07,400 [CRITICAL] week start in: 13-Mar-2022 (00:32:11)
+2022-03-14 11:05:07,400 [CRITICAL] time now is: 14-Mar-2022 (19:05:07)
+2022-03-14 11:05:07,400 [CRITICAL] week end in: 17-Mar-2022 (02:32:11)
+2022-03-14 11:05:07,400 [CRITICAL] time to end: 03-1Day 07Hour 27Min 04Sec
+2022-03-14 11:05:07,400 [CRITICAL] Current session: 7.0
+2022-03-14 11:05:07,400 [CRITICAL] ###################
+2022-03-14 12:37:11,183 [WARNING] Error
+Sq
+Command raised an exception: UnboundLocalError: local variable 'type' referenced before assignment
+2022-03-14 12:50:04,847 [WARNING] Error
+Sq ⍧ ಠ_ಠ
+Command raised an exception: ValueError: invalid literal for int() with base 10: 'rbg'
+2022-03-14 14:57:09,605 [WARNING] Error
+☆KAI★
+Command "rgb" is not found
+2022-03-14 18:05:07,178 [CRITICAL] week start in: 13-Mar-2022 (00:32:11)
+2022-03-14 18:05:07,178 [CRITICAL] time now is: 15-Mar-2022 (02:05:07)
+2022-03-14 18:05:07,178 [CRITICAL] week end in: 17-Mar-2022 (02:32:11)
+2022-03-14 18:05:07,178 [CRITICAL] time to end: 03-1Day 00Hour 27Min 04Sec
+2022-03-14 18:05:07,179 [CRITICAL] Current session: 8.0
+2022-03-14 18:05:07,179 [CRITICAL] ###################
+2022-03-14 23:34:15,906 [WARNING] Error
+Jacobi 🐠
+Command raised an exception: FileNotFoundError: [Errno 2] No such file or directory: './/Banner//pull//345675904707461120a.jpg'
+2022-03-14 23:34:16,317 [WARNING] Error
+Jacobi 🐠
+Command raised an exception: FileNotFoundError: [Errno 2] No such file or directory: './/Banner//pull//345675904707461120a.jpg'
+2022-03-14 23:34:33,339 [WARNING] Error
+Jacobi 🐠
+Command raised an exception: FileNotFoundError: [Errno 2] No such file or directory: './/Banner//pull//345675904707461120a.jpg'
+2022-03-14 23:34:33,613 [WARNING] Error
+Jacobi 🐠
+Command raised an exception: FileNotFoundError: [Errno 2] No such file or directory: './/Banner//pull//345675904707461120a.jpg'
+2022-03-14 23:34:48,047 [WARNING] Error
+Jacobi 🐠
+Command raised an exception: FileNotFoundError: [Errno 2] No such file or directory: './/Banner//pull//345675904707461120a.jpg'
+2022-03-14 23:34:48,360 [WARNING] Error
+Zack🗿🐠/Josuke is better
+Command raised an exception: FileNotFoundError: [Errno 2] No such file or directory: './/Banner//pull//525189202636177409a.jpg'
+2022-03-14 23:34:48,636 [WARNING] Error
+Jacobi 🐠
+Command raised an exception: FileNotFoundError: [Errno 2] No such file or directory: './/Banner//pull//345675904707461120a.jpg'
+2022-03-15 01:15:07,853 [CRITICAL] week start in: 13-Mar-2022 (00:32:11)
+2022-03-15 01:15:07,854 [CRITICAL] time now is: 15-Mar-2022 (09:15:07)
+2022-03-15 01:15:07,854 [CRITICAL] week end in: 17-Mar-2022 (02:32:11)
+2022-03-15 01:15:07,855 [CRITICAL] time to end: 02-1Day 17Hour 17Min 03Sec
+2022-03-15 01:15:07,855 [CRITICAL] Current session: 9.0
+2022-03-15 01:15:07,855 [CRITICAL] ###################
+2022-03-15 06:56:58,870 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-15 06:56:59,043 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-15 12:55:47,918 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-15 12:55:48,147 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-16 00:34:18,361 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-16 00:34:18,552 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-16 16:13:40,311 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-16 16:13:40,562 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-16 22:31:28,639 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-16 22:31:28,829 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-17 17:03:52,856 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-17 17:03:53,078 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-17 17:04:03,692 [CRITICAL] week start in: 17-Mar-2022 (03:43:58)
+2022-03-17 17:04:03,693 [CRITICAL] time now is: 18-Mar-2022 (01:04:03)
+2022-03-17 17:04:03,693 [CRITICAL] week end in: 21-Mar-2022 (05:43:58)
+2022-03-17 17:04:03,693 [CRITICAL] time to end: 04-1Day 04Hour 39Min 55Sec
+2022-03-17 17:04:03,693 [CRITICAL] Current session: 4.0
+2022-03-17 17:04:03,693 [CRITICAL] ###################
+2022-03-18 01:09:25,974 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-18 01:09:26,140 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-18 02:22:26,135 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-18 02:22:26,258 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-18 07:22:35,152 [CRITICAL] week start in: 17-Mar-2022 (03:43:58)
+2022-03-18 07:22:35,153 [CRITICAL] time now is: 18-Mar-2022 (15:22:35)
+2022-03-18 07:22:35,153 [CRITICAL] week end in: 21-Mar-2022 (05:43:58)
+2022-03-18 07:22:35,153 [CRITICAL] time to end: 03-1Day 14Hour 21Min 23Sec
+2022-03-18 07:22:35,153 [CRITICAL] Current session: 6.0
+2022-03-18 07:22:35,153 [CRITICAL] ###################
+2022-03-18 10:02:47,114 [WARNING] Error
+Nako
+Command "missng" is not found
+2022-03-18 11:07:01,353 [WARNING] Error
+conna
+Command raised an exception: FileNotFoundError: [Errno 2] No such file or directory: './/RSPVP//rspvp/Eastin_Disasters_Humans_Females/AwakenedEastin2_R'
+2022-03-18 11:07:47,080 [WARNING] Error
+Ehs | aka:L 📌
+Command raised an exception: FileNotFoundError: [Errno 2] No such file or directory: './/RSPVP//rspvp/Eastin_Disasters_Humans_Females/AwakenedEastin2_R'
+2022-03-18 11:09:39,843 [WARNING] Error
+Ehs | aka:L 📌
+Command raised an exception: FileNotFoundError: [Errno 2] No such file or directory: './/RSPVP//rspvp/Eastin_Disasters_Humans_Females/AwakenedEastin2_R'
+2022-03-18 11:15:32,575 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-18 11:15:32,775 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-18 11:17:00,333 [WARNING] Error
+Sq | 📌
+Command raised an exception: FileNotFoundError: [Errno 2] No such file or directory: './/RSPVP//rspvp/Eastin_Disasters_Humans_Females/AwakenedEastin2_R'
+2022-03-18 11:17:29,686 [WARNING] Error
+Sq
+Command raised an exception: FileNotFoundError: [Errno 2] No such file or directory: './/RSPVP//rspvp/Eastin_Disasters_Humans_Females/AwakenedEastin2_R'
+2022-03-18 11:18:48,404 [WARNING] Error
+Sq
+Command raised an exception: WriteError: The source and target field for $rename must differ: AwakenedEastin2_R: "AwakenedEastin2_R", full error: {'index': 0, 'code': 2, 'errmsg': 'The source and target field for $rename must differ: AwakenedEastin2_R: "AwakenedEastin2_R"'}
+2022-03-18 11:21:28,547 [WARNING] Error
+Ehs | aka:L 📌
+Command "depost" is not found
+2022-03-18 11:23:05,372 [WARNING] Error
+Ehs | aka:L 📌
+Command raised an exception: ValueError: invalid literal for int() with base 10: '<@!399558274753495040>'
+2022-03-18 11:26:04,687 [WARNING] Error
+Sq ⍧ ಠ_ಠ
+Command "rs(dmeli)" is not found
+2022-03-18 11:30:24,118 [WARNING] Error
+Ehs | aka:L 📌
+Command "ts" is not found
+2022-03-18 11:42:24,041 [WARNING] Error
+Ehs | aka:L 📌
+Command "ra" is not found
+2022-03-18 14:25:42,088 [CRITICAL] week start in: 17-Mar-2022 (03:43:58)
+2022-03-18 14:25:42,089 [CRITICAL] time now is: 18-Mar-2022 (22:25:42)
+2022-03-18 14:25:42,089 [CRITICAL] week end in: 21-Mar-2022 (05:43:58)
+2022-03-18 14:25:42,089 [CRITICAL] time to end: 03-1Day 07Hour 18Min 16Sec
+2022-03-18 14:25:42,089 [CRITICAL] Current session: 7.0
+2022-03-18 14:25:42,089 [CRITICAL] ###################
+2022-03-18 15:20:09,392 [WARNING] Error
+mihi V5
+Command raised an exception: ValueError: invalid literal for int() with base 10: 'apl'
+2022-03-18 17:58:03,434 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-18 17:58:03,643 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-18 19:23:49,323 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-18 19:23:49,532 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-18 21:13:38,596 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-18 21:13:38,841 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-19 17:33:45,532 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-19 17:33:45,764 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-19 18:43:55,029 [CRITICAL] week start in: 17-Mar-2022 (03:43:58)
+2022-03-19 18:43:55,030 [CRITICAL] time now is: 20-Mar-2022 (02:43:55)
+2022-03-19 18:43:55,030 [CRITICAL] week end in: 21-Mar-2022 (05:43:58)
+2022-03-19 18:43:55,030 [CRITICAL] time to end: 02-1Day 03Hour 00Min 03Sec
+2022-03-19 18:43:55,030 [CRITICAL] Current session: 11.0
+2022-03-19 18:43:55,031 [CRITICAL] ###################
+2022-03-19 18:46:50,898 [WARNING] Error
+Sq
+Command raised an exception: IndexError: list index out of range
+2022-03-19 18:55:16,872 [WARNING] Error
+Sq
+Command "eliane" is not found
+2022-03-19 19:07:29,644 [WARNING] Error
+Sq
+Command raised an exception: ExtensionNotLoaded: Extension 'cogs.sdsg' has not been loaded.
+2022-03-19 19:16:49,553 [WARNING] Error
+Sq
+Command "sin" is not found
+2022-03-19 21:56:54,214 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-19 21:56:54,517 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-20 01:16:59,729 [WARNING] Can't keep up, shard ID None websocket is 41.4s behind.
+2022-03-20 01:47:04,571 [CRITICAL] week start in: 17-Mar-2022 (03:43:58)
+2022-03-20 01:47:04,572 [CRITICAL] time now is: 20-Mar-2022 (09:47:04)
+2022-03-20 01:47:04,572 [CRITICAL] week end in: 21-Mar-2022 (05:43:58)
+2022-03-20 01:47:04,572 [CRITICAL] time to end: 01-1Day 19Hour 56Min 54Sec
+2022-03-20 01:47:04,572 [CRITICAL] Current session: 12.0
+2022-03-20 01:47:04,572 [CRITICAL] ###################
+2022-03-20 08:09:53,574 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-20 08:09:53,812 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-03-20 08:50:03,044 [CRITICAL] week start in: 17-Mar-2022 (03:43:58)
+2022-03-20 08:50:03,044 [CRITICAL] time now is: 20-Mar-2022 (16:50:03)
+2022-03-20 08:50:03,044 [CRITICAL] week end in: 21-Mar-2022 (05:43:58)
+2022-03-20 08:50:03,044 [CRITICAL] time to end: 01-1Day 12Hour 53Min 55Sec
+2022-03-20 08:50:03,045 [CRITICAL] Current session: 13.0
+2022-03-20 08:50:03,045 [CRITICAL] ###################
+2022-03-20 14:18:08,800 [WARNING] Error
+Ehs | aka:L 📌
+Command "tset" is not found
+2022-03-20 14:18:26,142 [WARNING] Error
+Ehs | aka:L 📌
+Command "sett" is not found
+2022-03-20 14:19:01,968 [WARNING] Error
+Ehs | aka:L 📌
+Command raised an exception: AttributeError: 'NoneType' object has no attribute 'longitude'
+2022-03-20 14:40:11,881 [WARNING] Error
+Sq ⍧ ಠ_ಠ
+Converting to "int" failed for parameter "amount".
+2022-03-20 14:40:19,155 [WARNING] Error
+Sq ⍧ ಠ_ಠ
+Command "clear" is not found
+2022-03-20 14:41:14,010 [WARNING] Error
+Sq ⍧ ಠ_ಠ
+Command "clear" is not found
+2022-03-20 14:46:26,864 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-03-20 14:46:26,970 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
