@@ -13,6 +13,7 @@ cluster = MongoClient(os.getenv('MONGODB'))
 db = cluster["luckbot"]
 mainbank = db["mainbank"]
 settings = db["settings"]
+centralbank = db["centralbank"]
 rpg = db["rpg"]
 
 def get_prefix(client, message):
@@ -50,6 +51,25 @@ async def open_server(ctx):
       "emoji": "💎",
       "droppile": int(500)
       })
+    return True
+  else:
+    return False
+
+async def open_heist_account(ctx):
+  user = centralbank.find_one( {'_id':ctx.id} )
+  if user is None:
+    centralbank.insert_one({
+      "_id": ctx.id, 
+      "xp": 100, 
+      "level": 1,
+      "status": "Alive",
+      "timer": 0,
+      "weapon": {
+        "earnings":{},
+        "success": {},
+        "survival":{}
+      }
+    })
     return True
   else:
     return False
@@ -739,10 +759,17 @@ class Currency(commands.Cog):
     currency = guilds["emoji"]
     await open_account(user)
     await open_account(target)
+    await open_heist_account(user)
+    await open_heist_account(target)   
     users = mainbank.find_one( {'_id':user.id} )
     targets = mainbank.find_one( {'_id':target.id} )
     names = user.display_name
     tnames = target.display_name
+    userstate = centralbank.find_one( {'_id':user.id} )
+    state = userstate["status"]
+    if state != "Alive":
+      em = discord.Embed(description = f"Please make sure you are alive using `!status` before doing anything.", colour = discord.Color.red())
+      return await ctx.send(embed = em)    
     if users["wallet"] < 500:
       em = discord.Embed(description = f"You need over 500{currency} to rob somebody.", colour = discord.Color.red())
       return await ctx.send(embed = em)

@@ -39,7 +39,11 @@ class Test(commands.Cog):
   def __init__(self,client):
     self.client = client
 
-
+  @commands.command()
+  async def ttt(self,ctx, member:discord.Member=None):
+    """ Resurrect somebody earlier """
+    if member == ctx.author:
+      print('hi')
 
 def setup(client):
   client.add_cog(Test(client))

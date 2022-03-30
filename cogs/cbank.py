@@ -114,14 +114,16 @@ def taxrate(credit):
     return 1
   elif credit <= 500000:
     return 10
-  elif credit < 1000000:
+  elif credit <= 1000000:
     return 25
-  return 50
+  elif credit <= 10000000:
+    return 50
+  return 100
 
 quote = "Daily tax has been deducted."
 
 
-footer = "Tax will now be deducted from your bank based of your total credit value DAILY.\nYou credit value is the total currency you have (value you see in !clb)\nThe rates are shown below:\nTier | Credit | Tax rate\n0 | 0 - 5,000 | 0%\n1 | 5,001 - 50,000 | 0.1%\n2 | 50,001 - 500,000 | 1%\n3 | 500,001 - 1,000,000 | 2.5%\n4 | >1,000,000 | 5%\ni.e. you have 500 in wallet and 70k in bank, you credit will be 75k. you will fall into tier 1 and subjected to 0.1% tax on the currency you have in your bank. The central bank will take the tax of 70 currency from your bank."
+footer = "Tax will now be deducted from your bank based of your total credit value DAILY.\nYour credit value is the total currency you have (value you see in !clb)\nThe rates are shown below:\nTier | Credit | Tax rate\n0 | 0 - 5,000 | 0%\n1 | 5,001 - 50,000 | 0.1%\n2 | 50,001 - 500,000 | 1%\n3 | 500,001 - 1,000,000 | 2.5%\n4 | 1,000,001 - 10,000,000 | 5%\n5 | >10,000,000 | 10%\ni.e. you have 5k in wallet and 70k in bank, you credit will be 75k. you will fall into tier 2 and subjected to 1% tax on the currency you have in your bank. The central bank will take the tax of 700 currency from your bank."
 
 sqdev_gen = 825583328111230981
 null_botspam = 703054964200833125

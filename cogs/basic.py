@@ -37,7 +37,7 @@ class Basic(commands.Cog):
       return
     test = "application" in msg.content.lower() or "looking" in msg.content.lower() or "lf" in msg.content.lower() or "knighthood" in msg.content.lower()
     mention = f'<@!{self.client.user.id}>'
-    if msg.channel.id == 694708991321833492 and test:
+    if msg.channel.id == 955113886464499802 and test:
       channel = self.client.get_channel(879537741241647165)
       role = channel.guild.get_role(889145588732538920)
 
