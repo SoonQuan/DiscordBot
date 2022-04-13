@@ -14984,3 +14984,239 @@ You are on cooldown. Try again in 867.08s
 2022-03-30 12:35:08,375 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
 2022-03-30 12:44:49,775 [WARNING] ~~~~~~ Admin logged in ~~~~~~
 2022-03-30 12:44:49,964 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-08 08:00:52,570 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-08 08:00:52,687 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-08 13:11:01,971 [CRITICAL] week start in: 06-Apr-2022 (19:31:31)
+2022-04-08 13:11:01,971 [CRITICAL] time now is: 08-Apr-2022 (21:11:01)
+2022-04-08 13:11:01,971 [CRITICAL] week end in: 10-Apr-2022 (21:31:31)
+2022-04-08 13:11:01,972 [CRITICAL] time to end: 03-1Day 00Hour 20Min 29Sec
+2022-04-08 13:11:01,972 [CRITICAL] Current session: 8.0
+2022-04-08 13:11:01,972 [CRITICAL] ###################
+2022-04-08 20:11:02,216 [CRITICAL] week start in: 06-Apr-2022 (19:31:31)
+2022-04-08 20:11:02,216 [CRITICAL] time now is: 09-Apr-2022 (04:11:02)
+2022-04-08 20:11:02,216 [CRITICAL] week end in: 10-Apr-2022 (21:31:31)
+2022-04-08 20:11:02,216 [CRITICAL] time to end: 02-1Day 17Hour 20Min 29Sec
+2022-04-08 20:11:02,216 [CRITICAL] Current session: 9.0
+2022-04-08 20:11:02,216 [CRITICAL] ###################
+2022-04-09 03:03:37,333 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-09 03:03:37,447 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-09 06:03:41,970 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-09 06:03:42,082 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-09 06:41:33,465 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-09 06:41:33,590 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-09 23:08:41,171 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-09 23:08:41,249 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-10 03:01:33,165 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-10 03:01:33,288 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-10 04:18:54,901 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-10 04:18:54,991 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-10 06:57:25,274 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-10 06:57:25,432 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-10 18:16:36,002 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-10 18:16:36,117 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-10 23:21:54,555 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-10 23:21:54,698 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-10 23:22:03,822 [CRITICAL] week start in: 10-Apr-2022 (22:57:44)
+2022-04-10 23:22:03,823 [CRITICAL] time now is: 11-Apr-2022 (07:22:03)
+2022-04-10 23:22:03,823 [CRITICAL] week end in: 15-Apr-2022 (00:57:44)
+2022-04-10 23:22:03,823 [CRITICAL] time to end: 04-1Day 17Hour 35Min 40Sec
+2022-04-10 23:22:03,823 [CRITICAL] Current session: 2.0
+2022-04-10 23:22:03,823 [CRITICAL] ###################
+2022-04-11 01:42:09,288 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-11 01:42:09,483 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-11 11:19:11,512 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-11 11:19:11,653 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-11 12:42:35,781 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-11 12:42:35,849 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-11 13:22:46,121 [CRITICAL] week start in: 10-Apr-2022 (22:57:44)
+2022-04-11 13:22:46,121 [CRITICAL] time now is: 11-Apr-2022 (21:22:46)
+2022-04-11 13:22:46,122 [CRITICAL] week end in: 15-Apr-2022 (00:57:44)
+2022-04-11 13:22:46,122 [CRITICAL] time to end: 04-1Day 03Hour 34Min 58Sec
+2022-04-11 13:22:46,122 [CRITICAL] Current session: 4.0
+2022-04-11 13:22:46,122 [CRITICAL] ###################
+2022-04-11 16:17:05,290 [WARNING] Error
+Jacobi🐠
+Command "!!" is not found
+2022-04-11 17:24:29,259 [WARNING] Error
+Sq ⍧ ಠ_ಠ
+Command raised an exception: TypeError: get_concat_v_blank() takes from 2 to 3 positional arguments but 4 were given
+2022-04-11 17:26:24,643 [WARNING] Error
+Sq ⍧ ಠ_ಠ
+Command "clear" is not found
+2022-04-11 17:27:59,065 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-11 17:27:59,195 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-11 20:28:08,922 [CRITICAL] week start in: 10-Apr-2022 (22:57:44)
+2022-04-11 20:28:08,923 [CRITICAL] time now is: 12-Apr-2022 (04:28:08)
+2022-04-11 20:28:08,923 [CRITICAL] week end in: 15-Apr-2022 (00:57:44)
+2022-04-11 20:28:08,923 [CRITICAL] time to end: 03-1Day 20Hour 29Min 35Sec
+2022-04-11 20:28:08,923 [CRITICAL] Current session: 5.0
+2022-04-11 20:28:08,923 [CRITICAL] ###################
+2022-04-11 22:59:03,288 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-11 22:59:03,420 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-12 00:32:49,596 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-12 00:32:49,715 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-12 04:43:19,120 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-12 04:43:19,319 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-12 10:48:47,051 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-12 10:48:47,120 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-12 16:20:13,219 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-12 16:20:13,387 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-13 00:26:27,034 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-13 00:26:27,148 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-13 05:59:35,201 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-13 05:59:35,298 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-13 06:32:34,778 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-13 06:32:34,863 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-13 07:42:44,429 [CRITICAL] week start in: 10-Apr-2022 (22:57:44)
+2022-04-13 07:42:44,429 [CRITICAL] time now is: 13-Apr-2022 (15:42:44)
+2022-04-13 07:42:44,430 [CRITICAL] week end in: 15-Apr-2022 (00:57:44)
+2022-04-13 07:42:44,430 [CRITICAL] time to end: 02-1Day 09Hour 14Min 59Sec
+2022-04-13 07:42:44,430 [CRITICAL] Current session: 10.0
+2022-04-13 07:42:44,430 [CRITICAL] ###################
+2022-04-13 08:32:52,170 [WARNING] Shard ID None heartbeat blocked for more than 10 seconds.
+Loop thread traceback (most recent call last):
+  File "main.py", line 110, in <module>
+    client.run(os.getenv('TOKEN'))
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/client.py", line 713, in run
+    loop.run_forever()
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 570, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 1859, in _run_once
+    handle._run()
+  File "/usr/lib/python3.8/asyncio/events.py", line 81, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/ext/tasks/__init__.py", line 101, in _loop
+    await self.coro(*args, **kwargs)
+  File "/home/runner/DiscordBot/cogs/cbank.py", line 75, in taxing
+    await centraltax(self)
+  File "/home/runner/DiscordBot/cogs/cbank.py", line 145, in centraltax
+    mainbank.update_one( {"_id":user["_id"]}, {"$set":
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/collection.py", line 1028, in update_one
+    self._update_retryable(
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/collection.py", line 877, in _update_retryable
+    return self.__database.client._retryable_write(
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/mongo_client.py", line 1552, in _retryable_write
+    return self._retry_with_session(retryable, func, s, None)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/mongo_client.py", line 1438, in _retry_with_session
+    return self._retry_internal(retryable, func, session, bulk)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/mongo_client.py", line 1470, in _retry_internal
+    return func(session, sock_info, retryable)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/collection.py", line 869, in _update
+    return self._update(
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/collection.py", line 838, in _update
+    result = sock_info.command(
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/pool.py", line 710, in command
+    return command(self, dbname, spec, secondary_ok,
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/network.py", line 152, in command
+    reply = receive_message(sock_info, request_id)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/network.py", line 200, in receive_message
+    _receive_data_on_socket(sock_info, 16, deadline))
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/network.py", line 291, in _receive_data_on_socket
+    chunk_length = sock_info.sock.recv_into(mv[bytes_read:])
+  File "/usr/lib/python3.8/ssl.py", line 1241, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.8/ssl.py", line 1099, in read
+    return self._sslobj.read(len, buffer)
+
+2022-04-13 08:33:02,171 [WARNING] Shard ID None heartbeat blocked for more than 20 seconds.
+Loop thread traceback (most recent call last):
+  File "main.py", line 110, in <module>
+    client.run(os.getenv('TOKEN'))
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/client.py", line 713, in run
+    loop.run_forever()
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 570, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 1859, in _run_once
+    handle._run()
+  File "/usr/lib/python3.8/asyncio/events.py", line 81, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/ext/tasks/__init__.py", line 101, in _loop
+    await self.coro(*args, **kwargs)
+  File "/home/runner/DiscordBot/cogs/cbank.py", line 75, in taxing
+    await centraltax(self)
+  File "/home/runner/DiscordBot/cogs/cbank.py", line 145, in centraltax
+    mainbank.update_one( {"_id":user["_id"]}, {"$set":
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/collection.py", line 1028, in update_one
+    self._update_retryable(
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/collection.py", line 877, in _update_retryable
+    return self.__database.client._retryable_write(
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/mongo_client.py", line 1552, in _retryable_write
+    return self._retry_with_session(retryable, func, s, None)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/mongo_client.py", line 1438, in _retry_with_session
+    return self._retry_internal(retryable, func, session, bulk)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/mongo_client.py", line 1470, in _retry_internal
+    return func(session, sock_info, retryable)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/collection.py", line 869, in _update
+    return self._update(
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/collection.py", line 838, in _update
+    result = sock_info.command(
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/pool.py", line 710, in command
+    return command(self, dbname, spec, secondary_ok,
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/network.py", line 152, in command
+    reply = receive_message(sock_info, request_id)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/network.py", line 200, in receive_message
+    _receive_data_on_socket(sock_info, 16, deadline))
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/network.py", line 291, in _receive_data_on_socket
+    chunk_length = sock_info.sock.recv_into(mv[bytes_read:])
+  File "/usr/lib/python3.8/ssl.py", line 1241, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.8/ssl.py", line 1099, in read
+    return self._sslobj.read(len, buffer)
+
+2022-04-13 08:33:12,172 [WARNING] Shard ID None heartbeat blocked for more than 30 seconds.
+Loop thread traceback (most recent call last):
+  File "main.py", line 110, in <module>
+    client.run(os.getenv('TOKEN'))
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/client.py", line 713, in run
+    loop.run_forever()
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 570, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.8/asyncio/base_events.py", line 1859, in _run_once
+    handle._run()
+  File "/usr/lib/python3.8/asyncio/events.py", line 81, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/ext/tasks/__init__.py", line 101, in _loop
+    await self.coro(*args, **kwargs)
+  File "/home/runner/DiscordBot/cogs/cbank.py", line 75, in taxing
+    await centraltax(self)
+  File "/home/runner/DiscordBot/cogs/cbank.py", line 145, in centraltax
+    mainbank.update_one( {"_id":user["_id"]}, {"$set":
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/collection.py", line 1028, in update_one
+    self._update_retryable(
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/collection.py", line 877, in _update_retryable
+    return self.__database.client._retryable_write(
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/mongo_client.py", line 1552, in _retryable_write
+    return self._retry_with_session(retryable, func, s, None)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/mongo_client.py", line 1438, in _retry_with_session
+    return self._retry_internal(retryable, func, session, bulk)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/mongo_client.py", line 1470, in _retry_internal
+    return func(session, sock_info, retryable)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/collection.py", line 869, in _update
+    return self._update(
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/collection.py", line 838, in _update
+    result = sock_info.command(
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/pool.py", line 710, in command
+    return command(self, dbname, spec, secondary_ok,
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/network.py", line 152, in command
+    reply = receive_message(sock_info, request_id)
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/network.py", line 200, in receive_message
+    _receive_data_on_socket(sock_info, 16, deadline))
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/pymongo/network.py", line 291, in _receive_data_on_socket
+    chunk_length = sock_info.sock.recv_into(mv[bytes_read:])
+  File "/usr/lib/python3.8/ssl.py", line 1241, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.8/ssl.py", line 1099, in read
+    return self._sslobj.read(len, buffer)
+
+2022-04-13 08:33:17,910 [ERROR] Attempting a reconnect in 1.61s
+Traceback (most recent call last):
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/client.py", line 566, in connect
+    await self.ws.poll_event()
+  File "/opt/virtualenvs/python3/lib/python3.8/site-packages/discord/gateway.py", line 582, in poll_event
+    raise ConnectionClosed(self.socket, shard_id=self.shard_id, code=code) from None
+discord.errors.ConnectionClosed: Shard ID None WebSocket closed with 1000
+2022-04-13 08:43:06,525 [WARNING] Error
+Akihiro sensei
+Command "ts" is not found
+2022-04-13 10:24:11,613 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-13 10:24:11,721 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~

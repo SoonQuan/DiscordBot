@@ -211,7 +211,17 @@ class SDSGC(commands.Cog):
     out1 = Image.open('.//Banner//pull//{}a.png'.format(ID))
     out2 = Image.open('.//Banner//pull//{}b.png'.format(ID))
     get_concat_v_blank(out1,out2,(47,49,54)).save('.//Banner//pull//{}c.png'.format(ID))
-
+    
+    # get_concat_h_multi_blank([im0,im1,im2,im3]).save('.//Banner//pull//{}1.png'.format(ID))
+    # get_concat_h_multi_blank([im4,im5,im6,im7]).save('.//Banner//pull//{}2.png'.format(ID))
+    # get_concat_h_multi_blank([im8,im9,im10]).save('.//Banner//pull//{}3.png'.format(ID))
+    # out1 = Image.open('.//Banner//pull//{}1.png'.format(ID))
+    # out2 = Image.open('.//Banner//pull//{}2.png'.format(ID))
+    # out3 = Image.open('.//Banner//pull//{}3.png'.format(ID))
+    # get_concat_v_blank(out1,out2,(47,49,54)).save('.//Banner//pull//{}c.png'.format(ID))
+    # temp1 = Image.open('.//Banner//pull//{}c.png'.format(ID))
+    # get_concat_v_blank(temp1,out3,(47,49,54)).save('.//Banner//pull//{}c.png'.format(ID))
+    
     if arg1 == None:
       quote = "{} randomly pulls on {} Banner\n".format(str(names), arg.upper())
     else:
@@ -225,10 +235,13 @@ class SDSGC(commands.Cog):
     # embed.set_author(name = names, icon_url = ctx.author.avatar_url)
     em.set_image(url = "attachment://{}c.png".format(ID))
     await ctx.send(embed = em, file = file)
-    os.remove('.//Banner//pull//{}a.png'.format(ID))
-    os.remove('.//Banner//pull//{}b.png'.format(ID))
-    return os.remove('.//Banner//pull//{}c.png'.format(ID))
-
+    
+    try:
+      shutil.rmtree('.//Banner//pull//')
+    except OSError as e:
+      print("Error: %s : %s" % ('.//Banner//pull//', e.strerror))
+    return os.mkdir('.//Banner//pull//')
+    
   @commands.command(aliases=['banners'])
   @commands.cooldown(1,1,commands.BucketType.user)
   async def banner(self,ctx,arg1="list"):
@@ -544,7 +557,6 @@ class SDSGC(commands.Cog):
         
       elif exclude.endswith(' only'):
         excludelist = exclude.lower().split(' ')
-        # print(excludelist)
         includelist = excludelist[0:-1]
         dirs = []
         while len(dirs)<4 and tries < 500:
@@ -553,10 +565,13 @@ class SDSGC(commands.Cog):
           image = random.choice(allunits)
           path = image.split('/')[-2]
           # print(image)
+          count = 0
           for include in includelist:
             if include in image.lower():
-              # print('ONLY UNIT')
-              ban = False
+              # print('ONLY UNIT', image, count)
+              count+=1
+              if count == len(includelist):
+                ban = False
           if ban == False:
             if len(dirs) == 0:
               dirs.append(image)
@@ -999,7 +1014,7 @@ class SDSGC(commands.Cog):
     try:
       if team != "":
         teamlist = team.lower().split(',')
-        print(teamlist)
+        # print(teamlist)
         index=0
         for include in teamlist:
           includelist = include.lower().split(' ')
