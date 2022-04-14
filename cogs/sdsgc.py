@@ -128,7 +128,7 @@ class SDSGC(commands.Cog):
       em = discord.Embed(description = f"You need 30 {currency} to pull", colour = discord.Color.red())
       em.set_footer(text= "try !timely")
       return await ctx.send(embed = em)
-    banner_list = sorted(["T1","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH", "ELAINE", "FBAN", "FGOW", "FKING", "FDIANE", "DMELI", "SARIEL", "HAWK","SEASON", "RAGBAN", "RAG1", "RAG2", "RAG3", "RAG4", "RAG5", "SROXY","SMLH", "LUDO", "CUSACK", "EMO", "HMATRONA", "MELA", "HDIANE", "XLILLIA", "XLIZ", "KOF"])
+    banner_list = sorted(["T1","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH", "ELAINE", "FBAN", "FGOW", "FKING", "FDIANE", "DMELI", "SARIEL", "TARMIEL", "HAWK","SEASON", "RAGBAN", "RAG1", "RAG2", "RAG3", "RAG4", "RAG5", "SROXY","SMLH", "LUDO", "CUSACK", "EMO", "HMATRONA", "MELA", "HDIANE", "XLILLIA", "XLIZ", "KOF"])
     d={}
     out = []
     if arg1 == "list":
@@ -161,7 +161,7 @@ class SDSGC(commands.Cog):
     dirs = []
     ban6p = ["DZ"]
     ban4p = ["T1","AM","MERLIN","FZEL","FBAN","LUDO", "CUSACK", "FGOW", "FKING", "FDIANE", "DMELI"]
-    ban3p = ["VAL","REZERO","ST","EXARTH", "ELAINE","HAWK", "SARIEL","SEASON", "RAGBAN", "RAG1", "RAG2", "RAG3", "RAG4", "RAG5", "SROXY", "SMLH", "EMO", "HMATRONA", "MELA", "HDIANE", "XLILLIA", "XLIZ", "KOF"]
+    ban3p = ["VAL","REZERO","ST","EXARTH", "ELAINE","HAWK", "SARIEL", "TARMIEL","SEASON", "RAGBAN", "RAG1", "RAG2", "RAG3", "RAG4", "RAG5", "SROXY", "SMLH", "EMO", "HMATRONA", "MELA", "HDIANE", "XLILLIA", "XLIZ", "KOF"]
 
     if arg in ban3p:
       for i in range(11):
@@ -252,7 +252,7 @@ class SDSGC(commands.Cog):
     users = mainbank.find_one( {'_id':user.id} )
     ID = users["_id"]
 
-    banner_list = sorted(["T1","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH", "ELAINE","FBAN", "FGOW", "FKING", "FDIANE", "DMELI", "SARIEL","HAWK","SEASON", "RAGBAN", "RAG1", "RAG2", "RAG3", "RAG4", "RAG5", "SROXY", "SMLH","LUDO", "CUSACK", "EMO", "HMATRONA", "MELA", "HDIANE", "XLILLIA", "XLIZ", "KOF"])
+    banner_list = sorted(["T1","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH", "ELAINE","FBAN", "FGOW", "FKING", "FDIANE", "DMELI", "SARIEL", "TARMIEL","HAWK","SEASON", "RAGBAN", "RAG1", "RAG2", "RAG3", "RAG4", "RAG5", "SROXY", "SMLH","LUDO", "CUSACK", "EMO", "HMATRONA", "MELA", "HDIANE", "XLILLIA", "XLIZ", "KOF"])
     d={}
     out = []
     if arg1 == "list":
@@ -1428,6 +1428,27 @@ class SDSGC(commands.Cog):
         embed.set_image(url = f"attachment://image.png")
         return await ctx.send(embed = embed, file=file)
 
+  @commands.command()
+  @commands.is_owner()
+  async def unitDir(self,ctx,*,include:str=""):
+    try:
+      if include == "":
+        em = discord.Embed(description = f'Please provide a character', colour = ctx.author.color)
+        await ctx.send(embed=em)
+      else:
+        includelist = include.lower().split(' ')
+        allunits = []
+        for base, dirs, files in os.walk(".//RSPVP//rspvp"):
+            for file in files:
+              allunits.append(str(os.path.join(base,file)))
+        for i in includelist:
+          allunits = list(filter(lambda k: i in k.lower(), allunits))
+        
+        await ctx.send(f"Unit directory is\n{allunits}")
+    except IndexError:
+      embed = discord.Embed(title=f"No {include.upper()} found", colour = discord.Color.red())
+      return await ctx.send(embed = embed)  
+      
   @commands.command()
   @commands.is_owner()
   async def addNewUnit(self, ctx, name, direct):
