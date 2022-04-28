@@ -1377,7 +1377,7 @@ class SDSGC(commands.Cog):
           filterUnit = list(filter(lambda k: i in k.lower(), filterUnit))
         if len(filterUnit) > 1:
           embed = discord.Embed(title=f"More than one {include.upper()} found", description="Please be more specific", colour = discord.Color.red())
-          embed.set_footer(text= f"try {ctx.prefix}c {include}")
+          embed.set_footer(text= f"try {ctx.prefix}unit {include}")
           return await ctx.send(embed = embed)
         else:
           if '\\' in str(filterUnit[0]):
@@ -1524,7 +1524,7 @@ class SDSGC(commands.Cog):
     msg = f'You are looking for `{str(unit)}\n`'
     suggest = []
     for i in nlist:
-      if unit in i.lower():
+      if unit.lower() in i.lower():
         suggest.append(i)
     if len(suggest) > 0:
       msg += '\n__Suggested:__'

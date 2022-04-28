@@ -15245,3 +15245,189 @@ Lux (Megelda is supremacy)
 Command "remember-birthday" is not found
 2022-04-14 09:17:40,903 [WARNING] ~~~~~~ Admin logged in ~~~~~~
 2022-04-14 09:17:41,054 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 10:17:16,386 [WARNING] Error
+Lux (Megelda is supremacy)
+You are on cooldown. Try again in 0.62s
+2022-04-14 10:17:16,387 [WARNING] Error
+Lux (Megelda is supremacy)
+You are on cooldown. Try again in 0.64s
+2022-04-14 10:17:18,232 [WARNING] Error
+Lux (Megelda is supremacy)
+You are on cooldown. Try again in 0.15s
+2022-04-14 10:17:18,233 [WARNING] Error
+Lux (Megelda is supremacy)
+You are on cooldown. Try again in 0.75s
+2022-04-14 10:17:33,247 [WARNING] Error
+Lux (Megelda is supremacy)
+Command raised an exception: ClientOSError: [Errno 104] Connection reset by peer
+2022-04-14 10:22:08,705 [WARNING] Error
+Sq
+Converting to "int" failed for parameter "times".
+2022-04-14 10:54:40,254 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 10:54:40,398 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 10:55:12,391 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 10:55:12,489 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 11:05:47,333 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 11:05:47,438 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 11:12:13,145 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 11:12:13,264 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 11:27:13,654 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 11:27:13,740 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 11:42:14,529 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 11:42:14,655 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 11:57:13,126 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 11:57:13,238 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 12:12:14,144 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 12:12:14,326 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 12:27:14,903 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 12:27:15,194 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 12:42:14,715 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 12:42:14,937 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 12:57:14,718 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 12:57:14,925 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 13:07:51,251 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 13:07:51,394 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 13:08:00,940 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 13:08:01,066 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 15:48:09,245 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 15:48:09,352 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 18:48:03,324 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 18:48:03,426 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 22:30:01,148 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-14 22:30:01,333 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-15 00:48:56,306 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-15 00:48:56,435 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-15 01:54:32,000 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-15 01:54:32,129 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-15 01:56:55,910 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-15 01:56:55,988 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-15 16:18:28,718 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-15 16:18:28,828 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-15 19:27:49,876 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-15 19:27:49,988 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-15 19:42:45,791 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-15 19:42:45,877 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-15 19:46:08,042 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-15 19:46:08,156 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-16 03:40:45,673 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-16 03:40:45,785 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-17 03:00:40,980 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-17 03:00:41,097 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-17 04:00:50,973 [CRITICAL] week start in: 15-Apr-2022 (03:18:22)
+2022-04-17 04:00:50,974 [CRITICAL] time now is: 17-Apr-2022 (12:00:50)
+2022-04-17 04:00:50,974 [CRITICAL] week end in: 19-Apr-2022 (05:18:22)
+2022-04-17 04:00:50,974 [CRITICAL] time to end: 02-1Day 17Hour 17Min 31Sec
+2022-04-17 04:00:50,974 [CRITICAL] Current session: 9.0
+2022-04-17 04:00:50,974 [CRITICAL] ###################
+2022-04-17 10:37:47,152 [WARNING] Error
+Cheese
+Command "pool" is not found
+2022-04-17 10:50:09,538 [WARNING] Error
+Cheese
+Command "r,fking_oldfart,r" is not found
+2022-04-17 11:00:51,410 [CRITICAL] week start in: 15-Apr-2022 (03:18:22)
+2022-04-17 11:00:51,410 [CRITICAL] time now is: 17-Apr-2022 (19:00:51)
+2022-04-17 11:00:51,414 [CRITICAL] week end in: 19-Apr-2022 (05:18:22)
+2022-04-17 11:00:51,414 [CRITICAL] time to end: 02-1Day 10Hour 17Min 30Sec
+2022-04-17 11:00:51,415 [CRITICAL] Current session: 10.0
+2022-04-17 11:00:51,415 [CRITICAL] ###################
+2022-04-17 15:16:40,247 [WARNING] Error
+ilyes
+Command "r" is not found
+2022-04-17 16:17:26,668 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-17 16:17:26,805 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-17 17:26:09,198 [WARNING] We are being rate limited. Retrying in 0.21 seconds. Handled under the bucket "954308282288332810:None:/channels/{channel_id}/messages/{message_id}/reactions/{emoji}/@me"
+2022-04-17 17:26:09,830 [WARNING] We are being rate limited. Retrying in 0.22 seconds. Handled under the bucket "954308282288332810:None:/channels/{channel_id}/messages/{message_id}/reactions/{emoji}/@me"
+2022-04-17 17:26:10,480 [WARNING] We are being rate limited. Retrying in 0.22 seconds. Handled under the bucket "954308282288332810:None:/channels/{channel_id}/messages/{message_id}/reactions/{emoji}/@me"
+2022-04-17 17:26:11,122 [WARNING] We are being rate limited. Retrying in 0.21 seconds. Handled under the bucket "954308282288332810:None:/channels/{channel_id}/messages/{message_id}/reactions/{emoji}/@me"
+2022-04-17 17:27:12,222 [WARNING] We are being rate limited. Retrying in 0.03 seconds. Handled under the bucket "954308282288332810:None:/channels/{channel_id}/messages/{message_id}/reactions/{emoji}/@me"
+2022-04-17 17:27:12,793 [WARNING] We are being rate limited. Retrying in 0.11 seconds. Handled under the bucket "954308282288332810:None:/channels/{channel_id}/messages/{message_id}/reactions/{emoji}/@me"
+2022-04-17 17:27:13,328 [WARNING] We are being rate limited. Retrying in 0.21 seconds. Handled under the bucket "954308282288332810:None:/channels/{channel_id}/messages/{message_id}/reactions/{emoji}/@me"
+2022-04-17 17:27:13,965 [WARNING] We are being rate limited. Retrying in 0.24 seconds. Handled under the bucket "954308282288332810:None:/channels/{channel_id}/messages/{message_id}/reactions/{emoji}/@me"
+2022-04-17 17:27:49,207 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-17 17:27:49,280 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-17 17:28:26,249 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-17 17:28:26,326 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-17 18:08:36,065 [CRITICAL] week start in: 15-Apr-2022 (03:18:22)
+2022-04-17 18:08:36,066 [CRITICAL] time now is: 18-Apr-2022 (02:08:36)
+2022-04-17 18:08:36,066 [CRITICAL] week end in: 19-Apr-2022 (05:18:22)
+2022-04-17 18:08:36,066 [CRITICAL] time to end: 02-1Day 03Hour 09Min 46Sec
+2022-04-17 18:08:36,066 [CRITICAL] Current session: 11.0
+2022-04-17 18:08:36,066 [CRITICAL] ###################
+2022-04-17 19:02:14,720 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-17 19:02:14,794 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-17 22:19:36,419 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-17 22:19:36,545 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-18 05:21:17,110 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-18 05:21:17,223 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-18 16:05:47,260 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-18 16:05:47,409 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-18 19:27:22,021 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-18 19:27:22,122 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-19 02:56:03,539 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-19 02:56:03,611 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-19 04:52:39,527 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-19 04:52:39,673 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-20 00:49:45,557 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-20 00:49:45,697 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-20 01:45:17,832 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-20 01:45:17,951 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-21 01:23:42,396 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-21 01:23:42,546 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-21 02:14:09,770 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-21 02:14:09,881 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-21 05:15:59,421 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-21 05:15:59,612 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-21 08:37:08,856 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-21 08:37:08,972 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-22 02:37:40,319 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-22 02:37:40,416 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-22 03:43:10,939 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-22 03:43:11,059 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-22 03:54:02,131 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-22 03:54:02,247 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-22 11:04:44,194 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-22 11:04:44,311 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-23 06:41:54,640 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-23 06:41:54,803 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-23 08:44:47,081 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-23 08:44:47,160 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-24 08:22:43,004 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-24 08:22:43,117 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-25 07:58:28,144 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-25 07:58:28,359 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-25 08:55:02,128 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-25 08:55:02,308 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-25 09:37:18,156 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-25 10:48:57,855 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-25 10:48:57,989 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-25 18:25:57,420 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-25 18:25:57,523 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-25 18:57:14,810 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-25 18:57:14,888 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-25 19:52:30,790 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-25 19:52:30,885 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-26 04:48:44,678 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-26 04:48:44,787 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-26 22:54:51,408 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-26 22:54:51,494 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-27 20:36:51,118 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-27 20:36:51,227 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-27 20:37:02,253 [CRITICAL] week start in: 27-Apr-2022 (14:35:09)
+2022-04-27 20:37:02,254 [CRITICAL] time now is: 28-Apr-2022 (04:37:02)
+2022-04-27 20:37:02,254 [CRITICAL] week end in: 01-May-2022 (16:35:09)
+2022-04-27 20:37:02,254 [CRITICAL] time to end: 04-1Day 11Hour 58Min 07Sec
+2022-04-27 20:37:02,254 [CRITICAL] Current session: 3.0
+2022-04-27 20:37:02,255 [CRITICAL] ###################
+2022-04-27 21:39:13,272 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-27 21:39:13,445 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-27 22:05:10,590 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-27 22:05:10,794 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-28 02:09:11,511 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-04-28 02:09:11,579 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-04-28 03:39:21,953 [CRITICAL] week start in: 27-Apr-2022 (14:35:09)
+2022-04-28 03:39:21,953 [CRITICAL] time now is: 28-Apr-2022 (11:39:21)
+2022-04-28 03:39:21,953 [CRITICAL] week end in: 01-May-2022 (16:35:09)
+2022-04-28 03:39:21,954 [CRITICAL] time to end: 04-1Day 04Hour 55Min 47Sec
+2022-04-28 03:39:21,954 [CRITICAL] Current session: 4.0
+2022-04-28 03:39:21,954 [CRITICAL] ###################
