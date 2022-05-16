@@ -1319,9 +1319,14 @@ class SDSGC(commands.Cog):
     return await ctx.send("New Profile Initiated")
 
   @commands.command()
-  async def deleteProfile(self, ctx):
+  @commands.is_owner()
+  async def deleteProfile(self, ctx, member:discord.Member=None):
     """ Delete profile """
-    sdsgc.remove({"_id":ctx.author.id})
+    if member == None:
+      target = ctx.author
+    else:
+      target = member
+    sdsgc.remove({"_id":target.id})
     return await ctx.send("Profile deleted")
 
   @commands.command()

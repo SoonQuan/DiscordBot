@@ -7,8 +7,8 @@ from pretty_help import DefaultMenu, PrettyHelp
 # import neverSleep
 # neverSleep.awake('https://DiscordBot.sqmatt.repl.co', True)
 
-from dotenv import load_dotenv
-load_dotenv()
+# from dotenv import load_dotenv
+# load_dotenv()
 
 cluster = MongoClient(os.getenv('MONGODB'))
 
