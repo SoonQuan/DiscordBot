@@ -1106,7 +1106,7 @@ class SDSGC(commands.Cog):
       times = int(10)
       await ctx.send(f'{ctx.author.mention} maximum of 10 multis at once')
     if bal[0] < 30*times:
-      out = int(bal[0])%30
+      out = int(bal[0])//30
       em = discord.Embed(description = f"You need {30*times} {currency} to pull {times} times\nYou only have {bal[0]} in your wallet, hence pulling {out} times instead", colour = discord.Color.red())
       em.set_footer(text= "try !timely")
       await ctx.send(embed = em)
