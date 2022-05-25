@@ -228,7 +228,7 @@ class SDSGC(commands.Cog):
     await ctx.send(embed = em, file = file)
     
     try:
-      return shutil.rmtree('.//Banner//pull{ID}//')
+      return shutil.rmtree(f'.//Banner//pull{ID}//')
     except OSError as e:
       return print("Error: %s : %s" % ('.//Banner//pull{ID}//', e.strerror))
     
