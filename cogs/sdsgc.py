@@ -128,6 +128,10 @@ class SDSGC(commands.Cog):
       em = discord.Embed(description = f"You need 30 {currency} to pull", colour = discord.Color.red())
       em.set_footer(text= "try !timely")
       return await ctx.send(embed = em)
+    try:
+      shutil.rmtree(f'.//Banner//pull{ID}//')
+    except OSError as e:
+      print("Error: %s : %s" % (f'.//Banner//pull{ID}//', e.strerror)) 
     os.mkdir(f'.//Banner//pull{ID}//')
     banner_list = sorted(["T1","MONO","SLIME","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH", "ELAINE", "FBAN", "FGOW", "FKING", "FDIANE", "DMELI", "SARIEL", "TARMIEL", "HAWK","SEASON", "RAGBAN", "RAG1", "RAG2", "RAG3", "RAG4", "RAG5", "SROXY","SMLH", "LUDO", "CUSACK", "EMO", "HMATRONA", "MELA", "HDIANE", "XLILLIA", "XLIZ", "KOF"])
     d={}
@@ -241,6 +245,10 @@ class SDSGC(commands.Cog):
     await open_server(user)
     users = mainbank.find_one( {'_id':user.id} )
     ID = users["_id"]
+    try:
+      shutil.rmtree(f'.//Banner//pull{ID}//')
+    except OSError as e:
+      print("Error: %s : %s" % (f'.//Banner//pull{ID}//', e.strerror)) 
     os.mkdir(f'.//Banner//pull{ID}//')
 
     banner_list = sorted(["T1","MONO","SLIME","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH", "ELAINE","FBAN", "FGOW", "FKING", "FDIANE", "DMELI", "SARIEL", "TARMIEL","HAWK","SEASON", "RAGBAN", "RAG1", "RAG2", "RAG3", "RAG4", "RAG5", "SROXY", "SMLH","LUDO", "CUSACK", "EMO", "HMATRONA", "MELA", "HDIANE", "XLILLIA", "XLIZ", "KOF"])
@@ -431,6 +439,10 @@ class SDSGC(commands.Cog):
     await open_server(ctx.author)
     users = mainbank.find_one( {'_id':ctx.author.id} )
     ID = users["_id"]
+    try:
+      shutil.rmtree(f'.//RSPVP//pull{ID}//')
+    except OSError as e:
+      print("Error: %s : %s" % (f'.//RSPVP//pull{ID}//', e.strerror)) 
     os.mkdir(f'.//RSPVP//pull{ID}//')
 
     names = ctx.author.display_name
@@ -479,7 +491,6 @@ class SDSGC(commands.Cog):
       return print("Error: %s : %s" % (f'.//RSPVP//pull{ID}//', e.strerror))
 
 
-
   @commands.command(aliases=['rspvp', 'rs'])
   @commands.cooldown(1,1,commands.BucketType.user)
   async def randomselect(self,ctx,*,exclude:str=""):
@@ -501,6 +512,10 @@ class SDSGC(commands.Cog):
       await open_server(ctx.author)
       users = mainbank.find_one( {'_id':ctx.author.id} )
       ID = users["_id"]
+      try:
+        shutil.rmtree(f'.//RSPVP//pull{ID}//')
+      except OSError as e:
+        print("Error: %s : %s" % (f'.//RSPVP//pull{ID}//', e.strerror)) 
       os.mkdir(f'.//RSPVP//pull{ID}//')
       tries = 0
       if exclude == "":
@@ -949,6 +964,10 @@ class SDSGC(commands.Cog):
       await open_server(user)
       users = mainbank.find_one( {'_id':user.id} )
       ID = users["_id"]
+      try:
+        shutil.rmtree(f'.//Banner//pull{ID}//')
+      except OSError as e:
+        print("Error: %s : %s" % (f'.//Banner//pull{ID}//', e.strerror))       
       os.mkdir(f'.//Banner//pull{ID}//')
       if include == "":
         em = discord.Embed(description = f'Please provide a character', colour = ctx.author.color)
@@ -1021,6 +1040,10 @@ class SDSGC(commands.Cog):
       await open_server(user)
       users = mainbank.find_one( {'_id':user.id} )
       ID = users["_id"]
+      try:
+        shutil.rmtree(f'.//RSPVP//pull{ID}//')
+      except OSError as e:
+        print("Error: %s : %s" % (f'.//RSPVP//pull{ID}//', e.strerror)) 
       os.mkdir(f'.//RSPVP//pull{ID}//')
 
       if team != "":
@@ -1196,6 +1219,10 @@ class SDSGC(commands.Cog):
     await open_server(ctx.author)
     users = mainbank.find_one( {'_id':ctx.author.id} )
     ID = users["_id"]
+    try:
+      shutil.rmtree(f'.//Banner//pull{ID}//')
+    except OSError as e:
+      print("Error: %s : %s" % (f'.//Banner//pull{ID}//', e.strerror)) 
     os.mkdir(f'.//Banner//pull{ID}//')
 
     if member == None:
@@ -1266,6 +1293,10 @@ class SDSGC(commands.Cog):
     await open_server(ctx.author)
     users = mainbank.find_one( {'_id':ctx.author.id} )
     ID = users["_id"]
+    try:
+      shutil.rmtree(f'.//Banner//pull{ID}//')
+    except OSError as e:
+      print("Error: %s : %s" % (f'.//Banner//pull{ID}//', e.strerror))     
     os.mkdir(f'.//Banner//pull{ID}//')
     if member == None:
       target = ctx.author
