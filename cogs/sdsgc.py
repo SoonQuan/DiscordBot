@@ -133,7 +133,7 @@ class SDSGC(commands.Cog):
     except OSError as e:
       print("Error: %s : %s" % (f'.//Banner//pull{ID}//', e.strerror)) 
     os.mkdir(f'.//Banner//pull{ID}//')
-    banner_list = sorted(["T1","MONO","SLIME","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH", "ELAINE", "FBAN", "FGOW", "FKING", "FDIANE", "DMELI", "SARIEL", "TARMIEL", "HAWK","SEASON", "RAGBAN", "RAG1", "RAG2", "RAG3", "RAG4", "RAG5", "SROXY","SMLH", "LUDO", "CUSACK", "EMO", "HMATRONA", "MELA", "HDIANE", "XLILLIA", "XLIZ", "KOF"])
+    banner_list = sorted(["T1","MONO","SLIME","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH", "ELAINE", "FBAN", "FLIZ", "FGOW", "FKING", "FDIANE", "DMELI", "SARIEL", "TARMIEL", "HAWK","SEASON", "RAGBAN", "RAG1", "RAG2", "RAG3", "RAG4", "RAG5", "SROXY","SMLH", "LUDO", "CUSACK", "EMO", "HMATRONA", "MELA", "HDIANE", "XLILLIA", "XLIZ", "KOF"])
     d={}
     out = []
     if arg1 == "list":
@@ -165,7 +165,7 @@ class SDSGC(commands.Cog):
     banner = str(arg.upper()) + "Banner"
     dirs = []
     ban6p = ["DZ"]
-    ban4p = ["T1","AM","MERLIN","FZEL","FBAN","LUDO", "CUSACK", "FGOW", "FKING", "FDIANE", "DMELI"]
+    ban4p = ["T1","AM","MERLIN","FZEL","FBAN", "FLIZ","LUDO", "CUSACK", "FGOW", "FKING", "FDIANE", "DMELI"]
     ban3p = ["MONO","SLIME","VAL","REZERO","ST","EXARTH", "ELAINE","HAWK", "SARIEL", "TARMIEL","SEASON", "RAGBAN", "RAG1", "RAG2", "RAG3", "RAG4", "RAG5", "SROXY", "SMLH", "EMO", "HMATRONA", "MELA", "HDIANE", "XLILLIA", "XLIZ", "KOF"]
 
     if arg in ban3p:
@@ -251,7 +251,7 @@ class SDSGC(commands.Cog):
       print("Error: %s : %s" % (f'.//Banner//pull{ID}//', e.strerror)) 
     os.mkdir(f'.//Banner//pull{ID}//')
 
-    banner_list = sorted(["T1","MONO","SLIME","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH", "ELAINE","FBAN", "FGOW", "FKING", "FDIANE", "DMELI", "SARIEL", "TARMIEL","HAWK","SEASON", "RAGBAN", "RAG1", "RAG2", "RAG3", "RAG4", "RAG5", "SROXY", "SMLH","LUDO", "CUSACK", "EMO", "HMATRONA", "MELA", "HDIANE", "XLILLIA", "XLIZ", "KOF"])
+    banner_list = sorted(["T1","MONO","SLIME","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH", "ELAINE","FBAN", "FLIZ", "FGOW", "FKING", "FDIANE", "DMELI", "SARIEL", "TARMIEL","HAWK","SEASON", "RAGBAN", "RAG1", "RAG2", "RAG3", "RAG4", "RAG5", "SROXY", "SMLH","LUDO", "CUSACK", "EMO", "HMATRONA", "MELA", "HDIANE", "XLILLIA", "XLIZ", "KOF"])
     d={}
     out = []
     if arg1 == "list":
