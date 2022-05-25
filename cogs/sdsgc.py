@@ -122,6 +122,7 @@ class SDSGC(commands.Cog):
     currency = guilds["emoji"]
     names = user.display_name
     ID = users["_id"]
+    os.mkdir(f'.//Banner//pull{ID}//')
 
     bal = [users["wallet"],users["bank"]]
     if bal[0] < 30:
@@ -206,28 +207,18 @@ class SDSGC(commands.Cog):
     im9 = Image.open(dirs[9])
     im10 = Image.open(dirs[10])
 
-    get_concat_h_multi_blank([im0,im1,im2,im3,im4]).save('.//Banner//pull//{}a.png'.format(ID))
-    get_concat_h_multi_blank([im5,im6,im7,im8,im9,im10]).save('.//Banner//pull//{}b.png'.format(ID))
-    out1 = Image.open('.//Banner//pull//{}a.png'.format(ID))
-    out2 = Image.open('.//Banner//pull//{}b.png'.format(ID))
-    get_concat_v_blank(out1,out2,(47,49,54)).save('.//Banner//pull//{}c.png'.format(ID))
-    
-    # get_concat_h_multi_blank([im0,im1,im2,im3]).save('.//Banner//pull//{}1.png'.format(ID))
-    # get_concat_h_multi_blank([im4,im5,im6,im7]).save('.//Banner//pull//{}2.png'.format(ID))
-    # get_concat_h_multi_blank([im8,im9,im10]).save('.//Banner//pull//{}3.png'.format(ID))
-    # out1 = Image.open('.//Banner//pull//{}1.png'.format(ID))
-    # out2 = Image.open('.//Banner//pull//{}2.png'.format(ID))
-    # out3 = Image.open('.//Banner//pull//{}3.png'.format(ID))
-    # get_concat_v_blank(out1,out2,(47,49,54)).save('.//Banner//pull//{}c.png'.format(ID))
-    # temp1 = Image.open('.//Banner//pull//{}c.png'.format(ID))
-    # get_concat_v_blank(temp1,out3,(47,49,54)).save('.//Banner//pull//{}c.png'.format(ID))
-    
+    get_concat_h_multi_blank([im0,im1,im2,im3,im4]).save(f'.//Banner//pull{ID}//{ID}a.png')
+    get_concat_h_multi_blank([im5,im6,im7,im8,im9,im10]).save(f'.//Banner//pull{ID}//{ID}b.png')
+    out1 = Image.open(f'.//Banner//pull{ID}//{ID}a.png')
+    out2 = Image.open(f'.//Banner//pull{ID}//{ID}b.png')
+    get_concat_v_blank(out1,out2,(47,49,54)).save(f'.//Banner//pull{ID}//{ID}c.png')
+        
     if arg1 == None:
       quote = "{} randomly pulls on {} Banner\n".format(str(names), arg.upper())
     else:
       quote = "{} pulls on {} Banner\n".format(str(names), arg.upper())
     mainbank.update_one({"_id":user.id}, {"$inc":{"wallet":-30}})
-    file = discord.File('.//Banner//pull//{}c.png'.format(ID))
+    file = discord.File(f'.//Banner//pull{ID}//{ID}c.png')
     prefix = get_prefix(client,ctx)
     em = discord.Embed(title = quote, description = f"30{currency} is consumed" ,colour = ctx.author.color)
     em.set_thumbnail(url=ctx.author.avatar_url)
@@ -237,10 +228,9 @@ class SDSGC(commands.Cog):
     await ctx.send(embed = em, file = file)
     
     try:
-      shutil.rmtree('.//Banner//pull//')
+      return shutil.rmtree('.//Banner//pull{ID}//')
     except OSError as e:
-      print("Error: %s : %s" % ('.//Banner//pull//', e.strerror))
-    return os.mkdir('.//Banner//pull//')
+      return print("Error: %s : %s" % ('.//Banner//pull{ID}//', e.strerror))
     
   @commands.command(aliases=['banners'])
   @commands.cooldown(1,1,commands.BucketType.user)
