@@ -4,8 +4,8 @@ from discord.ext import commands
 from pymongo import MongoClient
 from itertools import cycle
 from pretty_help import DefaultMenu, PrettyHelp
-import neverSleep
-neverSleep.awake('https://DiscordBot.sqmatt.repl.co', True)
+# import neverSleep
+# neverSleep.awake('https://DiscordBot.sqmatt.repl.co', True)
 
 # from dotenv import load_dotenv
 # load_dotenv()
