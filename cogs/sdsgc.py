@@ -122,13 +122,13 @@ class SDSGC(commands.Cog):
     currency = guilds["emoji"]
     names = user.display_name
     ID = users["_id"]
-    os.mkdir(f'.//Banner//pull{ID}//')
-
+    
     bal = [users["wallet"],users["bank"]]
     if bal[0] < 30:
       em = discord.Embed(description = f"You need 30 {currency} to pull", colour = discord.Color.red())
       em.set_footer(text= "try !timely")
       return await ctx.send(embed = em)
+    os.mkdir(f'.//Banner//pull{ID}//')
     banner_list = sorted(["T1","MONO","SLIME","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH", "ELAINE", "FBAN", "FGOW", "FKING", "FDIANE", "DMELI", "SARIEL", "TARMIEL", "HAWK","SEASON", "RAGBAN", "RAG1", "RAG2", "RAG3", "RAG4", "RAG5", "SROXY","SMLH", "LUDO", "CUSACK", "EMO", "HMATRONA", "MELA", "HDIANE", "XLILLIA", "XLIZ", "KOF"])
     d={}
     out = []
@@ -241,6 +241,7 @@ class SDSGC(commands.Cog):
     await open_server(user)
     users = mainbank.find_one( {'_id':user.id} )
     ID = users["_id"]
+    os.mkdir(f'.//Banner//pull{ID}//')
 
     banner_list = sorted(["T1","MONO","SLIME","VAL","AM","DZ","MERLIN","FZEL", "REZERO", "ST", "EXARTH", "ELAINE","FBAN", "FGOW", "FKING", "FDIANE", "DMELI", "SARIEL", "TARMIEL","HAWK","SEASON", "RAGBAN", "RAG1", "RAG2", "RAG3", "RAG4", "RAG5", "SROXY", "SMLH","LUDO", "CUSACK", "EMO", "HMATRONA", "MELA", "HDIANE", "XLILLIA", "XLIZ", "KOF"])
     d={}
@@ -281,40 +282,39 @@ class SDSGC(commands.Cog):
     part=0
     for unit in all_units:
       if partsize == 0:
-        Image.open(unit).save(f'.//Banner//pull//{ctx.author.id}{part}.png')
+        Image.open(unit).save(f'.//Banner//pull{ID}//{ID}{part}.png')
         partsize += 1
       elif partsize < size:
-        mainpart = Image.open(f'.//Banner//pull//{ctx.author.id}{part}.png')
+        mainpart = Image.open(f'.//Banner//pull{ID}//{ID}{part}.png')
         nextImg = Image.open(unit)
         get_concat_h_multi_blank([mainpart,nextImg]).save(
-          f'.//Banner//pull//{ctx.author.id}{part}.png')
+          f'.//Banner//pull{ID}//{ID}{part}.png')
         partsize+=1
       elif partsize == size:
         partsize = 0
         part+=1
-        Image.open(unit).save(f'.//Banner//pull//{ctx.author.id}{part}.png')
+        Image.open(unit).save(f'.//Banner//pull{ID}//{ID}{part}.png')
         partsize += 1
 
     images = list(os.listdir(".//Banner//pull"))
-    Image.open(f".//Banner//pull//{images[0]}").save(f'.//Banner//pull//{ctx.author.id}.png')
+    Image.open(f".//Banner//pull{ID}//{images[0]}").save(f'.//Banner//pull{ID}//{ID}.png')
     images.pop(0)
     for unit in images:
-      img = Image.open(f'.//Banner//pull//{ctx.author.id}.png')
-      addon = Image.open(f".//Banner//pull//{unit}")
-      get_concat_v_blank(img, addon, (47,49,54)).save(f'.//Banner//pull//{ctx.author.id}.png')
+      img = Image.open(f'.//Banner//pull{ID}//{ID}.png')
+      addon = Image.open(f".//Banner//pull{ID}//{unit}")
+      get_concat_v_blank(img, addon, (47,49,54)).save(f'.//Banner//pull{ID}//{ID}.png')
 
     quote = f"{arg.upper()} Banner contain"
-    file = discord.File(f'.//Banner//pull//{ID}.png')
+    file = discord.File(f'.//Banner//pull{ID}//{ID}.png')
     em = discord.Embed(title = quote, colour = ctx.author.color)
     em.set_footer(text=f"use <{ctx.prefix}banner list> to check available banners")
     em.set_image(url = f"attachment://{ID}.png")
     await ctx.send(embed = em, file = file)
 
     try:
-      shutil.rmtree('.//Banner//pull//')
+      return shutil.rmtree(f'.//Banner//pull{ID}//')
     except OSError as e:
-      print("Error: %s : %s" % ('.//Banner//pull//', e.strerror))
-    return os.mkdir('.//Banner//pull//')
+      return print("Error: %s : %s" % ('.//Banner//pull{ID}//', e.strerror))
 
   @commands.command(aliases = ['+gc','++'])
   @commands.has_any_role('ADMIN','N⍧ Sovereign', 'G⍧ Archangels', 'K⍧ Kage', 'le vendel' , 'D⍧ Dragon', 'W⍧ Grace', 'R⍧ Leviathan', 'Overseer')
@@ -427,6 +427,12 @@ class SDSGC(commands.Cog):
   @commands.cooldown(1,1,commands.BucketType.user)
   async def rselectpvp(self,ctx):
     """ Randomly select 4 units for you """
+    await open_account(ctx.author)
+    await open_server(ctx.author)
+    users = mainbank.find_one( {'_id':ctx.author.id} )
+    ID = users["_id"]
+    os.mkdir(f'.//RSPVP//pull{ID}//')
+
     names = ctx.author.display_name
     user = sdsgc.find_one( {'_id': "BASE"} )
     allunits = []
@@ -459,15 +465,18 @@ class SDSGC(commands.Cog):
     im2 = Image.open(dirs[2])
     im3 = Image.open(dirs[3])
 
-    get_concat_h_multi_blank([im0,im1,im2,im3]).save(f'.//RSPVP//pull//{ctx.author.id}.png')
+    get_concat_h_multi_blank([im0,im1,im2,im3]).save(f'.//RSPVP//pull{ID}//{ID}.png')
     quote = "{} randomly selects from all available units".format(str(names))
 
-    file = discord.File(f'.//RSPVP//pull//{ctx.author.id}.png')
+    file = discord.File(f'.//RSPVP//pull{ID}//{ID}.png')
     embed = discord.Embed(title = quote,colour = ctx.author.color)
-    embed.set_image(url = f"attachment://{ctx.author.id}.png")
+    embed.set_image(url = f"attachment://{ID}.png")
     embed.set_thumbnail(url=ctx.author.avatar_url)
     await ctx.send(embed = embed, file = file)
-    return os.remove(f'.//RSPVP//pull//{ctx.author.id}.png')
+    try:
+      return shutil.rmtree(f'.//RSPVP//pull{ID}//')
+    except OSError as e:
+      return print("Error: %s : %s" % ('.//RSPVP//pull{ID}//', e.strerror))
 
 
 
@@ -475,13 +484,12 @@ class SDSGC(commands.Cog):
   @commands.cooldown(1,1,commands.BucketType.user)
   async def randomselect(self,ctx,*,exclude:str=""):
     """ Randomly select 4 units for you with exclude list"""
-    # if ctx.author.id == 308042980944642050 or ctx.author.id == 303066334038720516 or ctx.author.id == 131232317518774272:
-    #   quote = "Liz for you"
-    #   file = discord.File(f'.//RSPVP//KAI.jpg',filename="image.png")
-    #   embed = discord.Embed(title = quote,colour = ctx.author.color)
-    #   embed.set_image(url = f"attachment://image.png")
-    #   embed.set_thumbnail(url=ctx.author.avatar_url)
-    #   return await ctx.send(embed = embed, file = file)
+    await open_account(ctx.author)
+    await open_server(ctx.author)
+    users = mainbank.find_one( {'_id':ctx.author.id} )
+    ID = users["_id"]
+    os.mkdir(f'.//RSPVP//pull{ID}//')
+
     names = ctx.author.display_name
     user = sdsgc.find_one( {'_id': ctx.author.id} )
     if user == None:
@@ -532,20 +540,24 @@ class SDSGC(commands.Cog):
         im2 = Image.open(dirs[2])
         im3 = Image.open(dirs[3])
 
-        get_concat_h_multi_blank([im0,im1,im2,im3]).save(f'.//RSPVP//pull//{ctx.author.id}.png')
+        get_concat_h_multi_blank([im0,im1,im2,im3]).save(f'.//RSPVP//pull{ID}//{ID}.png')
         quote = f"{names} randomly selected units\n"
-        file = discord.File(f'.//RSPVP//pull//{ctx.author.id}.png')
+        file = discord.File(f'.//RSPVP//pull{ID}//{ID}.png')
         embed = discord.Embed(title = quote,colour = ctx.author.color)
-        embed.set_image(url = f"attachment://{ctx.author.id}.png")
+        embed.set_image(url = f"attachment://{ID}.png")
         embed.set_thumbnail(url=ctx.author.avatar_url)
         await ctx.send(embed = embed, file = file)
-        return os.remove(f'.//RSPVP//pull//{ctx.author.id}.png')
+        try:
+          return shutil.rmtree(f'.//RSPVP//pull{ID}//')
+        except OSError as e:
+          return print("Error: %s : %s" % ('.//RSPVP//pull{ID}//', e.strerror))
+
         
-      elif 'all' in exclude.lower():
+      elif exclude.lower().endswith(' all'):
         pending_command = self.client.get_command('rselectpvp')
         return await ctx.invoke(pending_command)
         
-      elif exclude.endswith(' only'):
+      elif exclude.lower().endswith(' only'):
         excludelist = exclude.lower().split(' ')
         includelist = excludelist[0:-1]
         dirs = []
@@ -584,16 +596,19 @@ class SDSGC(commands.Cog):
         im2 = Image.open(dirs[2])
         im3 = Image.open(dirs[3])
 
-        get_concat_h_multi_blank([im0,im1,im2,im3]).save(f'.//RSPVP//pull//{ctx.author.id}.png')
+        get_concat_h_multi_blank([im0,im1,im2,im3]).save(f'.//RSPVP//pull{ID}//{ID}.png')
         quote = f"{names} randomly selected units\nFrom:\n"
         for x in exclude.split(' '):
           quote += f"➣{str(x)} "
-        file = discord.File(f'.//RSPVP//pull//{ctx.author.id}.png')
+        file = discord.File(f'.//RSPVP//pull{ID}//{ID}.png')
         embed = discord.Embed(title = quote,colour = ctx.author.color)
-        embed.set_image(url = f"attachment://{ctx.author.id}.png")
+        embed.set_image(url = f"attachment://{ID}.png")
         embed.set_thumbnail(url=ctx.author.avatar_url)
         await ctx.send(embed = embed, file = file)
-        return os.remove(f'.//RSPVP//pull//{ctx.author.id}.png')
+        try:
+          return shutil.rmtree(f'.//RSPVP//pull{ID}//')
+        except OSError as e:
+          return print("Error: %s : %s" % ('.//RSPVP//pull{ID}//', e.strerror))        
         
       elif "[rgb]" in exclude.lower() or "[rbg]" in exclude.lower():
         dirs = []
@@ -664,19 +679,22 @@ class SDSGC(commands.Cog):
         im2 = Image.open(dirs[2])
         im3 = Image.open(dirs[3])
 
-        get_concat_h_multi_blank([im0,im1,im2,im3]).save(f'.//RSPVP//pull//{ctx.author.id}.png')
+        get_concat_h_multi_blank([im0,im1,im2,im3]).save(f'.//RSPVP//pull{ID}//{ID}.png')
         quote = f"{names} selected the RGB mode\n"
         if len(excludeList) != 0:
           quote += "\nExcluding:\n"
           for x in excludeList:
             quote += f"➣{str(x)} "
-        file = discord.File(f'.//RSPVP//pull//{ctx.author.id}.png')
+        file = discord.File(f'.//RSPVP//pull{ID}//{ID}.png')
         embed = discord.Embed(title = quote,colour = ctx.author.color)
-        embed.set_image(url = f"attachment://{ctx.author.id}.png")
+        embed.set_image(url = f"attachment://{ID}.png")
         embed.set_thumbnail(url=ctx.author.avatar_url)
         await ctx.send(embed = embed, file = file)
-        return os.remove(f'.//RSPVP//pull//{ctx.author.id}.png')
-        
+        try:
+          return shutil.rmtree(f'.//RSPVP//pull{ID}//')
+        except OSError as e:
+          return print("Error: %s : %s" % ('.//RSPVP//pull{ID}//', e.strerror))  
+
       elif "(" in exclude:
         dirs = []
         unitNum = 4
@@ -735,7 +753,7 @@ class SDSGC(commands.Cog):
         im2 = Image.open(dirs[2])
         im3 = Image.open(dirs[3])
 
-        get_concat_h_multi_blank([im0,im1,im2,im3]).save(f'.//RSPVP//pull//{ctx.author.id}.png')
+        get_concat_h_multi_blank([im0,im1,im2,im3]).save(f'.//RSPVP//pull{ID}//{ID}.png')
         quote = f"{names} selected:\n"
         for x in forcedList:
           quote += f"➣{str(x)} "
@@ -744,12 +762,16 @@ class SDSGC(commands.Cog):
           quote += "\nExcluding:\n"
           for x in excludeList:
             quote += f"➣{str(x)} "
-        file = discord.File(f'.//RSPVP//pull//{ctx.author.id}.png')
+        file = discord.File(f'.//RSPVP//pull{ID}//{ID}.png')
         embed = discord.Embed(title = quote,colour = ctx.author.color)
-        embed.set_image(url = f"attachment://{ctx.author.id}.png")
+        embed.set_image(url = f"attachment://{ID}.png")
         embed.set_thumbnail(url=ctx.author.avatar_url)
         await ctx.send(embed = embed, file = file)
-        return os.remove(f'.//RSPVP//pull//{ctx.author.id}.png')
+        try:
+          return shutil.rmtree(f'.//RSPVP//pull{ID}//')
+        except OSError as e:
+          return print("Error: %s : %s" % ('.//RSPVP//pull{ID}//', e.strerror))  
+
       elif "[" in exclude:
         dirs = []
         unitNum = 4
@@ -841,7 +863,7 @@ class SDSGC(commands.Cog):
         im2 = Image.open(dirs[2])
         im3 = Image.open(dirs[3])
 
-        get_concat_h_multi_blank([im0,im1,im2,im3]).save(f'.//RSPVP//pull//{ctx.author.id}.png')
+        get_concat_h_multi_blank([im0,im1,im2,im3]).save(f'.//RSPVP//pull{ID}//{ID}.png')
         quote = f"{names} selected:\n"
         for x in limitsList:
           quote += f"➣{str(x).upper()} Limit "
@@ -850,12 +872,17 @@ class SDSGC(commands.Cog):
           quote += "\nExcluding:\n"
           for x in excludeList:
             quote += f"➣{str(x)} "
-        file = discord.File(f'.//RSPVP//pull//{ctx.author.id}.png')
+        file = discord.File(f'.//RSPVP//pull{ID}//{ID}.png')
         embed = discord.Embed(title = quote,colour = ctx.author.color)
-        embed.set_image(url = f"attachment://{ctx.author.id}.png")
+        embed.set_image(url = f"attachment://{ID}.png")
         embed.set_thumbnail(url=ctx.author.avatar_url)
         await ctx.send(embed = embed, file = file)
-        return os.remove(f'.//RSPVP//pull//{ctx.author.id}.png')
+        try:
+          return shutil.rmtree(f'.//RSPVP//pull{ID}//')
+        except OSError as e:
+          return print("Error: %s : %s" % ('.//RSPVP//pull{ID}//', e.strerror)) 
+
+
       else:
         excludelist = exclude.lower().split(' ')
         # print(excludelist)
@@ -892,16 +919,20 @@ class SDSGC(commands.Cog):
         im2 = Image.open(dirs[2])
         im3 = Image.open(dirs[3])
 
-        get_concat_h_multi_blank([im0,im1,im2,im3]).save(f'.//RSPVP//pull//{ctx.author.id}.png')
+        get_concat_h_multi_blank([im0,im1,im2,im3]).save(f'.//RSPVP//pull{ID}//{ID}.png')
         quote = f"{names} randomly selected units\nExcluding:\n"
         for x in exclude.split(' '):
           quote += f"➣{str(x)} "
-        file = discord.File(f'.//RSPVP//pull//{ctx.author.id}.png')
+        file = discord.File(f'.//RSPVP//pull{ID}//{ID}.png')
         embed = discord.Embed(title = quote,colour = ctx.author.color)
-        embed.set_image(url = f"attachment://{ctx.author.id}.png")
+        embed.set_image(url = f"attachment://{ID}.png")
         embed.set_thumbnail(url=ctx.author.avatar_url)
         await ctx.send(embed = embed, file = file)
-        return os.remove(f'.//RSPVP//pull//{ctx.author.id}.png')
+        try:
+          return shutil.rmtree(f'.//RSPVP//pull{ID}//')
+        except OSError as e:
+          return print("Error: %s : %s" % ('.//RSPVP//pull{ID}//', e.strerror)) 
+
     except IndexError:
       quote = "Please use a wider range of units\nBut sure I got you <:stares:887196954017296436>"
       standard = "Please use a wider range of units <:stares:887196954017296436>"
@@ -936,6 +967,12 @@ class SDSGC(commands.Cog):
   async def character(self,ctx,*,include:str=""):
     """Show the image of the character """
     try:
+      user = ctx.author
+      await open_account(user)
+      await open_server(user)
+      users = mainbank.find_one( {'_id':user.id} )
+      ID = users["_id"]
+      os.mkdir(f'.//Banner//pull{ID}//')
       if include == "":
         em = discord.Embed(description = f'Please provide a character', colour = ctx.author.color)
         await ctx.send(embed=em)
@@ -953,40 +990,40 @@ class SDSGC(commands.Cog):
         part=0
         for unit in allunits:
           if partsize == 0:
-            Image.open(unit).save(f'.//Banner//pull//{ctx.author.id}{part}.png')
+            Image.open(unit).save(f'.//Banner//pull{ID}//{ID}{part}.png')
             partsize += 1
           elif partsize < size:
-            mainpart = Image.open(f'.//Banner//pull//{ctx.author.id}{part}.png')
+            mainpart = Image.open(f'.//Banner//pull{ID}//{ID}{part}.png')
             nextImg = Image.open(unit)
             get_concat_h_multi_blank([mainpart,nextImg]).save(
-              f'.//Banner//pull//{ctx.author.id}{part}.png')
+              f'.//Banner//pull{ID}//{ID}{part}.png')
             partsize+=1
           elif partsize == size:
             partsize = 0
             part+=1
-            Image.open(unit).save(f'.//Banner//pull//{ctx.author.id}{part}.png')
+            Image.open(unit).save(f'.//Banner//pull{ID}//{ID}{part}.png')
             partsize += 1
 
         images = list(os.listdir(".//Banner//pull"))
-        Image.open(f".//Banner//pull//{images[0]}").save(f'.//Banner//pull//{ctx.author.id}.png')
+        Image.open(f".//Banner//pull{ID}//{images[0]}").save(f'.//Banner//pull{ID}//{ID}.png')
         images.pop(0)
         for unit in images:
-          img = Image.open(f'.//Banner//pull//{ctx.author.id}.png')
-          addon = Image.open(f".//Banner//pull//{unit}")
+          img = Image.open(f'.//Banner//pull{ID}//{ID}.png')
+          addon = Image.open(f".//Banner//pull{ID}//{unit}")
           get_concat_v_blank(img, addon, (47,49,54)).save(
-            f'.//Banner//pull//{ctx.author.id}.png')
+            f'.//Banner//pull{ID}//{ID}.png')
 
         quote = include.upper()
-        file = discord.File(f'.//Banner//pull//{ctx.author.id}.png', filename="image.png")
+        file = discord.File(f'.//Banner//pull{ID}//{ID}.png', filename="image.png")
         em = discord.Embed(title = quote, colour = ctx.author.color)
         em.set_image(url = f"attachment://image.png")
         await ctx.send(embed = em,file=file)
 
         try:
-          shutil.rmtree('.//Banner//pull//')
+          return shutil.rmtree(f'.//Banner//pull{ID}//')
         except OSError as e:
-          print("Error: %s : %s" % ('.//Banner//pull//', e.strerror))
-        return os.mkdir('.//Banner//pull//')
+          return print("Error: %s : %s" % ('.//Banner//pull{ID}//', e.strerror))
+
     except IndexError:
       file = discord.File(f'.//RSPVP//questionmark.png', filename="image.png")
       embed = discord.Embed(title=f"No {include.upper()} found", colour = discord.Color.red())
@@ -1002,6 +1039,13 @@ class SDSGC(commands.Cog):
     selectedUnit = [tempunit,tempunit,tempunit,tempunit]
     quote = f"{names} has mentioned the following team\n"
     try:
+      user = ctx.author
+      await open_account(user)
+      await open_server(user)
+      users = mainbank.find_one( {'_id':user.id} )
+      ID = users["_id"]
+      os.mkdir(f'.//RSPVP//pull{ID}//')
+
       if team != "":
         teamlist = team.lower().split(',')
         # print(teamlist)
@@ -1025,14 +1069,18 @@ class SDSGC(commands.Cog):
         im2 = Image.open(selectedUnit[2])
         im3 = Image.open(selectedUnit[3])
 
-        get_concat_h_multi_blank([im0,im1,im2,im3]).save(f'.//RSPVP//pull//{ctx.author.id}.png')
+        get_concat_h_multi_blank([im0,im1,im2,im3]).save(f'.//RSPVP//pull{ID}//{ID}.png')
         
-        file = discord.File(f'.//RSPVP//pull//{ctx.author.id}.png')
+        file = discord.File(f'.//RSPVP//pull{ID}//{ID}.png')
         embed = discord.Embed(title = quote,colour = ctx.author.color)
-        embed.set_image(url = f"attachment://{ctx.author.id}.png")
+        embed.set_image(url = f"attachment://{ID}.png")
         embed.set_thumbnail(url=ctx.author.avatar_url)
         await ctx.send(embed = embed, file = file)
-        return os.remove(f'.//RSPVP//pull//{ctx.author.id}.png')
+        try:
+          return shutil.rmtree(f'.//Banner//pull{ID}//')
+        except OSError as e:
+          return print("Error: %s : %s" % ('.//Banner//pull{ID}//', e.strerror))
+
       else:
         em = discord.Embed(description = f'Please provide a team such as:\n{ctx.prefix}team Traitor Meli, hgowther, G brynhildr, hmatrona', colour = ctx.author.color)
         await ctx.send(embed=em)
@@ -1045,15 +1093,36 @@ class SDSGC(commands.Cog):
   @commands.cooldown(1,5,commands.BucketType.user)
   async def multipull(self,ctx,times=1,banner=None):
     """ Pull on random banner a number of time """
+    user = ctx.author
+    await open_account(user)
+    await open_server(user)
+    users = mainbank.find_one( {'_id':user.id} )
+    guilds = settings.find_one( {'gid':user.guild.id} )
+    currency = guilds["emoji"]
+    
+    bal = [users["wallet"],users["bank"]]
+
     if int(times) > 10:
       times = int(10)
       await ctx.send(f'{ctx.author.mention} maximum of 10 multis at once')
-    for i in range(int(times)):
-      try:
-        pending_command = self.client.get_command('pull')
-        await ctx.invoke(pending_command,banner)
-      except:
-        return await ctx.send("Command Failed <@399558274753495040>")
+    if bal[0] < 30*times:
+      out = bal[0]%30
+      em = discord.Embed(description = f"You need {30*times} {currency} to pull {times} times\nYou only have {bal[0]} in your wallet, hence pulling {out} times instead", colour = discord.Color.red())
+      em.set_footer(text= "try !timely")
+      await ctx.send(embed = em)
+      for i in range(int(out)):
+        try:
+          pending_command = self.client.get_command('pull')
+          await ctx.invoke(pending_command,banner)
+        except:
+          return await ctx.send("Command Failed <@399558274753495040>")
+    else:
+      for i in range(int(times)):
+        try:
+          pending_command = self.client.get_command('pull')
+          await ctx.invoke(pending_command,banner)
+        except:
+          return await ctx.send("Command Failed <@399558274753495040>")
 
   @commands.command(aliases = ['+e'])
   async def add_event(self,ctx,*,event):
@@ -1146,6 +1215,12 @@ class SDSGC(commands.Cog):
   @commands.command()
   async def missing(self, ctx, member:discord.Member=None):
     """ Display the missing units """
+    await open_account(ctx.author)
+    await open_server(ctx.author)
+    users = mainbank.find_one( {'_id':ctx.author.id} )
+    ID = users["_id"]
+    os.mkdir(f'.//Banner//pull{ID}//')
+
     if member == None:
       target = ctx.author
     else:
@@ -1173,43 +1248,48 @@ class SDSGC(commands.Cog):
     part=0
     for unit in allunits:
       if partsize == 0:
-        Image.open(unit).save(f'.//Banner//pull//{ctx.author.id}{part}.png')
+        Image.open(unit).save(f'.//Banner//pull{ID}//{ID}{part}.png')
         partsize += 1
       elif partsize < size:
-        mainpart = Image.open(f'.//Banner//pull//{ctx.author.id}{part}.png')
+        mainpart = Image.open(f'.//Banner//pull{ID}//{ID}{part}.png')
         nextImg = Image.open(unit)
         get_concat_h_multi_blank([mainpart,nextImg]).save(
-          f'.//Banner//pull//{ctx.author.id}{part}.png')
+          f'.//Banner//pull{ID}//{ID}{part}.png')
         partsize+=1
       elif partsize == size:
         partsize = 0
         part+=1
-        Image.open(unit).save(f'.//Banner//pull//{ctx.author.id}{part}.png')
+        Image.open(unit).save(f'.//Banner//pull{ID}//{ID}{part}.png')
         partsize += 1
 
     images = list(os.listdir(".//Banner//pull"))
-    Image.open(f".//Banner//pull//{images[0]}").save(f'.//Banner//pull//{ctx.author.id}.png')
+    Image.open(f".//Banner//pull{ID}//{images[0]}").save(f'.//Banner//pull{ID}//{ID}.png')
     images.pop(0)
     for unit in images:
-      img = Image.open(f'.//Banner//pull//{ctx.author.id}.png')
-      addon = Image.open(f".//Banner//pull//{unit}")
-      get_concat_v_blank(img, addon, (47,49,54)).save(f'.//Banner//pull//{ctx.author.id}.png')
+      img = Image.open(f'.//Banner//pull{ID}//{ID}.png')
+      addon = Image.open(f".//Banner//pull{ID}//{unit}")
+      get_concat_v_blank(img, addon, (47,49,54)).save(f'.//Banner//pull{ID}//{ID}.png')
 
     quote = f"{names} own {totalunits-number}/{totalunits} units\nMissing {number} units"
-    file = discord.File(f'.//Banner//pull//{ctx.author.id}.png', filename="image.png")
+    file = discord.File(f'.//Banner//pull{ID}//{ID}.png', filename="image.png")
     em = discord.Embed(title = quote, colour = target.color)
     em.set_image(url = f"attachment://image.png")
     await ctx.send(embed = em,file=file)
 
     try:
-      shutil.rmtree('.//Banner//pull//')
+      return shutil.rmtree(f'.//Banner//pull{ID}//')
     except OSError as e:
-      print("Error: %s : %s" % ('.//Banner//pull//', e.strerror))
-    return os.mkdir('.//Banner//pull//')
+      return print("Error: %s : %s" % ('.//Banner//pull{ID}//', e.strerror))
+
     
   @commands.command()
   async def profile(self, ctx, member:discord.Member=None):
     """ Display the owned units """
+    await open_account(ctx.author)
+    await open_server(ctx.author)
+    users = mainbank.find_one( {'_id':ctx.author.id} )
+    ID = users["_id"]
+    os.mkdir(f'.//Banner//pull{ID}//')
     if member == None:
       target = ctx.author
     else:
@@ -1237,39 +1317,39 @@ class SDSGC(commands.Cog):
     part=0
     for unit in allunits:
       if partsize == 0:
-        Image.open(unit).save(f'.//Banner//pull//{ctx.author.id}{part}.png')
+        Image.open(unit).save(f'.//Banner//pull{ID}//{ID}{part}.png')
         partsize += 1
       elif partsize < size:
-        mainpart = Image.open(f'.//Banner//pull//{ctx.author.id}{part}.png')
+        mainpart = Image.open(f'.//Banner//pull{ID}//{ID}{part}.png')
         nextImg = Image.open(unit)
         get_concat_h_multi_blank([mainpart,nextImg]).save(
-          f'.//Banner//pull//{ctx.author.id}{part}.png')
+          f'.//Banner//pull{ID}//{ID}{part}.png')
         partsize+=1
       elif partsize == size:
         partsize = 0
         part+=1
-        Image.open(unit).save(f'.//Banner//pull//{ctx.author.id}{part}.png')
+        Image.open(unit).save(f'.//Banner//pull{ID}//{ID}{part}.png')
         partsize += 1
 
     images = list(os.listdir(".//Banner//pull"))
-    Image.open(f".//Banner//pull//{images[0]}").save(f'.//Banner//pull//{ctx.author.id}.png')
+    Image.open(f".//Banner//pull{ID}//{images[0]}").save(f'.//Banner//pull{ID}//{ID}.png')
     images.pop(0)
     for unit in images:
-      img = Image.open(f'.//Banner//pull//{ctx.author.id}.png')
-      addon = Image.open(f".//Banner//pull//{unit}")
-      get_concat_v_blank(img, addon, (47,49,54)).save(f'.//Banner//pull//{ctx.author.id}.png')
+      img = Image.open(f'.//Banner//pull{ID}//{ID}.png')
+      addon = Image.open(f".//Banner//pull{ID}//{unit}")
+      get_concat_v_blank(img, addon, (47,49,54)).save(f'.//Banner//pull{ID}//{ID}.png')
 
     quote = f"{names} own {number}/{totalunits} units\nMissing {totalunits-number} units"
-    file = discord.File(f'.//Banner//pull//{ctx.author.id}.png', filename="image.png")
+    file = discord.File(f'.//Banner//pull{ID}//{ID}.png', filename="image.png")
     em = discord.Embed(title = quote, colour = target.color)
     em.set_image(url = f"attachment://image.png")
     await ctx.send(embed = em,file=file)
 
     try:
-      shutil.rmtree('.//Banner//pull//')
+      return shutil.rmtree(f'.//Banner//pull{ID}//')
     except OSError as e:
-      print("Error: %s : %s" % ('.//Banner//pull//', e.strerror))
-    return os.mkdir('.//Banner//pull//')
+      return print("Error: %s : %s" % ('.//Banner//pull{ID}//', e.strerror))
+
 
   
   @commands.command()
@@ -1277,7 +1357,7 @@ class SDSGC(commands.Cog):
   async def newUnit(self, ctx, unit, directory):
     """ Add new unit into the all user pool """
     sdsgc.update({}, {"$set": {unit: {"directory": directory}, {"owned"}: False }})
-    await ctx.send(f"New unit {unit} added to all")
+    return await ctx.send(f"New unit {unit} added to all")
 
   @commands.command()
   @commands.is_owner()
