@@ -546,12 +546,7 @@ class SDSGC(commands.Cog):
         embed.set_image(url = f"attachment://{ID}.png")
         embed.set_thumbnail(url=ctx.author.avatar_url)
         await ctx.send(embed = embed, file = file)
-        try:
-          return shutil.rmtree(f'.//RSPVP//pull{ID}//')
-        except OSError as e:
-          return print("Error: %s : %s" % (f'.//RSPVP//pull{ID}//', e.strerror))
 
-        
       elif exclude.lower().endswith(' all'):
         pending_command = self.client.get_command('rselectpvp')
         return await ctx.invoke(pending_command)
@@ -603,11 +598,7 @@ class SDSGC(commands.Cog):
         embed = discord.Embed(title = quote,colour = ctx.author.color)
         embed.set_image(url = f"attachment://{ID}.png")
         embed.set_thumbnail(url=ctx.author.avatar_url)
-        await ctx.send(embed = embed, file = file)
-        try:
-          return shutil.rmtree(f'.//RSPVP//pull{ID}//')
-        except OSError as e:
-          return print("Error: %s : %s" % (f'.//RSPVP//pull{ID}//', e.strerror))        
+        await ctx.send(embed = embed, file = file)    
         
       elif "[rgb]" in exclude.lower() or "[rbg]" in exclude.lower():
         dirs = []
@@ -689,10 +680,6 @@ class SDSGC(commands.Cog):
         embed.set_image(url = f"attachment://{ID}.png")
         embed.set_thumbnail(url=ctx.author.avatar_url)
         await ctx.send(embed = embed, file = file)
-        try:
-          return shutil.rmtree(f'.//RSPVP//pull{ID}//')
-        except OSError as e:
-          return print("Error: %s : %s" % (f'.//RSPVP//pull{ID}//', e.strerror))  
 
       elif "(" in exclude:
         dirs = []
@@ -766,10 +753,6 @@ class SDSGC(commands.Cog):
         embed.set_image(url = f"attachment://{ID}.png")
         embed.set_thumbnail(url=ctx.author.avatar_url)
         await ctx.send(embed = embed, file = file)
-        try:
-          return shutil.rmtree(f'.//RSPVP//pull{ID}//')
-        except OSError as e:
-          return print("Error: %s : %s" % (f'.//RSPVP//pull{ID}//', e.strerror))  
 
       elif "[" in exclude:
         dirs = []
@@ -876,11 +859,6 @@ class SDSGC(commands.Cog):
         embed.set_image(url = f"attachment://{ID}.png")
         embed.set_thumbnail(url=ctx.author.avatar_url)
         await ctx.send(embed = embed, file = file)
-        try:
-          return shutil.rmtree(f'.//RSPVP//pull{ID}//')
-        except OSError as e:
-          return print("Error: %s : %s" % (f'.//RSPVP//pull{ID}//', e.strerror)) 
-
 
       else:
         excludelist = exclude.lower().split(' ')
@@ -927,10 +905,10 @@ class SDSGC(commands.Cog):
         embed.set_image(url = f"attachment://{ID}.png")
         embed.set_thumbnail(url=ctx.author.avatar_url)
         await ctx.send(embed = embed, file = file)
-        try:
-          return shutil.rmtree(f'.//RSPVP//pull{ID}//')
-        except OSError as e:
-          return print("Error: %s : %s" % (f'.//RSPVP//pull{ID}//', e.strerror)) 
+      try:
+        return shutil.rmtree(f'.//RSPVP//pull{ID}//')
+      except OSError as e:
+        return print("Error: %s : %s" % (f'.//RSPVP//pull{ID}//', e.strerror)) 
 
     except IndexError:
       quote = "Please use a wider range of units\nBut sure I got you <:stares:887196954017296436>"
