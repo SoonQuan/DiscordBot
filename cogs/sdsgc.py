@@ -304,7 +304,7 @@ class SDSGC(commands.Cog):
         Image.open(unit).save(f'.//Banner//pull{ID}//{ID}{part}.png')
         partsize += 1
 
-    images = list(os.listdir(f".//Banner//pull{ID}"))
+    images = sorted(list(os.listdir(f".//Banner//pull{ID}")))
     Image.open(f".//Banner//pull{ID}//{images[0]}").save(f'.//Banner//pull{ID}//{ID}.png')
     images.pop(0)
     for unit in images:
@@ -1000,7 +1000,7 @@ class SDSGC(commands.Cog):
             Image.open(unit).save(f'.//Banner//pull{ID}//{ID}{part}.png')
             partsize += 1
 
-        images = list(os.listdir(f".//Banner//pull{ID}"))
+        images = sorted(list(os.listdir(f".//Banner//pull{ID}")))
         Image.open(f".//Banner//pull{ID}//{images[0]}").save(f'.//Banner//pull{ID}//{ID}.png')
         images.pop(0)
         for unit in images:
@@ -1266,7 +1266,7 @@ class SDSGC(commands.Cog):
         Image.open(unit).save(f'.//Banner//pull{ID}//{ID}{part}.png')
         partsize += 1
 
-    images = list(os.listdir(f".//Banner//pull{ID}"))
+    images = sorted(list(os.listdir(f".//Banner//pull{ID}")))
     Image.open(f".//Banner//pull{ID}//{images[0]}").save(f'.//Banner//pull{ID}//{ID}.png')
     images.pop(0)
     for unit in images:
@@ -1339,7 +1339,7 @@ class SDSGC(commands.Cog):
         Image.open(unit).save(f'.//Banner//pull{ID}//{ID}{part}.png')
         partsize += 1
 
-    images = list(os.listdir(f".//Banner//pull{ID}"))
+    images = sorted(list(os.listdir(f".//Banner//pull{ID}")))
     Image.open(f".//Banner//pull{ID}//{images[0]}").save(f'.//Banner//pull{ID}//{ID}.png')
     images.pop(0)
     for unit in images:
