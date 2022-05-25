@@ -476,7 +476,7 @@ class SDSGC(commands.Cog):
     try:
       return shutil.rmtree(f'.//RSPVP//pull{ID}//')
     except OSError as e:
-      return print("Error: %s : %s" % ('.//RSPVP//pull{ID}//', e.strerror))
+      return print("Error: %s : %s" % (f'.//RSPVP//pull{ID}//', e.strerror))
 
 
 
@@ -484,12 +484,6 @@ class SDSGC(commands.Cog):
   @commands.cooldown(1,1,commands.BucketType.user)
   async def randomselect(self,ctx,*,exclude:str=""):
     """ Randomly select 4 units for you with exclude list"""
-    await open_account(ctx.author)
-    await open_server(ctx.author)
-    users = mainbank.find_one( {'_id':ctx.author.id} )
-    ID = users["_id"]
-    os.mkdir(f'.//RSPVP//pull{ID}//')
-
     names = ctx.author.display_name
     user = sdsgc.find_one( {'_id': ctx.author.id} )
     if user == None:
@@ -503,6 +497,11 @@ class SDSGC(commands.Cog):
           allunits.append(user[key]["directory"])
     allunits.sort()
     try:
+      await open_account(ctx.author)
+      await open_server(ctx.author)
+      users = mainbank.find_one( {'_id':ctx.author.id} )
+      ID = users["_id"]
+      os.mkdir(f'.//RSPVP//pull{ID}//')
       tries = 0
       if exclude == "":
         excludelist = []
@@ -550,7 +549,7 @@ class SDSGC(commands.Cog):
         try:
           return shutil.rmtree(f'.//RSPVP//pull{ID}//')
         except OSError as e:
-          return print("Error: %s : %s" % ('.//RSPVP//pull{ID}//', e.strerror))
+          return print("Error: %s : %s" % (f'.//RSPVP//pull{ID}//', e.strerror))
 
         
       elif exclude.lower().endswith(' all'):
@@ -608,7 +607,7 @@ class SDSGC(commands.Cog):
         try:
           return shutil.rmtree(f'.//RSPVP//pull{ID}//')
         except OSError as e:
-          return print("Error: %s : %s" % ('.//RSPVP//pull{ID}//', e.strerror))        
+          return print("Error: %s : %s" % (f'.//RSPVP//pull{ID}//', e.strerror))        
         
       elif "[rgb]" in exclude.lower() or "[rbg]" in exclude.lower():
         dirs = []
@@ -693,7 +692,7 @@ class SDSGC(commands.Cog):
         try:
           return shutil.rmtree(f'.//RSPVP//pull{ID}//')
         except OSError as e:
-          return print("Error: %s : %s" % ('.//RSPVP//pull{ID}//', e.strerror))  
+          return print("Error: %s : %s" % (f'.//RSPVP//pull{ID}//', e.strerror))  
 
       elif "(" in exclude:
         dirs = []
@@ -770,7 +769,7 @@ class SDSGC(commands.Cog):
         try:
           return shutil.rmtree(f'.//RSPVP//pull{ID}//')
         except OSError as e:
-          return print("Error: %s : %s" % ('.//RSPVP//pull{ID}//', e.strerror))  
+          return print("Error: %s : %s" % (f'.//RSPVP//pull{ID}//', e.strerror))  
 
       elif "[" in exclude:
         dirs = []
@@ -880,7 +879,7 @@ class SDSGC(commands.Cog):
         try:
           return shutil.rmtree(f'.//RSPVP//pull{ID}//')
         except OSError as e:
-          return print("Error: %s : %s" % ('.//RSPVP//pull{ID}//', e.strerror)) 
+          return print("Error: %s : %s" % (f'.//RSPVP//pull{ID}//', e.strerror)) 
 
 
       else:
@@ -931,7 +930,7 @@ class SDSGC(commands.Cog):
         try:
           return shutil.rmtree(f'.//RSPVP//pull{ID}//')
         except OSError as e:
-          return print("Error: %s : %s" % ('.//RSPVP//pull{ID}//', e.strerror)) 
+          return print("Error: %s : %s" % (f'.//RSPVP//pull{ID}//', e.strerror)) 
 
     except IndexError:
       quote = "Please use a wider range of units\nBut sure I got you <:stares:887196954017296436>"
@@ -1004,7 +1003,7 @@ class SDSGC(commands.Cog):
             Image.open(unit).save(f'.//Banner//pull{ID}//{ID}{part}.png')
             partsize += 1
 
-        images = list(os.listdir(".//Banner//pull"))
+        images = list(os.listdir(f".//Banner//pull{ID}"))
         Image.open(f".//Banner//pull{ID}//{images[0]}").save(f'.//Banner//pull{ID}//{ID}.png')
         images.pop(0)
         for unit in images:
