@@ -1339,7 +1339,7 @@ class SDSGC(commands.Cog):
         Image.open(unit).save(f'.//Banner//pull{ID}//{ID}{part}.png')
         partsize += 1
 
-    images = sorted(list(os.listdir(f".//Banner//pull{ID}")))
+    images = sorted(list(os.listdir(f".//Banner//pull{ID}")), key=lambda x: int(os.path.splitext(x)[0]))
     Image.open(f".//Banner//pull{ID}//{images[0]}").save(f'.//Banner//pull{ID}//{ID}.png')
     images.pop(0)
     for unit in images:
