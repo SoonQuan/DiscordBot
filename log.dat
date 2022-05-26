@@ -15656,3 +15656,5 @@ Command "alias" is not found
 2022-05-18 14:32:44,829 [CRITICAL] time to end: 04-1Day 11Hour 36Min 48Sec
 2022-05-18 14:32:44,829 [CRITICAL] Current session: 3.0
 2022-05-18 14:32:44,829 [CRITICAL] ###################
+2022-05-26 22:11:50,660 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-05-26 22:11:51,165 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~

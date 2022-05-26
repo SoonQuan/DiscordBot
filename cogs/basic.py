@@ -49,7 +49,7 @@ class Basic(commands.Cog):
     if "noice" in msg.content.lower():
       return await msg.add_reaction("<:noice:831113245082779699>")
     
-    if msg.content == mention:
+    if msg.content == '<@827743587877650482>':
       em = discord.Embed(description=f"Server prefix is `{get_prefix(self,msg)}`", color=botcolour)
       return await msg.channel.send(embed=em)
 
