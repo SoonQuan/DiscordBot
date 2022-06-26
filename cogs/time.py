@@ -73,7 +73,8 @@ class Time(commands.Cog):
       member = ctx.author
     user = timezones.find_one( {'_id':member.id} )
     if user == None:
-      quote = "Please set your timezone using `!settz <location>`"
+      prefix = get_prefix(client,ctx)
+      quote = f"Please set your timezone using `{prefix}settz <location>`"
       em = discord.Embed(description = quote, colour = discord.Color.red())
       return await ctx.send(embed=em)
       # user = timezones.find_one( {'_id':self.client.user.id} )
