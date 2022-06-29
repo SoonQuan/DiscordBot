@@ -1091,7 +1091,7 @@ class SDSGC(commands.Cog):
 
   @commands.command(aliases=['mp'])
   @commands.cooldown(1,5,commands.BucketType.user)
-  async def multipull(self,ctx,times=1,banner=None):
+  async def multipull(self,ctx,banner=None,times=1):
     """ Pull on random banner a number of time """
     user = ctx.author
     await open_account(user)
