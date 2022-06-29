@@ -81,11 +81,11 @@ class SDSGC(commands.Cog):
     guilds = settings.find_one( {'gid':user.guild.id} )
     currency = guilds["emoji"]
     names = user.display_name
-
+    prefix = get_prefix(client,ctx)
     bal = [users["wallet"],users["bank"]]
     if bal[0] < 10:
       em = discord.Embed(description = f"You need 10 {currency} to check luck", colour = discord.Color.red())
-      em.set_footer(text= "try !timely")
+      em.set_footer(text= f"try {prefix}timely")
       return await ctx.send(embed = em)
     luck = []
     result = []
@@ -122,11 +122,11 @@ class SDSGC(commands.Cog):
     currency = guilds["emoji"]
     names = user.display_name
     ID = users["_id"]
-    
+    prefix = get_prefix(client,ctx)
     bal = [users["wallet"],users["bank"]]
     if bal[0] < 30:
       em = discord.Embed(description = f"You need 30 {currency} to pull", colour = discord.Color.red())
-      em.set_footer(text= "try !timely")
+      em.set_footer(text= f"try {prefix}timely")
       return await ctx.send(embed = em)
     try:
       shutil.rmtree(f'.//Banner//pull{ID}//')
@@ -1099,7 +1099,7 @@ class SDSGC(commands.Cog):
     users = mainbank.find_one( {'_id':user.id} )
     guilds = settings.find_one( {'gid':user.guild.id} )
     currency = guilds["emoji"]
-    
+    prefix = get_prefix(client,ctx)
     bal = [users["wallet"],users["bank"]]
 
     if int(times) > 10:
@@ -1108,7 +1108,7 @@ class SDSGC(commands.Cog):
     if bal[0] < 30*times:
       out = int(bal[0])//30
       em = discord.Embed(description = f"You need {30*times} {currency} to pull {times} times\nYou only have {bal[0]} in your wallet, hence pulling {out} times instead", colour = discord.Color.red())
-      em.set_footer(text= "try !timely")
+      em.set_footer(text= f"try {prefix}timely")
       await ctx.send(embed = em)
       for i in range(int(out)):
         try:
