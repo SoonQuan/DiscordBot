@@ -55,17 +55,21 @@ class Dictionary(commands.Cog):
     await ctx.send(embed=em)
 
   @commands.command(aliases = ['trans'])
-  async def translate(self,ctx, lang="en", *, args="translate <lang> <words to translate>"):
+  async def translate(self,ctx, lang="en", *, args):
     """ Translate your message into the language you want """
     if lang not in googletrans.LANGUAGES and lang not in googletrans.LANGCODES:
       em = discord.Embed(title='Look for langauge code here',
                         url='https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes',
                         description= f"For example: !translate <code> <words to translate>",
                         color=discord.Color.red())
-      return await ctx.send(embed = em)        
-    translate_text = await AsyncTranslator().translate(args, "", lang)
-    em = discord.Embed(description = translate_text, color=ctx.author.color)
-    return await ctx.send(embed = em)
+      return await ctx.send(embed = em)
+    try:
+      translate_text = await AsyncTranslator().translate(args, "", lang)
+      em = discord.Embed(description = translate_text, color=ctx.author.color)
+      return await ctx.send(embed = em)
+    except:
+      em = discord.Embed(description = "error in translation", color=ctx.author.color)
+      return await ctx.send(embed = em)
 
   # @commands.command(aliases = ['ptrans'])
   # async def ptranslate(self,ctx, lang="en", *,args="translate <code> <words to translate and pronounce>"):
