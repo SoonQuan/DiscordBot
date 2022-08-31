@@ -15713,3 +15713,5 @@ Traceback (most recent call last):
   File "c:\Users\soon_\Documents\Github\DiscordBot\cogs\greet.py", line 64, in before_keepactive
     await self.client.wait_until_ready()
 AttributeError: 'Greetings' object has no attribute 'bot'
+2022-09-01 01:25:36,107 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-09-01 01:25:36,523 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
