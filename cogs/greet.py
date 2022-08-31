@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands,tasks
-import os
+import os, random
 import pymongo
 from pymongo import MongoClient
 import asyncio
@@ -25,25 +25,54 @@ botcolour = 0x0fa4aab
 
 mc_channels = [851668288391872572,851665369726320641]
 
+monlist = [
+  '<@385046875340013578>',
+  '<@161799396575412225>',
+  '<@427113034629120012>',
+  '<@329997304780161028>',
+  '<@448113801376694275>',
+  '<@396121525205336064>',
+  '<@350621587684196352>',
+  '<@928281897459675227>',
+  '<@296586790578683904>',
+  '<@374245864387903488>'
+  ]
+
+with open("active.json", 'r') as f:
+  activedata = json.load(f)
+  f.close()
+
 class Greetings(commands.Cog):
     def __init__(self, client):
         self.client = client
-    #     self.updateMC.start()
+        self.keepactive.start()
 
-    # @tasks.loop(minutes=15)
-    # async def updateMC(self):
-    #   for channel_id in mc_channels:
-    #     try:
-    #       channel = await self.client.fetch_channel(channel_id)
-    #       member_count = channel.guild.member_count
-    #       await channel.edit(name=f'Members: {member_count}')
-    #     except:
-    #       print('smth wrong')
+    @tasks.loop(minutes=123)
+    async def keepactive(self):
+      try:
+        channel = await self.client.fetch_channel(516246018988441602)
+        member = random.choice(monlist)
+        quote = f"{member} {random.choice(activedata['NOTES'])}"
+        await channel.send(quote)
+      except:
+        print("smth wrong")
 
-    # @updateMC.before_loop
-    # async def before_updateMC(self):
-    #     await self.bot.wait_until_ready()
+    @keepactive.before_loop
+    async def before_keepactive(self):
+        await self.client.wait_until_ready()
 
+    # @commands.command()
+    # async def aaaa(self,ctx):
+    #   try:
+    #     channel = await self.client.fetch_channel(840799693700071434)
+    #     # channel = await self.client.fetch_channel(516246018988441602)
+    #     # member = random.choice(monlist)
+    #     member = '<@399558274753495040>'
+    #     quote = f"{member} {random.choice(activedata['NOTES'])}"
+    #     await channel.send(quote)
+    #   except:
+    #     print("smth wrong")
+        
     @commands.command()
     @commands.has_any_role('ADMIN','N⍧ Sovereign', 'le vendel' , 'G⍧ Archangels', 'K⍧ Kage', 'D⍧ Dragon', 'W⍧ Grace', 'R⍧ Leviathan')
     async def umc(self,ctx):

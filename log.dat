@@ -15662,3 +15662,54 @@ Command "alias" is not found
 2022-05-27 02:40:43,201 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
 2022-05-27 02:42:18,458 [WARNING] ~~~~~~ Admin logged in ~~~~~~
 2022-05-27 02:42:19,049 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-09-01 01:03:36,269 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-09-01 01:03:36,783 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-09-01 01:04:13,445 [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-1' coro=<Loop._loop() done, defined at C:\Python39\lib\site-packages\discord\ext\tasks\__init__.py:88> exception=AttributeError("'Greetings' object has no attribute 'bot'")>
+Traceback (most recent call last):
+  File "C:\Python39\lib\site-packages\discord\ext\tasks\__init__.py", line 90, in _loop
+    await self._call_loop_function('before_loop')
+  File "C:\Python39\lib\site-packages\discord\ext\tasks\__init__.py", line 84, in _call_loop_function
+    await coro(self._injected, *args, **kwargs)
+  File "c:\Users\soon_\Documents\Github\DiscordBot\cogs\greet.py", line 63, in before_keepactive
+    await self.bot.wait_until_ready()
+AttributeError: 'Greetings' object has no attribute 'bot'
+2022-09-01 01:04:36,531 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-09-01 01:04:37,354 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-09-01 01:07:32,503 [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-1' coro=<Loop._loop() done, defined at C:\Python39\lib\site-packages\discord\ext\tasks\__init__.py:88> exception=AttributeError("'Greetings' object has no attribute 'bot'")>
+Traceback (most recent call last):
+  File "C:\Python39\lib\site-packages\discord\ext\tasks\__init__.py", line 90, in _loop
+    await self._call_loop_function('before_loop')
+  File "C:\Python39\lib\site-packages\discord\ext\tasks\__init__.py", line 84, in _call_loop_function
+    await coro(self._injected, *args, **kwargs)
+  File "c:\Users\soon_\Documents\Github\DiscordBot\cogs\greet.py", line 63, in before_keepactive
+    await self.bot.wait_until_ready()
+AttributeError: 'Greetings' object has no attribute 'bot'
+2022-09-01 01:08:04,688 [WARNING] We are being rate limited. Retrying in 0.00 seconds. Handled under the bucket "840799693700071434:None:/channels/{channel_id}/messages/{message_id}/reactions/{emoji}/@me"
+2022-09-01 01:08:05,030 [WARNING] We are being rate limited. Retrying in 0.06 seconds. Handled under the bucket "840799693700071434:None:/channels/{channel_id}/messages/{message_id}/reactions/{emoji}/@me"
+2022-09-01 01:09:32,932 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-09-01 01:09:33,344 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-09-01 01:10:33,997 [WARNING] Error
+Sq
+Command raised an exception: ExtensionNotLoaded: Extension 'cogs.Greetings' has not been loaded.
+2022-09-01 01:20:07,414 [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-98' coro=<Loop._loop() done, defined at C:\Python39\lib\site-packages\discord\ext\tasks\__init__.py:88> exception=AttributeError("'Greetings' object has no attribute 'bot'")>
+Traceback (most recent call last):
+  File "C:\Python39\lib\site-packages\discord\ext\tasks\__init__.py", line 90, in _loop
+    await self._call_loop_function('before_loop')
+  File "C:\Python39\lib\site-packages\discord\ext\tasks\__init__.py", line 84, in _call_loop_function
+    await coro(self._injected, *args, **kwargs)
+  File "c:\Users\soon_\Documents\Github\DiscordBot\cogs\greet.py", line 64, in before_keepactive
+    await self.bot.wait_until_ready()
+AttributeError: 'Greetings' object has no attribute 'bot'
+2022-09-01 01:21:14,553 [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-119' coro=<Loop._loop() done, defined at C:\Python39\lib\site-packages\discord\ext\tasks\__init__.py:88> exception=AttributeError("'Greetings' object has no attribute 'bot'")>
+Traceback (most recent call last):
+  File "C:\Python39\lib\site-packages\discord\ext\tasks\__init__.py", line 90, in _loop
+    await self._call_loop_function('before_loop')
+  File "C:\Python39\lib\site-packages\discord\ext\tasks\__init__.py", line 84, in _call_loop_function
+    await coro(self._injected, *args, **kwargs)
+  File "c:\Users\soon_\Documents\Github\DiscordBot\cogs\greet.py", line 64, in before_keepactive
+    await self.client.wait_until_ready()
+AttributeError: 'Greetings' object has no attribute 'bot'
