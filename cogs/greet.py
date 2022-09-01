@@ -45,21 +45,21 @@ with open("active.json", 'r') as f:
 class Greetings(commands.Cog):
     def __init__(self, client):
         self.client = client
-        self.keepactive.start()
+        #self.keepactive.start()
 
-    @tasks.loop(minutes=123)
-    async def keepactive(self):
-      try:
-        channel = await self.client.fetch_channel(516246018988441602)
-        member = random.choice(monlist)
-        quote = f"{member} {random.choice(activedata['NOTES'])}"
-        await channel.send(quote)
-      except:
-        print("smth wrong")
+    #@tasks.loop(minutes=123)
+    #async def keepactive(self):
+     # try:
+     #   channel = await self.client.fetch_channel(516246018988441602)
+     #   member = random.choice(monlist)
+     #   quote = f"{member} {random.choice(activedata['NOTES'])}"
+     #   await channel.send(quote)
+     # except:
+     #   print("smth wrong")
 
-    @keepactive.before_loop
-    async def before_keepactive(self):
-        await self.client.wait_until_ready()
+    #@keepactive.before_loop
+    #async def before_keepactive(self):
+    #    await self.client.wait_until_ready()
 
     # @commands.command()
     # async def aaaa(self,ctx):
