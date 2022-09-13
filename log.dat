@@ -15715,3 +15715,11 @@ Traceback (most recent call last):
 AttributeError: 'Greetings' object has no attribute 'bot'
 2022-09-01 01:25:36,107 [WARNING] ~~~~~~ Admin logged in ~~~~~~
 2022-09-01 01:25:36,523 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-09-01 21:04:10,605 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-09-01 21:04:11,110 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-09-01 21:04:19,192 [CRITICAL] week start in: 31-Aug-2022 (03:10:12)
+2022-09-01 21:04:19,192 [CRITICAL] time now is: 01-Sep-2022 (21:04:19)
+2022-09-01 21:04:19,193 [CRITICAL] week end in: 04-Sep-2022 (05:10:12)
+2022-09-01 21:04:19,193 [CRITICAL] time to end: 03-1Day 08Hour 05Min 53Sec
+2022-09-01 21:04:19,193 [CRITICAL] Current session: 6.0
+2022-09-01 21:04:19,194 [CRITICAL] ###################
