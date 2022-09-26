@@ -99,7 +99,7 @@ class Dictionary(commands.Cog):
     word = args
     x = translator.translate(word).src
     y = translator.translate(word, dest=x)
-    em = discord.Embed(description = f'{args} is pronounce as `{translate_text.pronunciation}`', color=ctx.author.color)
+    em = discord.Embed(description = f'{args} is pronounce as `{y.pronunciation}`', color=ctx.author.color)
     return await ctx.send(embed = em)
 
 def setup(client):
