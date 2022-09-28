@@ -57,6 +57,7 @@ class Dictionary(commands.Cog):
   @commands.command(aliases = ['trans'])
   async def translate(self,ctx, lang="en", *, args):
     """ Translate your message into the language you want """
+    lang = lang.lower()
     if lang not in googletrans.LANGUAGES and lang not in googletrans.LANGCODES:
       em = discord.Embed(title='Look for langauge code here',
                         url='https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes',
@@ -71,22 +72,35 @@ class Dictionary(commands.Cog):
       em = discord.Embed(description = "error in translation", color=ctx.author.color)
       return await ctx.send(embed = em)
 
-  # @commands.command(aliases = ['ptrans'])
-  # async def ptranslate(self,ctx, lang="en", *,args="translate <code> <words to translate and pronounce>"):
-  #   """ Translate your message into the language you want """
-  #   if lang.lower() not in LANGUAGES:
-  #     em = discord.Embed(title='Look for langauge code here',
-  #                       url='https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes',
-  #                       description= f"For example: !translate <code> <words to translate>",
-  #                       color=discord.Color.red())
-  #     return await ctx.send(embed = em)        
-  #   else:
-  #     t = google_translator()
-  #     a = t.translate(args, lang_tgt=lang,pronounce=True)
-  #     em = discord.Embed(description = f'Translated: {a[0]}\nPronouce: {a[2]}', color=ctx.author.color)
-  #     return await ctx.send(embed = em)
-    
+  @commands.command(aliases = ['ptrans'])
+  async def ptranslate(self,ctx, lang="en", *,args="translate <code> <words to translate and pronounce>"):
+    """ Translate and Pronounce your message into the language you want """
+    lang = lang.lower()
+    if lang not in googletrans.LANGUAGES and lang not in googletrans.LANGCODES:
+      em = discord.Embed(title='Look for langauge code here',
+                        url='https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes',
+                        description= f"For example: !translate <code> <words to translate>",
+                        color=discord.Color.red())
+      return await ctx.send(embed = em)     
+    else:
+      try:
+        translator = googletrans.Translator()
+        translate_text = translator.translate(args, dest=lang)
+        em = discord.Embed(description = f'{args} --> `{translate_text.text}`\nPronounce: `{translate_text.pronunciation}`', color=ctx.author.color)
+        return await ctx.send(embed = em)
+      except:
+        em = discord.Embed(description = "error in translation", color=ctx.author.color)
+        return await ctx.send(embed = em)
 
+  @commands.command(aliases = ['pronun'])
+  async def pronounce(self,ctx,*,args):
+    """ Pronounce your message """
+    translator = googletrans.Translator()
+    word = args
+    x = translator.translate(word).src
+    y = translator.translate(word, dest=x)
+    em = discord.Embed(description = f'{args} is pronounce as `{y.pronunciation}`', color=ctx.author.color)
+    return await ctx.send(embed = em)
 
 def setup(client):
   client.add_cog(Dictionary(client))
