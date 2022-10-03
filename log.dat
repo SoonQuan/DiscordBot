@@ -15723,3 +15723,44 @@ AttributeError: 'Greetings' object has no attribute 'bot'
 2022-09-01 21:04:19,193 [CRITICAL] time to end: 03-1Day 08Hour 05Min 53Sec
 2022-09-01 21:04:19,193 [CRITICAL] Current session: 6.0
 2022-09-01 21:04:19,194 [CRITICAL] ###################
+2022-10-03 23:00:57,586 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-10-03 23:00:59,105 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-10-03 23:03:15,775 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-10-03 23:03:17,520 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-10-03 23:03:23,534 [WARNING] Error
+Sq
+Command raised an exception: KeyError: 2
+2022-10-03 23:04:09,694 [WARNING] Error
+Sq
+Command raised an exception: KeyError: 3
+2022-10-03 23:07:48,953 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-10-03 23:07:51,263 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-10-03 23:08:58,589 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-10-03 23:09:00,185 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-10-03 23:09:55,615 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-10-03 23:09:56,362 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-10-03 23:11:21,764 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-10-03 23:11:24,563 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-10-03 23:12:03,439 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-10-03 23:12:03,980 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-10-03 23:12:55,147 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-10-03 23:12:56,363 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-10-03 23:48:33,886 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-10-03 23:48:35,408 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-10-04 00:04:39,202 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-10-04 00:04:40,957 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-10-04 00:07:47,753 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-10-04 00:07:49,116 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-10-04 00:09:09,507 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-10-04 00:09:11,495 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-10-04 00:14:36,826 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2022-10-04 00:14:37,638 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2022-10-04 00:35:27,031 [WARNING] Error
+Sq
+points is a required argument that is missing.
+2022-10-04 00:35:46,518 [WARNING] Error
+Sq
+Command raised an exception: TypeError: int() argument must be a string, a bytes-like object or a number, not 'dict'
+2022-10-04 00:39:30,938 [WARNING] Error
+Sq
+Command raised an exception: AttributeError: 'dict' object has no attribute 'id'

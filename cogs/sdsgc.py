@@ -11,6 +11,7 @@ db = cluster["luckbot"]
 mainbank = db["mainbank"]
 settings = db["settings"]
 sdsgc = db["sdsgcProfile"]
+tournament = db["tournament"]
 
 def get_prefix(client, message):
   server = settings.find_one({"gid":message.guild.id})
@@ -1266,7 +1267,7 @@ class SDSGC(commands.Cog):
         Image.open(unit).save(f'.//Banner//pull{ID}//{ID}{part}.png')
         partsize += 1
 
-    images = sorted(list(os.listdir(f".//Banner//pull{ID}")))
+    images = sorted(list(os.listdir(f".//Banner//pull{ID}")), key=lambda x: int(os.path.splitext(x)[0]))
     Image.open(f".//Banner//pull{ID}//{images[0]}").save(f'.//Banner//pull{ID}//{ID}.png')
     images.pop(0)
     for unit in images:
@@ -1545,6 +1546,17 @@ class SDSGC(commands.Cog):
         }
     }, upsert=True, array_filters=None
     )
+    tournament.update_many(
+      {},
+      {'$set': {
+            f'{name}': {
+                'directory': f'{direct}', 
+                'owned': False,
+                'points': 40
+            }
+        }
+    }, upsert=True, array_filters=None
+    )
     await ctx.send(f"New unit `{name}` added with `{direct}`")
 
   @commands.command()
@@ -1564,6 +1576,20 @@ class SDSGC(commands.Cog):
         }
       }, upsert=True, array_filters=None
     )
+    tournament.update_many(
+      {},
+      {'$set': {
+            f'{oldname}.directory': f'{newdirect}'
+        }}, upsert=True, array_filters=None
+    )
+    tournament.update_many(
+      {},
+      {
+        '$rename': {
+            f'{oldname}': f'{newname}'
+        }
+      }, upsert=True, array_filters=None
+    )    
     await ctx.send(f"Unit `{oldname}` renamed with `{newname}`\nDirectory renamed with `{newdirect}`")
 
 
@@ -1571,6 +1597,7 @@ class SDSGC(commands.Cog):
   @commands.is_owner()
   async def rmUnit(self, ctx, name):
     sdsgc.update_many({}, {'$unset': { name: ""}}, upsert=True, array_filters=None)
+    tournament.update_many({}, {'$unset': { name: ""}}, upsert=True, array_filters=None)
     await ctx.send(f"Unit `{name}` removed")
     
   @commands.command()
@@ -1615,6 +1642,93 @@ class SDSGC(commands.Cog):
         msg += f'\n➣{item}'
     em = discord.Embed(description=msg, colour = discord.Color.red())
     return await ctx.send(embed = em)
+
+
+  @commands.command(aliases=["tpts"])
+  async def tournamentpoints(self, ctx, points):
+    """ Display the units of said points """
+    await open_account(ctx.author)
+    await open_server(ctx.author)
+    users = mainbank.find_one( {'_id':ctx.author.id} )
+    ID = users["_id"]
+    try:
+      shutil.rmtree(f'.//Banner//pull{ID}//')
+    except OSError as e:
+      print("Error: %s : %s" % (f'.//Banner//pull{ID}//', e.strerror)) 
+    os.mkdir(f'.//Banner//pull{ID}//')
+
+    user = tournament.find_one( {'_id': "BASE"} )
+    allunits = []
+    totalunits = 0
+    for key in user:
+      if type(user[key]) == dict:
+        totalunits += 1
+        if int(user[key]['points']) == int(points):
+          allunits.append(user[key]["directory"])
+    allunits.sort()
+    number = len(allunits)
+    if len(allunits) == 0:
+      embed = discord.Embed(description=f"No units with {points} points")
+      return await ctx.send(embed=embed)
+    size = math.ceil(math.sqrt(len(allunits)))
+    partsize=0
+    part=0
+    for unit in allunits:
+      if partsize == 0:
+        Image.open(unit).save(f'.//Banner//pull{ID}//{ID}{part}.png')
+        partsize += 1
+      elif partsize < size:
+        mainpart = Image.open(f'.//Banner//pull{ID}//{ID}{part}.png')
+        nextImg = Image.open(unit)
+        get_concat_h_multi_blank([mainpart,nextImg]).save(
+          f'.//Banner//pull{ID}//{ID}{part}.png')
+        partsize+=1
+      elif partsize == size:
+        partsize = 0
+        part+=1
+        Image.open(unit).save(f'.//Banner//pull{ID}//{ID}{part}.png')
+        partsize += 1
+
+    images = sorted(list(os.listdir(f".//Banner//pull{ID}")), key=lambda x: int(os.path.splitext(x)[0]))
+    Image.open(f".//Banner//pull{ID}//{images[0]}").save(f'.//Banner//pull{ID}//{ID}.png')
+    images.pop(0)
+    for unit in images:
+      img = Image.open(f'.//Banner//pull{ID}//{ID}.png')
+      addon = Image.open(f".//Banner//pull{ID}//{unit}")
+      get_concat_v_blank(img, addon, (47,49,54)).save(f'.//Banner//pull{ID}//{ID}.png')
+
+    title = f"Units with {points} points"
+    quote = f"{number}/{totalunits} units"
+    file = discord.File(f'.//Banner//pull{ID}//{ID}.png', filename="image.png")
+    em = discord.Embed(title = title, description= quote, colour = ctx.author.color)
+    em.set_image(url = f"attachment://image.png")
+    await ctx.send(embed = em,file=file)
+
+    try:
+      return shutil.rmtree(f'.//Banner//pull{ID}//')
+    except OSError as e:
+      return print("Error: %s : %s" % ('.//Banner//pull{ID}//', e.strerror))
+
+  @commands.command(aliases=["tedit"])
+  async def tournamentedit(self, ctx, name, points):
+    prefix = get_prefix(client,ctx)
+    
+    user = tournament.find_one( {'_id': "BASE"} )
+    allunits = []
+    for key in user:
+      allunits.append(str(key))
+    if name not in allunits:
+      embed = discord.Embed(description=f"Unit `{name}` doesn't exist. Please check with `{prefix}unit {name}`")
+      return await ctx.send(embed=embed)
+    else:
+      tournament.update_many(
+        {},
+        {'$set': {
+              f'{name}.points': points
+          }}, upsert=False, array_filters=None
+      )   
+      return await ctx.send(f"Unit `{name}` has been given `{points}` points")
+
 
 def direct(directory,rank):
   path = f".//Banner//{rank}"

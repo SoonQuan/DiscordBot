@@ -11,7 +11,8 @@ cluster = MongoClient(os.getenv('MONGODB'))
 db = cluster["luckbot"]
 mainbank = db["mainbank"]
 settings = db["settings"]
-
+liveness = db["liveness"]
+mon = liveness.find_one({"setting":"main"})
 
 def get_prefix(client, message):
   server = settings.find_one({"gid":message.guild.id})
@@ -25,18 +26,7 @@ botcolour = 0x0fa4aab
 
 mc_channels = [851668288391872572,851665369726320641]
 
-monlist = [
-  '<@385046875340013578>',
-  '<@161799396575412225>',
-  '<@427113034629120012>',
-  '<@329997304780161028>',
-  '<@448113801376694275>',
-  '<@396121525205336064>',
-  '<@350621587684196352>',
-  '<@928281897459675227>',
-  '<@296586790578683904>',
-  '<@374245864387903488>'
-  ]
+
 
 with open("active.json", 'r') as f:
   activedata = json.load(f)
@@ -49,30 +39,25 @@ class Greetings(commands.Cog):
 
     @tasks.loop(minutes=555)
     async def keepactive(self):
-     try:
-       channel = await self.client.fetch_channel(516246018988441602)
-       member = random.choice(monlist)
-       quote = f"{member} {random.choice(activedata['NOTES'])}"
-       await channel.send(quote)
-     except:
-       print("smth wrong")
+      if mon["liveness"] == True:
+        try:
+          channel = await self.client.fetch_channel(516246018988441602)
+          member = random.choice(mon["people"])
+          quote = f"{member} {random.choice(activedata['NOTES'])}"
+          await channel.send(quote)
+        except:
+          print("smth wrong")
 
     @keepactive.before_loop
     async def before_keepactive(self):
        await self.client.wait_until_ready()
 
     # @commands.command()
-    # async def aaaa(self,ctx):
-    #   try:
-    #     channel = await self.client.fetch_channel(840799693700071434)
-    #     # channel = await self.client.fetch_channel(516246018988441602)
-    #     # member = random.choice(monlist)
-    #     member = '<@399558274753495040>'
-    #     quote = f"{member} {random.choice(activedata['NOTES'])}"
-    #     await channel.send(quote)
-    #   except:
-    #     print("smth wrong")
-        
+    # async def ttt(self,ctx):
+    #   if mon["liveness"] == True:
+    #     await ctx.send("1")
+    #     return
+
     @commands.command()
     @commands.has_any_role('ADMIN','N⍧ Sovereign', 'le vendel' , 'G⍧ Archangels', 'K⍧ Kage', 'D⍧ Dragon', 'W⍧ Grace', 'R⍧ Leviathan')
     async def umc(self,ctx):
