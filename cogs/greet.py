@@ -36,34 +36,26 @@ class Greetings(commands.Cog):
 
     @tasks.loop(minutes=555)
     async def keepactive(self):
-      roll = random.randrange(4)
+      roll = random.randrange(1,6)
       if mon["liveness"] == True:
         try:
           channel = await self.client.fetch_channel(516246018988441602)
           member = random.choice(mon["people"])
-          if roll=="1":
-            quote = f"{member}\n{random.choice(activedata['NOTES'])}"
-            await channel.send(quote)
-          elif roll=="2":
-            url = "https://opentdb.com/api.php?amount=1&category=19" #math
+          quote = f"{member} "
+          for i in range(roll):
+            catid = random.choice(mon["category"])
+            difficulty = mon["difficulty"]
+            qntype = mon["type"]
+            url = f"https://opentdb.com/api.php?amount=1&category={catid}&difficulty={difficulty}&type={qntype}"
             r = requests.request("GET", url).json()
+            category = unescape(r['results'][0]['category'])
             diff = unescape(r['results'][0]['difficulty'])
             question = unescape(r['results'][0]['question'])
             ans = unescape(r['results'][0]['correct_answer'])
             options = [ans] + unescape(r['results'][0]['incorrect_answers'])
             options = "` or `".join(random.sample(options, len(options)))
-            quote = f"{member} Difficulty: {diff.upper()}\n{question}\n`{options}`\nAnswer: ||`{ans}`||"
-            await channel.send(quote)            
-          else: 
-            url = "https://opentdb.com/api.php?amount=1&category=31" #anime
-            r = requests.request("GET", url).json()
-            diff = unescape(r['results'][0]['difficulty'])
-            question = unescape(r['results'][0]['question'])
-            ans = unescape(r['results'][0]['correct_answer'])
-            options = [ans] + unescape(r['results'][0]['incorrect_answers'])
-            options = "` or `".join(random.sample(options, len(options)))
-            quote = f"{member} Difficulty: {diff.upper()}\n{question}\n`{options}`\nAnswer: ||`{ans}`||"
-            await channel.send(quote)
+            quote += f"\n{i+1}. Category: {category} Difficulty: {diff.upper()}\n{question}\n`{options}`\nAnswer: ||`{ans}`||\n"
+          await channel.send(quote)
         except:
           print("smth wrong")
 
