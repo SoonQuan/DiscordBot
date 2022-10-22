@@ -61,7 +61,7 @@ class Greetings(commands.Cog):
         quote += apiresult
         return await channel.send(quote)
       else:
-        await channel.send(apicall())
+        await ctx.send(apicall())
 
     @commands.command()
     @commands.has_any_role('ADMIN','N⍧ Sovereign', 'le vendel' , 'G⍧ Archangels', 'K⍧ Kage', 'D⍧ Dragon', 'W⍧ Grace', 'R⍧ Leviathan')
