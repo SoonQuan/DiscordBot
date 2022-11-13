@@ -166,8 +166,8 @@ class SDSGC(commands.Cog):
     banner = str(arg.upper()) + "Banner"
     dirs = []
     ban6p = ["DZ"]
-    ban4p = ["T1","AM","ESTA","MERLIN","FZEL","FBAN", "FLIZ","LUDO", "CUSACK", "FGOW", "FKING", "FDIANE", "DMELI", "FMERLIN"]
-    ban3p = ["MONO","SLIME","VAL","REZERO","ST", "SHIELD","EXARTH", "ELAINE", "HAWK", "ONZEL", "CHANDLER", "SDIANE", "CAP", "SARIEL", "TARMIEL","SEASON", "BRUN", "RAGBAN", "RAG1", "RAG2", "RAG3", "RAG4", "RAG5", "RAG6", "RAG7",  "SROXY", "SMLH", "EMO", "HMATRONA", "MELA", "HDIANE", "HEAST", "XLILLIA", "XLIZ", "KOF"]
+    ban4p = ["T1","AM","ESTA","MERLIN","FZEL","FBAN", "FLIZ","LUDO", "FGOW", "FKING", "FDIANE", "DMELI", "FMERLIN"]
+    ban3p = ["MONO","SLIME","VAL","REZERO","ST", "SHIELD","EXARTH", "CUSACK","ELAINE", "HAWK", "ONZEL", "CHANDLER", "SDIANE", "CAP", "SARIEL", "TARMIEL","SEASON", "BRUN", "RAGBAN", "RAG1", "RAG2", "RAG3", "RAG4", "RAG5", "RAG6", "RAG7",  "SROXY", "SMLH", "EMO", "HMATRONA", "MELA", "HDIANE", "HEAST", "XLILLIA", "XLIZ", "KOF"]
 
     if arg in ban3p:
       for i in range(11):
