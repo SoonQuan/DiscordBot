@@ -87,7 +87,7 @@ class Greetings(commands.Cog):
         notes = json.load(f)
       if str(user.guild.id) not in notes:
         notes[str(user.guild.id)] = {}
-        # add new welcome
+        # add new welcome 
         em = discord.Embed(description = f'What is the welcome message?', colour = ctx.author.color)
         await ctx.send(embed = em)
         try:
