@@ -30,16 +30,17 @@ class CHATGPT(commands.Cog):
   @commands.command()
   @commands.has_any_role("SqChatGPT")
   async def gpt(self, ctx,*, prompt):
-    if mon["chatgpt"] == True:
+    if mon["chatgptsetting"]["live"] == True:
       async with aiohttp.ClientSession() as session:
         payload = {
-          "model": "text-davinci-003",
+          "model": mon["chatgptsetting"]["model"],
           "prompt": prompt,
-          "max_tokens": 50,
-          "temperature": 0.5,
-          "presence_penalty": 0,
-          "frequency_penalty": 0,
-          "best_of": 1
+          "max_tokens": mon["chatgptsetting"]["max_token"],
+          "temperature": mon["chatgptsetting"]["temperature"],
+          "presence_penalty": mon["chatgptsetting"]["presence_penalty"],
+          "frequency_penalty": mon["chatgptsetting"]["frequency_penalty"],
+          "best_of": 1,
+          "user": str(ctx.author.display_name)
         }
         headers = {"Authorization": f"Bearer {gptapikey}"}
         async with session.post("https://api.openai.com/v1/completions", json=payload, headers=headers) as res:
