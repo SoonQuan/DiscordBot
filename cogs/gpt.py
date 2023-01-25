@@ -45,10 +45,14 @@ class CHATGPT(commands.Cog):
         headers = {"Authorization": f"Bearer {gptapikey}"}
         async with session.post("https://api.openai.com/v1/completions", json=payload, headers=headers) as res:
           response = await res.json()
-          embed = discord.Embed(title="ChatGPT", description=response["choices"][0]["text"])
-          footer = "Token Usage: " + str(response["usage"]["total_tokens"])
-          embed.set_footer(text=footer)
-          await ctx.reply(embed=embed)
+          if "error" in response:
+            embed = discord.Embed(title="ChatGPT", description=response["error"]["message"])
+            await ctx.reply(embed=embed)
+          else:
+            embed = discord.Embed(title="ChatGPT", description=response["choices"][0]["text"])
+            footer = "Token Usage: " + str(response["usage"]["total_tokens"])
+            embed.set_footer(text=footer)
+            await ctx.reply(embed=embed)
 
 def setup(client):
   client.add_cog(CHATGPT(client))

@@ -15764,3 +15764,10 @@ Command raised an exception: TypeError: int() argument must be a string, a bytes
 2022-10-04 00:39:30,938 [WARNING] Error
 Sq
 Command raised an exception: AttributeError: 'dict' object has no attribute 'id'
+2023-01-26 00:32:00,519 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2023-01-26 00:32:06,179 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2023-01-26 00:32:24,375 [WARNING] ~~~~~~ Admin logged in ~~~~~~
+2023-01-26 00:32:25,124 [CRITICAL] ~~~~~~ Admin logged in ~~~~~~
+2023-01-26 00:33:01,061 [WARNING] Error
+Sq
+Command raised an exception: KeyError: 'choices'
