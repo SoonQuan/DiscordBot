@@ -63,7 +63,7 @@ class CHATGPT(commands.Cog):
         payload = {
           "model": "code-davinci-002",
           "prompt": prompt,
-          "max_tokens": 500,
+          "max_tokens": 8000,
           "temperature": mon["chatgptsetting"]["temperature"],
           "presence_penalty": mon["chatgptsetting"]["presence_penalty"],
           "frequency_penalty": mon["chatgptsetting"]["frequency_penalty"],
