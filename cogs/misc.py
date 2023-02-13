@@ -45,8 +45,8 @@ class Misc(commands.Cog):
       output += " ".join(outlist[n])
       if n != size-1:
         output += "\n"
-    embed = discord.Embed(description=output)
-    return await ctx.reply(embed=embed, colour = ctx.author.color)
+    embed = discord.Embed(description=output, colour = ctx.author.color)
+    return await ctx.reply(embed=embed)
 
 def setup(client):
   client.add_cog(Misc(client))
