@@ -48,12 +48,12 @@ class CHATGPT(commands.Cog):
           print(response)
           if "error" in response:
             embed = discord.Embed(title="ChatGPT", description=response["error"]["message"])
-            await ctx.reply(embed=embed)
+            await ctx.reply(embed=embed, colour = ctx.author.color)
           else:
             embed = discord.Embed(title="ChatGPT", description=response["choices"][0]["text"])
             footer = "Token Usage: " + str(response["usage"]["total_tokens"])
             embed.set_footer(text=footer)
-            await ctx.reply(embed=embed)
+            await ctx.reply(embed=embed, colour = ctx.author.color)
 
   @commands.command()
   @commands.has_any_role("SqChatGPT")
@@ -76,12 +76,12 @@ class CHATGPT(commands.Cog):
           print(response)
           if "error" in response:
             embed = discord.Embed(title="ChatGPT", description=response["error"]["message"])
-            await ctx.reply(embed=embed)
+            await ctx.reply(embed=embed, colour = ctx.author.color)
           else:
             embed = discord.Embed(title="ChatGPT", description=response["choices"][0]["text"])
             footer = "Token Usage: " + str(response["usage"]["total_tokens"])
             embed.set_footer(text=footer)
-            await ctx.reply(embed=embed)
+            await ctx.reply(embed=embed, colour = ctx.author.color)
 
   @commands.command()
   @commands.is_owner()
@@ -103,12 +103,12 @@ class CHATGPT(commands.Cog):
           print(response)
           if "error" in response:
             embed = discord.Embed(title="ChatGPT", description=response["error"]["message"])
-            await ctx.reply(embed=embed)
+            await ctx.reply(embed=embed, colour = ctx.author.color)
           else:
             embed = discord.Embed(title="ChatGPT", description=response["choices"][0]["text"])
             footer = "Token Usage: " + str(response["usage"]["total_tokens"])
             embed.set_footer(text=footer)
-            await ctx.reply(embed=embed)
+            await ctx.reply(embed=embed, colour = ctx.author.color)
 
   @commands.command()
   @commands.is_owner()
@@ -116,18 +116,18 @@ class CHATGPT(commands.Cog):
     if para.lower() in ['max_token']:
       liveness.update_one({"setting":"main"}, {"$set":{f"chatgptsetting.{para}":int(value)}})
       embed = discord.Embed(title="ChatGPT Update", description=f"New {para}: {value}")
-      await ctx.reply(embed=embed)
+      await ctx.reply(embed=embed, colour = ctx.author.color)
     elif para.lower() in ['model']:
       liveness.update_one({"setting":"main"}, {"$set":{f"chatgptsetting.{para}":str(value)}})
       embed = discord.Embed(title="ChatGPT Update", description=f"New {para}: {value}")
-      await ctx.reply(embed=embed)
+      await ctx.reply(embed=embed, colour = ctx.author.color)
     elif para.lower() in ['temperature','presence_penalty','frequency_penalty']:
       liveness.update_one({"setting":"main"}, {"$set":{f"chatgptsetting.{para}":float(value)}})
       embed = discord.Embed(title="ChatGPT Update", description=f"New {para}: {value}")
-      await ctx.reply(embed=embed)
+      await ctx.reply(embed=embed, colour = ctx.author.color)
     else:
       embed = discord.Embed(title="ChatGPT Wrong Parameters", description=f"> model\n> max_token\n> temperature\n> presence_penalty\n> frequency_penalty")
-      await ctx.reply(embed=embed)
+      await ctx.reply(embed=embed, colour = ctx.author.color)
 
 def setup(client):
   client.add_cog(CHATGPT(client))
