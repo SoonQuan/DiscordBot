@@ -31,6 +31,10 @@ class Misc(commands.Cog):
   async def dig(self, ctx, size=5):
     if size > 7:
       size = 7
+    elif size < 1:
+      size = 1
+    elif type(size) != int:
+      size = 5
     temp = ["||<a:helloo:835770495865454602>||"]
     blank = "||<:fuckingpng:834386099492093962>||"
     outlist=[]
