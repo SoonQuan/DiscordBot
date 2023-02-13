@@ -39,6 +39,9 @@ client.help_command = PrettyHelp(navigation=menu,
 
 @client.event
 async def on_ready():
+	for filename in os.listdir('./cogs'):
+		if filename.endswith('.py'):
+			client.load_extension(f'cogs.{filename[:-3]}')
 	await client.change_presence(activity=discord.Game(f"with you | mention me to get prefix"))
 	#await change_status.start()
 	print('We have logged in as {0.user}'.format(client))
@@ -101,9 +104,6 @@ async def changepfp(ctx,item):
   except Exception as e:
     return await ctx.send(e)
 
-for filename in os.listdir('./cogs'):
-	if filename.endswith('.py'):
-		client.load_extension(f'cogs.{filename[:-3]}')
 
 
 client.run(os.getenv('TOKEN'))
