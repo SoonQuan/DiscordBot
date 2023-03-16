@@ -39,8 +39,7 @@ class CHATGPT(commands.Cog):
           "temperature": mon["chatgptsetting"]["temperature"],
           "presence_penalty": mon["chatgptsetting"]["presence_penalty"],
           "frequency_penalty": mon["chatgptsetting"]["frequency_penalty"],
-          "best_of": 1,
-          "user": str(ctx.author.display_name)
+          "best_of": 1
         }
         headers = {"Authorization": f"Bearer {gptapikey}"}
         async with session.post("https://api.openai.com/v1/completions", json=payload, headers=headers) as res:
@@ -54,6 +53,49 @@ class CHATGPT(commands.Cog):
             footer = "Token Usage: " + str(response["usage"]["total_tokens"])
             embed.set_footer(text=footer)
             await ctx.reply(embed=embed)
+
+  @commands.command()
+  @commands.has_any_role("SqChatGPT")
+  async def chat(self, ctx,*, prompt):
+    if mon["chatgptsetting"]["live"] == True:
+      async with aiohttp.ClientSession() as session:
+        payload = {
+          "model": mon["chatgptsetting"]["chatmodel"],
+          "messages": [{"role": "user", "content": prompt}]
+        }
+        headers = {"Authorization": f"Bearer {gptapikey}"}
+        async with session.post("https://api.openai.com/v1/chat/completions", json=payload, headers=headers) as res:
+          response = await res.json()
+          print(response)
+          if "error" in response:
+            embed = discord.Embed(title="ChatGPT", description=response["error"]["message"], colour = ctx.author.color)
+            await ctx.reply(embed=embed)
+          else:
+            embed = discord.Embed(title="ChatGPT", description=response["choices"][0]["message"]["content"], colour = ctx.author.color)
+            footer = "Token Usage: " + str(response["usage"]["total_tokens"])
+            embed.set_footer(text=footer)
+            await ctx.reply(embed=embed)
+
+  @commands.command()
+  @commands.has_any_role("SqChatGPT")
+  async def image(self, ctx,*, prompt):
+    if mon["chatgptsetting"]["live"] == True:
+      async with aiohttp.ClientSession() as session:
+        payload = {
+          "prompt": prompt,
+          "n": 2,
+          "size": mon["chatgptsetting"]["imagesize"]
+        }
+        headers = {"Authorization": f"Bearer {gptapikey}"}
+        async with session.post("https://api.openai.com/v1/images/generations", json=payload, headers=headers) as res:
+          response = await res.json()
+          print(response)
+          if "error" in response:
+            embed = discord.Embed(title="ChatGPT", description=response["error"]["message"], colour = ctx.author.color)
+            await ctx.reply(embed=embed)
+          else:
+            for item in response["data"]:
+              await ctx.send(item["url"])
 
   @commands.command()
   @commands.has_any_role("SqChatGPT")
@@ -84,8 +126,7 @@ class CHATGPT(commands.Cog):
             await ctx.reply(embed=embed)
 
   @commands.command()
-  @commands.is_owner()
-  async def sqgpt(self, ctx,*, prompt):
+  async def oldgpt(self, ctx,*, prompt):
     if mon["chatgptsetting"]["live"] == True:
       async with aiohttp.ClientSession() as session:
         payload = {
