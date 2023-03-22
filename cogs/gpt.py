@@ -1,4 +1,4 @@
-import os, discord, aiohttp
+import os, discord, aiohttp, asyncio
 from discord.ext import commands
 import pymongo
 from pymongo import MongoClient
@@ -75,6 +75,50 @@ class CHATGPT(commands.Cog):
             footer = "Token Usage: " + str(response["usage"]["total_tokens"])
             embed.set_footer(text=footer)
             await ctx.reply(embed=embed)
+
+  @commands.command()
+  @commands.has_any_role("SqChatGPT")
+  async def chat2(self, ctx):
+    def check(m):
+      return m.channel == ctx.message.channel and m.author.id == ctx.author.id
+    if mon["chatgptsetting"]["live"] == True:
+      system = mon["chatgptsetting"]["system"]
+      chatRecords = [{"role": "system", "content": system}]
+      initial = discord.Embed(description = f"Chat starting using system: `{system}`\nSend prompt within 30s to chat", colour = ctx.author.color)
+      await ctx.reply(embed = initial)
+      while len(chatRecords)<10:
+        try:
+          messagePrompt = await self.client.wait_for("message",timeout= 30, check=check)
+          if messagePrompt.content.lower() == "stop":
+            em1 = discord.Embed(description = "Nothing else for me? Alright have a good day.", colour = ctx.author.color)
+            return await ctx.send(embed = em1)
+          chatRecords.append({"role": "user", "content": messagePrompt.content})
+          async with aiohttp.ClientSession() as session:
+            payload = {
+              "model": mon["chatgptsetting"]["chatmodel"],
+              "messages": chatRecords
+            }
+            headers = {"Authorization": f"Bearer {gptapikey}"}
+            async with session.post("https://api.openai.com/v1/chat/completions", json=payload, headers=headers) as res:
+              response = await res.json()
+              print(response)
+              if "error" in response:
+                chatRecords.pop()
+                embed = discord.Embed(title="ChatGPT", description=response["error"]["message"], colour = ctx.author.color)
+                await ctx.reply(embed=embed)
+              else:
+                reply = response["choices"][0]["message"]["content"]
+                embed = discord.Embed(title="ChatGPT", description=reply, colour = ctx.author.color)
+                footer = "Token Usage: " + str(response["usage"]["total_tokens"])
+                embed.set_footer(text=footer)
+                chatRecords.append({"role": "assistant", "content": reply})
+                await ctx.reply(embed=embed)
+        except asyncio.TimeoutError: 
+          em1 = discord.Embed(description = "Nothing else for me? Alright have a good day.", colour = ctx.author.color)
+          return await ctx.reply(embed = em1)
+      print(chatRecords)
+      em1 = discord.Embed(description = "Enough for today. Have a good day." , colour = ctx.author.color)
+      return await ctx.reply(embed = em1)
 
   @commands.command()
   @commands.has_any_role("SqChatGPT")
