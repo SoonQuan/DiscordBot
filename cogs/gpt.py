@@ -9,7 +9,6 @@ db = cluster["luckbot"]
 mainbank = db["mainbank"]
 settings = db["settings"]
 liveness = db["liveness"]
-mon = liveness.find_one({"setting":"main"})
 
 
 def get_prefix(client, message):
@@ -30,6 +29,7 @@ class CHATGPT(commands.Cog):
   @commands.command()
   @commands.has_any_role("SqChatGPT")
   async def gpt(self, ctx,*, prompt):
+    mon = liveness.find_one({"setting":"main"})
     if mon["chatgptsetting"]["live"] == True:
       async with aiohttp.ClientSession() as session:
         payload = {
@@ -57,6 +57,7 @@ class CHATGPT(commands.Cog):
   @commands.command()
   @commands.has_any_role("SqChatGPT")
   async def chat(self, ctx,*, prompt):
+    mon = liveness.find_one({"setting":"main"})
     if mon["chatgptsetting"]["live"] == True:
       async with aiohttp.ClientSession() as session:
         payload = {
@@ -79,6 +80,7 @@ class CHATGPT(commands.Cog):
   @commands.command()
   @commands.has_any_role("SqChatGPT")
   async def chat2(self, ctx):
+    mon = liveness.find_one({"setting":"main"})
     def check(m):
       return m.channel == ctx.message.channel and m.author.id == ctx.author.id
     if mon["chatgptsetting"]["live"] == True:
@@ -122,7 +124,16 @@ class CHATGPT(commands.Cog):
 
   @commands.command()
   @commands.has_any_role("SqChatGPT")
+  async def setchat(self, ctx,*, prompt):
+    mon = liveness.find_one({"setting":"main"})
+    liveness.update_one({"setting":"main"}, {"$set":{f"chatgptsetting.system":str(prompt)}})
+    embed = discord.Embed(title="ChatGPT Update", description=f"New System: {prompt}", colour = ctx.author.color)
+    await ctx.reply(embed=embed)
+
+  @commands.command()
+  @commands.has_any_role("SqChatGPT")
   async def image(self, ctx,*, prompt):
+    mon = liveness.find_one({"setting":"main"})
     if mon["chatgptsetting"]["live"] == True:
       async with aiohttp.ClientSession() as session:
         payload = {
@@ -144,6 +155,7 @@ class CHATGPT(commands.Cog):
   @commands.command()
   @commands.has_any_role("SqChatGPT")
   async def codegpt(self, ctx,*, prompt):
+    mon = liveness.find_one({"setting":"main"})
     if mon["chatgptsetting"]["live"] == True:
       async with aiohttp.ClientSession() as session:
         payload = {
@@ -171,6 +183,7 @@ class CHATGPT(commands.Cog):
 
   @commands.command()
   async def oldgpt(self, ctx,*, prompt):
+    mon = liveness.find_one({"setting":"main"})
     if mon["chatgptsetting"]["live"] == True:
       async with aiohttp.ClientSession() as session:
         payload = {
@@ -202,7 +215,7 @@ class CHATGPT(commands.Cog):
       liveness.update_one({"setting":"main"}, {"$set":{f"chatgptsetting.{para}":int(value)}})
       embed = discord.Embed(title="ChatGPT Update", description=f"New {para}: {value}", colour = ctx.author.color)
       await ctx.reply(embed=embed)
-    elif para.lower() in ['model']:
+    elif para.lower() in ['model','chatmodel','system','imagesize']:
       liveness.update_one({"setting":"main"}, {"$set":{f"chatgptsetting.{para}":str(value)}})
       embed = discord.Embed(title="ChatGPT Update", description=f"New {para}: {value}", colour = ctx.author.color)
       await ctx.reply(embed=embed)
