@@ -3,7 +3,7 @@ import os
 from discord.ext import commands
 from pymongo import MongoClient
 from itertools import cycle
-from pretty_help import DefaultMenu, PrettyHelp
+# from pretty_help import EmojiMenu, PrettyHelp
 # import neverSleep
 # neverSleep.awake('https://DiscordBot.sqmatt.repl.co', True)
 
@@ -29,12 +29,12 @@ client = commands.Bot(command_prefix=get_prefix, description="Bot is here for yo
 botcolour = 0x0fa4aab
 status = cycle(["with your luck", f"with you | try {get_prefix}help"])
 
-menu = DefaultMenu('◀️', '▶️', '❌')
-client.help_command = PrettyHelp(navigation=menu,
-                                 index_title="Help",
-                                 sort_commands=True,
-                                 no_category="Owner",
-                                 color=discord.Colour.blurple())
+# menu = EmojiMenu('◀️', '▶️', '❌')
+# client.help_command = PrettyHelp(navigation=menu,
+#                                  index_title="Help",
+#                                  sort_commands=True,
+#                                  no_category="Owner",
+#                                  color=discord.Colour.blurple())
 
 
 @client.event
